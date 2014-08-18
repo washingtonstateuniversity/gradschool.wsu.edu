@@ -194,6 +194,7 @@ class WSU_Grad_Degrees {
 		$final_degrees_html = $clean_degrees_dom->saveHTML();
 		$final_degrees_html = preg_replace('~<(?:!DOCTYPE|/?(?:html|body))[^>]*>\s*~i', '', $final_degrees_html );
 		$final_degrees_html = str_replace( 'src="/Images/', 'src="' . get_stylesheet_directory_uri() . '/images/', $final_degrees_html );
+		$final_degrees_html = str_replace( 'http://gradschool.wsu.edu/futurestudents/apply.html', home_url( '/apply/' ), $final_degrees_html );
 
 		$clean_degrees_dom = null;
 

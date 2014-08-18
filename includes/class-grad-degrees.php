@@ -126,6 +126,7 @@ class WSU_Grad_Degrees {
 			$final_degrees_html = '<div class="guttered">' . substr( $final_degrees_html, 5 );
 		}
 
+		wp_cache_delete( 'wsu_grad_degrees_all' );
 		wp_cache_add( 'wsu_grad_degrees_all', $final_degrees_html, '', 86400 );
 
 		return $final_degrees_html;

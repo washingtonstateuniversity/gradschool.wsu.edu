@@ -122,6 +122,9 @@ class WSU_Grad_Degrees {
 		$final_degrees_html = $clean_degrees_dom->saveHTML();
 		$final_degrees_html = preg_replace('~<(?:!DOCTYPE|/?(?:html|body))[^>]*>\s*~i', '', $final_degrees_html );
 		$final_degrees_html = str_replace( 'FactSheet/', 'factsheet/', $final_degrees_html );
+		if ( substr( $final_degrees_html, 0, 5 ) ) {
+			$final_degrees_html = '<div class="guttered">' . substr( $final_degrees_html, 5 );
+		}
 
 		wp_cache_add( 'wsu_grad_degrees_all', $final_degrees_html, '', 86400 );
 

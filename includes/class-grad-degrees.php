@@ -18,6 +18,8 @@ class WSU_Grad_Degrees {
 	public function rewrite_rules() {
 		add_rewrite_rule( '^degrees/factsheet/([^/]*)/?','index.php?degree_id=$matches[1]', 'top' );
 		add_rewrite_rule( '^degrees/?', 'index.php?degrees_load=1', 'top' );
+		add_rewrite_rule( '^certificates/factsheet/([^/]*)/?', 'index.php?degree_id=$matches[1]', 'top' );
+		add_rewrite_rule( '^certificates/?', 'index.php?certificates_load=1', 'top' );
 	}
 
 	/**
@@ -30,12 +32,14 @@ class WSU_Grad_Degrees {
 	function query_vars( $query_vars ) {
 		$query_vars[] = 'degree_id';
 		$query_vars[] = 'degrees_load';
+		$query_vars[] = 'certificate_id';
+		$query_vars[] = 'certificates_load';
 
 		return $query_vars;
 	}
 
 	/**
-	 * Help WordPress find the single degree template when the rewrite rule is fired.
+	 * Help WordPress find templates for degrees and certificates when found.
 	 *
 	 * @param string $template Expected template.
 	 *
@@ -52,23 +56,25 @@ class WSU_Grad_Degrees {
 			if ( '' !== $new_template ) {
 				return $new_template;
 			}
+		} elseif ( 1 == get_query_var( 'certificates_load' ) ) {
+			$new_template = locate_template( 'certificate-all.php' );
+			if ( '' !== $new_template ) {
+				return $new_template;
+			}
 		}
 
 		return $template;
 	}
 
 	/**
-	 * Retrieve the HTML for the large list of degrees offered. Store this information in
-	 * cache for a day.
+	 * Retrieve HTML from DOM element "content" on a requested page and parse accordingly.
+	 *
+	 * @param string $content_url URL to retrieve content from.
+	 *
+	 * @return string HTML output.
 	 */
-	public function get_degrees_html() {
-		$degrees_html = wp_cache_get( 'wsu_grad_degrees_all' );
-
-		if ( $degrees_html ) {
-			return $degrees_html;
-		}
-
-		$degrees_raw = wp_remote_get( 'http://svr.gradschool.wsu.edu/FutureStudents/Degrees' );
+	public function get_content_html( $content_url ) {
+		$degrees_raw = wp_remote_get( $content_url );
 		$degrees_body = wp_remote_retrieve_body( $degrees_raw );
 
 		$degrees_dom = new DOMDocument();
@@ -125,6 +131,43 @@ class WSU_Grad_Degrees {
 		if ( substr( $final_degrees_html, 0, 5 ) ) {
 			$final_degrees_html = '<div class="guttered">' . substr( $final_degrees_html, 5 );
 		}
+
+		return $final_degrees_html;
+	}
+
+	/**
+	 * Retrieve the HTML for the list of certificates offered and store this information in cache.
+	 *
+	 * @return string HTML display of certificates.
+	 */
+	public function get_certificates_html() {
+		$certificates_html = wp_cache_get( 'wsu_grad_certs_all' );
+
+		if ( $certificates_html ) {
+			return $certificates_html;
+		}
+
+		$final_certificate_html = $this->get_content_html( 'http://svr.gradschool.wsu.edu/FutureStudents/Certificates' );
+
+		wp_cache_delete( 'wsu_grad_certs_all' );
+		wp_cache_add( 'wsu_grad_certs_all', $final_certificate_html, '', 3600 );
+
+		return $final_certificate_html;
+	}
+
+	/**
+	 * Retrieve the HTML for the list of degrees offered and store this information in cache.
+	 *
+	 * @return string HTML display of certificates.
+	 */
+	public function get_degrees_html() {
+		$degrees_html = wp_cache_get( 'wsu_grad_degrees_all' );
+
+		if ( $degrees_html ) {
+			return $degrees_html;
+		}
+
+		$final_degrees_html = $this->get_content_html( 'http://svr.gradschool.wsu.edu/FutureStudents/Degrees' );
 
 		wp_cache_delete( 'wsu_grad_degrees_all' );
 		wp_cache_add( 'wsu_grad_degrees_all', $final_degrees_html, '', 3600 );

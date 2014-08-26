@@ -66,6 +66,13 @@ class WSU_Grad_Degrees {
 		return $template;
 	}
 
+	/**
+	 * Retrieve HTML from DOM element "content" on a requested page and parse accordingly.
+	 *
+	 * @param string $content_url URL to retrieve content from.
+	 *
+	 * @return string HTML output.
+	 */
 	public function get_content_html( $content_url ) {
 		$degrees_raw = wp_remote_get( $content_url );
 		$degrees_body = wp_remote_retrieve_body( $degrees_raw );
@@ -124,6 +131,7 @@ class WSU_Grad_Degrees {
 		if ( substr( $final_degrees_html, 0, 5 ) ) {
 			$final_degrees_html = '<div class="guttered">' . substr( $final_degrees_html, 5 );
 		}
+
 		return $final_degrees_html;
 	}
 
@@ -140,6 +148,7 @@ class WSU_Grad_Degrees {
 		}
 
 		$final_certificate_html = $this->get_content_html( 'http://svr.gradschool.wsu.edu/FutureStudents/Certificates' );
+
 		wp_cache_delete( 'wsu_grad_certs_all' );
 		wp_cache_add( 'wsu_grad_certs_all', $final_certificate_html, '', 3600 );
 

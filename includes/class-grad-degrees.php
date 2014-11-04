@@ -224,8 +224,10 @@ class WSU_Grad_Degrees {
 		$degrees_html_xpath = null;
 
 		$clean_degrees_dom = new DOMDocument();
+		libxml_use_internal_errors( true );
 		$clean_degrees_dom->loadHTML( $degree_content_html );
-
+		libxml_use_internal_errors( false );
+		
 		$degrees_html_xpath = new DOMXPath( $clean_degrees_dom );
 
 		// Query for and remove all inline styles.

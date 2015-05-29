@@ -150,7 +150,7 @@ class WSU_Grad_Degrees {
 		$final_certificate_html = $this->get_content_html( 'http://svr.gradschool.wsu.edu/FutureStudents/Certificates' );
 
 		wp_cache_delete( 'wsu_grad_certs_all' );
-		wp_cache_add( 'wsu_grad_certs_all', $final_certificate_html, '', 3600 );
+		wp_cache_add( 'wsu_grad_certs_all', $final_certificate_html, '', HOUR_IN_SECONDS );
 
 		return $final_certificate_html;
 	}

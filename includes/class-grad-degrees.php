@@ -224,8 +224,10 @@ class WSU_Grad_Degrees {
 		$degrees_html_xpath = null;
 
 		$clean_degrees_dom = new DOMDocument();
+		libxml_use_internal_errors( true );
 		$clean_degrees_dom->loadHTML( $degree_content_html );
-
+		libxml_use_internal_errors( false );
+		
 		$degrees_html_xpath = new DOMXPath( $clean_degrees_dom );
 
 		// Query for and remove all inline styles.
@@ -238,13 +240,18 @@ class WSU_Grad_Degrees {
 		$final_degrees_html = preg_replace('~<(?:!DOCTYPE|/?(?:html|body))[^>]*>\s*~i', '', $final_degrees_html );
 		$final_degrees_html = str_replace( 'src="/Images/', 'src="' . get_stylesheet_directory_uri() . '/images/', $final_degrees_html );
 		$final_degrees_html = str_replace( 'http://gradschool.wsu.edu/futurestudents/apply.html', home_url( '/apply/' ), $final_degrees_html );
+		$final_degrees_html = trim( $final_degrees_html );
 
 		$clean_degrees_dom = null;
+
+		if ( empty( $final_degrees_html ) ) {
+			error_log( 'gradschool.wsu.edu error loading ' . esc_url_raw( 'http://svr.gradschool.wsu.edu/FutureStudents/FactSheet/' . $degree ) );
+			return '';
+		}
 
 		wp_cache_add( 'wsu_grad_degree_' . $degree, $final_degrees_html, '', 8 * HOUR_IN_SECONDS );
 
 		return $final_degrees_html;
-
 	}
 }
 $wsu_grad_degrees = new WSU_Grad_Degrees();

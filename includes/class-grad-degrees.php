@@ -245,6 +245,7 @@ class WSU_Grad_Degrees {
 		$clean_degrees_dom = null;
 
 		if ( empty( $final_degrees_html ) ) {
+			error_log( 'gradschool.wsu.edu error loading ' . esc_url_raw( 'http://svr.gradschool.wsu.edu/FutureStudents/FactSheet/' . $degree ) );
 			return '';
 		}
 

@@ -240,13 +240,17 @@ class WSU_Grad_Degrees {
 		$final_degrees_html = preg_replace('~<(?:!DOCTYPE|/?(?:html|body))[^>]*>\s*~i', '', $final_degrees_html );
 		$final_degrees_html = str_replace( 'src="/Images/', 'src="' . get_stylesheet_directory_uri() . '/images/', $final_degrees_html );
 		$final_degrees_html = str_replace( 'http://gradschool.wsu.edu/futurestudents/apply.html', home_url( '/apply/' ), $final_degrees_html );
+		$final_degrees_html = trim( $final_degrees_html );
 
 		$clean_degrees_dom = null;
+
+		if ( empty( $final_degrees_html ) ) {
+			return '';
+		}
 
 		wp_cache_add( 'wsu_grad_degree_' . $degree, $final_degrees_html, '', 86400 );
 
 		return $final_degrees_html;
-
 	}
 }
 $wsu_grad_degrees = new WSU_Grad_Degrees();

@@ -241,7 +241,7 @@ class WSU_Grad_Degrees {
 
 		$clean_degrees_dom = null;
 
-		wp_cache_add( 'wsu_grad_degree_' . $degree, $final_degrees_html, '', 86400 );
+		wp_cache_add( 'wsu_grad_degree_' . $degree, $final_degrees_html, '', 8 * HOUR_IN_SECONDS );
 
 		return $final_degrees_html;
 

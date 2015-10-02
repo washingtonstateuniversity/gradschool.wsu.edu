@@ -230,7 +230,7 @@ class WSU_Grad_Degrees {
 		 * If an empty body is received from the request, we cannot rely on it to continue. Instead
 		 * we'll log it to the PHP error log for future exploration.
 		 */
-		if ( empty( $degrees_body ) ) {
+		if ( empty( $degree_body ) ) {
 			$response_message = wp_remote_retrieve_response_message( $degree_raw );
 			error_log( 'gradschool.wsu.edu error requesting ' . esc_url_raw( 'http://svr.gradschool.wsu.edu/FutureStudents/FactSheet/' . $degree ) );
 			error_log( 'gradschool.wsu.edu error response ' . esc_attr( $response_message ) );

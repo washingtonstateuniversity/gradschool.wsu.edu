@@ -23,7 +23,11 @@ get_header();
 
 		<section class="row thirds gutter marginalize-ends">
 
-			<?php echo $output; ?>
+			<?php
+			// @codingStandardsIgnoreStart
+			echo $output;
+			// @codingStandardsIgnoreEnd
+			?>
 
 		</section>
 

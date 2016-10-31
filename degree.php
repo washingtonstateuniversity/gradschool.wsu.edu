@@ -16,7 +16,11 @@ get_header();
 
 			<div class="column one">
 
-				<?php echo $output; ?>
+				<?php
+				// @codingStandardsIgnoreStart
+				echo $output;
+				// @codingStandardsIgnoreEnd
+				?>
 
 			</div><!--/column-->
 

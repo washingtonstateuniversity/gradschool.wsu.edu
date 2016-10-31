@@ -59,7 +59,7 @@ get_header();
 	</style>
 	<main>
 
-		<?php get_template_part('parts/headers'); ?>
+		<?php get_template_part( 'parts/headers' ); ?>
 
 		<section class="row thirds gutter marginalize-ends">
 
@@ -69,4 +69,4 @@ get_header();
 
 	</main><!--/#page-->
 
-<?php get_footer(); ?>
+<?php get_footer();

@@ -1,0 +1,12 @@
+{
+  "name": "gradschool.wsu.edu",
+  "version": "0.2.5",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/washingtonstateuniversity/gradschool.wsu.edu"
+  },
+  "devDependencies": {
+    "grunt": "~1.0.1",
+    "grunt-phpcs": "^0.4.0"
+  }
+}

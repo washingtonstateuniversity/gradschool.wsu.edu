@@ -59,14 +59,18 @@ get_header();
 	</style>
 	<main>
 
-		<?php get_template_part('parts/headers'); ?>
+		<?php get_template_part( 'parts/headers' ); ?>
 
 		<section class="row thirds gutter marginalize-ends">
 
-			<?php echo $output; ?>
+			<?php
+			// @codingStandardsIgnoreStart
+			echo $output;
+			// @codingStandardsIgnoreEnd
+			?>
 
 		</section>
 
 	</main><!--/#page-->
 
-<?php get_footer(); ?>
+<?php get_footer();

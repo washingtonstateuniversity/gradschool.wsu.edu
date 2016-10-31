@@ -50,7 +50,7 @@ class WSU_Grad_Degrees {
 			if ( '' !== $new_template ) {
 				return $new_template;
 			}
-		} elseif ( 1 == get_query_var( 'certificates_load' ) ) {
+		} elseif ( 1 === absint( get_query_var( 'certificates_load' ) ) ) {
 			add_filter( 'spine_get_title', array( $this, 'certificate_all_title' ), 15 );
 			$new_template = locate_template( 'certificate-all.php' );
 			if ( '' !== $new_template ) {
@@ -108,14 +108,14 @@ class WSU_Grad_Degrees {
 		$degrees_html_xpath = new DOMXPath( $degrees_dom );
 
 		// Find the DIV with a class attribute of "content"
-		$degrees_content_nodes = $degrees_html_xpath->query('//div[contains(concat(" ", normalize-space(@class), " "), " content ")]');
+		$degrees_content_nodes = $degrees_html_xpath->query( '//div[contains(concat(" ", normalize-space(@class), " "), " content ")]' );
 
 		// Create a new document to store our content DIV
 		$degree_content_dom = new DOMDocument();
 
 		// Parse the DOM and grab all of the children of the main content DIV
-		foreach( $degrees_content_nodes as $degree_content_node ) {
-			foreach( $degree_content_node->childNodes as $degree_content_child_node ) {
+		foreach ( $degrees_content_nodes as $degree_content_node ) {
+			foreach ( $degree_content_node->childNodes as $degree_content_child_node ) {
 				$new_degree_content = $degree_content_dom->importNode( $degree_content_child_node, true );
 				$degree_content_dom->appendChild( $new_degree_content );
 			}
@@ -135,21 +135,21 @@ class WSU_Grad_Degrees {
 
 		// Query for and remove all inline styles.
 		$degrees_html_nodes = $degrees_html_xpath->query( '//*[@style]' );
-		foreach( $degrees_html_nodes as $degree_html_node ) {
+		foreach ( $degrees_html_nodes as $degree_html_node ) {
 			$degree_html_node->removeAttribute( 'style' );
 		}
 
 		// Find the DIV with a class attribute of "content"
-		$degrees_html_nodes = $degrees_html_xpath->query('//div[contains(concat(" ", normalize-space(@class), " "), " one-third ")]');
+		$degrees_html_nodes = $degrees_html_xpath->query( '//div[contains(concat(" ", normalize-space(@class), " "), " one-third ")]' );
 		$x = 0;
 		$columns = array( 'one', 'two', 'three' );
-		foreach( $degrees_html_nodes as $degree_html_node ) {
+		foreach ( $degrees_html_nodes as $degree_html_node ) {
 			$degree_html_node->setAttribute( 'class', 'column ' . $columns[ $x ] );
 			$x++;
 		}
 
 		$final_degrees_html = $clean_degrees_dom->saveHTML();
-		$final_degrees_html = preg_replace('~<(?:!DOCTYPE|/?(?:html|body))[^>]*>\s*~i', '', $final_degrees_html );
+		$final_degrees_html = preg_replace( '~<(?:!DOCTYPE|/?(?:html|body))[^>]*>\s*~i', '', $final_degrees_html );
 		$final_degrees_html = str_replace( 'FactSheet/', 'factsheet/', $final_degrees_html );
 		if ( substr( $final_degrees_html, 0, 5 ) ) {
 			$final_degrees_html = '<div class="guttered">' . substr( $final_degrees_html, 5 );
@@ -237,14 +237,14 @@ class WSU_Grad_Degrees {
 		$degree_html_xpath = new DOMXPath( $degree_dom );
 
 		// Find the DIV with a class attribute of "content"
-		$degree_content_nodes = $degree_html_xpath->query('//div[contains(concat(" ", normalize-space(@class), " "), " content ")]');
+		$degree_content_nodes = $degree_html_xpath->query( '//div[contains(concat(" ", normalize-space(@class), " "), " content ")]' );
 
 		// Create a new document to store our content DIV
 		$degree_content_dom = new DOMDocument();
 
 		// Parse the DOM and grab all of the children of the main content DIV
-		foreach( $degree_content_nodes as $degree_content_node ) {
-			foreach( $degree_content_node->childNodes as $degree_content_child_node ) {
+		foreach ( $degree_content_nodes as $degree_content_node ) {
+			foreach ( $degree_content_node->childNodes as $degree_content_child_node ) {
 				$new_degree_content = $degree_content_dom->importNode( $degree_content_child_node, true );
 				$degree_content_dom->appendChild( $new_degree_content );
 			}
@@ -261,17 +261,17 @@ class WSU_Grad_Degrees {
 		libxml_use_internal_errors( true );
 		$clean_degrees_dom->loadHTML( $degree_content_html );
 		libxml_use_internal_errors( false );
-		
+
 		$degrees_html_xpath = new DOMXPath( $clean_degrees_dom );
 
 		// Query for and remove all inline styles.
 		$degrees_html_nodes = $degrees_html_xpath->query( '//*[@style]' );
-		foreach( $degrees_html_nodes as $degree_html_node ) {
+		foreach ( $degrees_html_nodes as $degree_html_node ) {
 			$degree_html_node->removeAttribute( 'style' );
 		}
 
 		$final_degrees_html = $clean_degrees_dom->saveHTML();
-		$final_degrees_html = preg_replace('~<(?:!DOCTYPE|/?(?:html|body))[^>]*>\s*~i', '', $final_degrees_html );
+		$final_degrees_html = preg_replace( '~<(?:!DOCTYPE|/?(?:html|body))[^>]*>\s*~i', '', $final_degrees_html );
 		$final_degrees_html = str_replace( 'src="/Images/', 'src="' . get_stylesheet_directory_uri() . '/images/', $final_degrees_html );
 		$final_degrees_html = str_replace( 'http://gradschool.wsu.edu/futurestudents/apply.html', home_url( '/apply/' ), $final_degrees_html );
 		$final_degrees_html = trim( $final_degrees_html );

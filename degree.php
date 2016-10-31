@@ -10,13 +10,17 @@ get_header();
 
 	<main>
 
-		<?php get_template_part('parts/headers'); ?>
+		<?php get_template_part( 'parts/headers' ); ?>
 
 		<section class="row single gutter marginalize-ends">
 
 			<div class="column one">
 
-				<?php echo $output; ?>
+				<?php
+				// @codingStandardsIgnoreStart
+				echo $output;
+				// @codingStandardsIgnoreEnd
+				?>
 
 			</div><!--/column-->
 

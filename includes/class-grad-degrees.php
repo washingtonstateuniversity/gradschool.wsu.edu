@@ -17,6 +17,7 @@ class WSU_Grad_Degrees {
 	 */
 	public function rewrite_rules() {
 		add_rewrite_rule( '^degrees/factsheet/([^/]*)/?','index.php?degree_id=$matches[1]', 'top' );
+		add_rewrite_rule( '^degrees/?', 'index.php?degrees_load=1', 'top' );
 		add_rewrite_rule( '^certificates/factsheet/([^/]*)/?', 'index.php?degree_id=$matches[1]', 'top' );
 		add_rewrite_rule( '^certificates/?', 'index.php?certificates_load=1', 'top' );
 	}
@@ -30,6 +31,7 @@ class WSU_Grad_Degrees {
 	 */
 	function query_vars( $query_vars ) {
 		$query_vars[] = 'degree_id';
+		$query_vars[] = 'degrees_load';
 		$query_vars[] = 'certificate_id';
 		$query_vars[] = 'certificates_load';
 
@@ -50,7 +52,13 @@ class WSU_Grad_Degrees {
 			if ( '' !== $new_template ) {
 				return $new_template;
 			}
-		} elseif ( 1 === absint( get_query_var( 'certificates_load' ) ) ) {
+		} elseif ( 1 == absint( get_query_var( 'degrees_load' ) ) ) {
+			add_filter( 'spine_get_title', array( $this, 'degree_all_title' ), 15 );
+			$new_template = locate_template( 'degree-all.php' );
+			if ( '' !== $new_template ) {
+				return $new_template;
+			}
+		} elseif ( 1 == absint( get_query_var( 'certificates_load' ) ) ) {
 			add_filter( 'spine_get_title', array( $this, 'certificate_all_title' ), 15 );
 			$new_template = locate_template( 'certificate-all.php' );
 			if ( '' !== $new_template ) {

@@ -7,3 +7,7 @@
  Template:       spine
  Version:        0.3.2
 */
+
+.degree-programs main ul.list > ul {
+	margin-left: 1.5em;
+}

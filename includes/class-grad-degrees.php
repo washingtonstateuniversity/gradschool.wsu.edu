@@ -77,6 +77,7 @@ class WSU_Grad_Degrees {
 		} elseif ( true === $this->provide_degrees_overview && 1 === absint( get_query_var( 'degrees_load' ) ) ) {
 			add_filter( 'spine_get_title', array( $this, 'degree_all_title' ), 15 );
 			add_filter( 'spine_sub_header_default', array( $this, 'degree_all_sub_title' ), 10 );
+			add_filter( 'body_class', array( $this, 'degree_all_body_class' ), 10 );
 			$new_template = locate_template( 'degree-all.php' );
 			if ( '' !== $new_template ) {
 				return $new_template;
@@ -91,6 +92,19 @@ class WSU_Grad_Degrees {
 		}
 
 		return $template;
+	}
+
+	/**
+	 * Add a body class to the degree programs page for easier CSS targeting.
+	 *
+	 * @param array $classes
+	 *
+	 * @return array
+	 */
+	public function degree_all_body_class( $classes ) {
+		$classes[] = 'degree-programs';
+
+		return $classes;
 	}
 
 	/**

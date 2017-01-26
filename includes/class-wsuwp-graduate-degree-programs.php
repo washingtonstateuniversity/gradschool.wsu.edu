@@ -2,7 +2,7 @@
 
 class WSUWP_Graduate_Degree_Programs {
 	/**
-	 * @since 0.0.1
+	 * @since 0.4.0
 	 *
 	 * @var WSUWP_Graduate_Degree_Programs
 	 */
@@ -12,7 +12,7 @@ class WSUWP_Graduate_Degree_Programs {
 	 * Track a version number for the scripts registered in
 	 * this object to enable cache busting.
 	 *
-	 * @since 0.0.1
+	 * @since 0.4.0
 	 *
 	 * @var string
 	 */
@@ -21,7 +21,7 @@ class WSUWP_Graduate_Degree_Programs {
 	/**
 	 * The slug used to register the factsheet post type.
 	 *
-	 * @since 0.0.1
+	 * @since 0.4.0
 	 *
 	 * @var string
 	 */
@@ -30,7 +30,7 @@ class WSUWP_Graduate_Degree_Programs {
 	/**
 	 * A list of post meta keys associated with factsheets.
 	 *
-	 * @since 0.0.1
+	 * @since 0.4.0
 	 *
 	 * @var array
 	 */
@@ -116,7 +116,7 @@ class WSUWP_Graduate_Degree_Programs {
 	 * Maintain and return the one instance. Initiate hooks when
 	 * called the first time.
 	 *
-	 * @since 0.0.1
+	 * @since 0.4.0
 	 *
 	 * @return \WSUWP_Graduate_Degree_Programs
 	 */
@@ -131,7 +131,7 @@ class WSUWP_Graduate_Degree_Programs {
 	/**
 	 * Setup hooks to include.
 	 *
-	 * @since 0.0.1
+	 * @since 0.4.0
 	 */
 	public function setup_hooks() {
 		require_once( dirname( __FILE__ ) . '/class-graduate-degree-faculty-taxonomy.php' );
@@ -155,7 +155,7 @@ class WSUWP_Graduate_Degree_Programs {
 	/**
 	 * Enqueue scripts and styles used in the admin.
 	 *
-	 * @since 0.0.1
+	 * @since 0.4.0
 	 *
 	 * @param string $hook_suffix
 	 */
@@ -168,7 +168,7 @@ class WSUWP_Graduate_Degree_Programs {
 	/**
 	 * Register the degree program factsheet post type.
 	 *
-	 * @since 0.0.1
+	 * @since 0.4.0
 	 */
 	public function register_post_type() {
 		$labels = array(
@@ -203,7 +203,7 @@ class WSUWP_Graduate_Degree_Programs {
 	/**
 	 * Register the meta keys used to store degree factsheet data.
 	 *
-	 * @since 0.0.1
+	 * @since 0.4.0
 	 */
 	public function register_meta() {
 		foreach ( $this->post_meta_keys as $key => $args ) {
@@ -221,7 +221,7 @@ class WSUWP_Graduate_Degree_Programs {
 	/**
 	 * Add the meta boxes used to capture information about a degree factsheet.
 	 *
-	 * @since 0.0.1
+	 * @since 0.4.0
 	 *
 	 * @param string $post_type
 	 */
@@ -236,7 +236,7 @@ class WSUWP_Graduate_Degree_Programs {
 	/**
 	 * Capture the main set of data about a degree factsheet.
 	 *
-	 * @since 0.0.1
+	 * @since 0.4.0
 	 *
 	 * @param WP_Post $post The current post object.
 	 */
@@ -308,6 +308,10 @@ class WSUWP_Graduate_Degree_Programs {
 	}
 
 	/**
+	 * Sanitizes a GPA value.
+	 *
+	 * @since 0.4.0
+	 *
 	 * @param string $gpa The unsanitized GPA.
 	 *
 	 * @return string The sanitized GPA.
@@ -330,7 +334,7 @@ class WSUWP_Graduate_Degree_Programs {
 	/**
 	 * Sanitizes a set of deadlines stored in a string.
 	 *
-	 * @since 0.0.1
+	 * @since 0.4.0
 	 *
 	 * @param array $deadlines
 	 *
@@ -352,7 +356,7 @@ class WSUWP_Graduate_Degree_Programs {
 	/**
 	 * Sanitizes a set of requirements stored in a string.
 	 *
-	 * @since 0.0.1
+	 * @since 0.4.0
 	 *
 	 * @param array $requirements
 	 *
@@ -374,7 +378,7 @@ class WSUWP_Graduate_Degree_Programs {
 	/**
 	 * Save additional data associated with a factsheet.
 	 *
-	 * @since 0.0.1
+	 * @since 0.4.0
 	 *
 	 * @param int     $post_id
 	 * @param WP_Post $post

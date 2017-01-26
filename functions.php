@@ -9,7 +9,7 @@ add_action( 'after_setup_theme', 'WSUWP_Graduate_Degree_Programs' );
 /**
  * Start things up.
  *
- * @since 0.0.1
+ * @since 0.4.0
  *
  * @return \WSUWP_Graduate_Degree_Programs
  */
@@ -20,7 +20,7 @@ function WSUWP_Graduate_Degree_Programs() {
 /**
  * Retrieve the instance of the graduate degree faculty taxonomy.
  *
- * @since 0.0.1
+ * @since 0.4.0
  *
  * @return WSUWP_Graduate_Degree_Faculty_Taxonomy
  */
@@ -31,7 +31,7 @@ function WSUWP_Graduate_Degree_Faculty_Taxonomy() {
 /**
  * Retrieves the instance of the graduate degree program name taxonomy.
  *
- * @since 0.0.1
+ * @since 0.4.0
  *
  * @return WSUWP_Graduate_Degree_Program_Name_Taxonomy
  */
@@ -42,7 +42,7 @@ function WSUWP_Graduate_Degree_Program_Name_Taxonomy() {
 /**
  * Retrieves the instance of the graduate degree degree type taxonomy.
  *
- * @since 0.0.1
+ * @since 0.4.0
  *
  * @return WSUWP_Graduate_Degree_Degree_Type_Taxonomy
  */
@@ -53,7 +53,7 @@ function WSUWP_Graduate_Degree_Degree_Type_Taxonomy() {
 /**
  * Retrieves the instance of the contact taxonomy.
  *
- * @since 0.0.1
+ * @since 0.4.0
  *
  * @return WSUWP_Graduate_Degree_Contact_Taxonomy
  */

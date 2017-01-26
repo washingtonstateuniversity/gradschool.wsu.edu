@@ -2,7 +2,7 @@
 
 class WSUWP_Graduate_Degree_Program_Name_Taxonomy {
 	/**
-	 * @since 0.0.1
+	 * @since 0.4.0
 	 *
 	 * @var WSUWP_Graduate_Degree_Program_Name_Taxonomy
 	 */
@@ -11,7 +11,7 @@ class WSUWP_Graduate_Degree_Program_Name_Taxonomy {
 	/**
 	 * The slug used to register the program name taxonomy.
 	 *
-	 * @since 0.0.1
+	 * @since 0.4.0
 	 *
 	 * @var string
 	 */
@@ -21,7 +21,7 @@ class WSUWP_Graduate_Degree_Program_Name_Taxonomy {
 	 * Maintain and return the one instance. Initiate hooks when
 	 * called the first time.
 	 *
-	 * @since 0.0.1
+	 * @since 0.4.0
 	 *
 	 * @return \WSUWP_Graduate_Degree_Program_Name_Taxonomy
 	 */
@@ -36,7 +36,7 @@ class WSUWP_Graduate_Degree_Program_Name_Taxonomy {
 	/**
 	 * Setup hooks to include.
 	 *
-	 * @since 0.0.1
+	 * @since 0.4.0
 	 */
 	public function setup_hooks() {
 		add_action( 'init', array( $this, 'register_taxonomy' ), 20 );
@@ -46,7 +46,7 @@ class WSUWP_Graduate_Degree_Program_Name_Taxonomy {
 	 * Registers the program name taxonomy that will track the programs a graduate
 	 * degree is associated with.
 	 *
-	 * @since 0.0.1
+	 * @since 0.4.0
 	 */
 	public function register_taxonomy() {
 		$labels = array(

@@ -2,7 +2,7 @@
 
 class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 	/**
-	 * @since 0.0.1
+	 * @since 0.4.0
 	 *
 	 * @var WSUWP_Graduate_Degree_Faculty_Taxonomy
 	 */
@@ -11,7 +11,7 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 	/**
 	 * The slug used to register the faculty taxonomy.
 	 *
-	 * @since 0.0.1
+	 * @since 0.4.0
 	 *
 	 * @var string
 	 */
@@ -21,7 +21,7 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 	 * Maintain and return the one instance. Initiate hooks when
 	 * called the first time.
 	 *
-	 * @since 0.0.1
+	 * @since 0.4.0
 	 *
 	 * @return \WSUWP_Graduate_Degree_Faculty_Taxonomy
 	 */
@@ -36,7 +36,7 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 	/**
 	 * Setup hooks to include.
 	 *
-	 * @since 0.0.1
+	 * @since 0.4.0
 	 */
 	public function setup_hooks() {
 		add_action( 'init', array( $this, 'register_taxonomy' ), 20 );
@@ -48,7 +48,7 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 	 * Registers the faculty taxonomy that will track faculty members that should be
 	 * displayed in a degree program's factsheet.
 	 *
-	 * @since 0.0.1
+	 * @since 0.4.0
 	 */
 	public function register_taxonomy() {
 		$labels = array(
@@ -77,7 +77,7 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 	/**
 	 * Saves the additional form fields whenever a term is updated.
 	 *
-	 * @since 0.0.1
+	 * @since 0.4.0
 	 *
 	 * @param int $term_id The ID of the term being edited.
 	 */
@@ -125,7 +125,7 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 	/**
 	 * Captures information about a faculty member as term meta.
 	 *
-	 * @since 0.0.1
+	 * @since 0.4.0
 	 *
 	 * @param WP_Term $term
 	 */

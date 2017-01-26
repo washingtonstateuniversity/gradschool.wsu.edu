@@ -1,0 +1,96 @@
+.factsheet-primary-inputs {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
+.factsheet-primary-input {
+	flex-basis: 50%;
+	padding-bottom: 10px;
+}
+
+.factsheet-string {
+	flex-basis: 100%;
+}
+
+.factsheet-textarea {
+	padding-top: 20px;
+	flex-basis: 100%;
+	padding-bottom: 20px;
+}
+
+.factsheet-float,
+.factsheet-int,
+.factsheet-bool,
+.factsheet-string {
+	font-size: 1.2em;
+	line-height: 1.3;
+	margin-top: 1em;
+}
+
+
+.factsheet-primary-input label {
+	font-size: 1.1em;
+	font-weight: 400;
+	color: #333;
+	padding-right: 1em;
+}
+
+.factsheet-textarea label {
+	font-size: 1.1rem;
+	font-weight: 600;
+}
+
+.factsheet-float input,
+.factsheet-int input,
+.factsheet-bool select {
+	float: right;
+	line-height: 1.3;
+	margin-right: 4rem;
+	width: 55px;
+}
+
+.factsheet-string input {
+	line-height: 1.3;
+	margin-top: .75em;
+	margin-bottom: .75em;
+	width: 100%;
+}
+
+.factsheet-deadlines-wrapper,
+.factsheet-requirements-wrapper {
+	padding-top: 1em;
+}
+
+.factsheet-requirements-field,
+.factsheet-deadlines-field {
+	display: block;
+	margin-bottom: .5em;
+}
+
+.factsheet-requirements-field input,
+.factsheet-deadlines-field input {
+	height: 28px;
+	margin: 0 10px .5em 0;
+	width: calc( 100% - 100px );
+	min-width: 150px;
+	max-width: 350px;
+}
+
+.add-factsheet-requirements-field,
+.add-factsheet-deadlines-field {
+	width: 50px;
+}
+
+.remove-factsheet-requirements-field,
+.remove-factsheet-deadlines-field {
+	color: #0073aa;
+	cursor: pointer;
+}
+
+.remove-factsheet-requirements-field:hover,
+.remove-factsheet-deadlines-field:hover {
+	color: #00a0d2;
+}

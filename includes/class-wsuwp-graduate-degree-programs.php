@@ -193,8 +193,8 @@ class WSUWP_Graduate_Degree_Programs {
 			'supports' => array(
 				'title',
 			),
-			'has_archive' => 'degrees',
-			'rewrite' => array( 'slug' => 'degrees/factsheet', 'with_front' => false ),
+			'has_archive' => 'degrees-beta',
+			'rewrite' => array( 'slug' => 'degrees-beta/factsheet', 'with_front' => false ),
 		);
 		register_post_type( $this->post_type_slug, $args );
 		register_taxonomy_for_object_type( 'wsuwp_university_location', $this->post_type_slug );

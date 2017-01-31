@@ -25,7 +25,7 @@ class WSU_Grad_Degrees {
 	public function rewrite_rules() {
 		$site = get_site();
 
-		if ( '/wsugradfair/' === $site->path || '/' === $site->path ) {
+		if ( '/wsugradfair/' === $site->path || '/' === $site->path || 'wp.wsu.dev' === $site->domain ) {
 			$this->provide_degrees_overview = true;
 		}
 

@@ -334,21 +334,38 @@ class WSUWP_Graduate_Degree_Programs {
 					$field_data = array();
 				}
 
+				$default_field_data = array(
+					'score' => '',
+					'test' => '',
+					'description' => '',
+				);
+				$field_count = 0;
+
 				echo '<div class="factsheet-' . esc_attr( $meta['type'] ) . '-wrapper">';
 
 				foreach ( $field_data as $field_datum ) {
-					echo '<span class="factsheet-' . esc_attr( $meta['type'] ) . '-field">';
+					$field_datum = wp_parse_args( $field_datum, $default_field_data );
 
-					?><input type="text" name="<?php echo esc_attr( $key ); ?>[]" value="<?php echo esc_attr( $field_datum ); ?>" /><?php
-
-					echo '<span class="remove-factsheet-' . esc_attr( $meta['type'] ) . '-field">Remove</span></span>';
+					?>
+					<span class="factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field">
+						<input type="text" name="<?php echo esc_attr( $key ); ?>[<?php echo esc_attr( $field_count ); ?>][score]" value="<?php echo esc_attr( $field_datum['score'] ); ?>" />
+						<input type="text" name="<?php echo esc_attr( $key ); ?>[<?php echo esc_attr( $field_count ); ?>][test]" value="<?php echo esc_attr( $field_datum['test'] ); ?>" />
+						<input type="text" name="<?php echo esc_attr( $key ); ?>[<?php echo esc_attr( $field_count ); ?>][description]" value="<?php echo esc_attr( $field_datum['description'] ); ?>" />
+						<span class="remove-factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field">Remove</span>
+					</span>
+					<?php
+					$field_count++;
 				}
 
 				// If no fields have been added, provide an empty field by default.
 				if ( 0 === count( $field_data ) ) {
-					echo '<span class="factsheet-' . esc_attr( $meta['type'] ) . '-field">';
-
-					?><input type="text" name="<?php echo esc_attr( $key ); ?>[]" value="" /></span><?php
+					?>
+					<span class="factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field">
+						<input type="text" name="<?php echo esc_attr( $key ); ?>[0][score]" value="" />
+						<input type="text" name="<?php echo esc_attr( $key ); ?>[0][test]" value="" />
+						<input type="text" name="<?php echo esc_attr( $key ); ?>[0][description]" value="" />
+					</span>
+					<?php
 				}
 
 				echo '<input type="button" class="add-factsheet-' . esc_attr( $meta['type'] ) . '-field button" value="Add" /></div>';
@@ -444,8 +461,31 @@ class WSUWP_Graduate_Degree_Programs {
 			return '';
 		}
 
-		$requirements = array_map( 'sanitize_text_field', $requirements );
-		$requirements = array_filter( $requirements );
+		$clean_requirements = array();
+
+		foreach ( $requirements as $requirement ) {
+			$clean_requirement = array();
+
+			if ( isset( $requirement['score'] ) ) {
+				$clean_requirement['score'] = sanitize_text_field( $requirement['score'] );
+			} else {
+				$clean_requirement['score'] = '';
+			}
+
+			if ( isset( $requirement['test'] ) ) {
+				$clean_requirement['test'] = sanitize_text_field( $requirement['test'] );
+			} else {
+				$clean_requirement['test'] = '';
+			}
+
+			if ( isset( $requirement['description'] ) ) {
+				$clean_requirement['description'] = sanitize_text_field( $requirement['description'] );
+			} else {
+				$clean_requirement['description'] = '';
+			}
+
+			$clean_requirements[] = $clean_requirement;
+		}
 
 		$requirements = wp_json_encode( $requirements );
 

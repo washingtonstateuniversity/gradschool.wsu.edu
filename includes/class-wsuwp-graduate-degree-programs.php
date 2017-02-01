@@ -260,16 +260,26 @@ class WSUWP_Graduate_Degree_Programs {
 			}
 			?>
 			<div class="factsheet-primary-input factsheet-<?php echo esc_attr( $meta['type'] ); ?>"">
-				<label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $meta['description'] ); ?>:</label>
 			<?php
 			if ( 'int' === $meta['type'] ) {
-				?><input type="text" name="<?php echo esc_attr( $key ); ?>" value="<?php echo absint( $data[ $key ][0] ); ?>" /><?php
+				?>
+				<label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $meta['description'] ); ?>:</label>
+				<input type="text" name="<?php echo esc_attr( $key ); ?>" value="<?php echo absint( $data[ $key ][0] ); ?>" />
+				<?php
 			} elseif ( 'string' === $meta['type'] || 'float' === $meta['type'] ) {
-				?><input type="text" name="<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( $data[ $key ][0] ); ?>" /><?php
+				?>
+				<label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $meta['description'] ); ?>:</label>
+				<input type="text" name="<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( $data[ $key ][0] ); ?>" />
+				<?php
 			} elseif ( 'textarea' === $meta['type'] ) {
+				?>
+				<label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $meta['description'] ); ?>:</label>
+				<?php
 				wp_editor( $data[ $key ][0], esc_attr( $key ), $wp_editor_settings );
 			} elseif ( 'bool' === $meta['type'] ) {
-				?><select name="<?php echo esc_attr( $key ); ?>">
+				?>
+				<label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $meta['description'] ); ?>:</label>
+				<select name="<?php echo esc_attr( $key ); ?>">
 					<option value="0" <?php selected( 0, absint( $data[ $key ][0] ) ); ?>>No</option>
 					<option value="1" <?php selected( 1, absint( $data[ $key ][0] ) ); ?>>Yes</option>
 				</select>
@@ -288,7 +298,10 @@ class WSUWP_Graduate_Degree_Programs {
 				);
 				$field_count = 0;
 
-				echo '<div class="factsheet-' . esc_attr( $meta['type'] ) . '-wrapper">';
+				?>
+				<div class="factsheet-<?php echo esc_attr( $meta['type'] ); ?>-wrapper">
+					<span class="factsheet-label">Deadlines:</span>
+				<?php
 
 				foreach ( $field_data as $field_datum ) {
 					$field_datum = wp_parse_args( $field_datum, $default_field_data );
@@ -325,7 +338,10 @@ class WSUWP_Graduate_Degree_Programs {
 					<?php
 				}
 
-				echo '<input type="button" class="add-factsheet-' . esc_attr( $meta['type'] ) . '-field button" value="Add" /></div>';
+				?>
+					<input type="button" class="add-factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field button" value="Add" />
+				</div>
+				<?php
 
 			} elseif ( 'requirements' === $meta['type'] ) {
 				$field_data = json_decode( $data[ $key ][0] );
@@ -341,7 +357,10 @@ class WSUWP_Graduate_Degree_Programs {
 				);
 				$field_count = 0;
 
-				echo '<div class="factsheet-' . esc_attr( $meta['type'] ) . '-wrapper">';
+				?>
+				<div class="factsheet-<?php echo esc_attr( $meta['type'] ); ?>-wrapper">
+					<span class="factsheet-label">Requirements:</span>
+				<?php
 
 				foreach ( $field_data as $field_datum ) {
 					$field_datum = wp_parse_args( $field_datum, $default_field_data );
@@ -368,7 +387,10 @@ class WSUWP_Graduate_Degree_Programs {
 					<?php
 				}
 
-				echo '<input type="button" class="add-factsheet-' . esc_attr( $meta['type'] ) . '-field button" value="Add" /></div>';
+				?>
+					<input type="button" class="add-factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field button" value="Add" />
+				</div>
+				<?php
 
 			}
 

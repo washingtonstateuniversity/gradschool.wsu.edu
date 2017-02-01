@@ -274,7 +274,60 @@ class WSUWP_Graduate_Degree_Programs {
 					<option value="1" <?php selected( 1, absint( $data[ $key ][0] ) ); ?>>Yes</option>
 				</select>
 				<?php
-			} elseif ( 'deadlines' === $meta['type'] || 'requirements' === $meta['type'] ) {
+			} elseif ( 'deadlines' === $meta['type'] ) {
+				$field_data = json_decode( $data[ $key ][0] );
+
+				if ( empty( $field_data ) ) {
+					$field_data = array();
+				}
+
+				$default_field_data = array(
+					'semester' => 'None',
+					'deadline' => '',
+					'international' => '',
+				);
+				$field_count = 0;
+
+				echo '<div class="factsheet-' . esc_attr( $meta['type'] ) . '-wrapper">';
+
+				foreach ( $field_data as $field_datum ) {
+					$field_datum = wp_parse_args( $field_datum, $default_field_data );
+
+					?>
+					<span class="factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field">
+						<select name="<?php echo esc_attr( $key ); ?>[<?php echo esc_attr( $field_count ); ?>][semester]">
+							<option value="None" <?php selected( 'None', $field_datum['semester'] ); ?>>Not selected</option>
+							<option value="Fall" <?php selected( 'Fall', $field_datum['semester'] ); ?>>Fall</option>
+							<option value="Spring" <?php selected( 'Spring', $field_datum['semester'] ); ?>>Spring</option>
+							<option value="Summer" <?php selected( 'Summer', $field_datum['semester'] ); ?>>Summer</option>
+						</select>
+						<input type="text" name="<?php echo esc_attr( $key ); ?>[<?php echo esc_attr( $field_count ); ?>][deadline]" value="<?php echo esc_attr( $field_datum['deadline'] ); ?>" />
+						<input type="text" name="<?php echo esc_attr( $key ); ?>[<?php echo esc_attr( $field_count ); ?>][international]" value="<?php echo esc_attr( $field_datum['international'] ); ?>" />
+						<span class="remove-factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field">Remove</span>
+					</span>
+					<?php
+					$field_count++;
+				}
+
+				// If no fields have been added, provide an empty field by default.
+				if ( 0 === count( $field_data ) ) {
+					?>
+					<span class="factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field">
+						<select name="<?php echo esc_attr( $key ); ?>[0][semester]">
+							<option value="None">Not selected</option>
+							<option value="Fall">Fall</option>
+							<option value="Spring">Spring</option>
+							<option value="Summer">Summer</option>
+						</select>
+						<input type="text" name="<?php echo esc_attr( $key ); ?>[0][deadline]" value="" />
+						<input type="text" name="<?php echo esc_attr( $key ); ?>[0][international]" value="" />
+					</span>
+					<?php
+				}
+
+				echo '<input type="button" class="add-factsheet-' . esc_attr( $meta['type'] ) . '-field button" value="Add" /></div>';
+
+			} elseif ( 'requirements' === $meta['type'] ) {
 				$field_data = json_decode( $data[ $key ][0] );
 
 				if ( empty( $field_data ) ) {
@@ -346,10 +399,33 @@ class WSUWP_Graduate_Degree_Programs {
 			return '';
 		}
 
-		$deadlines = array_map( 'sanitize_text_field', $deadlines );
-		$deadlines = array_filter( $deadlines );
+		$clean_deadlines = array();
 
-		$deadlines = wp_json_encode( $deadlines );
+		foreach ( $deadlines as $deadline ) {
+			$clean_deadline = array();
+
+			if ( isset( $deadline['semester'] ) && in_array( $deadline['semester'], array( 'None', 'Fall', 'Spring', 'Summer' ), true ) ) {
+				$clean_deadline['semester'] = $deadline['semester'];
+			} else {
+				$clean_deadline['semester'] = 'None';
+			}
+
+			if ( isset( $deadline['deadline'] ) ) {
+				$clean_deadline['deadline'] = sanitize_text_field( $deadline['deadline'] );
+			} else {
+				$clean_deadline['deadline'] = '';
+			}
+
+			if ( isset( $deadline['international'] ) ) {
+				$clean_deadline['international'] = sanitize_text_field( $deadline['international'] );
+			} else {
+				$clean_deadline['international'] = '';
+			}
+
+			$clean_deadlines[] = $clean_deadline;
+		}
+
+		$deadlines = wp_json_encode( $clean_deadlines );
 
 		return $deadlines;
 	}

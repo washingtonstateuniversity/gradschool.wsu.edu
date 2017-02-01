@@ -32,12 +32,20 @@
 	margin-top: 1em;
 }
 
-
+.factsheet-label,
 .factsheet-primary-input label {
 	font-size: 1.1em;
 	font-weight: 400;
 	color: #333;
 	padding-right: 1em;
+}
+
+.factsheet-label {
+	font-size: 1.3em;
+	display: block;
+	width: 100%;
+	padding: 0 0 .5em 0;
+	line-height: 1;
 }
 
 .factsheet-textarea label {
@@ -80,6 +88,7 @@
 }
 
 .factsheet-deadlines-field select {
+	margin: 0 5px .3em 0;
 	width: 105px;
 	max-width: 105px;
 }

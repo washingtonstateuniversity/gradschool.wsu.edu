@@ -11,6 +11,8 @@
 	padding-bottom: 10px;
 }
 
+.factsheet-deadlines,
+.factsheet-requirements,
 .factsheet-string {
 	flex-basis: 100%;
 }
@@ -75,13 +77,34 @@
 	height: 28px;
 	margin: 0 10px .5em 0;
 	width: calc( 100% - 100px );
-	min-width: 150px;
-	max-width: 350px;
 }
 
-.add-factsheet-requirements-field,
+.factsheet-deadlines-field select {
+	width: 105px;
+	max-width: 105px;
+}
+
+.factsheet-deadlines-field input {
+	max-width: calc((100% - 200px) / 2);
+}
+
+.factsheet-requirements-field input:first-of-type {
+	width: 75px;
+	max-width: 75px;
+}
+
+.factsheet-requirements-field input {
+	max-width: calc((100% - 175px) / 2);
+}
+
 .add-factsheet-deadlines-field {
-	width: 50px;
+	width: calc( 38% / 2 );
+	max-width: 50px;
+}
+
+.add-factsheet-requirements-field {
+	width: calc( 38% / 2 );
+	max-width: 50px;
 }
 
 .remove-factsheet-requirements-field,

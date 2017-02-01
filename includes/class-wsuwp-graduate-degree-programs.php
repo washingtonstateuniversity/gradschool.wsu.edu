@@ -44,6 +44,7 @@ class WSUWP_Graduate_Degree_Programs {
 			'description' => 'Factsheet degree ID',
 			'type' => 'int',
 			'sanitize_callback' => 'absint',
+			'pre_html' => '<div class="factsheet-group">',
 		),
 		'gsdp_accepting_applications' => array(
 			'description' => 'Accepting applications',
@@ -74,16 +75,21 @@ class WSUWP_Graduate_Degree_Programs {
 			'description' => 'Degree home page',
 			'type' => 'string',
 			'sanitize_callback' => 'esc_url_raw',
+			'post_html' => '</div>',
 		),
 		'gsdp_deadlines' => array(
 			'description' => 'Deadlines',
 			'type' => 'deadlines',
 			'sanitize_callback' => 'WSUWP_Graduate_Degree_Programs::sanitize_deadlines',
+			'pre_html' => '<div class="factsheet-group">',
+			'post_html' => '</div>',
 		),
 		'gsdp_requirements' => array(
 			'description' => 'Requirements',
 			'type' => 'requirements',
 			'sanitize_callback' => 'WSUWP_Graduate_Degree_Programs::sanitize_requirements',
+			'pre_html' => '<div class="factsheet-group">',
+			'post_html' => '</div>',
 		),
 		'gsdp_admission_requirements' => array(
 			'description' => 'Admission requirements',
@@ -258,6 +264,10 @@ class WSUWP_Graduate_Degree_Programs {
 			if ( ! isset( $data[ $key ] ) || ! isset( $data[ $key ][0] ) ) {
 				$data[ $key ] = array( false );
 			}
+
+			if ( isset( $meta['pre_html'] ) ) {
+				echo $meta['pre_html']; // @codingStandardsIgnoreLine (HTML is static in code)
+			}
 			?>
 			<div class="factsheet-primary-input factsheet-<?php echo esc_attr( $meta['type'] ); ?>"">
 			<?php
@@ -394,10 +404,14 @@ class WSUWP_Graduate_Degree_Programs {
 
 			}
 
-			echo '</div>';
+			echo '</div>'; // End factsheet-primary-input
+
+			if ( isset( $meta['post_html'] ) ) {
+				echo $meta['post_html']; // @codingStandardsIgnoreLine (HTML is static in code)
+			}
 
 		}
-		echo '</div>';
+		echo '</div>'; // End factsheet-primary-inputs.
 	}
 
 	/**

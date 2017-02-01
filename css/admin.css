@@ -1,9 +1,17 @@
+.factsheet-group,
 .factsheet-primary-inputs {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: flex-start;
 	align-items: flex-start;
+}
+
+.factsheet-group {
+	background: #f5f5f5;
+	padding: 0 10px 0 10px;
+	margin-top: 20px;
+	width: 100%;
 }
 
 .factsheet-primary-input {
@@ -67,6 +75,12 @@
 	margin-top: .75em;
 	margin-bottom: .75em;
 	width: 100%;
+}
+
+input[name="gsdp_degree_url"] {
+	width: 60%;
+	max-width: 500px;
+	min-width: 200px;
 }
 
 .factsheet-deadlines-wrapper,

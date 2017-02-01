@@ -192,6 +192,7 @@ class WSUWP_Graduate_Degree_Programs {
 			'menu_icon' => 'dashicons-groups',
 			'supports' => array(
 				'title',
+				'revisions',
 			),
 			'has_archive' => 'degrees-beta',
 			'rewrite' => array( 'slug' => 'degrees-beta/factsheet', 'with_front' => false ),

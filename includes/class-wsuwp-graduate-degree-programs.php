@@ -167,7 +167,8 @@ class WSUWP_Graduate_Degree_Programs {
 	 */
 	public function admin_enqueue_scripts( $hook_suffix ) {
 		if ( in_array( $hook_suffix, array( 'post.php', 'post-new.php' ), true ) && 'gs-factsheet' === get_current_screen()->id ) {
-			wp_enqueue_style( 'gsdp-admin', get_stylesheet_directory_uri() . '/css/admin.css', array(), $this->script_version );
+			wp_enqueue_style( 'gsdp-admin', get_stylesheet_directory_uri() . '/css/factsheet-admin.css', array(), $this->script_version );
+			wp_enqueue_script( 'gsdp-factsheet-admin', get_stylesheet_directory_uri() . '/js/factsheet-admin.min.js', array( 'jquery', 'underscore' ), $this->script_version, true );
 		}
 	}
 
@@ -200,8 +201,8 @@ class WSUWP_Graduate_Degree_Programs {
 				'title',
 				'revisions',
 			),
-			'has_archive' => 'degrees-beta',
-			'rewrite' => array( 'slug' => 'degrees-beta/factsheet', 'with_front' => false ),
+			'has_archive' => 'factsheets-beta',
+			'rewrite' => array( 'slug' => 'factsheets-beta/factsheet', 'with_front' => false ),
 		);
 		register_post_type( $this->post_type_slug, $args );
 		register_taxonomy_for_object_type( 'wsuwp_university_location', $this->post_type_slug );
@@ -349,7 +350,21 @@ class WSUWP_Graduate_Degree_Programs {
 				}
 
 				?>
+					<script type="text/template" id="factsheet-deadline-template">
+						<span class="factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field">
+							<select name="<?php echo esc_attr( $key ); ?>[<%= form_count %>][semester]">
+								<option value="None">Not selected</option>
+								<option value="Fall">Fall</option>
+								<option value="Spring">Spring</option>
+								<option value="Summer">Summer</option>
+							</select>
+							<input type="text" name="<?php echo esc_attr( $key ); ?>[<%= form_count %>][deadline]" value="" />
+							<input type="text" name="<?php echo esc_attr( $key ); ?>[<%= form_count %>][international]" value="" />
+							<span class="remove-factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field">Remove</span>
+						</span>
+					</script>
 					<input type="button" class="add-factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field button" value="Add" />
+					<input type="hidden" name="factsheet_deadline_form_count" id="factsheet_deadline_form_count" value="<?php echo esc_attr( $field_count ); ?>" />
 				</div>
 				<?php
 
@@ -398,7 +413,16 @@ class WSUWP_Graduate_Degree_Programs {
 				}
 
 				?>
+					<script type="text/template" id="factsheet-requirement-template">
+						<span class="factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field">
+							<input type="text" name="<?php echo esc_attr( $key ); ?>[<%= form_count %>][score]" value="" />
+							<input type="text" name="<?php echo esc_attr( $key ); ?>[<%= form_count %>][test]" value="" />
+							<input type="text" name="<?php echo esc_attr( $key ); ?>[<%= form_count %>][description]" value="" />
+							<span class="remove-factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field">Remove</span>
+						</span>
+					</script>
 					<input type="button" class="add-factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field button" value="Add" />
+					<input type="hidden" name="factsheet_requirement_form_count" id="factsheet_requirement_form_count" value="<?php echo esc_attr( $field_count ); ?>" />
 				</div>
 				<?php
 
@@ -562,5 +586,82 @@ class WSUWP_Graduate_Degree_Programs {
 				update_post_meta( $post_id, $key, $_POST[ $key ] );
 			}
 		}
+	}
+
+	/**
+	 * Returns a useable subset of data for displaying a factsheet.
+	 *
+	 * @since 0.4.0
+	 *
+	 * @param int $post_id
+	 *
+	 * @return array
+	 */
+	public static function get_factsheet_data( $post_id ) {
+		$factsheet_data = get_registered_metadata( 'post', $post_id );
+
+		$data = array(
+			'degree_id' => 0,
+			'description' => '',
+			'accepting_applications' => 'No',
+			'students' => 0,
+			'aided' => 0,
+			'degree_url' => 'Not available',
+			'admission_requirements',
+			'student_opportunities',
+			'career_opportunities',
+			'career_placements',
+			'student_learning_outcome',
+		);
+
+		if ( isset( $factsheet_data['gsdp_degree_description'][0] ) ) {
+			$data['description'] = $factsheet_data['gsdp_degree_description'][0];
+		}
+
+		if ( isset( $factsheet_data['gsdp_degree_id'][0] ) ) {
+			$data['degree_id'] = $factsheet_data['gsdp_degree_id'][0];
+		}
+
+		if ( isset( $factsheet_data['gsdp_accepting_applications'][0] ) && 1 === absint( $factsheet_data['gsdp_accepting_applications'][0] ) ) {
+			$data['accepting_applications'] = 'Yes';
+		}
+
+		if ( isset( $factsheet_data['gsdp_grad_students_total'][0] ) ) {
+			$data['students'] = $factsheet_data['gsdp_grad_students_total'][0];
+		}
+
+		if ( isset( $factsheet_data['gsdp_grad_students_aided'][0] ) ) {
+			if ( 0 === absint( $data['students'] ) ) {
+				$data['aided'] = '0.00';
+			} else {
+				$data['aided'] = round( ( $factsheet_data['gsdp_grad_students_aided'][0] / $data['students'] ) * 100, 2 );
+			}
+		}
+
+		if ( isset( $factsheet_data['gsdp_degree_url'][0] ) ) {
+			$data['degree_url'] = $factsheet_data['gsdp_degree_url'][0];
+		}
+
+		if ( isset( $factsheet_data['gsdp_admission_requirements'][0] ) ) {
+			$data['admission_requirements'] = $factsheet_data['gsdp_admission_requirements'][0];
+		}
+
+		if ( isset( $factsheet_data['gsdp_student_opportunities'][0] ) ) {
+			$data['student_opportunities'] = $factsheet_data['gsdp_student_opportunities'][0];
+		}
+
+		if ( isset( $factsheet_data['gsdp_career_opportunities'][0] ) ) {
+			$data['career_opportunities'] = $factsheet_data['gsdp_career_opportunities'][0];
+		}
+
+		if ( isset( $factsheet_data['gsdp_career_placements'][0] ) ) {
+			$data['career_placements'] = $factsheet_data['gsdp_career_placements'][0];
+		}
+
+		if ( isset( $factsheet_data['gsdp_student_learning_outcome'][0] ) ) {
+			$data['student_learning_outcome'] = $factsheet_data['gsdp_student_learning_outcome'][0];
+		}
+
+		return $data;
 	}
 }

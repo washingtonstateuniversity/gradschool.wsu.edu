@@ -103,12 +103,12 @@ input[name="gsdp_degree_url"] {
 
 .factsheet-deadlines-field select {
 	margin: 0 5px .3em 0;
-	width: 105px;
-	max-width: 105px;
+	width: 115px;
+	max-width: 115px;
 }
 
 .factsheet-deadlines-field input {
-	max-width: calc((100% - 200px) / 2);
+	max-width: calc((100% - 210px) / 2);
 }
 
 .factsheet-requirements-field input:first-of-type {

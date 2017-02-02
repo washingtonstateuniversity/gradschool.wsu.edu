@@ -14,7 +14,7 @@
 			<section class="row single gutter pad-ends">
 
 				<div class="column one">
-					<?php $factsheet_data = WSUWP_Graduate_Degree_Programs()::get_factsheet_data( get_the_id() ); ?>
+					<?php $factsheet_data = WSUWP_Graduate_Degree_Programs::get_factsheet_data( get_the_id() ); ?>
 
 					<div class="factsheet-url"><a href="<?php echo esc_url( $factsheet_data['degree_url'] ); ?>"><?php echo esc_html( $factsheet_data['degree_url'] ); ?></a></div>
 

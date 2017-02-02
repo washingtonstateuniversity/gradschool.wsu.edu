@@ -11,3 +11,2240 @@
 .degree-programs main ul.list > ul {
 	margin-left: 1.5em;
 }
+
+/* Rework starts here */
+#jacket {
+	background-color: #23282B;
+}
+
+/* ----- General ----- */
+body.home:not(.has-background-image) #jacket, #jacket {
+	background-size: 260px;
+	background-attachment: fixed;
+}
+
+.section-wrapper, .section-wrapper-has-background {
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-position: center top;
+}
+
+/* ----- Main Header ----- */
+.style-bookmark .main-header {
+	left: 0;
+}
+
+.colors-gray .main-header {
+	background: rgb(148,25,43);
+	background: -moz-linear-gradient(left,rgba(148,25,43,1) 0%,rgba(171,13,36,1) 50%,rgba(240,103,21,1) 100%);
+	background: -webkit-linear-gradient(left,rgba(148,25,43,1) 0%,rgba(171,13,36,1) 50%,rgba(240,103,21,1) 100%);
+	background: linear-gradient(to right,rgba(148,25,43,1) 0%,rgba(171,13,36,1) 50%,rgba(240,103,21,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#94192b',endColorstr='#f06715',GradientType=1);
+	border-bottom: none;
+	padding: 1rem 0;
+	max-width: 1188px;
+	height: auto;
+	z-index: 100;
+	position: relative;
+}
+
+.progressbar {
+	background: rgb(148,25,43);
+	background: -moz-linear-gradient(left,rgba(148,25,43,1) 0%,rgba(171,13,36,1) 50%,rgba(240,103,21,1) 100%);
+	background: -webkit-linear-gradient(left,rgba(148,25,43,1) 0%,rgba(171,13,36,1) 50%,rgba(240,103,21,1) 100%);
+	background: linear-gradient(to right,rgba(148,25,43,1) 0%,rgba(171,13,36,1) 50%,rgba(240,103,21,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#94192b',endColorstr='#f06715',GradientType=1);
+	background-repeat: repeat;
+	background-position: left top;
+	width: 1188px;
+	top: 0;
+	height: 4px;
+	z-index: 99;
+	position: fixed;
+}
+
+sub.sub-header {
+	display: none;
+}
+
+.main-header .header-group:not(.unset) {
+	padding: .7em 2rem;
+	position: relative;
+}
+
+.main-header sub:not(.unset), .main-header sup:not(.unset), .main-header sup a {
+	display: inline-block;
+	font-size: 13px;
+}
+
+.main-header .sup-header:not(.unset) a, .sub-header span, .sup-header-default {
+	color: #fff;
+	font-weight: 700;
+	letter-spacing: 2px;
+}
+
+.main-header .header-group, .main-header .header-group:not(.x) {
+	position: relative;
+	width: auto;
+	bottom: 0;
+	padding-right: 0;
+}
+
+.sub-header span {
+	border-left: 1px solid #fff;
+	font-weight: 300;
+	margin-left: 1em;
+	padding-left: 1.25em;
+	text-transform: uppercase;
+	color: #fff;
+}
+
+/* #f06715, #ab0d24, #94192b, #c60c2f */
+/* ----- HTML Styles ----- */
+p, ol li, ul li {
+	/*line-height: 1.9em;*/
+	font-size: 1em;
+	font-weight: 300;
+	color: #464e54;
+}
+
+h1 {
+	font-size: 3.2em;
+	font-weight: 300;
+	text-transform: uppercase;
+	padding: .5em 0;
+	color: #23282b;
+	background: -webkit-linear-gradient(135deg,#f06715,#94192b);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+h2 {
+	font-size: 1.5rem;
+	line-height: 1.5;
+	font-weight: 300;
+	padding: .5em 0;
+	text-transform: none;
+}
+
+h3 {
+	font-weight: 300;
+	font-size: 1.2rem;
+	line-height: 1.2;
+	padding: .7em 0 .3em;
+	text-transform: none;
+}
+
+h4 {
+	/*color: #a31d36;*/
+	font-size: .95rem;
+	font-weight: 600;
+	padding: .7em 0 .5em;
+}
+
+h5 {
+	font-size: .9em;
+	font-weight: 700;
+	padding: .7em 0 .5em;
+	margin-top: .9em;
+	text-transform: uppercase;
+}
+
+h6 {
+	font-size: .8em;
+	font-weight: 600;
+	padding: .7em 0 .5em;
+	margin-top: 1em;
+}
+
+/* ----- A ----- */
+.column a {
+	color: #ab0d24;
+	-webkit-transition-property: color, background;
+	-moz-transition-property: color, background;
+	-o-transition-property: color, background;
+	transition-property: color, background;
+	-webkit-transition-duration: .4s, .4s;
+	-moz-transition-duration: .4s, .4s;
+	-o-transition-duration: .4s, .4s;
+	transition-duration: .4s, .4s;
+	cursor: pointer;
+	border-bottom: 2px solid rgba(0,0,0,0.05);
+}
+
+.column a:hover {
+	color: #b7203d;
+	border-bottom: 2px solid #b7203d;
+}
+
+/*.column a {
+	display: inline-block;
+	text-decoration: none;
+	position: relative;
+	color: #b7203d;
+	padding-bottom: 0;
+}
+
+.column a:before {
+	content: '';
+	position: absolute;
+	left: 0;
+	display: inline-block;
+	bottom: 4px;
+	width: 100%;
+	border-bottom: 3px solid rgba(0,0,0,0.05);
+	margin-top: 5px;
+}
+
+.column a:after {
+	content: '';
+	width: 0;
+	display: block;
+	margin: auto;
+	background: transparent;
+	transition: width .4s ease, background-color .4s ease;
+	position: relative;
+	bottom: 4px;
+	height: 3px;
+}
+
+.column a:hover:after {
+	width: 100%;
+	background: #b7203d;
+}*/
+a.anchorimage:before, a.anchorimage:after {
+	display: none;
+}
+
+b, strong {
+	font-weight: 600;
+}
+
+/* #f06715, #ab0d24, #94192b, #c60c2f */
+/* ----- Hero ----- */
+.hero-xl, .hero-xl .column.one, .hero-lrg, .hero-lrg .column.one, .hero-med, .hero-med .column.one, .hero-sm, .hero-sm .column.one {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.hero-xl .column.one, .hero-lrg .column.one, .hero-med .column.one, .hero-sm .column.one {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.hero-xl h1, .hero-lrg h1, .hero-med h1, .hero-sm h1, .hero-xl h2, .hero-lrg h2, .hero-med h2, .hero-sm h2, .hero-xl h3, .hero-lrg h3, .hero-med h3, .hero-sm h3, .hero-xl h4, .hero-lrg h4, .hero-med h4, .hero-sm h4, .hero-xl h5, .hero-lrg h5, .hero-med h5, .hero-sm h5, .hero-xl h6, .hero-lrg h6, .hero-med h6, .hero-sm h6, .hero-xl p, .hero-lrg p, .hero-med p, .hero-sm p {
+	color: #fff;
+}
+
+.hero-xl {
+	min-height: 640px;
+}
+
+.hero-lrg {
+	min-height: 420px;
+}
+
+.hero-med {
+	min-height: 320px;
+}
+
+.hero-sm {
+	min-height: 160px;
+}
+
+.homepage {
+	background-image: url(https://wsuwp-uploads.s3.amazonaws.com/uploads/sites/1485/2016/10/img-hero.jpg);
+}
+
+.homepage h1 {
+	font-size: 4.375em;
+	font-weight: 800;
+	/*font: 800 70px/65px 'Open Sans', 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;*/
+	text-transform: uppercase;
+	padding-top: 0;
+	text-align: center;
+	color: #fff;
+	background: none;
+	-webkit-background-clip: none;
+	-webkit-text-fill-color: #fff;
+}
+
+.homepage h1.topsm {
+	font-size: .825em;
+	font-weight: 600;
+	/*font: 800 10px/10px 'Open Sans', 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;*/
+	letter-spacing: 8px;
+	text-transform: uppercase;
+	padding-top: 0;
+	padding-bottom: .2em;
+	color: #fff;
+}
+
+/*.gutter-lrg {
+	padding-left: 3rem;
+	padding-right: 3rem;
+}*/
+/* ----- Flex Wrapper to Center Content (x-y) ----- */
+.flexwrap {
+	min-height: 100%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	justify-content: center;
+	resize: vertical;
+}
+
+.flexwrap.left {
+	-webkit-align-items: flex-start;
+	align-items: flex-start;
+	justify-content: center;
+	/* ----- The above places the text in the center ----- */
+	/*justify-content: flex-end;*/
+	/* ----- The above places the text at the bottom ----- */
+}
+
+.flexwrap.left h1 {
+	/*padding-bottom: 40px;*/
+	/* ----- Only enable if using flex-end above ----- */
+}
+
+.flexwrap h1 {
+	animation: fadein 2s;
+	-moz-animation: fadein 2s;
+	-webkit-animation: fadein 2s;
+	-o-animation: fadein 2s;
+}
+
+.white-text h1 {
+	color: #fff;
+	background: none;
+	-webkit-background-clip: initial;
+	-webkit-text-fill-color: initial;
+}
+
+.hero-xl .flexwrap {
+	min-height: 640px;
+}
+
+.hero-lrg .flexwrap {
+	min-height: 420px;
+}
+
+.hero-med .flexwrap {
+	min-height: 320px;
+}
+
+.hero-sm .flexwrap {
+	min-height: 160px;
+}
+
+/* ----- UL LI ----- */
+.column ul {
+	padding: 0;
+}
+
+.column ul li {
+	list-style-type: none;
+	position: relative;
+	/*margin-bottom: .5em;*/
+	margin-left: 2em;
+}
+
+.column ul li:before {
+	content: '\25cf';
+	display: inline-block;
+	position: absolute;
+	left: -1em;
+	color: #ab0d24;
+	font-weight: bold;
+	list-style-type: disc;
+}
+
+/* #f06715, #ab0d24, #94192b, #c60c2f */
+/* ----- OL LI ----- */
+aside .wsuwp-content-syndicate-wrapper ul, ol {
+	list-style-type: none;
+	margin: 0;
+	margin-left: 2em;
+	padding: 0;
+	counter-reset: li-counter;
+}
+
+ol > li, aside .wsuwp-content-syndicate-wrapper ul > li {
+	position: relative;
+	margin-bottom: 1em;
+	padding-left: 1.5em;
+}
+
+ol > li::before, aside .wsuwp-content-syndicate-wrapper ul li::before {
+	position: absolute;
+	top: -.2em;
+	width: 30px;
+	height: 30px;
+	left: -1.6em;
+	text-align: center;
+	color: #464e54;
+	/*color: #fff;*/
+	padding: 0;
+	line-height: 30px;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+	border: 1px solid #e5e5e5;
+	background-color: #f8f8f8;
+	/*background-color: #ab0d24;*/
+	content: counter(li-counter);
+	counter-increment: li-counter;
+	font-weight: 700;
+	font-size: .8em;
+}
+
+/* ----- MISC ----- */
+.clear, .clear:after {
+	clear: both;
+	content: "";
+	display: block;
+}
+
+/* ----- Pics ----- */
+.portrait, .landscape {
+	position: relative;
+	width: 120px;
+	height: 120px;
+	overflow: hidden;
+	display: block;
+	margin: 10px;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+	background: rgba(0,0,0,0.1) url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/landscape-wht-xl.png) no-repeat center center;
+	background-size: 24px;
+}
+
+.portrait.sm {
+	width: 72px;
+	height: 72px;
+}
+
+.portrait a, .landscape a {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.portrait a:hover, .landscape a:hover {
+	-webkit-filter: grayscale(80%);
+	filter: grayscale(80%);
+	-webkit-opacity: 1;
+	-moz-opacity: 1;
+	opacity: 1;
+}
+
+.portrait img {
+	width: 100%;
+	height: auto;
+}
+
+.landscape img {
+	width: auto;
+	height: 100%;
+}
+
+.column.two .portrait, .column.two .landscape {
+	width: 280px;
+	height: 280px;
+	margin: 10px auto;
+}
+
+p.email {
+	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/email-gry.png) no-repeat left 6px;
+}
+
+p.title {
+	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/ribbon-gry.png) no-repeat left 6px;
+}
+
+p.mobile {
+	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/mobile-gry.png) no-repeat left 6px;
+}
+
+p.phone {
+	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/phone-gry.png) no-repeat left 6px;
+}
+
+p.email, p.title, p.mobile, p.phone {
+	background-size: 16px;
+	padding: 0 28px;
+	margin-bottom: 0;
+}
+
+/* ----- Aside ----- */
+aside {
+	min-width: 240px;
+	margin: 0 10px;
+	padding: 30px;
+	text-align: left;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	background: #f7f7f8;
+}
+
+aside a {
+	color: #b7203d;
+	font-size: .9em;
+	font-weight: 600;
+	-webkit-transition-property: color, background;
+	-moz-transition-property: color, background;
+	-o-transition-property: color, background;
+	transition-property: color, background;
+	-webkit-transition-duration: .4s, .4s;
+	-moz-transition-duration: .4s, .4s;
+	-o-transition-duration: .4s, .4s;
+	transition-duration: .4s, .4s;
+	cursor: pointer;
+	border: none;
+}
+
+aside a:hover {
+	color: rgba(0,0,0,0.6);
+}
+
+aside a:before, aside a:after {
+	display: none !important;
+	content: none;
+}
+
+/* ----- BG's ----- */
+/*.bglhtgry {
+	background: rgba(245,245,245,0.7);
+}
+
+.bgblue {
+	background-color: rgba(0,175,239,1);
+}*/
+.column.one.heromask {
+	background-image: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/bg-img-mask-NEW-color.png);
+	background-repeat: no-repeat;
+	background-position: left bottom;
+	background-size: 650px;
+}
+
+.column.one.heromask-gradient {
+	background: linear-gradient(to left,#23282B,#23282B);
+}
+
+main.spine-blank-template {
+	background-repeat: no-repeat;
+	background-position: right bottom;
+	background-size: 340px;
+}
+
+.pad-bottom {
+	padding-bottom: 5rem;
+}
+
+.pad-bottom-sm, .flexwrap p:last-child {
+	padding-bottom: 2rem;
+}
+
+.right {
+	float: right;
+}
+
+.left {
+	float: left;
+}
+
+/* ----- Buttons ----- */
+a.btncrimson, a.btnred, a.btnmedred, a.btndrkred, a.btnlhtgry, a.btngry, a.btnmedgry, a.btndrkgry, a.btnorange, a.btnwht, a.btnblk {
+	display: inline-block;
+	min-width: 120px;
+	margin: 4px;
+	padding: 15px 40px;
+	background: rgba(0,0,0,0.0);
+	font: 600 12px/12px 'Open Sans', 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
+	text-transform: uppercase;
+	text-align: center;
+	text-shadow: none;
+	-webkit-transition-property: color, background;
+	-moz-transition-property: color, background;
+	-o-transition-property: color, background;
+	transition-property: color, background;
+	-webkit-transition-duration: .4s, .4s;
+	-moz-transition-duration: .4s, .4s;
+	-o-transition-duration: .4s, .4s;
+	transition-duration: .4s, .4s;
+	cursor: pointer;
+}
+
+a.btncrimson:before, a.btnred:before, a.btnmedred:before, a.btndrkred:before, a.btnlhtgry:before, a.btngry:before, a.btnmedgry:before, a.btndrkgry:before, a.btnorange:before, a.btnwht:before, a.btnblk:before, a.btncrimson:after, a.btnred:after, a.btnmedred:after, a.btndrkred:after, a.btnlhtgry:after, a.btngry:after, a.btnmedgry:after, a.btndrkgry:after, a.btnorange:after, a.btnwht:after, a.btnblk:after {
+	display: none;
+}
+
+/* ----- Buttons (Round Corners) ----- */
+a.btncrimson.round, a.btnred.round, a.btnmedred.round, a.btndrkred.round, a.btnlhtgry.round, a.btngry.round, a.btnmedgry.round, a.btndrkgry.round, a.btnorange.round, a.btnwht.round, a.btnblk.round {
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-ms-border-radius: 4px;
+	border-radius: 4px;
+}
+
+/* ----- Buttons (Bubble) ----- */
+a.btncrimson.bubble, a.btnred.bubble, a.btnmedred.bubble, a.btndrkred.bubble, a.btnlhtgry.bubble, a.btngry.bubble, a.btnmedgry.bubble, a.btndrkgry.bubble, a.btnorange.bubble, a.btnwht.bubble, a.btnblk.bubble {
+	-webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
+	-ms-border-radius: 50px;
+	border-radius: 50px;
+}
+
+/* ----- Buttons (Small) ----- */
+a.btncrimson.sm, a.btnred.sm, a.btnmedred.sm, a.btndrkred.sm, a.btnlhtgry.sm, a.btngry.sm, a.btnmedgry.sm, a.btndrkgry.sm, a.btnorange.sm, a.btnwht.sm, a.btnblk.sm {
+	text-transform: capitalize;
+	min-width: auto;
+	padding: 8px 25px;
+}
+
+/* ----- Buttons (X-Large) ----- */
+a.btncrimson.xl, a.btnred.xl, a.btnmedred.xl, a.btndrkred.xl, a.btnlhtgry.xl, a.btngry.xl, a.btnmedgry.xl, a.btndrkgry.xl, a.btnorange.xl, a.btnwht.xl, a.btnblk.xl {
+	display: block;
+}
+
+/* ----- Buttons (Colors) ----- */
+/* #f06715, #ab0d24, #94192b, #c60c2f */
+a.btncrimson {
+	color: #981e32;
+	border: 1px solid #981e32;
+}
+
+a.btncrimson:hover {
+	background: #981e32;
+	border: 1px solid #981e32;
+}
+
+a.btnred {
+	color: #c60c2f;
+	border: 1px solid #c60c2f;
+}
+
+a.btnred:hover {
+	background: #c60c2f;
+	border: 1px solid #c60c2f;
+}
+
+a.btnmedred {
+	color: #ab0d24;
+	border: 1px solid #ab0d24;
+}
+
+a.btnmedred:hover {
+	background: #ab0d24;
+	border: 1px solid #ab0d24;
+}
+
+a.btndrkred {
+	color: #94192b;
+	border: 1px solid #94192b;
+}
+
+a.btndrkred:hover {
+	background: #94192b;
+	border: 1px solid #94192b;
+}
+
+a.btnlhtgry {
+	color: rgba(0,0,0,0.3);
+	border: 1px solid rgba(0,0,0,0.3);
+}
+
+a.btnlhtgry:hover {
+	background: rgba(0,0,0,0.3);
+	border: 1px solid rgba(0,0,0,0.3);
+}
+
+a.btngry {
+	color: #5e6a71;
+	border: 1px solid #5e6a71;
+}
+
+a.btngry:hover {
+	background: #5e6a71;
+	border: 1px solid #5e6a71;
+}
+
+a.btnmedgry {
+	color: rgba(59,59,59,1.0);
+	border: 1px solid rgba(59,59,59,1.0);
+}
+
+a.btnmedgry:hover {
+	background: rgba(59,59,59,1.0);
+	border: 1px solid rgba(59,59,59,1.0);
+}
+
+a.btndrkgry {
+	color: rgba(34,34,34,1.0);
+	border: 1px solid rgba(34,34,34,1.0);
+}
+
+a.btndrkgry:hover {
+	background: rgba(34,34,34,1.0);
+	border: 1px solid rgba(34,34,34,1.0);
+}
+
+a.btnorange {
+	color: #f06715;
+	border: 1px solid #f06715;
+}
+
+a.btnorange:hover {
+	background: #f06715;
+	border: 1px solid #f06715;
+}
+
+a.btnwht {
+	color: rgba(255,255,255,1.0);
+	border: 1px solid rgba(255,255,255,1.0);
+}
+
+a.btnwht:hover {
+	color: #ab0d24;
+	background: rgba(255,255,255,1.0);
+	border: 1px solid rgba(255,255,255,1.0);
+}
+
+a.btnblk {
+	color: rgba(0,0,0,1.0);
+	border: 1px solid rgba(0,0,0,1.0);
+}
+
+a.btnblk:hover {
+	background: rgba(0,0,0,1.0);
+	border: 1px solid rgba(0,0,0,1.0);
+}
+
+a.btncrimson:hover, a.btnlhtgry:hover, a.btngry:hover, a.btnmedgry:hover, a.btndrkgry:hover, a.btnorange:hover, a.btnblk:hover {
+	color: #fff;
+	-webkit-opacity: 1;
+	-moz-opacity: 1;
+	opacity: 1;
+}
+
+a.btnwht:hover {
+	-webkit-opacity: 1;
+	-moz-opacity: 1;
+	opacity: 1;
+}
+
+/* ----- HR ----- */
+hr {
+	background-color: rgba(93,105,112,0.1);
+	margin: 3em 0;
+}
+
+/* ----- Page Footer ----- */
+.footer {
+	z-index: 10;
+	min-width: 1188px;
+	position: fixed;
+	bottom: 0;
+	display: block;
+	margin: 0;
+	padding: 0;
+	background-color: rgba(255,255,255,0.9);
+}
+
+.footer:after {
+	clear: both;
+	content: "";
+	display: block;
+}
+
+.footer ul {
+	border-top: 1px solid rgba(228,230,231,0.9);
+	padding: 2px 0 10px;
+	margin-left: 32px;
+	display: block;
+	color: #464e54;
+	list-style-type: none;
+}
+
+.footer ul li {
+	display: inline;
+	margin: 0;
+	padding: 0;
+	font-size: .65em;
+	font-family: "Open Sans";
+	font-weight: 400;
+	text-align: left;
+	color: #464e54;
+	list-style-type: none;
+}
+
+.footer ul li:after {
+	content: ",";
+	margin: 0;
+}
+
+.footer ul li:before {
+	content: "";
+	display: none;
+	list-style-type: none;
+}
+
+.footer ul li:last-child:after {
+	content: "";
+}
+
+/* Flex Default Styles (Home) */
+.box-wrapper {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-align-items: stretch;
+	-ms-flex-align: stretch;
+	align-items: stretch;
+	-ms-flex-direction: row;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin: 0 auto;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	position: relative;
+	overflow: hidden;
+	-webkit-justify-content: space-around;
+	justify-content: space-around;
+}
+
+.box1 h1, .box1 h2, .box1 h3, .box1 h4, .box1 h5, .box1 h6, .box1 p, .box2 h1, .box2 h2, .box2 h3, .box2 h4, .box2 h5, .box2 h6, .box2 p, .pgbox1 h1, .pgbox1 h2, .pgbox1 h3, .pgbox1 h4, .pgbox1 h5, .pgbox1 h6, .pgbox1 p, .pgbox2 h1, .pgbox2 h2, .pgbox2 h3, .pgbox2 h4, .pgbox2 h5, .pgbox2 h6, .pgbox2 p, .box3 h1, .box3 h2, .box3 h3, .box3 h4, .box3 h5, .box3 h6, .box3 p {
+	color: #fff;
+}
+
+.box4 h1, .box4 h2, .box4 h3, .box4 h4, .box4 h5, .box4 h6, .box4 p, .box5 h1, .box5 h2, .box5 h3, .box5 h4, .box5 h5, .box5 h6, .box5 p, .box6 h1, .box6 h2, .box6 h3, .box6 h4, .box6 h5, .box6 h6, .box6 p {
+	color: #464e54;
+}
+
+.box1 h3.topsm {
+	font-size: .825em;
+	font-weight: 600;
+	letter-spacing: 8px;
+	text-transform: uppercase;
+	padding-top: 0;
+	padding-bottom: .2em;
+	color: #fff;
+}
+
+/*.box p {
+	font-size: .75em;
+}
+
+.box1 h3, .box1 p {
+	max-width: 280px;
+}*/
+.box {
+	text-align: center;
+	min-width: 33.333333333333%;
+	min-height: 400px;
+	-webkit-align-items: stretch;
+	-ms-flex-align: stretch;
+	align-items: stretch;
+	text-align: start;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 52px;
+	-ms-flex: 1;
+	-webkit-flex: 1;
+	flex: 1;
+	position: relative;
+	z-index: 1;
+	justify-content: center;
+}
+
+.team {
+	text-align: center;
+	min-width: 20%;
+	min-height: 200px;
+	-webkit-align-items: stretch;
+	-ms-flex-align: stretch;
+	align-items: stretch;
+	text-align: start;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 0;
+	-ms-flex: 1;
+	-webkit-flex: 1;
+	flex: 1;
+	position: relative;
+	z-index: 1;
+}
+
+.team .portrait, .team .landscape {
+	margin: 0 auto;
+}
+
+/* Flex Styles (Home) */
+.box1 {
+	min-width: 100%;
+	margin-bottom: 1.2em;
+	background: url(https://wsuwp-uploads.s3.amazonaws.com/uploads/sites/1485/2016/10/img-Chrystal-Quisenberry.jpg) no-repeat center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.box2 {
+	min-width: 50%;
+	margin-bottom: 1.2em;
+	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/img-about-dcs-building.jpg) no-repeat center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	border-right: .6em solid #fff;
+}
+
+.box3 {
+	min-width: 50%;
+	margin-bottom: 1.2em;
+	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/img-grad-studies.jpg) no-repeat center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	border-left: .6em solid #fff;
+}
+
+.box1:after, .box2:after, .box3:after {
+	position: absolute;
+	content: "";
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+}
+
+.box1:after {
+	background: -moz-linear-gradient(45deg,rgba(148,25,43,1) 0%,rgba(171,13,36,0.1) 50%,rgba(240,103,21,0.4) 100%);
+	background: -webkit-gradient(left bottom,right top,color-stop(0%,rgba(148,25,43,1)),color-stop(50%,rgba(171,13,36,0.1)),color-stop(100%,rgba(240,103,21,0.4)));
+	background: -webkit-linear-gradient(45deg,rgba(148,25,43,1) 0%,rgba(171,13,36,0.1) 50%,rgba(240,103,21,0.4) 100%);
+	background: -o-linear-gradient(45deg,rgba(148,25,43,1) 0%,rgba(171,13,36,0.1) 50%,rgba(240,103,21,0.4) 100%);
+	background: -ms-linear-gradient(45deg,rgba(148,25,43,1) 0%,rgba(171,13,36,0.1) 50%,rgba(240,103,21,0.4) 100%);
+	background: linear-gradient(45deg,rgba(148,25,43,1) 0%,rgba(171,13,36,0.1) 50%,rgba(240,103,21,0.4) 100%);
+}
+
+.box2:after, .box3:after {
+	background: -moz-linear-gradient(45deg,rgba(148,25,43,1) 0%,rgba(171,13,36,0.2) 50%,rgba(240,103,21,0.9) 100%);
+	background: -webkit-gradient(left bottom,right top,color-stop(0%,rgba(148,25,43,1)),color-stop(50%,rgba(171,13,36,0.2)),color-stop(100%,rgba(240,103,21,0.9)));
+	background: -webkit-linear-gradient(45deg,rgba(148,25,43,1) 0%,rgba(171,13,36,0.2) 50%,rgba(240,103,21,0.9) 100%);
+	background: -o-linear-gradient(45deg,rgba(148,25,43,1) 0%,rgba(171,13,36,0.2) 50%,rgba(240,103,21,0.9) 100%);
+	background: -ms-linear-gradient(45deg,rgba(148,25,43,1) 0%,rgba(171,13,36,0.2) 50%,rgba(240,103,21,0.9) 100%);
+	background: linear-gradient(45deg,rgba(148,25,43,1) 0%,rgba(171,13,36,0.2) 50%,rgba(240,103,21,0.9) 100%);
+}
+
+.box4 {
+	text-align: center;
+	color: #464e54;
+}
+
+.box5 {
+	text-align: center;
+	color: #464e54;
+}
+
+.box6 {
+	text-align: center;
+	color: #464e54;
+}
+
+.box .portrait, .box .landscape {
+	width: 180px;
+	height: 180px;
+	margin: 10px auto;
+}
+
+main {
+	background-color: white;
+}
+
+/* ----- Graduate News (HOME) ----- */
+.newswrap {
+	min-height: 100%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	justify-content: center;
+	resize: vertical;
+}
+
+.newswrap.left {
+	-webkit-align-items: flex-start;
+	align-items: flex-start;
+	justify-content: center;
+	/* ----- The above places the text in the center ----- */
+	/*justify-content: flex-end;*/
+	/* ----- The above places the text at the bottom ----- */
+}
+
+.newsandevents h1, .newswrap.left h3.topsm, .newsandevents h3.topsm, h3.topsm {
+	font-size: .825em;
+	font-weight: 600;
+	letter-spacing: 8px;
+	text-transform: uppercase;
+	padding-top: 0;
+	padding-bottom: .2em;
+}
+
+.newsandevents h3.topsm {
+	color: #464e54;
+}
+
+.newsandevents .column {
+	text-align: left;
+}
+
+.newswrap.left h3 {
+	padding-top: 0;
+}
+
+.hero-xl .newswrap {
+	min-height: 640px;
+}
+
+.hero-lrg .newswrap {
+	min-height: 420px;
+}
+
+.hero-med .newswrap {
+	min-height: 320px;
+}
+
+.hero-sm .newswrap {
+	min-height: 160px;
+}
+
+.newswrap:after {
+	position: absolute;
+	content: "";
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	background: -moz-linear-gradient(45deg,rgba(148,25,43,1) 0%,rgba(171,13,36,0.1) 50%,rgba(240,103,21,0.4) 100%);
+	background: -webkit-gradient(left bottom,right top,color-stop(0%,rgba(148,25,43,1)),color-stop(50%,rgba(171,13,36,0.1)),color-stop(100%,rgba(240,103,21,0.4)));
+	background: -webkit-linear-gradient(45deg,rgba(148,25,43,1) 0%,rgba(171,13,36,0.1) 50%,rgba(240,103,21,0.4) 100%);
+	background: -o-linear-gradient(45deg,rgba(148,25,43,1) 0%,rgba(171,13,36,0.1) 50%,rgba(240,103,21,0.4) 100%);
+	background: -ms-linear-gradient(45deg,rgba(148,25,43,1) 0%,rgba(171,13,36,0.1) 50%,rgba(240,103,21,0.4) 100%);
+	background: linear-gradient(45deg,rgba(148,25,43,1) 0%,rgba(171,13,36,0.1) 50%,rgba(240,103,21,0.4) 100%);
+}
+
+/*Photo Gallery Page ISP*/
+.pgbox1 {
+	min-width: 50%;
+	margin-bottom: 1.2em;
+	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/img-education-3.jpg) no-repeat center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	border-right: .6em solid #fff;
+}
+
+.pgbox3 {
+	min-width: 50%;
+	margin-bottom: 1.2em;
+	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/08/Ben-Flanders-Instrumentation-1.jpg) no-repeat center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	border-right: .6em solid #fff;
+}
+
+.pgbox5 {
+	min-width: 50%;
+	margin-bottom: 1.2em;
+	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/08/DSC5171.jpg) no-repeat center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	border-right: .6em solid #fff;
+}
+
+.pgbox2 {
+	min-width: 50%;
+	margin-bottom: 1.2em;
+	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/08/ISP_PortraitsLab062712_2IMG_0001_0008.jpg) no-repeat center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	border-left: .6em solid #fff;
+}
+
+.pgbox4 {
+	min-width: 50%;
+	margin-bottom: 1.2em;
+	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/08/3018-1.jpg) no-repeat center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	border-left: .6em solid #fff;
+}
+
+.pgbox6 {
+	min-width: 50%;
+	margin-bottom: 1.2em;
+	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/08/Static-High-Pressure.jpg) no-repeat center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	border-left: .6em solid #fff;
+}
+
+.pgbox1:after, .pgbox2:after, .pgbox3:after, .pgbox4:after, .pgbox5:after, .pgbox6:after {
+	position: absolute;
+	content: "";
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+}
+
+.pgbox1:after, .pgbox3:after, .pgbox5:after {
+	/*background: rgba(0,175,239,0.8);*/
+	background: rgba(59,121,172,1);
+	background: -moz-linear-gradient(10deg,rgba(59,121,172,1) 0%,rgba(0,150,204,0.51) 0%,rgba(0,175,239,0.51) 0%);
+	background: -webkit-gradient(left bottom,right top,color-stop(0%,rgba(59,121,172,1)),color-stop(0%,rgba(0,150,204,0.51)),color-stop(0%,rgba(0,175,239,0.51)));
+	background: -webkit-linear-gradient(10eg,rgba(59,121,172,1) 0%,rgba(0,150,204,0.51) 0%,rgba(0,175,239,0.51) 0%);
+	background: -o-linear-gradient(10deg,rgba(59,121,172,1) 0%,rgba(0,150,204,0.51) 0%,rgba(0,175,239,0.51) 0%);
+	background: -ms-linear-gradient(10deg,rgba(59,121,172,1) 0%,rgba(0,150,204,0.51) 0%,rgba(0,175,239,0.51) 0%);
+	background: linear-gradient(10deg,rgba(59,121,172,1) 0%,rgba(0,150,204,0.51) 0%,rgba(0,175,239,0.51) 0%);
+	/*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3b79ac',endColorstr='#00afef',GradientType=1);*/
+}
+
+.pgbox2:after, .pgbox4:after, .pgbox6:after {
+	/*background: rgba(0,175,239,0.8);*/
+	background: rgba(59,121,172,1);
+	background: -moz-linear-gradient(top,rgba(59,121,172,1) 0%,rgba(0,150,204,0.51) 50%,rgba(0,175,239,0.51) 100%);
+	background: -webkit-gradient(left top,left bottom,color-stop(0%,rgba(59,121,172,1)),color-stop(50%,rgba(0,150,204,0.51)),color-stop(100%,rgba(0,175,239,0.51)));
+	background: -webkit-linear-gradient(top,rgba(59,121,172,1) 0%,rgba(0,150,204,0.51) 50%,rgba(0,175,239,0.51) 100%);
+	background: -o-linear-gradient(top,rgba(59,121,172,1) 0%,rgba(0,150,204,0.51) 50%,rgba(0,175,239,0.51) 100%);
+	background: -ms-linear-gradient(top,rgba(59,121,172,1) 0%,rgba(0,150,204,0.51) 50%,rgba(0,175,239,0.51) 100%);
+	background: linear-gradient(to bottom,rgba(59,121,172,1) 0%,rgba(0,150,204,0.51) 50%,rgba(0,175,239,0.51) 100%);
+	/*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3b79ac',endColorstr='#00afef',GradientType=0);*/
+}
+
+/*End here w/ Photo Gallery*/
+/* ----- CSS3 Fadein Animation ----- */
+@keyframes fadein {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@-moz-keyframes fadein {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes fadein {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@-o-keyframes fadein {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+/* ------------------------- MEDIA SCREEN ------------------------- */
+@media only screen and (max-width: 1500px) {
+
+}
+
+@media screen and (max-width: 1200px) {
+
+}
+
+@media screen and (max-width: 990px) {
+	main.spine-blank-template {
+		background-size: 320px;
+	}
+
+	.colors-gray .main-header {
+		width: auto;
+	}
+
+	.progressbar {
+		width: 100%;
+		top: 49px;
+	}
+
+	.gutter-lrg {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.flexwrap p {
+		font-size: .75em;
+	}
+
+	.box-wrapper {
+		-webkit-flex-direction: row;
+		-ms-flex-direction: row;
+		flex-direction: row;
+	}
+
+	.box, .team {
+		-ms-flex: 1 1 auto;
+		flex: 1 1 auto;
+	}
+
+	.team {
+		min-width: 33.333333333333%;
+	}
+
+	.box1, .box2, .box3 {
+		min-width: 100%;
+	}
+
+	.box p {
+		font-size: .75em;
+	}
+
+	.box2, .box3 {
+		border: none;
+	}
+}
+
+@media screen and (max-width: 693px) {
+	.sub-header span {
+		border-left: none;
+		margin-left: 0;
+		padding-left: 0;
+	}
+
+	.flexwrap h1 {
+		font: 800 40px/35px 'Open Sans', 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
+	}
+
+	.smallh1 h1 {
+		font: 800 40px/40px 'Open Sans', 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
+		color: #fff;
+	}
+
+	.homepage h1 {
+		font: 800 50px/45px 'Open Sans', 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
+	}
+
+	.homepage h1.topsm {
+		letter-spacing: 6px;
+	}
+
+	.homepage .event p {
+		padding-top: 1.5em;
+	}
+
+	.box {
+		padding: 32px;
+		-ms-flex: 1 1 auto;
+		flex: 1 1 auto;
+	}
+
+	.team {
+		width: 50%;
+	}
+
+	.box1 {
+		background-position: right bottom, center top;
+	}
+
+	.column.one.heromask {
+		background-position: right bottom;
+	}
+
+	.footer {
+		position: relative;
+	}
+
+	.footer ul li {
+		display: block;
+		padding-top: 8px;
+		font-size: .45em;
+	}
+
+	.footer ul li:after {
+		content: "";
+		margin: 0;
+	}
+
+	.portrait, .landscape {
+		width: 100px;
+		height: 100px;
+	}
+
+	p.email, p.title, p.mobile, p.phone {
+		font-size: smaller;
+	}
+
+	.box4, .box5, .box6 {
+		min-width: 100%;
+	}
+}
+
+.hero-button p {
+	padding: 0;
+}
+
+/*#spine.darker #glue:before {
+    background-color: #fff;
+}
+#spine.darker .spine-actions button, #spine.darker .spine-footer small a, #spine.darker .spine-global-links a, #spine.darker .spine-offsitenav a, #spine.darker .spine-sitenav a, #spine.darker .spine-social-channels a {
+	color: #5F6972;
+}
+
+#spine.darker .spine-actions-tabs button:focus, #spine.darker .spine-actions-tabs button:hover, #spine.darker .spine-global-links a:focus, #spine.darker .spine-global-links a:hover, #spine.darker .spine-offsitenav a:focus, #spine.darker .spine-offsitenav a:hover, #spine.darker .spine-sitenav a:focus, #spine.darker .spine-sitenav a:hover, #spine.darker .spine-sitenav li.dogeared>a {
+	color: #5F6972;
+}
+
+#spine.crimson .spine-sitenav>ul>li.active:first-child>a, #spine.crimson .spine-sitenav>ul>li:first-child a:hover, #spine.dark .spine-sitenav>ul>li.active:first-child>a, #spine.dark .spine-sitenav>ul>li:first-child a:hover, #spine.darker .spine-sitenav>ul>li.active:first-child>a, #spine.darker .spine-sitenav>ul>li:first-child a:hover, #spine.gray .spine-sitenav>ul>li.active:first-child>a, #spine.gray .spine-sitenav>ul>li:first-child a:hover, #spine.light .spine-sitenav>ul>li.active:first-child>a, #spine.light .spine-sitenav>ul>li:first-child a:hover {
+	background-image: url(https://repo.wsu.edu/spine/1.4.3/icons/home-gray.svg);
+}*/
+/* nate's custom starts */
+/* Home Hero */
+.backarrow {
+	position: absolute;
+	left: 30px;
+	font-weight: bold;
+	font-size: 45px;
+}
+
+.forwardarrow {
+	position: absolute;
+	right: 30px;
+	font-weight: bold;
+	font-size: 45px;
+}
+
+.backarrow a, .forwardarrow a {
+	color: gray;
+}
+
+.hero-buttons {
+	position: absolute;
+	bottom: 130px;
+}
+
+a.hero-button {
+	float: left;
+	position: relative;
+	width: 220px;
+	padding: 15px 40px;
+	color: #fff;
+	border: 1px solid #fff;
+	text-align: center;
+	vertical-align: middle;
+	font-weight: bold;
+}
+
+a.hero-button:nth-of-type(2n) {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+a.hero-button .icon {
+	position: absolute;
+	background-image: url("pen-wht.png");
+	background-size: 20px;
+	width: 20px;
+	height: 20px;
+	left: 15px;
+}
+
+/* About WSU */
+.whitesection {
+	background-color: white;
+	text-align: center;
+}
+
+.aboutwsugradprogram h3.topsm {
+	margin-bottom: 40px;
+	text-transform: uppercase;
+	padding-top: 0;
+}
+
+h1.smspaced {
+	color: #23282B;
+	-webkit-text-fill-color: #23282B;
+	font-weight: bold;
+	margin-bottom: 40px;
+	font: 800 14px/15px 'Open Sans', 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
+	letter-spacing: 6px;
+	text-transform: uppercase;
+	padding-top: 0;
+}
+
+.whitesection.aboutwsugradprogram {
+	padding: 40px 0;
+}
+
+.aboutwsugradprogram .circle {
+}
+
+.fluid .aboutwsugradprogram .column.one {
+	margin: 0 auto;
+	width: auto;
+}
+
+h2.sm {
+	font-size: 9px;
+	border-left: none;
+}
+
+h2.sm.second {
+	min-height: 20px;
+}
+
+.circles {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 100%;
+	justify-content: center;
+}
+
+.circle {
+	position: relative;
+	width: 250px;
+	height: 250px;
+	overflow: hidden;
+	margin: 10px;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+	background: rgba(0,0,0,0.1);
+	background-size: 24px;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.circle h2, .circle h1 {
+	color: #23282B;
+}
+
+.circle h1 {
+	font-weight: 800;
+	padding: 0;
+}
+
+.circle.gradient h2, .circle.gradient h1 {
+	-webkit-text-fill-color: white;
+	color: white;
+}
+
+.circle.gradient h1 {
+	font-weight: 800;
+}
+
+.circle.gradient h2 {
+	font-weight: 400;
+}
+
+.circle div {
+	margin: 0;
+	padding: 20px;
+	/*position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%); */
+}
+
+.circle.gradient {
+	background: linear-gradient(to top,rgba(148,25,43,1) 0%,rgba(171,13,36,1) 50%,rgba(240,103,21,1) 100%);
+	color: white;
+}
+
+.circle h2 {
+	left: 0;
+	padding-left: 0;
+}
+
+.hero-button.headerbutton {
+	position: absolute;
+	right: 30px;
+	top: 9px;
+	color: #23282B;
+	border: 1px solid #23282B;
+	opacity: .35;
+}
+
+.aboutwsugradprogram h1.topsm {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.aboutwsugradprogram h2.bigbtm {
+	margin-top: 40px;
+}
+
+.aboutwsugradprogram p {
+	margin: 20px;
+}
+
+.row .column .centervertically {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 100%;
+}
+
+/* female student quote */
+.row.single.imagebackground {
+	text-align: left;
+	height: 420px;
+	width: 100%;
+	color: white;
+	background-color: #880202;
+	background-size: cover;
+}
+
+.row.single.imagebackground:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-image: linear-gradient(to right,#880202,transparent);
+	opacity: .96;
+	width: 100%;
+	height: 420px;
+	visibility: visible;
+}
+
+.row.single.imagebackground .column.one {
+	padding-top: 0;
+}
+
+.row.single.imagebackground  h1 {
+	font: 800 70px/65px 'Open Sans', 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
+	font-size: 21px;
+	text-transform: initial;
+	line-height: 2.25em;
+	width: 50%;
+	margin-bottom: 20px;
+}
+
+.row.single.imagebackground  h1 strong {
+	font: 900 70px/65px "Montserrat", Helvetica, Arial, san-serif;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.row.single.femalestudent {
+	background: url('femalestudent2.jpg') right top no-repeat;
+}
+
+.row.single.doctoralstudent {
+	background: url('femalestudent.jpg') right top no-repeat;
+}
+
+/* News & Events */
+section.newsandevents {
+	padding: 40px 0;
+}
+
+.newsandevents .divider, .content-item-event-meta {
+	display: block;
+	height: 0;
+	/*	border-top: 1px solid rgba(0,0,0,0.1);*/
+	margin: 0 0 35px;
+}
+
+.newsandevents .content-item-excerpt {
+	margin-bottom: 35px;
+}
+
+.newsandevents h1.smspaced {
+	-webkit-text-fill-color: #23282B;
+}
+
+.newsandevents .portrait {
+	position: absolute;
+	left: 0;
+	top: -20px;
+}
+
+.newsandevents h1, .newsandevents p {
+	text-align: left;
+	padding: 0;
+	margin: 0;
+}
+
+.newsandevents .column.two .portrait {
+	width: 120px;
+	height: 120px;
+	float: left;
+	margin-right: 20px;
+	position: absolute;
+	left: 0;
+}
+
+.column.one ul li.wsuwp-content-syndicate-item::before {
+	display: none;
+}
+
+.column ul li.wsuwp-content-syndicate-item {
+	margin-left: 0;
+}
+
+.column ul li.wsuwp-content-syndicate-item img {
+	display: none;
+}
+
+.wsuwp_university_category-graduate-programs .newsandevents {
+	padding: 40px 0;
+}
+
+.newsandevents .content-item-excerpt img {
+	display: none;
+}
+
+.newsandevents ul {
+	margin-top: 40px;
+}
+
+.newsandevents ul li {
+	text-align: left;
+	position: relative;
+	margin-left: 0;
+}
+
+.newsandevents ul.withportrait li {
+	padding-left: 100px;
+	min-height: 92px;
+}
+
+.newsandevents ul li h4 {
+	color: #262729;
+}
+
+.newsandevents ul.withportrait li:first-child h4 {
+	color: #94192B;
+}
+
+.newsandevents ul li p {
+	color: #262729;
+}
+
+.newsandevents .wsuwp-content-syndicate-event, .newsandevents .wsuwp-content-syndicate-item {
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+	display: flex;
+	flex-direction: column-reverse;
+	margin-bottom: 25px;
+}
+
+.wsuwp-content-syndicate-wrapper {
+	margin-top: 40px;
+}
+
+.content-item-event-date, .content-item-event-title, .content-item-title {
+	order: 1;
+}
+
+.content-item-event-meta {
+	order: 0;
+}
+
+.content-item-event-date {
+	font-weight: bold;
+	margin-top: 0;
+}
+
+.content-item-event-title a, .content-item-title a {
+	font-weight: 600;
+	padding: 0;
+	font-size: .91rem;
+}
+
+.content-item-byline-author, .content-item-byline-date, .content-item-read-story {
+	display: none;
+}
+
+/* Last Section */
+.greysection {
+	padding: 40px 0;
+	background-color: rgba(59,59,59,1.0);
+	min-height: 500px;
+}
+
+.greysection h1.smspaced, .greysection h3.topsm {
+	color: white;
+	text-align: left;
+}
+
+.footersection ul {
+	float: left;
+	margin-right: 40px;
+}
+
+.footersection ul li:before {
+	display: none;
+}
+
+.footersection ul li {
+	margin-bottom: .7em;
+	font-size: .91em;
+	margin-left: 0;
+}
+
+.footersection ul li a {
+	color: white;
+}
+
+.footersection div.floatright {
+	float: right;
+}
+
+.footersection div.floatleft {
+	float: left;
+}
+
+.footersection .directorinfo {
+	margin-right: 60px;
+	text-align: right;
+	font-size: .91em;
+	min-width: 300px;
+}
+
+.footersection .directorinfo p a {
+	color: white;
+}
+
+.footersection .portrait {
+	width: 55px;
+	height: 55px;
+	margin-left: auto;
+}
+
+.directorinfo h3 {
+	padding-bottom: 0;
+	font-size: .92rem;
+}
+
+.directorinfo h3.worktitle {
+	padding-bottom: 10px;
+	font-style: italic;
+	font-size: .85rem;
+}
+
+.footersection h3.topsm {
+	color: white;
+	background: none;
+	-webkit-text-fill-color: #fff;
+	margin-bottom: 50px;
+}
+
+.footersection p.email, .footersection p.title,.footersection p.mobile,.footersection p.phone {
+	background: none;
+	padding: 0;
+}
+
+p.email {
+	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/email-gry.png) no-repeat right 6px;
+	background-size: 16px;
+}
+
+p.title {
+	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/ribbon-gry.png) no-repeat right 6px;
+	background-size: 16px;
+}
+
+p.mobile {
+	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/mobile-gry.png) no-repeat right 6px;
+	background-size: 16px;
+}
+
+p.phone {
+	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/phone-gry.png) no-repeat right 6px;
+	background-size: 16px;
+}
+
+p.mobile {
+	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/mobile-gry.png) no-repeat right 6px;
+	background-size: 16px;
+}
+
+.degreeprograms {
+	height: 190px;
+	background-color: #F7F7F9;
+	color: linear-gradient(to left,#ED6615,#880202,#880202);
+}
+
+.degreeprograms h1 {
+	font: 300 50px/45px 'Open Sans', 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
+	background: -webkit-linear-gradient(135deg,#ED6615,#880202);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.column.one.centervertically {
+	margin: 0;
+	padding: 0;
+}
+
+.degreesearchsection {
+	height: 80px;
+	background-color: #EFF0F2;
+	display: flex;
+	align-items: center;
+}
+
+#searchdegreeinput {
+	border: none;
+	background-color: #EFF0F2;
+	font-size: 25px;
+	width: 100%;
+	background: url(https://wsuwp-uploads.s3.amazonaws.com/uploads/sites/1485/2016/10/search-gry.png) no-repeat left 14px;
+	background-size: 16px;
+	padding-left: 36px;
+	outline-width: 0;
+	outline: none;
+}
+
+::-webkit-input-placeholder {
+	/* Chrome/Opera/Safari */
+	font-weight: 300;
+}
+
+::-moz-placeholder {
+	/* Firefox 19+ */
+	font-weight: 300;
+}
+
+:-ms-input-placeholder {
+	/* IE 10+ */
+	font-weight: 300;
+}
+
+:-moz-placeholder {
+	/* Firefox 18- */
+	font-weight: 300;
+}
+
+.degreelist {
+	text-align: left;
+}
+
+.degreelist li {
+	border-bottom: 1px solid #cecece;
+	width: 100%;
+	display: flex;
+}
+
+.degreelist li::after, .flexalign::after {
+	content: '';
+	flex-grow: 1;
+	order: 0;
+}
+
+.masters, .doctorate {
+	width: 30px;
+	font-weight: bold;
+	background: #EF6615;
+	height: 30px;
+	/*float: right;*/
+	border-radius: 50%;
+	color: white;
+	visibility: hidden;
+	flex-direction: column;
+	display: flex;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	margin: auto;
+	margin-right: 5px;
+}
+
+.doctorate {
+	background: #931A2B;
+	padding: 0;
+}
+
+.masters.exists, .doctorate.exists {
+	visibility: visible;
+}
+
+.degreelist .degreename {
+	display: flex;
+	/*	bottom: 13px;
+	float: left;
+		position: absolute;*/
+}
+
+.degreelist .degreename a {
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+.degreelist .pagination a {
+	width: 25px;
+	height: 25px;
+	border: 1px solid #cecece;
+	padding: 5px;
+	font-weight: bold;
+	color: grey;
+	display: inline-flex;
+	justify-content: center;
+	margin-bottom: 5px;
+}
+
+.degreelist .pagination a.active {
+	background-color: #94192B;
+	color: white;
+}
+
+.bigletter {
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+	border: 1px solid #cecece;
+	color: #cecece;
+	text-align: center;
+	flex-direction: column;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.bigletter.active {
+	color: #94192B;
+}
+
+.bigletterline {
+	width: calc(100%-60px);
+	border-bottom: 1px solid #cecece;
+	margin-left: 61px;
+	transform: translateY(-30px);
+}
+
+.lettergroup {
+	margin-top: 20px;
+}
+
+.lettergroup:first-of-type {
+	margin-top: 40px;
+}
+
+.lettergroup ul {
+	margin-left: 75px;
+}
+
+.overlay {
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(0,0,0,0.8);
+	z-index: 99999;
+	top: 0;
+	position: fixed;
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0s, opacity .2s linear;
+}
+
+body.searching .overlay {
+	visibility: visible;
+	opacity: 1;
+}
+
+body.searching .degreesearchsection {
+	z-index: 100000;
+}
+
+.ui-autocomplete {
+	z-index: 100000;
+}
+
+.ui-menu-item {
+	color: white;
+	list-style-type: none;
+	margin-top: 5px;
+}
+
+.ui-menu-item a {
+	color: white;
+	list-style-type: none;
+	margin-top: 5px;
+}
+
+.ui-menu-item .ui-state-highlight {
+	color: #6E171D;
+}
+
+/* directory */
+.directory {
+	min-width: 150px;
+	width: 25%;
+	margin-top: 15px;
+}
+
+.directory p {
+	margin-left: 0;
+	padding-left: 0;
+}
+
+.directory .details {
+	margin-left: 15px;
+}
+
+.directory p.email {
+	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/email-gry.png) no-repeat left 6px;
+	background-size: 16px;
+	padding-left: 25px;
+}
+
+.directory p.title {
+	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/ribbon-gry.png) no-repeat left 6px;
+	background-size: 16px;
+	padding-left: 25px;
+}
+
+.directory p.mobile {
+	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/mobile-gry.png) no-repeat left 6px;
+	background-size: 16px;
+	padding-left: 25px;
+}
+
+.directory p.phone {
+	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/phone-gry.png) no-repeat left 6px;
+	background-size: 16px;
+	padding-left: 25px;
+}
+
+.directory p.mobile {
+	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/mobile-gry.png) no-repeat left 6px;
+	background-size: 16px;
+	padding-left: 25px;
+}
+
+.column.one.heromask-gradient {
+	background: -moz-linear-gradient(45deg,rgba(148,25,43,1) 0%,rgba(171,13,36,0.1) 50%,rgba(240,103,21,0.4) 100%);
+	background: -webkit-gradient(left bottom,right top,color-stop(0%,rgba(148,25,43,1)),color-stop(50%,rgba(171,13,36,0.1)),color-stop(100%,rgba(240,103,21,0.4)));
+	background: -webkit-linear-gradient(45deg,rgba(148,25,43,1) 0%,rgba(171,13,36,0.1) 50%,rgba(240,103,21,0.4) 100%);
+	background: -o-linear-gradient(45deg,rgba(148,25,43,1) 0%,rgba(171,13,36,0.1) 50%,rgba(240,103,21,0.4) 100%);
+	background: -ms-linear-gradient(45deg,rgba(148,25,43,1) 0%,rgba(171,13,36,0.1) 50%,rgba(240,103,21,0.4) 100%);
+	background: linear-gradient(45deg,rgba(148,25,43,1) 0%,rgba(171,13,36,0.1) 50%,rgba(240,103,21,0.4) 100%);
+}
+
+.backarrow, .forwardarrow {
+	display: none;
+}
+
+@media screen and (max-width: 768px) {
+	.lettergroup ul {
+		margin-left: 11px;
+		margin-top: 0;
+	}
+
+	.footer ul li a {
+		font-size: 1.45em;
+	}
+
+	.degreelist .degreename {
+		max-width: 79%;
+		margin-right: 5px;
+		display: flex;
+		justify-content: center;
+	}
+
+	.degreelist li .masters, .degreelist li .doctorate {
+		margin: auto 3px;
+	}
+
+	.degreelist li {
+		min-height: 45px;
+	}
+
+	a.hero-button {
+		float: left;
+		margin-top: 10px;
+	}
+
+	.hero-buttons {
+		position: relative;
+		bottom: auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+	}
+
+	.centervertically {
+		position: relative;
+		top: auto;
+		transform: none;
+	}
+
+	.aboutwsugradprogram p {
+		margin: auto;
+	}
+
+	.footersection .directorinfo {
+		margin-right: auto;
+	}
+}
+
+.flexright {
+	order: 1;
+}
+
+.directorywrapper {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+section.row.siteid {
+	background-color: #f7f7f8;
+}
+
+section.padtop {
+	margin-top: 15px;
+}
+
+ui-menu-item {
+	cursor: pointer;
+}
+
+.key {
+	display: inline-block;
+	margin-top: 10px;
+	float: right;
+}
+
+.key .masters, .key .doctorate, .key p {
+	float: left;
+}
+
+.key p {
+	margin-right: 8px;
+}
+
+.key .doctorate {
+	margin-right: 20px;
+}
+
+.clr:before, .clr:after {
+	display: table;
+	content: " ";
+	clear: both;
+	font-size: 0;
+}
+
+/*html,body {
+	overflow: scroll;
+}*/
+section.row .column {
+	padding-top: 2rem;
+}
+
+/* degrees page overrides */
+.post-12316 ul li a:before,.post-12316 ul li a:after, .post-12316 ul li:before, .post-12316 .pagination a:before, .post-12316 .pagination a:after {
+	display: none;
+}
+
+.degreelist ul li {
+	margin-left: 0;
+}
+
+/* Fix events calendar */
+body.events-archive .column.one {
+	width: 100%;
+}
+
+/* fix footer padding */
+.lastsectionwithfooter {
+	padding-top: 5em;
+}
+
+.column.one .footer a:before, .column.one .footer a:after {
+	display: none;
+}
+
+.newsandevents ul li:before {
+	display: none;
+}

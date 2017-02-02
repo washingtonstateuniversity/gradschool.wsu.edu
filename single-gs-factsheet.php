@@ -35,16 +35,31 @@
 						</div>
 
 						<div class="factsheet-stat">
-							<span class="factsheet-label"></span>
+							<span class="factsheet-label">Priority deadline:</span>
+							<span class="factsheet-value"></span>
+						</div>
+
+						<div class="factsheet-stat">
+							<span class="factsheet-label">Campus:</span>
+							<span class="factsheet-value"></span>
+						</div>
+
+						<div class="factsheet-stat">
+							<span class="factsheet-label">Tests required:</span>
 							<span class="factsheet-value"></span>
 						</div>
 					</div>
 
+				</div>
+			</section>
+			<section class="row side-right gutter pad-ends">
+
+				<div class="column one">
 					<?php if ( ! empty( $factsheet_data['description'] ) ) : ?>
-					<div class="factsheet-description">
-						<h2>Degree Description:</h2>
-						<?php echo wp_kses_post( $factsheet_data['description'] ); ?>
-					</div>
+						<div class="factsheet-description">
+							<h2>Degree Description:</h2>
+							<?php echo wp_kses_post( $factsheet_data['description'] ); ?>
+						</div>
 					<?php endif; ?>
 
 					<?php if ( ! empty( $factsheet_data['admission_requirements'] ) ) : ?>
@@ -82,9 +97,10 @@
 						</div>
 					<?php endif; ?>
 
-
 				</div><!--/column-->
-
+				<div>
+					<h2>Contact Information:</h2>
+				</div>
 			</section>
 			<?php
 		endwhile;

@@ -31,7 +31,7 @@
 
 						<div class="factsheet-stat">
 							<span class="factsheet-label">Students receiving assistantships or scholarships:</span>
-							<span class="factsheet-value"><?php echo esc_html( ( $factsheet_data['aided'] ) ); ?>%</span>
+							<span class="factsheet-value"><?php echo esc_html( $factsheet_data['aided'] ); ?>%</span>
 						</div>
 
 						<div class="factsheet-stat">

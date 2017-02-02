@@ -631,7 +631,11 @@ class WSUWP_Graduate_Degree_Programs {
 		}
 
 		if ( isset( $factsheet_data['gsdp_grad_students_aided'][0] ) ) {
-			$data['aided'] = round( ( $factsheet_data['gsdp_grad_students_aided'][0] / $data['students'] ) * 100, 2 );
+			if ( 0 === absint( $data['students'] ) ) {
+				$data['aided'] = '0.00';
+			} else {
+				$data['aided'] = round( ( $factsheet_data['gsdp_grad_students_aided'][0] / $data['students'] ) * 100, 2 );
+			}
 		}
 
 		if ( isset( $factsheet_data['gsdp_degree_url'][0] ) ) {

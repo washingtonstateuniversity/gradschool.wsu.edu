@@ -54,6 +54,13 @@
 						</div>
 					<?php endif; ?>
 
+					<?php if ( ! empty( $factsheet_data['student_learning_outcome'] ) ) : ?>
+						<div class="factsheet-student-learning-outcome">
+							<h2>Student Learning Outcome:</h2>
+							<?php echo wp_kses_post( $factsheet_data['student_learning_outcome'] ); ?>
+						</div>
+					<?php endif; ?>
+
 					<?php if ( ! empty( $factsheet_data['student_opportunities'] ) ) : ?>
 						<div class="factsheet-student-opportunities">
 							<h2>Student Opportunities:</h2>
@@ -75,12 +82,7 @@
 						</div>
 					<?php endif; ?>
 
-					<?php if ( ! empty( $factsheet_data['student_learning_outcome'] ) ) : ?>
-						<div class="factsheet-student-learning-outcome">
-							<h2>Student Learning Outcome:</h2>
-							<?php echo wp_kses_post( $factsheet_data['student_learning_outcome'] ); ?>
-						</div>
-					<?php endif; ?>
+
 				</div><!--/column-->
 
 			</section>

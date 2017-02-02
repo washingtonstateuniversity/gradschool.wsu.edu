@@ -587,4 +587,77 @@ class WSUWP_Graduate_Degree_Programs {
 			}
 		}
 	}
+
+	/**
+	 * Returns a useable subset of data for displaying a factsheet.
+	 *
+	 * @since 0.4.0
+	 *
+	 * @param int $post_id
+	 *
+	 * @return array
+	 */
+	public static function get_factsheet_data( $post_id ) {
+		$factsheet_data = get_registered_metadata( 'post', $post_id );
+
+		$data = array(
+			'degree_id' => 0,
+			'description' => '',
+			'accepting_applications' => 'No',
+			'students' => 0,
+			'aided' => 0,
+			'degree_url' => 'Not available',
+			'admission_requirements',
+			'student_opportunities',
+			'career_opportunities',
+			'career_placements',
+			'student_learning_outcome',
+		);
+
+		if ( isset( $factsheet_data['gsdp_degree_description'][0] ) ) {
+			$data['description'] = $factsheet_data['gsdp_degree_description'][0];
+		}
+
+		if ( isset( $factsheet_data['gsdp_degree_id'][0] ) ) {
+			$data['degree_id'] = $factsheet_data['gsdp_degree_id'][0];
+		}
+
+		if ( isset( $factsheet_data['gsdp_accepting_applications'][0] ) && 1 === absint( $factsheet_data['gsdp_accepting_applications'][0] ) ) {
+			$data['accepting_applications'] = 'Yes';
+		}
+
+		if ( isset( $factsheet_data['gsdp_grad_students_total'][0] ) ) {
+			$data['students'] = $factsheet_data['gsdp_grad_students_total'][0];
+		}
+
+		if ( isset( $factsheet_data['gsdp_grad_students_aided'][0] ) ) {
+			$data['aided'] = round( ( $factsheet_data['gsdp_grad_students_aided'][0] / $data['students'] ) * 100, 2 );
+		}
+
+		if ( isset( $factsheet_data['gsdp_degree_url'][0] ) ) {
+			$data['degree_url'] = $factsheet_data['gsdp_degree_url'][0];
+		}
+
+		if ( isset( $factsheet_data['gsdp_admission_requirements'][0] ) ) {
+			$data['admission_requirements'] = $factsheet_data['gsdp_admission_requirements'][0];
+		}
+
+		if ( isset( $factsheet_data['gsdp_student_opportunities'][0] ) ) {
+			$data['student_opportunities'] = $factsheet_data['gsdp_student_opportunities'][0];
+		}
+
+		if ( isset( $factsheet_data['gsdp_career_opportunities'][0] ) ) {
+			$data['career_opportunities'] = $factsheet_data['gsdp_career_opportunities'][0];
+		}
+
+		if ( isset( $factsheet_data['gsdp_career_placements'][0] ) ) {
+			$data['career_placements'] = $factsheet_data['gsdp_career_placements'][0];
+		}
+
+		if ( isset( $factsheet_data['gsdp_student_learning_outcome'][0] ) ) {
+			$data['student_learning_outcome'] = $factsheet_data['gsdp_student_learning_outcome'][0];
+		}
+
+		return $data;
+	}
 }

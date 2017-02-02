@@ -1,4 +1,5 @@
-(function( $ ){
+/* global _ */
+( function( $ ) {
 	var $form_container = $( ".factsheet-primary-inputs" );
 	var deadlines_template = $( "#factsheet-deadline-template" ).html();
 	var requirements_template = $( "#factsheet-requirement-template" ).html();
@@ -28,4 +29,4 @@
 	$form_container.on( "click", ".remove-factsheet-requirements-field", function( el ) {
 		$( el.target ).parent( ".factsheet-requirements-field" ).remove();
 	} );
-}( jQuery ));
+}( jQuery ) );

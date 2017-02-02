@@ -6,7 +6,12 @@
     "url": "https://github.com/washingtonstateuniversity/gradschool.wsu.edu"
   },
   "devDependencies": {
+    "autoprefixer": "^6.5.1",
+    "es6-promise": "^4.0.5",
     "grunt": "~1.0.1",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-jscs": "^3.0.1",
     "grunt-phpcs": "^0.4.0"
   }
 }

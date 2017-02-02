@@ -364,7 +364,7 @@ class WSUWP_Graduate_Degree_Programs {
 						</span>
 					</script>
 					<input type="button" class="add-factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field button" value="Add" />
-					<input type="hidden" name="factsheed_deadline_form_count" id="factsheet_deadline_form_count" value="<?php echo esc_attr( $field_count ); ?>" />
+					<input type="hidden" name="factsheet_deadline_form_count" id="factsheet_deadline_form_count" value="<?php echo esc_attr( $field_count ); ?>" />
 				</div>
 				<?php
 
@@ -422,7 +422,7 @@ class WSUWP_Graduate_Degree_Programs {
 						</span>
 					</script>
 					<input type="button" class="add-factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field button" value="Add" />
-					<input type="hidden" name="factsheed_requirement_form_count" id="factsheet_requirement_form_count" value="<?php echo esc_attr( $field_count ); ?>" />
+					<input type="hidden" name="factsheet_requirement_form_count" id="factsheet_requirement_form_count" value="<?php echo esc_attr( $field_count ); ?>" />
 				</div>
 				<?php
 

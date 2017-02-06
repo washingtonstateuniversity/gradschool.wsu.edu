@@ -36,6 +36,13 @@
 
 						<div class="factsheet-stat">
 							<span class="factsheet-label">Priority deadline:</span>
+							<div class="factsheet-set">
+								<ul>
+									<?php foreach ( $factsheet_data['deadlines'] as $fs_deadline ) {
+										echo '<li>' . esc_html( $fs_deadline->semester ) . ' ' . esc_html( $fs_deadline->deadline ) . ' ' . esc_html( $fs_deadline->international ) . '</li>';
+									} ?>
+								</ul>
+							</div>
 							<span class="factsheet-value"></span>
 						</div>
 
@@ -46,7 +53,13 @@
 
 						<div class="factsheet-stat">
 							<span class="factsheet-label">Tests required:</span>
-							<span class="factsheet-value"></span>
+							<div class="factsheet-set">
+								<ul>
+									<?php foreach( $factsheet_data['requirements'] as $fs_requirement ) {
+										echo '<li>' . esc_html( $fs_requirement->score ) . ' ' . esc_html ( $fs_requirement->test ) . ' ' . esc_html( $fs_requirement->description ) . '</li>';
+									} ?>
+								</ul>
+							</div>
 						</div>
 					</div>
 

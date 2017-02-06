@@ -607,6 +607,8 @@ class WSUWP_Graduate_Degree_Programs {
 			'students' => 0,
 			'aided' => 0,
 			'degree_url' => 'Not available',
+			'deadlines' => array(),
+			'requirements' => array(),
 			'admission_requirements',
 			'student_opportunities',
 			'career_opportunities',
@@ -642,6 +644,13 @@ class WSUWP_Graduate_Degree_Programs {
 			$data['degree_url'] = $factsheet_data['gsdp_degree_url'][0];
 		}
 
+		if ( isset( $factsheet_data['gsdp_deadlines'][0] ) ) {
+			$data['deadlines'] = json_decode( $factsheet_data['gsdp_deadlines'][0] );
+		}
+
+		if ( isset( $factsheet_data['gsdp_requirements'][0] ) ) {
+			$data['requirements'] = json_decode( $factsheet_data['gsdp_requirements'][0] );
+		}
 		if ( isset( $factsheet_data['gsdp_admission_requirements'][0] ) ) {
 			$data['admission_requirements'] = $factsheet_data['gsdp_admission_requirements'][0];
 		}

@@ -172,7 +172,7 @@ class WSUWP_Graduate_Degree_Programs {
 		require_once( dirname( __FILE__ ) . '/class-graduate-degree-program-name-taxonomy.php' );
 		require_once( dirname( __FILE__ ) . '/class-graduate-degree-degree-type-taxonomy.php' );
 		require_once( dirname( __FILE__ ) . '/class-graduate-degree-contact-taxonomy.php' );
-
+		require_once( dirname( dirname( __FILE__ ) ) . '/data/parsecsv.php' );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
 

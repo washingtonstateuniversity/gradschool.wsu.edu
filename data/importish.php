@@ -22,10 +22,60 @@ $csv = new parseCSV();
 $csv->heading = false;
 $csv->parse( dirname( __FILE__ ) . '/data/20170206-import.csv' );
 
+$ind_csv = new parseCSV();
+$ind_csv->heading = false;
+
 foreach( $csv->data as $datum ) {
 	if ( 'ID' === $datum[0] ) {
 		continue;
 	}
+
+	// Process faculty members
+	$faculty = explode( '|', $datum[16] );
+	$faculty = array_map( 'trim', $faculty );
+	$faculty = array_filter( $faculty );
+
+	foreach( $faculty as $ind ) {
+		if ( 'NULL' === $ind ) {
+			continue;
+		}
+
+		$ind_csv->parse( $ind );
+		$record = $ind_csv->data[0];
+		$chair = trim( array_shift( $record ) );
+		$cochair = trim( array_shift( $record ) );
+		$sit = trim( array_shift( $record ) );
+		$name = trim( array_shift( $record ) );
+		$degree = trim( array_shift( $record ) );
+		$email = trim( array_pop( $record ) );
+		if ( 'NULL' === $email ) {
+			$email = '';
+		}
+
+		$record = implode( ',', $record );
+		$record = str_replace( '&#x0D;', ' ', $record );
+		$record = explode( ';', $record );
+		$record = array_map( 'trim', $record );
+		$record = array_filter( $record );
+
+		$first = $record[0];
+
+		if ( ! isset( $record[1] ) ) {
+			$second = '';
+		} else {
+			$second = $record[1];
+		}
+
+
+		echo '<tr><td>' . esc_html( $chair ) . '</td><td>' . esc_html( $cochair ) . '</td><td>' . esc_html( $sit ) . '</td>';
+		echo '<td>' . esc_html( $name ) . '</td><td>' . esc_html( $degree ) . '</td><td>' . esc_html( $email ) . '</td>';
+		echo '<td>' . esc_html( $first ) . '</td><td>' . esc_html( $second ) . '</td></tr>';
+
+		$record = null;
+	}
+	// End process faculty members
+
+	update_post_meta( $id, 'gsdp_faculty_raw', $datum[16] );
 
 	$post_data = array(
 		'post_type' => 'gs-factsheet',

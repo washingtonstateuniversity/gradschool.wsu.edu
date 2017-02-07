@@ -38,9 +38,11 @@
 							<span class="factsheet-label">Priority deadline:</span>
 							<div class="factsheet-set">
 								<ul>
-									<?php foreach ( $factsheet_data['deadlines'] as $fs_deadline ) {
+									<?php
+									foreach ( $factsheet_data['deadlines'] as $fs_deadline ) {
 										echo '<li>' . esc_html( $fs_deadline->semester ) . ' ' . esc_html( $fs_deadline->deadline ) . ' ' . esc_html( $fs_deadline->international ) . '</li>';
-									} ?>
+									}
+									?>
 								</ul>
 							</div>
 							<span class="factsheet-value"></span>
@@ -55,9 +57,11 @@
 							<span class="factsheet-label">Tests required:</span>
 							<div class="factsheet-set">
 								<ul>
-									<?php foreach( $factsheet_data['requirements'] as $fs_requirement ) {
-										echo '<li>' . esc_html( $fs_requirement->score ) . ' ' . esc_html ( $fs_requirement->test ) . ' ' . esc_html( $fs_requirement->description ) . '</li>';
-									} ?>
+									<?php
+									foreach ( $factsheet_data['requirements'] as $fs_requirement ) {
+										echo '<li>' . esc_html( $fs_requirement->score ) . ' ' . esc_html( $fs_requirement->test ) . ' ' . esc_html( $fs_requirement->description ) . '</li>';
+									}
+									?>
 								</ul>
 							</div>
 						</div>
@@ -71,42 +75,42 @@
 					<?php if ( ! empty( $factsheet_data['description'] ) ) : ?>
 						<div class="factsheet-description">
 							<h2>Degree Description:</h2>
-							<?php echo wp_kses_post( $factsheet_data['description'] ); ?>
+							<?php echo wp_kses_post( apply_filters( 'the_content', $factsheet_data['description'] ) ); ?>
 						</div>
 					<?php endif; ?>
 
 					<?php if ( ! empty( $factsheet_data['admission_requirements'] ) ) : ?>
 						<div class="factsheet-admission-requirements">
 							<h2>Admission Requirements:</h2>
-							<?php echo wp_kses_post( $factsheet_data['admission_requirements'] ); ?>
+							<?php echo wp_kses_post( apply_filters( 'the_content', $factsheet_data['admission_requirements'] ) ); ?>
 						</div>
 					<?php endif; ?>
 
 					<?php if ( ! empty( $factsheet_data['student_learning_outcome'] ) ) : ?>
 						<div class="factsheet-student-learning-outcome">
 							<h2>Student Learning Outcome:</h2>
-							<?php echo wp_kses_post( $factsheet_data['student_learning_outcome'] ); ?>
+							<?php echo wp_kses_post( apply_filters( 'the_content', $factsheet_data['student_learning_outcome'] ) ); ?>
 						</div>
 					<?php endif; ?>
 
 					<?php if ( ! empty( $factsheet_data['student_opportunities'] ) ) : ?>
 						<div class="factsheet-student-opportunities">
 							<h2>Student Opportunities:</h2>
-							<?php echo wp_kses_post( $factsheet_data['student_opportunities'] ); ?>
+							<?php echo wp_kses_post( apply_filters( 'the_content', $factsheet_data['student_opportunities'] ) ); ?>
 						</div>
 					<?php endif; ?>
 
 					<?php if ( ! empty( $factsheet_data['career_opportunities'] ) ) : ?>
 						<div class="factsheet-career-opportunities">
 							<h2>Career Opportunities:</h2>
-							<?php echo wp_kses_post( $factsheet_data['career_opportunities'] ); ?>
+							<?php echo wp_kses_post( apply_filters( 'the_content', $factsheet_data['career_opportunities'] ) ); ?>
 						</div>
 					<?php endif; ?>
 
 					<?php if ( ! empty( $factsheet_data['career_placements'] ) ) : ?>
 						<div class="factsheet-career-placements">
 							<h2>Career Placements:</h2>
-							<?php echo wp_kses_post( $factsheet_data['career_placements'] ); ?>
+							<?php echo wp_kses_post( apply_filters( 'the_content', $factsheet_data['career_placements'] ) ); ?>
 						</div>
 					<?php endif; ?>
 

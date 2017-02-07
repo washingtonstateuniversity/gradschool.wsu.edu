@@ -604,9 +604,19 @@ class WSUWP_Graduate_Degree_Programs {
 			'degree_id' => 0,
 			'description' => '',
 			'accepting_applications' => 'No',
+			'faculty' => array(),
 			'students' => 0,
 			'aided' => 0,
 			'degree_url' => 'Not available',
+			'deadlines' => array(),
+			'requirements' => array(),
+			'locations' => array(
+				'Pullman' => 'No',
+				'Spokane' => 'No',
+				'Tri-Cities' => 'No',
+				'Vancouver' => 'No',
+				'Global Campus' => 'No',
+			),
 			'admission_requirements',
 			'student_opportunities',
 			'career_opportunities',
@@ -626,6 +636,11 @@ class WSUWP_Graduate_Degree_Programs {
 			$data['accepting_applications'] = 'Yes';
 		}
 
+		$faculty = wp_get_object_terms( $post_id, 'gs-faculty' );
+		if ( ! is_wp_error( $faculty ) ) {
+			$data['faculty'] = $faculty;
+		}
+
 		if ( isset( $factsheet_data['gsdp_grad_students_total'][0] ) ) {
 			$data['students'] = $factsheet_data['gsdp_grad_students_total'][0];
 		}
@@ -640,6 +655,19 @@ class WSUWP_Graduate_Degree_Programs {
 
 		if ( isset( $factsheet_data['gsdp_degree_url'][0] ) ) {
 			$data['degree_url'] = $factsheet_data['gsdp_degree_url'][0];
+		}
+
+		if ( isset( $factsheet_data['gsdp_deadlines'][0] ) ) {
+			$data['deadlines'] = json_decode( $factsheet_data['gsdp_deadlines'][0] );
+		}
+
+		if ( isset( $factsheet_data['gsdp_requirements'][0] ) ) {
+			$data['requirements'] = json_decode( $factsheet_data['gsdp_requirements'][0] );
+		}
+
+		$locations = get_post_meta( $post_id, 'gsdp_locations', true );
+		if ( ! empty( $locations ) ) {
+			$data['locations'] = wp_parse_args( $locations, $data['locations'] );
 		}
 
 		if ( isset( $factsheet_data['gsdp_admission_requirements'][0] ) ) {

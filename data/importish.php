@@ -17,6 +17,7 @@
 	10	'gsdp_career_placements' => array(
 		'gsdp_student_learning_outcome' => array(
  */
+$time_start = microtime( true );
 $csv = new parseCSV();
 $csv->heading = false;
 $csv->parse( dirname( __FILE__ ) . '/data/20170206-import-02.csv' );
@@ -24,10 +25,11 @@ $csv->parse( dirname( __FILE__ ) . '/data/20170206-import-02.csv' );
 $collected_faculty = array();
 $collected_contact = array();
 $collected_contact_names = array();
+$collected_program_names = array();
 
 $contact_count = 0;
 $skip = true;
-echo '<table>';
+
 foreach( $csv->data as $datum ) {
 	if ( $skip ) {
 		$skip = false;
@@ -363,18 +365,29 @@ foreach( $csv->data as $datum ) {
 
 	update_post_meta( $id, 'gsdp_requirements', $clean_requirements );
 
-	update_post_meta( $id, 'gsdp_program_name_raw', $datum[13] );
+	if ( ! empty( $datum[13] ) ) {
+		$program_term = wp_insert_term( $datum[13], 'gs-program-name' );
+		if ( ! is_wp_error( $program_term ) ) {
+			$collected_program_names[ $datum[13] ] = $program_term['term_id'];
+		}
+	}
+
+	if ( isset( $collected_program_names[ $datum[13] ] ) ) {
+		wp_add_object_terms( $id, $collected_program_names[ $datum[13] ], 'gs-program-name' );
+	}
+
 	update_post_meta( $id, 'gsdp_oracle_program_name_raw', $datum[14] );
 	update_post_meta( $id, 'gsdp_plan_name_raw', $datum[15] );
-	update_post_meta( $id, 'gsdp_faculty_raw', $datum[16] );
 	update_post_meta( $id, 'gsdp_location_raw', $datum[18] );
-	update_post_meta( $id, 'gsdp_contact_info_raw', $datum[20] );
 
 	echo "Added " . $datum[1];
 	$datum = null;
 	echo ' ' . memory_get_usage() . " <br>";
 }
-
+$time = microtime( true ) - $time_start;
+echo '<br><br>Time: ' . $time;
+echo '<br>Final Memory: ' . memory_get_usage();
+echo '<br><br>';
 die();
 
 ?>

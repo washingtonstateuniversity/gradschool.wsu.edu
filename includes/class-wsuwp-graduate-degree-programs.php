@@ -604,6 +604,7 @@ class WSUWP_Graduate_Degree_Programs {
 			'degree_id' => 0,
 			'description' => '',
 			'accepting_applications' => 'No',
+			'faculty' => array(),
 			'students' => 0,
 			'aided' => 0,
 			'degree_url' => 'Not available',
@@ -626,6 +627,11 @@ class WSUWP_Graduate_Degree_Programs {
 
 		if ( isset( $factsheet_data['gsdp_accepting_applications'][0] ) && 1 === absint( $factsheet_data['gsdp_accepting_applications'][0] ) ) {
 			$data['accepting_applications'] = 'Yes';
+		}
+
+		$faculty = wp_get_object_terms( $post_id, 'gs-faculty' );
+		if ( ! is_wp_error( $faculty ) ) {
+			$data['faculty'] = $faculty;
 		}
 
 		if ( isset( $factsheet_data['gsdp_grad_students_total'][0] ) ) {

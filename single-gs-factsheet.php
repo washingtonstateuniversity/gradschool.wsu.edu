@@ -21,7 +21,7 @@
 					<div class="factsheet-statistics-wrapper">
 						<div class="factsheet-stat">
 							<span class="factsheet-label">Faculty working with Students:</span>
-							<span class="factsheet-value"></span>
+							<span class="factsheet-value"><?php echo count( $factsheet_data['faculty'] ); ?></span>
 						</div>
 
 						<div class="factsheet-stat">

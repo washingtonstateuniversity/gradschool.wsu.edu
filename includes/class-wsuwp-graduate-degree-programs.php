@@ -610,6 +610,13 @@ class WSUWP_Graduate_Degree_Programs {
 			'degree_url' => 'Not available',
 			'deadlines' => array(),
 			'requirements' => array(),
+			'locations' => array(
+				'Pullman' => 'No',
+				'Spokane' => 'No',
+				'Tri-Cities' => 'No',
+				'Vancouver' => 'No',
+				'Global Campus' => 'No',
+			),
 			'admission_requirements',
 			'student_opportunities',
 			'career_opportunities',
@@ -657,6 +664,12 @@ class WSUWP_Graduate_Degree_Programs {
 		if ( isset( $factsheet_data['gsdp_requirements'][0] ) ) {
 			$data['requirements'] = json_decode( $factsheet_data['gsdp_requirements'][0] );
 		}
+
+		$locations = get_post_meta( $post_id, 'gsdp_locations', true );
+		if ( ! empty( $locations ) ) {
+			$data['locations'] = wp_parse_args( $locations, $data['locations'] );
+		}
+
 		if ( isset( $factsheet_data['gsdp_admission_requirements'][0] ) ) {
 			$data['admission_requirements'] = $factsheet_data['gsdp_admission_requirements'][0];
 		}

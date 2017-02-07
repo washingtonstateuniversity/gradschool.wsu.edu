@@ -50,7 +50,18 @@
 
 						<div class="factsheet-stat">
 							<span class="factsheet-label">Campus:</span>
-							<span class="factsheet-value"></span>
+							<div class="factsheet-set">
+								<ul>
+									<?php
+									foreach ( $factsheet_data['locations'] as $fs_location => $fs_location_status ) {
+										if ( 'No' === $fs_location_status ) {
+											continue;
+										}
+										echo '<li>' . esc_html( $fs_location ) . ': ' . esc_html( $fs_location_status ) . '</li>';
+									}
+									?>
+								</ul>
+							</div>
 						</div>
 
 						<div class="factsheet-stat">

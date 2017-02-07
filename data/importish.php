@@ -26,7 +26,13 @@ $collected_faculty = array();
 $collected_contact = array();
 $collected_contact_names = array();
 $collected_program_names = array();
-
+$location_default = array(
+	'Pullman' => 'No',
+	'Vancouver' => 'No',
+	'Tri-Cities' => 'No',
+	'Spokane' => 'No',
+	'Global Campus' => 'No',
+);
 $contact_count = 0;
 $skip = true;
 
@@ -376,9 +382,22 @@ foreach( $csv->data as $datum ) {
 		wp_add_object_terms( $id, $collected_program_names[ $datum[13] ], 'gs-program-name' );
 	}
 
+	$location_info = explode( '|', $datum[18] );
+	$location_info = array_map( 'trim', $location_info );
+	$location_info = array_filter( $location_info );
+	$item_locations = $location_default;
+	foreach( $location_info as $location ) {
+		$location = explode( ',', $location );
+		$location = array_map( 'trim', $location );
+		if ( ! isset( $location[1] ) ) {
+			continue;
+		}
+		$item_locations[ $location[1] ] = $location[0];
+	}
+	update_post_meta( $id, 'gsdp_locations', $item_locations );
+
 	update_post_meta( $id, 'gsdp_oracle_program_name_raw', $datum[14] );
 	update_post_meta( $id, 'gsdp_plan_name_raw', $datum[15] );
-	update_post_meta( $id, 'gsdp_location_raw', $datum[18] );
 
 	echo "Added " . $datum[1];
 	$datum = null;

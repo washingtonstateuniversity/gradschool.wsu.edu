@@ -1,6 +1,5 @@
 <?php
 
-
 /*
  *  4    'gsdp_degree_description' => array(
 	0	'gsdp_degree_id' => array(
@@ -20,62 +19,20 @@
  */
 $csv = new parseCSV();
 $csv->heading = false;
-$csv->parse( dirname( __FILE__ ) . '/data/20170206-import.csv' );
+$csv->parse( dirname( __FILE__ ) . '/data/20170206-import-02.csv' );
 
-$ind_csv = new parseCSV();
-$ind_csv->heading = false;
+$collected_faculty = array();
+$collected_contact = array();
+$collected_contact_names = array();
 
+$contact_count = 0;
+$skip = true;
+echo '<table>';
 foreach( $csv->data as $datum ) {
-	if ( 'ID' === $datum[0] ) {
+	if ( $skip ) {
+		$skip = false;
 		continue;
 	}
-
-	// Process faculty members
-	$faculty = explode( '|', $datum[16] );
-	$faculty = array_map( 'trim', $faculty );
-	$faculty = array_filter( $faculty );
-
-	foreach( $faculty as $ind ) {
-		if ( 'NULL' === $ind ) {
-			continue;
-		}
-
-		$ind_csv->parse( $ind );
-		$record = $ind_csv->data[0];
-		$chair = trim( array_shift( $record ) );
-		$cochair = trim( array_shift( $record ) );
-		$sit = trim( array_shift( $record ) );
-		$name = trim( array_shift( $record ) );
-		$degree = trim( array_shift( $record ) );
-		$email = trim( array_pop( $record ) );
-		if ( 'NULL' === $email ) {
-			$email = '';
-		}
-
-		$record = implode( ',', $record );
-		$record = str_replace( '&#x0D;', ' ', $record );
-		$record = explode( ';', $record );
-		$record = array_map( 'trim', $record );
-		$record = array_filter( $record );
-
-		$first = $record[0];
-
-		if ( ! isset( $record[1] ) ) {
-			$second = '';
-		} else {
-			$second = $record[1];
-		}
-
-
-		echo '<tr><td>' . esc_html( $chair ) . '</td><td>' . esc_html( $cochair ) . '</td><td>' . esc_html( $sit ) . '</td>';
-		echo '<td>' . esc_html( $name ) . '</td><td>' . esc_html( $degree ) . '</td><td>' . esc_html( $email ) . '</td>';
-		echo '<td>' . esc_html( $first ) . '</td><td>' . esc_html( $second ) . '</td></tr>';
-
-		$record = null;
-	}
-	// End process faculty members
-
-	update_post_meta( $id, 'gsdp_faculty_raw', $datum[16] );
 
 	$post_data = array(
 		'post_type' => 'gs-factsheet',
@@ -83,6 +40,257 @@ foreach( $csv->data as $datum ) {
 		'post_status' => 'publish',
 	);
 	$id = wp_insert_post( $post_data );
+
+	$contact_info = explode( '|', $datum[20] );
+	$contact_info = array_filter( $contact_info );
+
+	foreach ( $contact_info as $item ) {
+		$item = trim( $item );
+		if ( empty( $item ) ) {
+			continue;
+		}
+
+		$unique_cid = md5( strtolower( $item ) );
+
+		if ( isset( $collected_contact[ $unique_cid ] ) ) {
+			wp_add_object_terms( $id, $collected_contact[ $unique_cid ], 'gs-contact' );
+			continue;
+		}
+
+		$item = explode( ',', $item );
+		$item = array_map( 'trim', $item );
+		$order = array_shift( $item );
+		$name = array_shift( $item );
+
+		if ( 'PHD' === strtoupper( $item[0] ) || 'Ph.D.' === $item[0] || 'MBA' === $item[0] ) {
+			$name .= ', ' . $item[0];
+			array_shift( $item );
+		}
+
+		if ( empty( $name ) ) {
+			$term_name = 'BLANK';
+		} else {
+			$term_name = $name;
+		}
+
+		while ( isset( $collected_contact_names[ $term_name ] ) ) {
+			$term_name .= ' Dup';
+		}
+
+		$title = array_shift( $item );
+
+		$dept = array_shift( $item );
+
+
+		if ( 'Associate Dean' === $title ) {
+			$title .= ', ' . $dept;
+			$dept = array_shift( $item );
+		}
+
+		if ( 'Department of Management' === $dept || 'Apparel' === $dept ) {
+			$dept .= ', ' . $item[0] . ',' . $item[1];
+			array_shift( $item );
+			array_shift( $item );
+		} elseif ( 'DNP Program' === $dept ) {
+			$dept .= ', ' . $item[0];
+			array_shift( $item );
+		} elseif ( 'Graduate Studies Committee' === $dept ) {
+			$title .= ', ' . $dept;
+			$dept = array_shift( $item );
+		}
+
+		$email = array_shift( $item );
+
+		if ( 'Philosophy and Public Affairs' === $email ) {
+			$dept .= ', ' . $email;
+			$email = array_shift( $item );
+		}
+
+		if ( 'Program in Neuroscience' === $email || 'WSU College of Nursing' === $email ) {
+			$email = array_shift( $item );
+		}
+
+		$add1 = array_shift( $item );
+
+		if ( empty( $email ) && is_email( $add1 ) ) {
+			$email = $add1;
+			$add1 = array_shift( $item );
+		}
+
+		if ( 'The Edward R. Murrow College of Communication' === $add1 ) {
+			$title = $dept;
+			$dept = $add1;
+			$add1 = array_shift( $item );
+		}
+
+		$add2 = array_shift( $item );
+
+		if ( 0 === strpos( $add2, 'Room' ) ) {
+			$add1 .= ' ' . $add2;
+			$add2 = array_shift( $item );
+		}
+
+		if ( 'Stadium Way' === $add2 ) {
+			$add2 = array_shift( $item );
+		}
+
+		$city = array_shift( $item );
+		$state = array_shift( $item );
+
+		if ( 'Washington' === $state || 'WASHINGTON' === $state ) {
+			$state = 'WA';
+		}
+
+		$zip = array_shift( $item );
+
+		if ( 'Pullman' === $state ) {
+			$city = 'Pullman';
+			$state = 'WA';
+			$zip = array_shift( $item );
+		}
+
+		$phone = array_shift( $item );
+		$fax = array_shift( $item );
+
+		$term = wp_insert_term( $term_name, 'gs-contact' );
+
+		if ( ! is_wp_error( $term ) ) {
+			$collected_contact_names[ $term_name ] = true;
+			update_term_meta( $term['term_id'], 'gs_contact_name', $name );
+			update_term_meta( $term['term_id'], 'gs_contact_title', $title );
+			update_term_meta( $term['term_id'], 'gs_contact_department', $dept );
+			update_term_meta( $term['term_id'], 'gs_contact_email', $email );
+			update_term_meta( $term['term_id'], 'gs_contact_address_one', $add1 );
+			update_term_meta( $term['term_id'], 'gs_contact_address_two', $add2 );
+			update_term_meta( $term['term_id'], 'gs_contact_city', $city );
+			update_term_meta( $term['term_id'], 'gs_contact_state', $state );
+			update_term_meta( $term['term_id'], 'gs_contact_postal', $zip );
+			update_term_meta( $term['term_id'], 'gs_contact_phone', $phone );
+			update_term_meta( $term['term_id'], 'gs_contact_fax', $fax );
+			update_term_meta( $term['term_id'], 'gs_contact_id', $unique_cid );
+		}
+
+		wp_add_object_terms( $id, $term['term_id'], 'gs-contact' );
+		$collected_contact[ $unique_cid ] = $term['term_id'];
+	}
+
+	// Process faculty members
+	$faculty = explode( '|', $datum[16] );
+	$faculty = array_map( 'trim', $faculty );
+	$faculty = array_filter( $faculty );
+
+	$faculty_relationships = array();
+
+	foreach( $faculty as $ind ) {
+		if ( 'NULL' === $ind ) {
+			continue;
+		}
+
+		$ind_csv = new parseCSV();
+		$ind_csv->heading = false;
+		$ind_csv->parse( $ind );
+		$record = $ind_csv->data[0];
+		$ind_csv = null;
+
+		if ( 1 === count( $record ) ) {
+			continue;
+		}
+
+		$chair = trim( array_shift( $record ) );
+		$cochair = trim( array_shift( $record ) );
+		$sit = trim( array_shift( $record ) );
+		$name = trim( array_shift( $record ) );
+
+		$unique_id = md5( $name );
+
+		$faculty_relationships[ $unique_id ] = array(
+			'chair' => $chair,
+			'cochair' => $cochair,
+			'site' => $sit,
+		);
+
+		// Skip additional processing if faculty has already been stored globally.
+		if ( isset( $collected_faculty[ $unique_id ] ) ) {
+			wp_add_object_terms( $id, $collected_faculty[ $unique_id ], 'gs-faculty' );
+			continue;
+		}
+
+		$degree = trim( array_shift( $record ) );
+
+		if ( 'DVM' === $degree || 'BVSc' === $degree ) {
+			$degree = $degree . ', ' . trim( array_shift( $record ) );
+		}
+		if ( 'NULL' === $degree ) {
+			$degree = '';
+		}
+
+		$email = trim( array_pop( $record ) );
+		if ( 'NULL' === $email ) {
+			$email = '';
+		}
+
+		$record = implode( ',', $record );
+		$record = str_replace( '&#x0D;', "\r", $record );
+		$record = str_replace( '.,', '.,,,', $record );
+		$record = explode( ',,,', $record );
+		$record = array_map( 'trim', $record );
+		$record = array_filter( $record );
+
+		if ( ! isset( $record[0] ) ) {
+			$first = '';
+			$second = '';
+		} elseif ( 'NULL,NULL' === $record[0] ) {
+			$first = '';
+			$second = '';
+		} elseif ( 0 === strpos( $record[0], 'NULL,' ) ) {
+			$first = '';
+			$second = str_replace( 'NULL,', '', $record[0] );
+		} elseif ( 0 === substr_compare( $record[0], ',NULL', strlen( $record[0] ) - 5, 5 ) ) {
+			$first = substr( $record[0], 0, strlen( $record[0] ) - 5 );
+			$second = '';
+		} else {
+			$first = $record[0];
+			if ( ! isset( $record[1] ) ) {
+				$second = '';
+			} else {
+				$second = $record[1];
+			}
+		}
+
+		$record = null;
+
+		if ( 'NULL' === $second ) {
+			$second = '';
+		}
+
+		$first = ltrim( $first, ',' );
+		$first = str_replace( ',', ', ', $first );
+		$first = str_replace( '  ', ' ', $first );
+		$second = str_replace( ',', ', ', $second );
+		$second = str_replace( '  ', ' ', $second );
+
+		$term = wp_insert_term( $name, 'gs-faculty' );
+
+		if ( ! is_wp_error( $term ) ) {
+			update_term_meta( $term['term_id'], 'gs_degree_abbreviation', $degree );
+			update_term_meta( $term['term_id'], 'gs_faculty_email', $email );
+			update_term_meta( $term['term_id'], 'gs_teaching_interests', $first );
+			update_term_meta( $term['term_id'], 'gs_research_interests', $second );
+			update_term_meta( $term['term_id'], 'gs_relationship_id', $unique_id );
+		}
+
+		wp_add_object_terms( $id, $term['term_id'], 'gs-faculty' );
+
+		$collected_faculty[ $unique_id ] = $term['term_id'];
+	}
+
+	$degree = null;
+	$email = null;
+	$first = null;
+	$second = null;
+	$unique_id = null;
+
+	// End process faculty members
 
 	update_post_meta( $id, 'gsdp_degree_id', $datum[0] );
 	update_post_meta( $id, 'gsdp_grad_students_total', $datum[2] );
@@ -96,6 +304,8 @@ foreach( $csv->data as $datum ) {
 	update_post_meta( $id, 'gsdp_career_placements', $datum[10] );
 	update_post_meta( $id, 'gsdp_accepting_applications', $datum[11] );
 	update_post_meta( $id, 'gsdp_include_in_programs', $datum[12] );
+
+	update_post_meta( $id, 'gsdp_faculty_relationships', $faculty_relationships );
 
 	$deadlines = explode( '|', $datum[17] );
 	$deadlines = array_map( 'trim', $deadlines );
@@ -160,7 +370,9 @@ foreach( $csv->data as $datum ) {
 	update_post_meta( $id, 'gsdp_location_raw', $datum[18] );
 	update_post_meta( $id, 'gsdp_contact_info_raw', $datum[20] );
 
-	echo "Added " . $datum[1] . " <br>";
+	echo "Added " . $datum[1];
+	$datum = null;
+	echo ' ' . memory_get_usage() . " <br>";
 }
 
 die();

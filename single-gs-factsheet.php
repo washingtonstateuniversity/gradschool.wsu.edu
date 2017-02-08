@@ -5,11 +5,13 @@
 
 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
-			<header>
-				<hgroup>
+			<section class="row single gutter pad-top">
+
+				<div class="column one">
 					<h1><?php the_title(); ?></h1>
-				</hgroup>
-			</header>
+				</div>
+
+			</section>
 
 			<section class="row single gutter pad-ends">
 

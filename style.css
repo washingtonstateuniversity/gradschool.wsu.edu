@@ -170,7 +170,7 @@ h6 {
 	-webkit-transition-property: color, background;
 	transition-property: color, background;
 	-webkit-transition-duration: .4s, .4s;
-	transition-duration: .4s, .4s;
+	        transition-duration: .4s, .4s;
 	cursor: pointer;
 	border-bottom: 2px solid rgba(0, 0, 0, .05);
 }
@@ -297,13 +297,12 @@ strong {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
-	-webkit-flex-align: center;
-	-ms-flex-align: center;
 	-webkit-box-align: center;
+	    -ms-flex-align: center;
 	        align-items: center;
-	-ms-flex-direction: column;
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
 	        flex-direction: column;
 	-webkit-box-pack: center;
 	    -ms-flex-pack: center;
@@ -321,10 +320,8 @@ strong {
 }
 
 .flexwrap h1 {
-	animation: fadein 2s;
-	-moz-animation: fadein 2s;
 	-webkit-animation: fadein 2s;
-	-o-animation: fadein 2s;
+	        animation: fadein 2s;
 }
 
 .white-text h1 {
@@ -449,9 +446,7 @@ aside .wsuwp-content-syndicate-wrapper ul li:before {
 .portrait a:hover,
 .landscape a:hover {
 	-webkit-filter: grayscale(80%);
-	filter: grayscale(80%);
-	-webkit-opacity: 1;
-	-moz-opacity: 1;
+	        filter: grayscale(80%);
 	opacity: 1;
 }
 
@@ -515,7 +510,7 @@ aside a {
 	-webkit-transition-property: color, background;
 	transition-property: color, background;
 	-webkit-transition-duration: .4s, .4s;
-	transition-duration: .4s, .4s;
+	        transition-duration: .4s, .4s;
 	cursor: pointer;
 	border: none;
 }
@@ -589,7 +584,7 @@ a.btnblk {
 	-webkit-transition-property: color, background;
 	transition-property: color, background;
 	-webkit-transition-duration: .4s, .4s;
-	transition-duration: .4s, .4s;
+	        transition-duration: .4s, .4s;
 	cursor: pointer;
 }
 

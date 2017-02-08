@@ -16,9 +16,6 @@ body.home:not(.has-background-image) #jacket,
 
 .section-wrapper,
 .section-wrapper-has-background {
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
 	background-size: cover;
 	background-position: center top;
 }
@@ -156,13 +153,7 @@ h6 {
 /* ----- A ----- */
 .column a {
 	color: #ab0d24;
-	-webkit-transition-property: color, background;
-	-moz-transition-property: color, background;
-	-o-transition-property: color, background;
 	transition-property: color, background;
-	-webkit-transition-duration: .4s, .4s;
-	-moz-transition-duration: .4s, .4s;
-	-o-transition-duration: .4s, .4s;
 	transition-duration: .4s, .4s;
 	cursor: pointer;
 	border-bottom: 2px solid rgba(0, 0, 0, .05);
@@ -194,14 +185,7 @@ strong {
 .hero-med .column.one,
 .hero-sm,
 .hero-sm .column.one {
-	display: -webkit-box;
-	display: -moz-box;
-	display: -ms-flexbox;
-	display: -webkit-flex;
 	display: flex;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
 	background-size: cover;
 }
 
@@ -292,33 +276,20 @@ strong {
 	width: 100%;
 	padding: 0;
 	margin: 0;
-	display: -webkit-box;
-	display: -moz-box;
-	display: -ms-flexbox;
-	display: -webkit-flex;
 	display: flex;
-	-webkit-flex-align: center;
-	-ms-flex-align: center;
-	-webkit-align-items: center;
 	align-items: center;
-	-webkit-flex-direction: column;
-	-ms-flex-direction: column;
 	flex-direction: column;
 	justify-content: center;
 	resize: vertical;
 }
 
 .flexwrap.left {
-	-webkit-align-items: flex-start;
 	align-items: flex-start;
 	justify-content: center;
 }
 
 .flexwrap h1 {
 	animation: fadein 2s;
-	-moz-animation: fadein 2s;
-	-webkit-animation: fadein 2s;
-	-o-animation: fadein 2s;
 }
 
 .white-text h1 {
@@ -395,8 +366,6 @@ aside .wsuwp-content-syndicate-wrapper ul li:before {
 	color: #464e54;
 	padding: 0;
 	line-height: 30px;
-	-moz-border-radius: 50%;
-	-webkit-border-radius: 50%;
 	border-radius: 50%;
 	border: 1px solid #e5e5e5;
 	background-color: #f8f8f8;
@@ -423,8 +392,6 @@ aside .wsuwp-content-syndicate-wrapper ul li:before {
 	overflow: hidden;
 	display: block;
 	margin: 10px;
-	-moz-border-radius: 50%;
-	-webkit-border-radius: 50%;
 	border-radius: 50%;
 	background: rgba(0, 0, 0, .1) url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/landscape-wht-xl.png) no-repeat center center;
 	background-size: 24px;
@@ -446,10 +413,7 @@ aside .wsuwp-content-syndicate-wrapper ul li:before {
 
 .portrait a:hover,
 .landscape a:hover {
-	-webkit-filter: grayscale(80%);
 	filter: grayscale(80%);
-	-webkit-opacity: 1;
-	-moz-opacity: 1;
 	opacity: 1;
 }
 
@@ -501,11 +465,7 @@ aside {
 	margin: 0 10px;
 	padding: 30px;
 	text-align: left;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
 	border-radius: 10px;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	background: #f7f7f8;
 }
@@ -514,13 +474,7 @@ aside a {
 	color: #b7203d;
 	font-size: .9em;
 	font-weight: 600;
-	-webkit-transition-property: color, background;
-	-moz-transition-property: color, background;
-	-o-transition-property: color, background;
 	transition-property: color, background;
-	-webkit-transition-duration: .4s, .4s;
-	-moz-transition-duration: .4s, .4s;
-	-o-transition-duration: .4s, .4s;
 	transition-duration: .4s, .4s;
 	cursor: pointer;
 	border: none;
@@ -591,13 +545,7 @@ a.btnblk {
 	text-transform: uppercase;
 	text-align: center;
 	text-shadow: none;
-	-webkit-transition-property: color, background;
-	-moz-transition-property: color, background;
-	-o-transition-property: color, background;
 	transition-property: color, background;
-	-webkit-transition-duration: .4s, .4s;
-	-moz-transition-duration: .4s, .4s;
-	-o-transition-duration: .4s, .4s;
 	transition-duration: .4s, .4s;
 	cursor: pointer;
 }
@@ -639,9 +587,6 @@ a.btndrkgry.round,
 a.btnorange.round,
 a.btnwht.round,
 a.btnblk.round {
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	-ms-border-radius: 4px;
 	border-radius: 4px;
 }
 

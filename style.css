@@ -1,3 +1,13 @@
+/*
+ Theme Name:     WSU Grad School
+ Theme URI:      https://gradschool.wsu.edu/
+ Description:    A WSU Spine child theme for the Graduate School.
+ Author:         WSU University Communications
+ Author URI:     https://web.wsu.edu/
+ Template:       spine
+ Version:        0.4.0
+*/
+
 .degree-programs main ul.list > ul {
 	margin-left: 1.5em;
 }
@@ -16,9 +26,6 @@ body.home:not(.has-background-image) #jacket,
 
 .section-wrapper,
 .section-wrapper-has-background {
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
 	background-size: cover;
 	background-position: center top;
 }
@@ -30,10 +37,10 @@ body.home:not(.has-background-image) #jacket,
 
 .colors-gray .main-header {
 	background: rgb(148, 25, 43);
-	background: -moz-linear-gradient(left, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, 1) 50%, rgba(240, 103, 21, 1) 100%);
 	background: -webkit-linear-gradient(left, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, 1) 50%, rgba(240, 103, 21, 1) 100%);
 	background: linear-gradient(to right, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, 1) 50%, rgba(240, 103, 21, 1) 100%);
-	filter: progid:dximagetransform.microsoft.gradient(startColorstr="#94192b", endColorstr="#f06715", GradientType=1);
+	-webkit-filter: progid:dximagetransform.microsoft.gradient(startColorstr="#94192b", endColorstr="#f06715", GradientType=1);
+	        filter: progid:dximagetransform.microsoft.gradient(startColorstr="#94192b", endColorstr="#f06715", GradientType=1);
 	border-bottom: none;
 	padding: 1rem 0;
 	max-width: 1188px;
@@ -44,10 +51,10 @@ body.home:not(.has-background-image) #jacket,
 
 .progressbar {
 	background: rgb(148, 25, 43);
-	background: -moz-linear-gradient(left, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, 1) 50%, rgba(240, 103, 21, 1) 100%);
 	background: -webkit-linear-gradient(left, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, 1) 50%, rgba(240, 103, 21, 1) 100%);
 	background: linear-gradient(to right, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, 1) 50%, rgba(240, 103, 21, 1) 100%);
-	filter: progid:dximagetransform.microsoft.gradient(startColorstr="#94192b", endColorstr="#f06715", GradientType=1);
+	-webkit-filter: progid:dximagetransform.microsoft.gradient(startColorstr="#94192b", endColorstr="#f06715", GradientType=1);
+	        filter: progid:dximagetransform.microsoft.gradient(startColorstr="#94192b", endColorstr="#f06715", GradientType=1);
 	background-repeat: repeat;
 	background-position: left top;
 	width: 1188px;
@@ -161,12 +168,8 @@ h6 {
 .column a {
 	color: #ab0d24;
 	-webkit-transition-property: color, background;
-	-moz-transition-property: color, background;
-	-o-transition-property: color, background;
 	transition-property: color, background;
 	-webkit-transition-duration: .4s, .4s;
-	-moz-transition-duration: .4s, .4s;
-	-o-transition-duration: .4s, .4s;
 	transition-duration: .4s, .4s;
 	cursor: pointer;
 	border-bottom: 2px solid rgba(0, 0, 0, .05);
@@ -199,13 +202,8 @@ strong {
 .hero-sm,
 .hero-sm .column.one {
 	display: -webkit-box;
-	display: -moz-box;
 	display: -ms-flexbox;
-	display: -webkit-flex;
 	display: flex;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
 	background-size: cover;
 }
 
@@ -297,25 +295,29 @@ strong {
 	padding: 0;
 	margin: 0;
 	display: -webkit-box;
-	display: -moz-box;
 	display: -ms-flexbox;
-	display: -webkit-flex;
 	display: flex;
 	-webkit-flex-align: center;
 	-ms-flex-align: center;
-	-webkit-align-items: center;
-	align-items: center;
-	-webkit-flex-direction: column;
+	-webkit-box-align: center;
+	        align-items: center;
 	-ms-flex-direction: column;
-	flex-direction: column;
-	justify-content: center;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	        flex-direction: column;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
 	resize: vertical;
 }
 
 .flexwrap.left {
-	-webkit-align-items: flex-start;
-	align-items: flex-start;
-	justify-content: center;
+	-webkit-box-align: start;
+	    -ms-flex-align: start;
+	        align-items: flex-start;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
 }
 
 .flexwrap h1 {
@@ -399,8 +401,6 @@ aside .wsuwp-content-syndicate-wrapper ul li:before {
 	color: #464e54;
 	padding: 0;
 	line-height: 30px;
-	-moz-border-radius: 50%;
-	-webkit-border-radius: 50%;
 	border-radius: 50%;
 	border: 1px solid #e5e5e5;
 	background-color: #f8f8f8;
@@ -427,8 +427,6 @@ aside .wsuwp-content-syndicate-wrapper ul li:before {
 	overflow: hidden;
 	display: block;
 	margin: 10px;
-	-moz-border-radius: 50%;
-	-webkit-border-radius: 50%;
 	border-radius: 50%;
 	background: rgba(0, 0, 0, .1) url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/landscape-wht-xl.png) no-repeat center center;
 	background-size: 24px;
@@ -505,11 +503,7 @@ aside {
 	margin: 0 10px;
 	padding: 30px;
 	text-align: left;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
 	border-radius: 10px;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	background: #f7f7f8;
 }
@@ -519,12 +513,8 @@ aside a {
 	font-size: .9em;
 	font-weight: 600;
 	-webkit-transition-property: color, background;
-	-moz-transition-property: color, background;
-	-o-transition-property: color, background;
 	transition-property: color, background;
 	-webkit-transition-duration: .4s, .4s;
-	-moz-transition-duration: .4s, .4s;
-	-o-transition-duration: .4s, .4s;
 	transition-duration: .4s, .4s;
 	cursor: pointer;
 	border: none;
@@ -548,6 +538,7 @@ aside a:after {
 }
 
 .column.one.heromask-gradient {
+	background: -webkit-linear-gradient(right, #23282b, #23282b);
 	background: linear-gradient(to left, #23282b, #23282b);
 }
 
@@ -596,12 +587,8 @@ a.btnblk {
 	text-align: center;
 	text-shadow: none;
 	-webkit-transition-property: color, background;
-	-moz-transition-property: color, background;
-	-o-transition-property: color, background;
 	transition-property: color, background;
 	-webkit-transition-duration: .4s, .4s;
-	-moz-transition-duration: .4s, .4s;
-	-o-transition-duration: .4s, .4s;
 	transition-duration: .4s, .4s;
 	cursor: pointer;
 }
@@ -643,9 +630,6 @@ a.btndrkgry.round,
 a.btnorange.round,
 a.btnwht.round,
 a.btnblk.round {
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	-ms-border-radius: 4px;
 	border-radius: 4px;
 }
 
@@ -661,9 +645,6 @@ a.btndrkgry.bubble,
 a.btnorange.bubble,
 a.btnwht.bubble,
 a.btnblk.bubble {
-	-webkit-border-radius: 50px;
-	-moz-border-radius: 50px;
-	-ms-border-radius: 50px;
 	border-radius: 50px;
 }
 
@@ -894,26 +875,24 @@ hr {
 
 /* Flex Default Styles (Home) */
 .box-wrapper {
-	display: -webkit-flex;
 	display: -ms-flexbox;
+	display: -webkit-box;
 	display: flex;
-	-webkit-align-items: stretch;
 	-ms-flex-align: stretch;
-	align-items: stretch;
+	-webkit-box-align: stretch;
+	        align-items: stretch;
 	-ms-flex-direction: row;
-	-webkit-flex-direction: row;
-	flex-direction: row;
-	-webkit-flex-wrap: wrap;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	        flex-direction: row;
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
 	margin: 0 auto;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	position: relative;
 	overflow: hidden;
-	-webkit-justify-content: space-around;
-	justify-content: space-around;
+	-ms-flex-pack: distribute;
+	    justify-content: space-around;
 }
 
 .box1 h1,
@@ -991,36 +970,34 @@ hr {
 .box {
 	min-width: 33.333333333333%;
 	min-height: 400px;
-	-webkit-align-items: stretch;
 	-ms-flex-align: stretch;
-	align-items: stretch;
+	-webkit-box-align: stretch;
+	        align-items: stretch;
 	text-align: start;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	padding: 52px;
 	-ms-flex: 1;
-	-webkit-flex: 1;
-	flex: 1;
+	-webkit-box-flex: 1;
+	        flex: 1;
 	position: relative;
 	z-index: 1;
-	justify-content: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
 }
 
 .team {
 	min-width: 20%;
 	min-height: 200px;
-	-webkit-align-items: stretch;
 	-ms-flex-align: stretch;
-	align-items: stretch;
+	-webkit-box-align: stretch;
+	        align-items: stretch;
 	text-align: start;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	padding: 0;
 	-ms-flex: 1;
-	-webkit-flex: 1;
-	flex: 1;
+	-webkit-box-flex: 1;
+	        flex: 1;
 	position: relative;
 	z-index: 1;
 }
@@ -1035,9 +1012,6 @@ hr {
 	min-width: 100%;
 	margin-bottom: 1.2em;
 	background: url(https://wsuwp-uploads.s3.amazonaws.com/uploads/sites/1485/2016/10/img-Chrystal-Quisenberry.jpg) no-repeat center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
 	background-size: cover;
 }
 
@@ -1045,9 +1019,6 @@ hr {
 	min-width: 50%;
 	margin-bottom: 1.2em;
 	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/img-about-dcs-building.jpg) no-repeat center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
 	background-size: cover;
 	border-right: .6em solid #fff;
 }
@@ -1056,9 +1027,6 @@ hr {
 	min-width: 50%;
 	margin-bottom: 1.2em;
 	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/img-grad-studies.jpg) no-repeat center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
 	background-size: cover;
 	border-left: .6em solid #fff;
 }
@@ -1076,21 +1044,15 @@ hr {
 }
 
 .box1:after {
-	background: -moz-linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
 	background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(148, 25, 43, 1)), color-stop(50%, rgba(171, 13, 36, .1)), color-stop(100%, rgba(240, 103, 21, .4)));
 	background: -webkit-linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
-	background: -o-linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
-	background: -ms-linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
 	background: linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
 }
 
 .box2:after,
 .box3:after {
-	background: -moz-linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .2) 50%, rgba(240, 103, 21, .9) 100%);
 	background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(148, 25, 43, 1)), color-stop(50%, rgba(171, 13, 36, .2)), color-stop(100%, rgba(240, 103, 21, .9)));
 	background: -webkit-linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .2) 50%, rgba(240, 103, 21, .9) 100%);
-	background: -o-linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .2) 50%, rgba(240, 103, 21, .9) 100%);
-	background: -ms-linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .2) 50%, rgba(240, 103, 21, .9) 100%);
 	background: linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .2) 50%, rgba(240, 103, 21, .9) 100%);
 }
 
@@ -1127,25 +1089,29 @@ main {
 	padding: 0;
 	margin: 0;
 	display: -webkit-box;
-	display: -moz-box;
 	display: -ms-flexbox;
-	display: -webkit-flex;
 	display: flex;
 	-webkit-flex-align: center;
 	-ms-flex-align: center;
-	-webkit-align-items: center;
-	align-items: center;
-	-webkit-flex-direction: column;
+	-webkit-box-align: center;
+	        align-items: center;
 	-ms-flex-direction: column;
-	flex-direction: column;
-	justify-content: center;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	        flex-direction: column;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
 	resize: vertical;
 }
 
 .newswrap.left {
-	-webkit-align-items: flex-start;
-	align-items: flex-start;
-	justify-content: center;
+	-webkit-box-align: start;
+	    -ms-flex-align: start;
+	        align-items: flex-start;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
 }
 
 .newsandevents h1,
@@ -1196,11 +1162,8 @@ h3.topsm {
 	width: 100%;
 	height: 100%;
 	z-index: -1;
-	background: -moz-linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
 	background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(148, 25, 43, 1)), color-stop(50%, rgba(171, 13, 36, .1)), color-stop(100%, rgba(240, 103, 21, .4)));
 	background: -webkit-linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
-	background: -o-linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
-	background: -ms-linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
 	background: linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
 }
 
@@ -1209,9 +1172,6 @@ h3.topsm {
 	min-width: 50%;
 	margin-bottom: 1.2em;
 	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/img-education-3.jpg) no-repeat center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
 	background-size: cover;
 	border-right: .6em solid #fff;
 }
@@ -1220,9 +1180,6 @@ h3.topsm {
 	min-width: 50%;
 	margin-bottom: 1.2em;
 	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/08/Ben-Flanders-Instrumentation-1.jpg) no-repeat center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
 	background-size: cover;
 	border-right: .6em solid #fff;
 }
@@ -1231,9 +1188,6 @@ h3.topsm {
 	min-width: 50%;
 	margin-bottom: 1.2em;
 	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/08/DSC5171.jpg) no-repeat center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
 	background-size: cover;
 	border-right: .6em solid #fff;
 }
@@ -1242,9 +1196,6 @@ h3.topsm {
 	min-width: 50%;
 	margin-bottom: 1.2em;
 	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/08/ISP_PortraitsLab062712_2IMG_0001_0008.jpg) no-repeat center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
 	background-size: cover;
 	border-left: .6em solid #fff;
 }
@@ -1253,9 +1204,6 @@ h3.topsm {
 	min-width: 50%;
 	margin-bottom: 1.2em;
 	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/08/3018-1.jpg) no-repeat center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
 	background-size: cover;
 	border-left: .6em solid #fff;
 }
@@ -1264,9 +1212,6 @@ h3.topsm {
 	min-width: 50%;
 	margin-bottom: 1.2em;
 	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/08/Static-High-Pressure.jpg) no-repeat center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
 	background-size: cover;
 	border-left: .6em solid #fff;
 }
@@ -1290,11 +1235,9 @@ h3.topsm {
 .pgbox3:after,
 .pgbox5:after {
 	background: rgba(59, 121, 172, 1);
-	background: -moz-linear-gradient(10deg, rgba(59, 121, 172, 1) 0%, rgba(0, 150, 204, .51) 0%, rgba(0, 175, 239, .51) 0%);
 	background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(59, 121, 172, 1)), color-stop(0%, rgba(0, 150, 204, .51)), color-stop(0%, rgba(0, 175, 239, .51)));
 	background: -webkit-linear-gradient(10deg, rgba(59, 121, 172, 1) 0%, rgba(0, 150, 204, .51) 0%, rgba(0, 175, 239, .51) 0%);
-	background: -o-linear-gradient(10deg, rgba(59, 121, 172, 1) 0%, rgba(0, 150, 204, .51) 0%, rgba(0, 175, 239, .51) 0%);
-	background: -ms-linear-gradient(10deg, rgba(59, 121, 172, 1) 0%, rgba(0, 150, 204, .51) 0%, rgba(0, 175, 239, .51) 0%);
+	background: -webkit-linear-gradient(80deg, rgba(59, 121, 172, 1) 0%, rgba(0, 150, 204, .51) 0%, rgba(0, 175, 239, .51) 0%);
 	background: linear-gradient(10deg, rgba(59, 121, 172, 1) 0%, rgba(0, 150, 204, .51) 0%, rgba(0, 175, 239, .51) 0%);
 }
 
@@ -1302,11 +1245,8 @@ h3.topsm {
 .pgbox4:after,
 .pgbox6:after {
 	background: rgba(59, 121, 172, 1);
-	background: -moz-linear-gradient(top, rgba(59, 121, 172, 1) 0%, rgba(0, 150, 204, .51) 50%, rgba(0, 175, 239, .51) 100%);
 	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(59, 121, 172, 1)), color-stop(50%, rgba(0, 150, 204, .51)), color-stop(100%, rgba(0, 175, 239, .51)));
 	background: -webkit-linear-gradient(top, rgba(59, 121, 172, 1) 0%, rgba(0, 150, 204, .51) 50%, rgba(0, 175, 239, .51) 100%);
-	background: -o-linear-gradient(top, rgba(59, 121, 172, 1) 0%, rgba(0, 150, 204, .51) 50%, rgba(0, 175, 239, .51) 100%);
-	background: -ms-linear-gradient(top, rgba(59, 121, 172, 1) 0%, rgba(0, 150, 204, .51) 50%, rgba(0, 175, 239, .51) 100%);
 	background: linear-gradient(to bottom, rgba(59, 121, 172, 1) 0%, rgba(0, 150, 204, .51) 50%, rgba(0, 175, 239, .51) 100%);
 }
 
@@ -1324,29 +1264,7 @@ h3.topsm {
 	}
 }
 
-@-moz-keyframes fadein {
-
-	from {
-		opacity: 0;
-	}
-
-	to {
-		opacity: 1;
-	}
-}
-
 @-webkit-keyframes fadein {
-
-	from {
-		opacity: 0;
-	}
-
-	to {
-		opacity: 1;
-	}
-}
-
-@-o-keyframes fadein {
 
 	from {
 		opacity: 0;
@@ -1383,15 +1301,17 @@ h3.topsm {
 	}
 
 	.box-wrapper {
-		-webkit-flex-direction: row;
 		-ms-flex-direction: row;
-		flex-direction: row;
+		-webkit-box-orient: horizontal;
+		-webkit-box-direction: normal;
+		        flex-direction: row;
 	}
 
 	.box,
 	.team {
 		-ms-flex: 1 1 auto;
-		flex: 1 1 auto;
+		-webkit-box-flex: 1;
+		        flex: 1 1 auto;
 	}
 
 	.team {
@@ -1446,7 +1366,8 @@ h3.topsm {
 	.box {
 		padding: 32px;
 		-ms-flex: 1 1 auto;
-		flex: 1 1 auto;
+		-webkit-box-flex: 1;
+		        flex: 1 1 auto;
 	}
 
 	.team {
@@ -1595,11 +1516,18 @@ h2.sm.second {
 }
 
 .circles {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-ms-flex-wrap: wrap;
+	    flex-wrap: wrap;
 	width: 100%;
-	justify-content: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
 }
 
 .circle {
@@ -1608,15 +1536,19 @@ h2.sm.second {
 	height: 250px;
 	overflow: hidden;
 	margin: 10px;
-	-moz-border-radius: 50%;
-	-webkit-border-radius: 50%;
 	border-radius: 50%;
 	background: rgba(0, 0, 0, .1);
 	background-size: 24px;
 	text-align: center;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 }
 
 .circle h2,
@@ -1649,6 +1581,7 @@ h2.sm.second {
 }
 
 .circle.gradient {
+	background: -webkit-linear-gradient(bottom, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, 1) 50%, rgba(240, 103, 21, 1) 100%);
 	background: linear-gradient(to top, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, 1) 50%, rgba(240, 103, 21, 1) 100%);
 	color: #fff;
 }
@@ -1683,7 +1616,9 @@ h2.sm.second {
 .row .column .centervertically {
 	position: absolute;
 	top: 50%;
-	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	    -ms-transform: translateY(-50%);
+	        transform: translateY(-50%);
 	width: 100%;
 }
 
@@ -1704,6 +1639,7 @@ h2.sm.second {
 	right: 0;
 	bottom: 0;
 	left: 0;
+	background-image: -webkit-linear-gradient(left, #880202, transparent);
 	background-image: linear-gradient(to right, #880202, transparent);
 	opacity: .96;
 	width: 100%;
@@ -1830,8 +1766,13 @@ section.newsandevents {
 .newsandevents .wsuwp-content-syndicate-event,
 .newsandevents .wsuwp-content-syndicate-item {
 	border-bottom: 1px solid rgba(0, 0, 0, .1);
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	flex-direction: column-reverse;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: reverse;
+	    -ms-flex-direction: column-reverse;
+	        flex-direction: column-reverse;
 	margin-bottom: 25px;
 }
 
@@ -1842,11 +1783,15 @@ section.newsandevents {
 .content-item-event-date,
 .content-item-event-title,
 .content-item-title {
-	order: 1;
+	-webkit-box-ordinal-group: 2;
+	    -ms-flex-order: 1;
+	        order: 1;
 }
 
 .content-item-event-meta {
-	order: 0;
+	-webkit-box-ordinal-group: 1;
+	    -ms-flex-order: 0;
+	        order: 0;
 }
 
 .content-item-event-date {
@@ -1996,8 +1941,12 @@ p.mobile {
 .degreesearchsection {
 	height: 80px;
 	background-color: #eff0f2;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	align-items: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 }
 
 #searchdegreeinput {
@@ -2038,14 +1987,20 @@ p.mobile {
 .degreelist li {
 	border-bottom: 1px solid #cecece;
 	width: 100%;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
 }
 
 .degreelist li:after,
 .flexalign:after {
 	content: "";
-	flex-grow: 1;
-	order: 0;
+	-webkit-box-flex: 1;
+	    -ms-flex-positive: 1;
+	        flex-grow: 1;
+	-webkit-box-ordinal-group: 1;
+	    -ms-flex-order: 0;
+	        order: 0;
 }
 
 .masters,
@@ -2057,11 +2012,21 @@ p.mobile {
 	border-radius: 50%;
 	color: #fff;
 	visibility: hidden;
-	flex-direction: column;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	flex-shrink: 0;
-	align-items: center;
-	justify-content: center;
+	-ms-flex-negative: 0;
+	    flex-shrink: 0;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
 	margin: auto;
 	margin-right: 5px;
 }
@@ -2077,6 +2042,8 @@ p.mobile {
 }
 
 .degreelist .degreename {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
 }
 
@@ -2092,8 +2059,12 @@ p.mobile {
 	padding: 5px;
 	font-weight: 700;
 	color: #333;
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
 	display: inline-flex;
-	justify-content: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
 	margin-bottom: 5px;
 }
 
@@ -2109,10 +2080,19 @@ p.mobile {
 	border: 1px solid #cecece;
 	color: #cecece;
 	text-align: center;
-	flex-direction: column;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	align-items: center;
-	justify-content: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
 	font-size: 25px;
 	font-weight: 700;
 }
@@ -2125,7 +2105,9 @@ p.mobile {
 	width: calc(100% - 60px);
 	border-bottom: 1px solid #cecece;
 	margin-left: 61px;
-	transform: translateY(-30px);
+	-webkit-transform: translateY(-30px);
+	    -ms-transform: translateY(-30px);
+	        transform: translateY(-30px);
 }
 
 .lettergroup {
@@ -2149,6 +2131,7 @@ p.mobile {
 	position: fixed;
 	visibility: hidden;
 	opacity: 0;
+	-webkit-transition: visibility 0s, opacity .2s linear;
 	transition: visibility 0s, opacity .2s linear;
 }
 
@@ -2228,11 +2211,8 @@ body.searching .degreesearchsection {
 }
 
 .column.one.heromask-gradient {
-	background: -moz-linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
 	background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(148, 25, 43, 1)), color-stop(50%, rgba(171, 13, 36, .1)), color-stop(100%, rgba(240, 103, 21, .4)));
 	background: -webkit-linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
-	background: -o-linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
-	background: -ms-linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
 	background: linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
 }
 
@@ -2255,8 +2235,12 @@ body.searching .degreesearchsection {
 	.degreelist .degreename {
 		max-width: 79%;
 		margin-right: 5px;
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
-		justify-content: center;
+		-webkit-box-pack: center;
+		    -ms-flex-pack: center;
+		        justify-content: center;
 	}
 
 	.degreelist li .masters,
@@ -2276,17 +2260,28 @@ body.searching .degreesearchsection {
 	.hero-buttons {
 		position: relative;
 		bottom: auto;
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		    -ms-flex-direction: column;
+		        flex-direction: column;
+		-webkit-box-pack: center;
+		    -ms-flex-pack: center;
+		        justify-content: center;
+		-webkit-box-align: center;
+		    -ms-flex-align: center;
+		        align-items: center;
 		width: 100%;
 	}
 
 	.centervertically {
 		position: relative;
 		top: auto;
-		transform: none;
+		-webkit-transform: none;
+		    -ms-transform: none;
+		        transform: none;
 	}
 
 	.aboutwsugradprogram p {
@@ -2299,12 +2294,17 @@ body.searching .degreesearchsection {
 }
 
 .flexright {
-	order: 1;
+	-webkit-box-ordinal-group: 2;
+	    -ms-flex-order: 1;
+	        order: 1;
 }
 
 .directorywrapper {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	    flex-wrap: wrap;
 }
 
 section.row.siteid {
@@ -2382,3 +2382,4 @@ body.events-archive .column.one {
 .newsandevents ul li:before {
 	display: none;
 }
+/*# sourceMappingURL=style.css.map */

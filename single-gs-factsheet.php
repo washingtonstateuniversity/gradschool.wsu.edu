@@ -47,7 +47,6 @@
 									?>
 								</ul>
 							</div>
-							<span class="factsheet-value"></span>
 						</div>
 
 						<div class="factsheet-stat">

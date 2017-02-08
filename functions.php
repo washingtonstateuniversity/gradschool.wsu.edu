@@ -3,11 +3,24 @@
 // Include functionality for handling degrees
 include_once( __DIR__ . '/includes/class-grad-degrees.php' );
 
-require dirname( __FILE__ ) . '/includes/class-wsuwp-graduate-degree-programs.php';
+require_once( dirname( __FILE__ ) . '/includes/class-wsuwp-graduate-school-theme.php' );
+require_once( dirname( __FILE__ ) . '/includes/class-wsuwp-graduate-degree-programs.php' );
+
+add_action( 'after_setup_theme', 'WSUWP_Graduate_School_Theme' );
+/**
+ * Starts the main class controlling the theme.
+ *
+ * @since 0.5.0
+ *
+ * @return \WSUWP_Graduate_School_Theme
+ */
+function WSUWP_Graduate_School_Theme() {
+	return WSUWP_Graduate_School_Theme::get_instance();
+}
 
 add_action( 'after_setup_theme', 'WSUWP_Graduate_Degree_Programs' );
 /**
- * Start things up.
+ * Starts the Graduate School degree programs functionality.
  *
  * @since 0.4.0
  *

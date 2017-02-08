@@ -1,13 +1,3 @@
-/*
- Theme Name:     WSU Grad School
- Theme URI:      https://gradschool.wsu.edu/
- Description:    A WSU Spine child theme for the Graduate School.
- Author:         WSU University Communications
- Author URI:     https://web.wsu.edu/
- Template:       spine
- Version:        0.4.0
-*/
-
 .degree-programs main ul.list > ul {
 	margin-left: 1.5em;
 }
@@ -37,10 +27,8 @@ body.home:not(.has-background-image) #jacket,
 
 .colors-gray .main-header {
 	background: rgb(148, 25, 43);
-	background: -webkit-linear-gradient(left, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, 1) 50%, rgba(240, 103, 21, 1) 100%);
 	background: linear-gradient(to right, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, 1) 50%, rgba(240, 103, 21, 1) 100%);
-	-webkit-filter: progid:dximagetransform.microsoft.gradient(startColorstr="#94192b", endColorstr="#f06715", GradientType=1);
-	        filter: progid:dximagetransform.microsoft.gradient(startColorstr="#94192b", endColorstr="#f06715", GradientType=1);
+	filter: progid:dximagetransform.microsoft.gradient(startColorstr="#94192b", endColorstr="#f06715", GradientType=1);
 	border-bottom: none;
 	padding: 1rem 0;
 	max-width: 1188px;
@@ -51,10 +39,8 @@ body.home:not(.has-background-image) #jacket,
 
 .progressbar {
 	background: rgb(148, 25, 43);
-	background: -webkit-linear-gradient(left, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, 1) 50%, rgba(240, 103, 21, 1) 100%);
 	background: linear-gradient(to right, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, 1) 50%, rgba(240, 103, 21, 1) 100%);
-	-webkit-filter: progid:dximagetransform.microsoft.gradient(startColorstr="#94192b", endColorstr="#f06715", GradientType=1);
-	        filter: progid:dximagetransform.microsoft.gradient(startColorstr="#94192b", endColorstr="#f06715", GradientType=1);
+	filter: progid:dximagetransform.microsoft.gradient(startColorstr="#94192b", endColorstr="#f06715", GradientType=1);
 	background-repeat: repeat;
 	background-position: left top;
 	width: 1188px;
@@ -167,10 +153,8 @@ h6 {
 /* ----- A ----- */
 .column a {
 	color: #ab0d24;
-	-webkit-transition-property: color, background;
 	transition-property: color, background;
-	-webkit-transition-duration: .4s, .4s;
-	        transition-duration: .4s, .4s;
+	transition-duration: .4s, .4s;
 	cursor: pointer;
 	border-bottom: 2px solid rgba(0, 0, 0, .05);
 }
@@ -201,8 +185,6 @@ strong {
 .hero-med .column.one,
 .hero-sm,
 .hero-sm .column.one {
-	display: -webkit-box;
-	display: -ms-flexbox;
 	display: flex;
 	background-size: cover;
 }
@@ -294,34 +276,20 @@ strong {
 	width: 100%;
 	padding: 0;
 	margin: 0;
-	display: -webkit-box;
-	display: -ms-flexbox;
 	display: flex;
-	-webkit-box-align: center;
-	    -ms-flex-align: center;
-	        align-items: center;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	    -ms-flex-direction: column;
-	        flex-direction: column;
-	-webkit-box-pack: center;
-	    -ms-flex-pack: center;
-	        justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
 	resize: vertical;
 }
 
 .flexwrap.left {
-	-webkit-box-align: start;
-	    -ms-flex-align: start;
-	        align-items: flex-start;
-	-webkit-box-pack: center;
-	    -ms-flex-pack: center;
-	        justify-content: center;
+	align-items: flex-start;
+	justify-content: center;
 }
 
 .flexwrap h1 {
-	-webkit-animation: fadein 2s;
-	        animation: fadein 2s;
+	animation: fadein 2s;
 }
 
 .white-text h1 {
@@ -445,8 +413,7 @@ aside .wsuwp-content-syndicate-wrapper ul li:before {
 
 .portrait a:hover,
 .landscape a:hover {
-	-webkit-filter: grayscale(80%);
-	        filter: grayscale(80%);
+	filter: grayscale(80%);
 	opacity: 1;
 }
 
@@ -507,10 +474,8 @@ aside a {
 	color: #b7203d;
 	font-size: .9em;
 	font-weight: 600;
-	-webkit-transition-property: color, background;
 	transition-property: color, background;
-	-webkit-transition-duration: .4s, .4s;
-	        transition-duration: .4s, .4s;
+	transition-duration: .4s, .4s;
 	cursor: pointer;
 	border: none;
 }
@@ -533,7 +498,6 @@ aside a:after {
 }
 
 .column.one.heromask-gradient {
-	background: -webkit-linear-gradient(right, #23282b, #23282b);
 	background: linear-gradient(to left, #23282b, #23282b);
 }
 
@@ -581,10 +545,8 @@ a.btnblk {
 	text-transform: uppercase;
 	text-align: center;
 	text-shadow: none;
-	-webkit-transition-property: color, background;
 	transition-property: color, background;
-	-webkit-transition-duration: .4s, .4s;
-	        transition-duration: .4s, .4s;
+	transition-duration: .4s, .4s;
 	cursor: pointer;
 }
 
@@ -866,24 +828,15 @@ hr {
 
 /* Flex Default Styles (Home) */
 .box-wrapper {
-	display: -webkit-box;
-	display: -ms-flexbox;
 	display: flex;
-	-webkit-box-align: stretch;
-	    -ms-flex-align: stretch;
-	        align-items: stretch;
-	-webkit-box-orient: horizontal;
-	-webkit-box-direction: normal;
-	    -ms-flex-direction: row;
-	        flex-direction: row;
-	-ms-flex-wrap: wrap;
-	    flex-wrap: wrap;
+	align-items: stretch;
+	flex-direction: row;
+	flex-wrap: wrap;
 	margin: 0 auto;
 	box-sizing: border-box;
 	position: relative;
 	overflow: hidden;
-	-ms-flex-pack: distribute;
-	    justify-content: space-around;
+	justify-content: space-around;
 }
 
 .box1 h1,
@@ -961,34 +914,24 @@ hr {
 .box {
 	min-width: 33.333333333333%;
 	min-height: 400px;
-	-webkit-box-align: stretch;
-	    -ms-flex-align: stretch;
-	        align-items: stretch;
+	align-items: stretch;
 	text-align: start;
 	box-sizing: border-box;
 	padding: 52px;
-	-webkit-box-flex: 1;
-	    -ms-flex: 1;
-	        flex: 1;
+	flex: 1;
 	position: relative;
 	z-index: 1;
-	-webkit-box-pack: center;
-	    -ms-flex-pack: center;
-	        justify-content: center;
+	justify-content: center;
 }
 
 .team {
 	min-width: 20%;
 	min-height: 200px;
-	-webkit-box-align: stretch;
-	    -ms-flex-align: stretch;
-	        align-items: stretch;
+	align-items: stretch;
 	text-align: start;
 	box-sizing: border-box;
 	padding: 0;
-	-webkit-box-flex: 1;
-	    -ms-flex: 1;
-	        flex: 1;
+	flex: 1;
 	position: relative;
 	z-index: 1;
 }
@@ -1035,13 +978,11 @@ hr {
 }
 
 .box1:after {
-	background: -webkit-linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
 	background: linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
 }
 
 .box2:after,
 .box3:after {
-	background: -webkit-linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .2) 50%, rgba(240, 103, 21, .9) 100%);
 	background: linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .2) 50%, rgba(240, 103, 21, .9) 100%);
 }
 
@@ -1077,29 +1018,16 @@ main {
 	width: 100%;
 	padding: 0;
 	margin: 0;
-	display: -webkit-box;
-	display: -ms-flexbox;
 	display: flex;
-	-webkit-box-align: center;
-	    -ms-flex-align: center;
-	        align-items: center;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	    -ms-flex-direction: column;
-	        flex-direction: column;
-	-webkit-box-pack: center;
-	    -ms-flex-pack: center;
-	        justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
 	resize: vertical;
 }
 
 .newswrap.left {
-	-webkit-box-align: start;
-	    -ms-flex-align: start;
-	        align-items: flex-start;
-	-webkit-box-pack: center;
-	    -ms-flex-pack: center;
-	        justify-content: center;
+	align-items: flex-start;
+	justify-content: center;
 }
 
 .newsandevents h1,
@@ -1150,7 +1078,6 @@ h3.topsm {
 	width: 100%;
 	height: 100%;
 	z-index: -1;
-	background: -webkit-linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
 	background: linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
 }
 
@@ -1222,7 +1149,6 @@ h3.topsm {
 .pgbox3:after,
 .pgbox5:after {
 	background: rgba(59, 121, 172, 1);
-	background: -webkit-linear-gradient(80deg, rgba(59, 121, 172, 1) 0%, rgba(0, 150, 204, .51) 0%, rgba(0, 175, 239, .51) 0%);
 	background: linear-gradient(10deg, rgba(59, 121, 172, 1) 0%, rgba(0, 150, 204, .51) 0%, rgba(0, 175, 239, .51) 0%);
 }
 
@@ -1230,7 +1156,6 @@ h3.topsm {
 .pgbox4:after,
 .pgbox6:after {
 	background: rgba(59, 121, 172, 1);
-	background: -webkit-linear-gradient(top, rgba(59, 121, 172, 1) 0%, rgba(0, 150, 204, .51) 50%, rgba(0, 175, 239, .51) 100%);
 	background: linear-gradient(to bottom, rgba(59, 121, 172, 1) 0%, rgba(0, 150, 204, .51) 50%, rgba(0, 175, 239, .51) 100%);
 }
 
@@ -1248,7 +1173,29 @@ h3.topsm {
 	}
 }
 
+@-moz-keyframes fadein {
+
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
 @-webkit-keyframes fadein {
+
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@-o-keyframes fadein {
 
 	from {
 		opacity: 0;
@@ -1285,17 +1232,13 @@ h3.topsm {
 	}
 
 	.box-wrapper {
-		-webkit-box-orient: horizontal;
-		-webkit-box-direction: normal;
-		    -ms-flex-direction: row;
-		        flex-direction: row;
+		flex-direction: row;
 	}
 
 	.box,
 	.team {
 		-ms-flex: 1 1 auto;
-		-webkit-box-flex: 1;
-		        flex: 1 1 auto;
+		flex: 1 1 auto;
 	}
 
 	.team {
@@ -1350,8 +1293,7 @@ h3.topsm {
 	.box {
 		padding: 32px;
 		-ms-flex: 1 1 auto;
-		-webkit-box-flex: 1;
-		        flex: 1 1 auto;
+		flex: 1 1 auto;
 	}
 
 	.team {
@@ -1497,18 +1439,11 @@ h2.sm.second {
 }
 
 .circles {
-	display: -webkit-box;
-	display: -ms-flexbox;
 	display: flex;
-	-webkit-box-align: center;
-	    -ms-flex-align: center;
-	        align-items: center;
-	-ms-flex-wrap: wrap;
-	    flex-wrap: wrap;
+	align-items: center;
+	flex-wrap: wrap;
 	width: 100%;
-	-webkit-box-pack: center;
-	    -ms-flex-pack: center;
-	        justify-content: center;
+	justify-content: center;
 }
 
 .circle {
@@ -1521,15 +1456,9 @@ h2.sm.second {
 	background: rgba(0, 0, 0, .1);
 	background-size: 24px;
 	text-align: center;
-	display: -webkit-box;
-	display: -ms-flexbox;
 	display: flex;
-	-webkit-box-pack: center;
-	    -ms-flex-pack: center;
-	        justify-content: center;
-	-webkit-box-align: center;
-	    -ms-flex-align: center;
-	        align-items: center;
+	justify-content: center;
+	align-items: center;
 }
 
 .circle h2,
@@ -1562,7 +1491,6 @@ h2.sm.second {
 }
 
 .circle.gradient {
-	background: -webkit-linear-gradient(bottom, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, 1) 50%, rgba(240, 103, 21, 1) 100%);
 	background: linear-gradient(to top, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, 1) 50%, rgba(240, 103, 21, 1) 100%);
 	color: #fff;
 }
@@ -1597,9 +1525,7 @@ h2.sm.second {
 .row .column .centervertically {
 	position: absolute;
 	top: 50%;
-	-webkit-transform: translateY(-50%);
-	    -ms-transform: translateY(-50%);
-	        transform: translateY(-50%);
+	transform: translateY(-50%);
 	width: 100%;
 }
 
@@ -1620,7 +1546,6 @@ h2.sm.second {
 	right: 0;
 	bottom: 0;
 	left: 0;
-	background-image: -webkit-linear-gradient(left, #880202, transparent);
 	background-image: linear-gradient(to right, #880202, transparent);
 	opacity: .96;
 	width: 100%;
@@ -1747,13 +1672,8 @@ section.newsandevents {
 .newsandevents .wsuwp-content-syndicate-event,
 .newsandevents .wsuwp-content-syndicate-item {
 	border-bottom: 1px solid rgba(0, 0, 0, .1);
-	display: -webkit-box;
-	display: -ms-flexbox;
 	display: flex;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: reverse;
-	    -ms-flex-direction: column-reverse;
-	        flex-direction: column-reverse;
+	flex-direction: column-reverse;
 	margin-bottom: 25px;
 }
 
@@ -1764,15 +1684,11 @@ section.newsandevents {
 .content-item-event-date,
 .content-item-event-title,
 .content-item-title {
-	-webkit-box-ordinal-group: 2;
-	    -ms-flex-order: 1;
-	        order: 1;
+	order: 1;
 }
 
 .content-item-event-meta {
-	-webkit-box-ordinal-group: 1;
-	    -ms-flex-order: 0;
-	        order: 0;
+	order: 0;
 }
 
 .content-item-event-date {
@@ -1922,12 +1838,8 @@ p.mobile {
 .degreesearchsection {
 	height: 80px;
 	background-color: #eff0f2;
-	display: -webkit-box;
-	display: -ms-flexbox;
 	display: flex;
-	-webkit-box-align: center;
-	    -ms-flex-align: center;
-	        align-items: center;
+	align-items: center;
 }
 
 #searchdegreeinput {
@@ -1968,20 +1880,14 @@ p.mobile {
 .degreelist li {
 	border-bottom: 1px solid #cecece;
 	width: 100%;
-	display: -webkit-box;
-	display: -ms-flexbox;
 	display: flex;
 }
 
 .degreelist li:after,
 .flexalign:after {
 	content: "";
-	-webkit-box-flex: 1;
-	    -ms-flex-positive: 1;
-	        flex-grow: 1;
-	-webkit-box-ordinal-group: 1;
-	    -ms-flex-order: 0;
-	        order: 0;
+	flex-grow: 1;
+	order: 0;
 }
 
 .masters,
@@ -1993,21 +1899,11 @@ p.mobile {
 	border-radius: 50%;
 	color: #fff;
 	visibility: hidden;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	    -ms-flex-direction: column;
-	        flex-direction: column;
-	display: -webkit-box;
-	display: -ms-flexbox;
+	flex-direction: column;
 	display: flex;
-	-ms-flex-negative: 0;
-	    flex-shrink: 0;
-	-webkit-box-align: center;
-	    -ms-flex-align: center;
-	        align-items: center;
-	-webkit-box-pack: center;
-	    -ms-flex-pack: center;
-	        justify-content: center;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
 	margin: auto;
 	margin-right: 5px;
 }
@@ -2023,8 +1919,6 @@ p.mobile {
 }
 
 .degreelist .degreename {
-	display: -webkit-box;
-	display: -ms-flexbox;
 	display: flex;
 }
 
@@ -2040,12 +1934,8 @@ p.mobile {
 	padding: 5px;
 	font-weight: 700;
 	color: #333;
-	display: -webkit-inline-box;
-	display: -ms-inline-flexbox;
 	display: inline-flex;
-	-webkit-box-pack: center;
-	    -ms-flex-pack: center;
-	        justify-content: center;
+	justify-content: center;
 	margin-bottom: 5px;
 }
 
@@ -2061,19 +1951,10 @@ p.mobile {
 	border: 1px solid #cecece;
 	color: #cecece;
 	text-align: center;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	    -ms-flex-direction: column;
-	        flex-direction: column;
-	display: -webkit-box;
-	display: -ms-flexbox;
+	flex-direction: column;
 	display: flex;
-	-webkit-box-align: center;
-	    -ms-flex-align: center;
-	        align-items: center;
-	-webkit-box-pack: center;
-	    -ms-flex-pack: center;
-	        justify-content: center;
+	align-items: center;
+	justify-content: center;
 	font-size: 25px;
 	font-weight: 700;
 }
@@ -2086,9 +1967,7 @@ p.mobile {
 	width: calc(100% - 60px);
 	border-bottom: 1px solid #cecece;
 	margin-left: 61px;
-	-webkit-transform: translateY(-30px);
-	    -ms-transform: translateY(-30px);
-	        transform: translateY(-30px);
+	transform: translateY(-30px);
 }
 
 .lettergroup {
@@ -2112,7 +1991,6 @@ p.mobile {
 	position: fixed;
 	visibility: hidden;
 	opacity: 0;
-	-webkit-transition: visibility 0s, opacity .2s linear;
 	transition: visibility 0s, opacity .2s linear;
 }
 
@@ -2192,7 +2070,6 @@ body.searching .degreesearchsection {
 }
 
 .column.one.heromask-gradient {
-	background: -webkit-linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
 	background: linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
 }
 
@@ -2215,12 +2092,8 @@ body.searching .degreesearchsection {
 	.degreelist .degreename {
 		max-width: 79%;
 		margin-right: 5px;
-		display: -webkit-box;
-		display: -ms-flexbox;
 		display: flex;
-		-webkit-box-pack: center;
-		    -ms-flex-pack: center;
-		        justify-content: center;
+		justify-content: center;
 	}
 
 	.degreelist li .masters,
@@ -2240,28 +2113,17 @@ body.searching .degreesearchsection {
 	.hero-buttons {
 		position: relative;
 		bottom: auto;
-		display: -webkit-box;
-		display: -ms-flexbox;
 		display: flex;
-		-webkit-box-orient: vertical;
-		-webkit-box-direction: normal;
-		    -ms-flex-direction: column;
-		        flex-direction: column;
-		-webkit-box-pack: center;
-		    -ms-flex-pack: center;
-		        justify-content: center;
-		-webkit-box-align: center;
-		    -ms-flex-align: center;
-		        align-items: center;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 		width: 100%;
 	}
 
 	.centervertically {
 		position: relative;
 		top: auto;
-		-webkit-transform: none;
-		    -ms-transform: none;
-		        transform: none;
+		transform: none;
 	}
 
 	.aboutwsugradprogram p {
@@ -2274,17 +2136,12 @@ body.searching .degreesearchsection {
 }
 
 .flexright {
-	-webkit-box-ordinal-group: 2;
-	    -ms-flex-order: 1;
-	        order: 1;
+	order: 1;
 }
 
 .directorywrapper {
-	display: -webkit-box;
-	display: -ms-flexbox;
 	display: flex;
-	-ms-flex-wrap: wrap;
-	    flex-wrap: wrap;
+	flex-wrap: wrap;
 }
 
 section.row.siteid {
@@ -2362,4 +2219,3 @@ body.events-archive .column.one {
 .newsandevents ul li:before {
 	display: none;
 }
-/*# sourceMappingURL=style.css.map */

@@ -2,13 +2,51 @@ module.exports = function( grunt ) {
 	grunt.initConfig( {
 		pkg: grunt.file.readJSON( "package.json" ),
 
+		stylelint: {
+			src: [ "css/*.css" ]
+		},
+
+		concat: {
+			options: {
+				sourceMap: true
+			},
+			dist: {
+				src: [ "css/*.css", "!css/*admin.css" ],
+				dest: "tmp-style.css"
+			}
+		},
+
+		postcss: {
+			options: {
+				map: true,
+				diff: false,
+				processors: [
+					require( "autoprefixer" )( {
+						browsers: [ "> 1%", "ie 8-11", "Firefox ESR" ]
+					} )
+				]
+			},
+			dist: {
+				src: "tmp-style.css",
+				dest: "style.css"
+			}
+		},
+
+		clean: {
+			options: {
+				force: true
+			},
+			temp: [ "tmp-style.css", "tmp-style.css.map" ]
+		},
+
 		jscs: {
 			scripts: {
 				src: [ "Gruntfile.js", "js/*.js", "!js/*.min.js" ],
 				options: {
 					preset: "jquery",
 					requireCamelCaseOrUpperCaseIdentifiers: false, // We rely on name_name too much to change them all.
-					maximumLineLength: 250
+					maximumLineLength: 250,
+					validateIndentation: "\t"
 				}
 			}
 		},
@@ -64,11 +102,14 @@ module.exports = function( grunt ) {
 
 	} );
 
+	grunt.loadNpmTasks( "grunt-postcss" );
+	grunt.loadNpmTasks( "grunt-contrib-concat" );
+	grunt.loadNpmTasks( "grunt-contrib-clean" );
 	grunt.loadNpmTasks( "grunt-phpcs" );
+	grunt.loadNpmTasks( "grunt-stylelint" );
 	grunt.loadNpmTasks( "grunt-jscs" );
 	grunt.loadNpmTasks( "grunt-contrib-jshint" );
-	grunt.loadNpmTasks( "grunt-contrib-uglify" );
 
 	// Default task(s).
-	grunt.registerTask( "default", [ "phpcs", "jscs", "jshint", "uglify" ] );
+	grunt.registerTask( "default", [ "jscs", "jshint", "stylelint", "concat", "postcss", "clean" ] );
 };

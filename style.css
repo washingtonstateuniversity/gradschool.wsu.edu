@@ -797,14 +797,10 @@ a.btndrkgry:hover,
 a.btnorange:hover,
 a.btnblk:hover {
 	color: #fff;
-	-webkit-opacity: 1;
-	-moz-opacity: 1;
 	opacity: 1;
 }
 
 a.btnwht:hover {
-	-webkit-opacity: 1;
-	-moz-opacity: 1;
 	opacity: 1;
 }
 
@@ -870,18 +866,18 @@ hr {
 
 /* Flex Default Styles (Home) */
 .box-wrapper {
-	display: -ms-flexbox;
 	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	-ms-flex-align: stretch;
 	-webkit-box-align: stretch;
+	    -ms-flex-align: stretch;
 	        align-items: stretch;
-	-ms-flex-direction: row;
 	-webkit-box-orient: horizontal;
 	-webkit-box-direction: normal;
+	    -ms-flex-direction: row;
 	        flex-direction: row;
 	-ms-flex-wrap: wrap;
-	flex-wrap: wrap;
+	    flex-wrap: wrap;
 	margin: 0 auto;
 	box-sizing: border-box;
 	position: relative;
@@ -965,14 +961,14 @@ hr {
 .box {
 	min-width: 33.333333333333%;
 	min-height: 400px;
-	-ms-flex-align: stretch;
 	-webkit-box-align: stretch;
+	    -ms-flex-align: stretch;
 	        align-items: stretch;
 	text-align: start;
 	box-sizing: border-box;
 	padding: 52px;
-	-ms-flex: 1;
 	-webkit-box-flex: 1;
+	    -ms-flex: 1;
 	        flex: 1;
 	position: relative;
 	z-index: 1;
@@ -984,14 +980,14 @@ hr {
 .team {
 	min-width: 20%;
 	min-height: 200px;
-	-ms-flex-align: stretch;
 	-webkit-box-align: stretch;
+	    -ms-flex-align: stretch;
 	        align-items: stretch;
 	text-align: start;
 	box-sizing: border-box;
 	padding: 0;
-	-ms-flex: 1;
 	-webkit-box-flex: 1;
+	    -ms-flex: 1;
 	        flex: 1;
 	position: relative;
 	z-index: 1;
@@ -1084,13 +1080,12 @@ main {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
-	-webkit-flex-align: center;
-	-ms-flex-align: center;
 	-webkit-box-align: center;
+	    -ms-flex-align: center;
 	        align-items: center;
-	-ms-flex-direction: column;
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
 	        flex-direction: column;
 	-webkit-box-pack: center;
 	    -ms-flex-pack: center;
@@ -1290,9 +1285,9 @@ h3.topsm {
 	}
 
 	.box-wrapper {
-		-ms-flex-direction: row;
 		-webkit-box-orient: horizontal;
 		-webkit-box-direction: normal;
+		    -ms-flex-direction: row;
 		        flex-direction: row;
 	}
 
@@ -1485,9 +1480,6 @@ h1.smspaced {
 
 .whitesection.aboutwsugradprogram {
 	padding: 40px 0;
-}
-
-.aboutwsugradprogram .circle {
 }
 
 .fluid .aboutwsugradprogram .column.one {

@@ -602,9 +602,6 @@ a.btndrkgry.bubble,
 a.btnorange.bubble,
 a.btnwht.bubble,
 a.btnblk.bubble {
-	-webkit-border-radius: 50px;
-	-moz-border-radius: 50px;
-	-ms-border-radius: 50px;
 	border-radius: 50px;
 }
 
@@ -762,14 +759,10 @@ a.btndrkgry:hover,
 a.btnorange:hover,
 a.btnblk:hover {
 	color: #fff;
-	-webkit-opacity: 1;
-	-moz-opacity: 1;
 	opacity: 1;
 }
 
 a.btnwht:hover {
-	-webkit-opacity: 1;
-	-moz-opacity: 1;
 	opacity: 1;
 }
 
@@ -835,25 +828,14 @@ hr {
 
 /* Flex Default Styles (Home) */
 .box-wrapper {
-	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
-	-webkit-align-items: stretch;
-	-ms-flex-align: stretch;
 	align-items: stretch;
-	-ms-flex-direction: row;
-	-webkit-flex-direction: row;
 	flex-direction: row;
-	-webkit-flex-wrap: wrap;
-	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
 	margin: 0 auto;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	position: relative;
 	overflow: hidden;
-	-webkit-justify-content: space-around;
 	justify-content: space-around;
 }
 
@@ -932,16 +914,10 @@ hr {
 .box {
 	min-width: 33.333333333333%;
 	min-height: 400px;
-	-webkit-align-items: stretch;
-	-ms-flex-align: stretch;
 	align-items: stretch;
 	text-align: start;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	padding: 52px;
-	-ms-flex: 1;
-	-webkit-flex: 1;
 	flex: 1;
 	position: relative;
 	z-index: 1;
@@ -951,16 +927,10 @@ hr {
 .team {
 	min-width: 20%;
 	min-height: 200px;
-	-webkit-align-items: stretch;
-	-ms-flex-align: stretch;
 	align-items: stretch;
 	text-align: start;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	padding: 0;
-	-ms-flex: 1;
-	-webkit-flex: 1;
 	flex: 1;
 	position: relative;
 	z-index: 1;
@@ -976,9 +946,6 @@ hr {
 	min-width: 100%;
 	margin-bottom: 1.2em;
 	background: url(https://wsuwp-uploads.s3.amazonaws.com/uploads/sites/1485/2016/10/img-Chrystal-Quisenberry.jpg) no-repeat center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
 	background-size: cover;
 }
 
@@ -986,9 +953,6 @@ hr {
 	min-width: 50%;
 	margin-bottom: 1.2em;
 	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/img-about-dcs-building.jpg) no-repeat center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
 	background-size: cover;
 	border-right: .6em solid #fff;
 }
@@ -997,9 +961,6 @@ hr {
 	min-width: 50%;
 	margin-bottom: 1.2em;
 	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/img-grad-studies.jpg) no-repeat center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
 	background-size: cover;
 	border-left: .6em solid #fff;
 }
@@ -1057,24 +1018,14 @@ main {
 	width: 100%;
 	padding: 0;
 	margin: 0;
-	display: -webkit-box;
-	display: -moz-box;
-	display: -ms-flexbox;
-	display: -webkit-flex;
 	display: flex;
-	-webkit-flex-align: center;
-	-ms-flex-align: center;
-	-webkit-align-items: center;
 	align-items: center;
-	-webkit-flex-direction: column;
-	-ms-flex-direction: column;
 	flex-direction: column;
 	justify-content: center;
 	resize: vertical;
 }
 
 .newswrap.left {
-	-webkit-align-items: flex-start;
 	align-items: flex-start;
 	justify-content: center;
 }
@@ -1135,9 +1086,6 @@ h3.topsm {
 	min-width: 50%;
 	margin-bottom: 1.2em;
 	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/img-education-3.jpg) no-repeat center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
 	background-size: cover;
 	border-right: .6em solid #fff;
 }
@@ -1146,9 +1094,6 @@ h3.topsm {
 	min-width: 50%;
 	margin-bottom: 1.2em;
 	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/08/Ben-Flanders-Instrumentation-1.jpg) no-repeat center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
 	background-size: cover;
 	border-right: .6em solid #fff;
 }
@@ -1157,9 +1102,6 @@ h3.topsm {
 	min-width: 50%;
 	margin-bottom: 1.2em;
 	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/08/DSC5171.jpg) no-repeat center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
 	background-size: cover;
 	border-right: .6em solid #fff;
 }
@@ -1168,9 +1110,6 @@ h3.topsm {
 	min-width: 50%;
 	margin-bottom: 1.2em;
 	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/08/ISP_PortraitsLab062712_2IMG_0001_0008.jpg) no-repeat center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
 	background-size: cover;
 	border-left: .6em solid #fff;
 }
@@ -1179,9 +1118,6 @@ h3.topsm {
 	min-width: 50%;
 	margin-bottom: 1.2em;
 	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/08/3018-1.jpg) no-repeat center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
 	background-size: cover;
 	border-left: .6em solid #fff;
 }
@@ -1190,9 +1126,6 @@ h3.topsm {
 	min-width: 50%;
 	margin-bottom: 1.2em;
 	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/08/Static-High-Pressure.jpg) no-repeat center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
 	background-size: cover;
 	border-left: .6em solid #fff;
 }
@@ -1299,8 +1232,6 @@ h3.topsm {
 	}
 
 	.box-wrapper {
-		-webkit-flex-direction: row;
-		-ms-flex-direction: row;
 		flex-direction: row;
 	}
 
@@ -1493,9 +1424,6 @@ h1.smspaced {
 	padding: 40px 0;
 }
 
-.aboutwsugradprogram .circle {
-}
-
 .fluid .aboutwsugradprogram .column.one {
 	margin: 0 auto;
 	width: auto;
@@ -1524,8 +1452,6 @@ h2.sm.second {
 	height: 250px;
 	overflow: hidden;
 	margin: 10px;
-	-moz-border-radius: 50%;
-	-webkit-border-radius: 50%;
 	border-radius: 50%;
 	background: rgba(0, 0, 0, .1);
 	background-size: 24px;

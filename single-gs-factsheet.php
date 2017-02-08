@@ -132,6 +132,23 @@
 					<h2>Contact Information:</h2>
 				</div>
 			</section>
+
+			<section class="row single lastsectionwithfooter">
+				<div class="column one">
+					<div class="progressbar"></div>
+					<div class="footer">
+						<ul>
+							<li><strong><a href="https://gradschool.wsu.edu">Graduate School</a></strong></li>
+							<li>Washington State University</li>
+							<li>Stadium Way, 324 French Administration Building</li>
+							<li>P.O. Box 641030</li>
+							<li>Pullman, WA 99164-1030</li>
+							<li><a href="mailto:gradschool@wsu.edu">gradschool@wsu.edu</a></li>
+							<li><a href="tel:15093356424">P: 509-335-6424</a>, F: 509-335-1949</li>
+						</ul>
+					</div>
+				</div>
+			</section>
 			<?php
 		endwhile;
 		endif;

@@ -99,6 +99,10 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 			update_term_meta( $term_id, 'gs_faculty_email', sanitize_email( $_POST['email'] ) );
 		}
 
+		if ( isset( $_POST['faculty_url'] ) ) {
+			update_term_meta( $term_id, 'gs_faculty_url', sanitize_text_field( $_POST['faculty_url'] ) );
+		}
+
 		if ( isset( $_POST['teaching_interests'] ) ) {
 			update_term_meta( $term_id, 'gs_teaching_interests', wp_kses_post( $_POST['teaching_interests'] ) );
 		}
@@ -120,6 +124,7 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 	public function term_edit_form_fields( $term ) {
 		$degree_abbreviation = get_term_meta( $term->term_id, 'gs_degree_abbreviation', true );
 		$email = get_term_meta( $term->term_id, 'gs_faculty_email', true );
+		$url = get_term_meta( $term->term_id, 'gs_faculty_url', true );
 		$teaching_interests = get_term_meta( $term->term_id, 'gs_teaching_interests', true );
 		$research_interests = get_term_meta( $term->term_id, 'gs_research_interests', true );
 		?>
@@ -137,6 +142,14 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 			</th>
 			<td>
 				<input type="text" name="email" id="email" value="<?php echo esc_attr( $email ); ?>" />
+			</td>
+		</tr>
+		<tr class="form-field">
+			<th scope="row">
+				<label for="url">URL</label>
+			</th>
+			<td>
+				<input type="text" name="faculty_url" id="faculty_url" value="<?php echo esc_attr( $url ); ?>" />
 			</td>
 		</tr>
 		<tr class="form-field">

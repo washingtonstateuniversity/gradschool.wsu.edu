@@ -99,18 +99,6 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 			update_term_meta( $term_id, 'gs_faculty_email', sanitize_email( $_POST['email'] ) );
 		}
 
-		if ( isset( $_POST['may_chair'] ) && 'yes' === $_POST['may_chair'] ) {
-			update_term_meta( $term_id, 'gs_may_chair', 'yes' );
-		} else {
-			delete_term_meta( $term_id, 'gs_may_chair' );
-		}
-
-		if ( isset( $_POST['may_cochair'] ) && 'yes' === $_POST['may_cochair'] ) {
-			update_term_meta( $term_id, 'gs_may_cochair', 'yes' );
-		} else {
-			delete_term_meta( $term_id, 'gs_may_cochair' );
-		}
-
 		if ( isset( $_POST['teaching_interests'] ) ) {
 			update_term_meta( $term_id, 'gs_teaching_interests', wp_kses_post( $_POST['teaching_interests'] ) );
 		}
@@ -132,8 +120,6 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 	public function term_edit_form_fields( $term ) {
 		$degree_abbreviation = get_term_meta( $term->term_id, 'gs_degree_abbreviation', true );
 		$email = get_term_meta( $term->term_id, 'gs_faculty_email', true );
-		$chair = get_term_meta( $term->term_id, 'gs_may_chair', true ) ? 'yes' : 'no';
-		$cochair = get_term_meta( $term->term_id, 'gs_may_cochair', true ) ? 'yes' : 'no';
 		$teaching_interests = get_term_meta( $term->term_id, 'gs_teaching_interests', true );
 		$research_interests = get_term_meta( $term->term_id, 'gs_research_interests', true );
 		?>
@@ -151,28 +137,6 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 			</th>
 			<td>
 				<input type="text" name="email" id="email" value="<?php echo esc_attr( $email ); ?>" />
-			</td>
-		</tr>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="may-chair">May chair committee</label>
-			</th>
-			<td>
-				<select name="may_chair" id="may-chair">
-					<option value="yes" <?php selected( 'yes', $chair ); ?>>Yes</option>
-					<option value="no" <?php selected( 'no', $chair ); ?>>No</option>
-				</select>
-			</td>
-		</tr>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="may-cochair">May cochair committee</label>
-			</th>
-			<td>
-				<select name="may_cochair" id="may-cochair">
-					<option value="yes" <?php selected( 'yes', $cochair ); ?>>Yes</option>
-					<option value="no" <?php selected( 'no', $cochair ); ?>>No</option>
-				</select>
 			</td>
 		</tr>
 		<tr class="form-field">

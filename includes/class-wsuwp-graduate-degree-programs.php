@@ -707,12 +707,28 @@ class WSUWP_Graduate_Degree_Programs {
 			}
 		}
 
+		$faculty_relationships = get_post_meta( $post_id, 'gsdp_faculty_relationships', true );
 		$faculty = wp_get_object_terms( $post_id, 'gs-faculty' );
 		$data['faculty'] = array();
 		if ( ! is_wp_error( $faculty ) ) {
 			foreach( $faculty as $person ) {
 				$faculty_meta = WSUWP_Graduate_Degree_Faculty_Taxonomy::get_all_term_meta( $person->term_id );
 				$faculty_meta['name'] = $person->name;
+
+				$unique_id = md5( $person->name );
+				if ( isset( $faculty_relationships[ $unique_id ] ) ) {
+					if ( 'true' === $faculty_relationships[ $unique_id ]['chair'] && 'true' === $faculty_relationships[ $unique_id ]['cochair'] ) {
+						$faculty_meta['relationship'] = 'Can chair or co-chair graduate committee.';
+					} elseif ( 'true' === $faculty_relationships[ $unique_id ]['chair'] ) {
+						$faculty_meta['relationship'] = 'Can chair graduate committee.';
+					} elseif ( 'true' === $faculty_relationships[ $unique_id ]['cochair'] ) {
+						$faculty_meta['relationship'] = 'Can co-chair graduate committee.';
+					} else {
+						$faculty_meta['relationship'] = 'Can sit as a graduate committee member.';
+					}
+				} else {
+					$faculty_meta['relationship'] = 'Can sit as a graduate committee member.';
+				}
 
 				$data['faculty'][] = $faculty_meta;
 			}

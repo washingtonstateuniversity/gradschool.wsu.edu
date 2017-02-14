@@ -42,6 +42,9 @@
 								<ul>
 									<?php
 									foreach ( $factsheet_data['deadlines'] as $fs_deadline ) {
+										if ( 'NULL' === $fs_deadline['semester'] ) {
+											continue;
+										}
 										echo '<li>' . esc_html( $fs_deadline['semester'] ) . ' ' . esc_html( $fs_deadline['deadline'] ) . ' ' . esc_html( $fs_deadline['international'] ) . '</li>';
 									}
 									?>

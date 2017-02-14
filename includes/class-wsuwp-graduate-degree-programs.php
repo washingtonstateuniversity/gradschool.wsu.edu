@@ -35,11 +35,6 @@ class WSUWP_Graduate_Degree_Programs {
 	 * @var array
 	 */
 	var $post_meta_keys = array(
-		'gsdp_degree_description' => array(
-			'description' => 'Description of the graduate degree',
-			'type' => 'textarea',
-			'sanitize_callback' => 'wp_kses_post',
-		),
 		'gsdp_degree_id' => array(
 			'description' => 'Factsheet degree ID',
 			'type' => 'int',
@@ -90,6 +85,11 @@ class WSUWP_Graduate_Degree_Programs {
 			'sanitize_callback' => 'WSUWP_Graduate_Degree_Programs::sanitize_requirements',
 			'pre_html' => '<div class="factsheet-group">',
 			'post_html' => '</div>',
+		),
+		'gsdp_degree_description' => array(
+			'description' => 'Description of the graduate degree',
+			'type' => 'textarea',
+			'sanitize_callback' => 'wp_kses_post',
 		),
 		'gsdp_admission_requirements' => array(
 			'description' => 'Admission requirements',

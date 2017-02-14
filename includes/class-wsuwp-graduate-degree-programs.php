@@ -296,7 +296,7 @@ class WSUWP_Graduate_Degree_Programs {
 				</select>
 				<?php
 			} elseif ( 'deadlines' === $meta['type'] ) {
-				$field_data = $data[ $key ][0];
+				$field_data = maybe_unserialize( $data[ $key ][0] );
 
 				if ( empty( $field_data ) ) {
 					$field_data = array();
@@ -369,7 +369,7 @@ class WSUWP_Graduate_Degree_Programs {
 				<?php
 
 			} elseif ( 'requirements' === $meta['type'] ) {
-				$field_data = $data[ $key ][0];
+				$field_data = maybe_unserialize( $data[ $key ][0] );
 
 				if ( empty( $field_data ) ) {
 					$field_data = array();

@@ -130,8 +130,44 @@
 					<?php endif; ?>
 
 				</div><!--/column-->
-				<div>
+				<div class="column two">
 					<h2>Contact Information:</h2>
+					<?php
+					foreach( $factsheet_data['contacts'] as $contact ) {
+						?>
+						<address class="factsheet-contact" itemscope itemtype="http://schema.org/Organization">
+							<?php if ( ! empty( $contact['name'] ) ) : ?>
+							<div itemprop="contactPoint" itemscope itemtype="http://schema.org/Person"><?php echo esc_html( $contact['name'] ); ?></div>
+							<?php endif; ?>
+							<div class="address">
+								<?php if ( ! empty( $contact['address_one'] ) ) : ?>
+								<div itemprop="streetAddress"><?php echo esc_html( $contact['address_one'] ); ?></div>
+								<?php endif; ?>
+								<?php if ( ! empty( $contact['address_two'] ) ) : ?>
+								<div itemprop="streetAddress"><?php echo esc_html( $contact['address_two'] ); ?></div>
+								<?php endif; ?>
+								<div>
+									<?php if ( ! empty( $contact['city'] ) && ! empty( $contact['state'] ) ) : ?>
+									<span itemprop="addressLocality"><?php echo esc_html( $contact['city'] ); ?>, <?php echo esc_html( $contact['state'] ); ?></span>
+									<?php endif; ?>
+									<?php if ( ! empty( $contact['postal'] ) ) : ?>
+									<span itemprop="postalcode"><?php echo esc_html( $contact['postal'] ); ?></span>
+									<?php endif; ?>
+								</div>
+							</div>
+							<?php if ( ! empty( $contact['phone'] ) ) : ?>
+							<div itemprop="telephone"><?php echo esc_html( $contact['phone'] ); ?></div>
+							<?php endif; ?>
+							<?php if ( ! empty( $contact['fax'] ) ) : ?>
+							<div itemprop="faxNumber"><?php echo esc_html( $contact['fax'] ); ?></div>
+							<?php endif; ?>
+							<?php if ( ! empty( $contact['email'] ) ) : ?>
+							<div itemprop="email"><a href="mailto:<?php echo esc_attr( $contact['email'] ); ?>"><?php echo esc_html( $contact['email'] ); ?></a></div>
+							<?php endif; ?>
+						</address>
+						<?php
+					}
+					?>
 				</div>
 			</section>
 

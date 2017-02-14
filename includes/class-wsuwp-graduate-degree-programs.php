@@ -694,6 +694,15 @@ class WSUWP_Graduate_Degree_Programs {
 			$data['student_learning_outcome'] = $factsheet_data['gsdp_student_learning_outcome'][0];
 		}
 
+		$contacts = wp_get_object_terms( $post_id, 'gs-contact' );
+		$data['contacts'] = array();
+		if ( ! is_wp_error( $contacts ) ) {
+			foreach( $contacts as $contact ) {
+				$contact_meta = WSUWP_Graduate_Degree_Contact_Taxonomy::get_all_term_meta( $contact->term_id );
+				$data['contacts'][] = $contact_meta;
+			}
+		}
+
 		return $data;
 	}
 }

@@ -257,7 +257,7 @@ class WSUWP_Graduate_Degree_Programs {
 		}
 
 		add_meta_box( 'factsheet-primary', 'Factsheet Data', array( $this, 'display_factsheet_primary_meta_box' ), null, 'normal', 'high' );
-		add_meta_box( 'factsheet-secondary', 'Factsheet Text', array( $this, 'display_factsheet_secondary_meta_box' ), null, 'normal', 'default' );
+		add_meta_box( 'factsheet-secondary', 'Factsheet Text Blocks', array( $this, 'display_factsheet_secondary_meta_box' ), null, 'normal', 'default' );
 	}
 
 	/**

@@ -289,6 +289,8 @@ class WSUWP_Graduate_Degree_Programs {
 	public function display_factsheet_primary_meta_box( $post ) {
 		$data = get_registered_metadata( 'post', $post->ID );
 
+		wp_nonce_field( 'save-gsdp-primary', '_gsdp_primary_nonce' );
+
 		echo '<div class="factsheet-primary-inputs">';
 
 		foreach ( $this->post_meta_keys as $key => $meta ) {

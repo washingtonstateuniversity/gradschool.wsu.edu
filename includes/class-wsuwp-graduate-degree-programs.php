@@ -40,37 +40,44 @@ class WSUWP_Graduate_Degree_Programs {
 			'type' => 'int',
 			'sanitize_callback' => 'absint',
 			'pre_html' => '<div class="factsheet-group">',
+			'location' => 'primary',
 		),
 		'gsdp_accepting_applications' => array(
 			'description' => 'Accepting applications',
 			'type' => 'bool',
 			'sanitize_callback' => 'absint',
+			'location' => 'primary',
 		),
 		'gsdp_include_in_programs' => array(
 			'description' => 'Include in programs list',
 			'type' => 'bool',
 			'sanitize_callback' => 'absint',
+			'location' => 'primary',
 		),
 		'gsdp_grad_students_total' => array(
 			'description' => 'Total number of grad students',
 			'type' => 'int',
 			'sanitize_callback' => 'absint',
+			'location' => 'primary',
 		),
 		'gsdp_grad_students_aided' => array(
 			'description' => 'Number of aided grad students',
 			'type' => 'int',
 			'sanitize_callback' => 'absint',
+			'location' => 'primary',
 		),
 		'gsdp_admission_gpa' => array(
 			'description' => 'Admission GPA',
 			'type' => 'float',
 			'sanitize_callback' => 'WSUWP_Graduate_Degree_Programs::sanitize_gpa',
+			'location' => 'primary',
 		),
 		'gsdp_degree_url' => array(
 			'description' => 'Degree home page',
 			'type' => 'string',
 			'sanitize_callback' => 'esc_url_raw',
 			'post_html' => '</div>',
+			'location' => 'primary',
 		),
 		'gsdp_deadlines' => array(
 			'description' => 'Deadlines',
@@ -78,6 +85,7 @@ class WSUWP_Graduate_Degree_Programs {
 			'sanitize_callback' => 'WSUWP_Graduate_Degree_Programs::sanitize_deadlines',
 			'pre_html' => '<div class="factsheet-group">',
 			'post_html' => '</div>',
+			'location' => 'primary',
 		),
 		'gsdp_requirements' => array(
 			'description' => 'Requirements',
@@ -85,36 +93,43 @@ class WSUWP_Graduate_Degree_Programs {
 			'sanitize_callback' => 'WSUWP_Graduate_Degree_Programs::sanitize_requirements',
 			'pre_html' => '<div class="factsheet-group">',
 			'post_html' => '</div>',
+			'location' => 'primary',
 		),
 		'gsdp_degree_description' => array(
 			'description' => 'Description of the graduate degree',
 			'type' => 'textarea',
 			'sanitize_callback' => 'wp_kses_post',
+			'location' => 'secondary',
 		),
 		'gsdp_admission_requirements' => array(
 			'description' => 'Admission requirements',
 			'type' => 'textarea',
 			'sanitize_callback' => 'wp_kses_post',
+			'location' => 'secondary',
 		),
 		'gsdp_student_opportunities' => array(
 			'description' => 'Student opportunities',
 			'type' => 'textarea',
 			'sanitize_callback' => 'wp_kses_post',
+			'location' => 'secondary',
 		),
 		'gsdp_career_opportunities' => array(
 			'description' => 'Career opportunities',
 			'type' => 'textarea',
 			'sanitize_callback' => 'wp_kses_post',
+			'location' => 'secondary',
 		),
 		'gsdp_career_placements' => array(
 			'description' => 'Career placements',
 			'type' => 'textarea',
 			'sanitize_callback' => 'wp_kses_post',
+			'location' => 'secondary',
 		),
 		'gsdp_student_learning_outcome' => array(
 			'description' => 'Student learning outcome',
 			'type' => 'textarea',
 			'sanitize_callback' => 'wp_kses_post',
+			'location' => 'secondary',
 		),
 	);
 
@@ -242,10 +257,11 @@ class WSUWP_Graduate_Degree_Programs {
 		}
 
 		add_meta_box( 'factsheet-primary', 'Factsheet Data', array( $this, 'display_factsheet_primary_meta_box' ), null, 'normal', 'high' );
+		add_meta_box( 'factsheet-secondary', 'Factsheet Text', array( $this, 'display_factsheet_secondary_meta_box' ), null, 'normal', 'default' );
 	}
 
 	/**
-	 * Capture the main set of data about a degree factsheet.
+	 * Captures the main set of data about a degree factsheet.
 	 *
 	 * @since 0.4.0
 	 *
@@ -254,13 +270,32 @@ class WSUWP_Graduate_Degree_Programs {
 	public function display_factsheet_primary_meta_box( $post ) {
 		$data = get_registered_metadata( 'post', $post->ID );
 
-		$wp_editor_settings = array(
-			'textarea_rows' => 10,
-			'media_buttons' => false,
-			'teeny' => true,
-		);
+		echo '<div class="factsheet-primary-inputs">';
 
-		wp_nonce_field( 'save-gsdp-primary', '_gsdp_primary_nonce' );
+		foreach ( $this->post_meta_keys as $key => $meta ) {
+			if ( ! isset( $data[ $key ] ) || ! isset( $data[ $key ][0] ) ) {
+				$data[ $key ] = array( false );
+			}
+
+			if ( 'primary' !== $meta['location'] ) {
+				continue;
+			}
+
+			$this->output_meta_box_html( $meta, $data, $key );
+		}
+
+		echo '</div>'; // End factsheet-primary-inputs.
+	}
+
+	/**
+	 * Captures the secondary set of data about a degree factsheet.
+	 *
+	 * @since 0.7.0
+	 *
+	 * @param WP_Post $post The current post object.
+	 */
+	public function display_factsheet_secondary_meta_box( $post ) {
+		$data = get_registered_metadata( 'post', $post->ID );
 
 		echo '<div class="factsheet-primary-inputs">';
 
@@ -269,52 +304,78 @@ class WSUWP_Graduate_Degree_Programs {
 				$data[ $key ] = array( false );
 			}
 
-			if ( isset( $meta['pre_html'] ) ) {
-				echo $meta['pre_html']; // @codingStandardsIgnoreLine (HTML is static in code)
+			if ( 'secondary' !== $meta['location'] ) {
+				continue;
 			}
+
+			$this->output_meta_box_html( $meta, $data, $key );
+		}
+
+		echo '</div>'; // End factsheet-primary-inputs.
+	}
+
+	/**
+	 * Outputs the HTML associated with the primary and secondary meta boxes.
+	 *
+	 * @since 0.7.0
+	 *
+	 * @param $meta
+	 * @param $data
+	 * @param $key
+	 */
+	public function output_meta_box_html( $meta, $data, $key ) {
+		$wp_editor_settings = array(
+			'textarea_rows' => 10,
+			'media_buttons' => false,
+			'teeny' => true,
+		);
+
+		if ( isset( $meta['pre_html'] ) ) {
+			echo $meta['pre_html']; // @codingStandardsIgnoreLine (HTML is static in code)
+		}
+		?>
+		<div class="factsheet-primary-input factsheet-<?php echo esc_attr( $meta['type'] ); ?>"">
+		<?php
+		if ( 'int' === $meta['type'] ) {
 			?>
-			<div class="factsheet-primary-input factsheet-<?php echo esc_attr( $meta['type'] ); ?>"">
+			<label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $meta['description'] ); ?>:</label>
+			<input type="text" name="<?php echo esc_attr( $key ); ?>" value="<?php echo absint( $data[ $key ][0] ); ?>" />
 			<?php
-			if ( 'int' === $meta['type'] ) {
-				?>
-				<label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $meta['description'] ); ?>:</label>
-				<input type="text" name="<?php echo esc_attr( $key ); ?>" value="<?php echo absint( $data[ $key ][0] ); ?>" />
-				<?php
-			} elseif ( 'string' === $meta['type'] || 'float' === $meta['type'] ) {
-				?>
-				<label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $meta['description'] ); ?>:</label>
-				<input type="text" name="<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( $data[ $key ][0] ); ?>" />
-				<?php
-			} elseif ( 'textarea' === $meta['type'] ) {
-				?>
-				<label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $meta['description'] ); ?>:</label>
-				<?php
-				wp_editor( $data[ $key ][0], esc_attr( $key ), $wp_editor_settings );
-			} elseif ( 'bool' === $meta['type'] ) {
-				?>
-				<label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $meta['description'] ); ?>:</label>
-				<select name="<?php echo esc_attr( $key ); ?>">
-					<option value="0" <?php selected( 0, absint( $data[ $key ][0] ) ); ?>>No</option>
-					<option value="1" <?php selected( 1, absint( $data[ $key ][0] ) ); ?>>Yes</option>
-				</select>
-				<?php
-			} elseif ( 'deadlines' === $meta['type'] ) {
-				$field_data = maybe_unserialize( $data[ $key ][0] );
+		} elseif ( 'string' === $meta['type'] || 'float' === $meta['type'] ) {
+			?>
+			<label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $meta['description'] ); ?>:</label>
+			<input type="text" name="<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( $data[ $key ][0] ); ?>" />
+			<?php
+		} elseif ( 'textarea' === $meta['type'] ) {
+			?>
+			<label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $meta['description'] ); ?>:</label>
+			<?php
+			wp_editor( $data[ $key ][0], esc_attr( $key ), $wp_editor_settings );
+		} elseif ( 'bool' === $meta['type'] ) {
+			?>
+			<label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $meta['description'] ); ?>:</label>
+			<select name="<?php echo esc_attr( $key ); ?>">
+				<option value="0" <?php selected( 0, absint( $data[ $key ][0] ) ); ?>>No</option>
+				<option value="1" <?php selected( 1, absint( $data[ $key ][0] ) ); ?>>Yes</option>
+			</select>
+			<?php
+		} elseif ( 'deadlines' === $meta['type'] ) {
+			$field_data = maybe_unserialize( $data[ $key ][0] );
 
-				if ( empty( $field_data ) ) {
-					$field_data = array();
-				}
+			if ( empty( $field_data ) ) {
+				$field_data = array();
+			}
 
-				$default_field_data = array(
-					'semester' => 'None',
-					'deadline' => '',
-					'international' => '',
-				);
-				$field_count = 0;
+			$default_field_data = array(
+				'semester' => 'None',
+				'deadline' => '',
+				'international' => '',
+			);
+			$field_count = 0;
 
-				?>
-				<div class="factsheet-<?php echo esc_attr( $meta['type'] ); ?>-wrapper">
-					<span class="factsheet-label">Deadlines:</span>
+			?>
+			<div class="factsheet-<?php echo esc_attr( $meta['type'] ); ?>-wrapper">
+				<span class="factsheet-label">Deadlines:</span>
 				<?php
 
 				foreach ( $field_data as $field_datum ) {
@@ -353,8 +414,8 @@ class WSUWP_Graduate_Degree_Programs {
 				}
 
 				?>
-					<script type="text/template" id="factsheet-deadline-template">
-						<span class="factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field">
+				<script type="text/template" id="factsheet-deadline-template">
+					<span class="factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field">
 							<select name="<?php echo esc_attr( $key ); ?>[<%= form_count %>][semester]">
 								<option value="None">Not selected</option>
 								<option value="Fall">Fall</option>
@@ -365,29 +426,29 @@ class WSUWP_Graduate_Degree_Programs {
 							<input type="text" name="<?php echo esc_attr( $key ); ?>[<%= form_count %>][international]" value="" />
 							<span class="remove-factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field">Remove</span>
 						</span>
-					</script>
-					<input type="button" class="add-factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field button" value="Add" />
-					<input type="hidden" name="factsheet_deadline_form_count" id="factsheet_deadline_form_count" value="<?php echo esc_attr( $field_count ); ?>" />
-				</div>
-				<?php
+				</script>
+				<input type="button" class="add-factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field button" value="Add" />
+				<input type="hidden" name="factsheet_deadline_form_count" id="factsheet_deadline_form_count" value="<?php echo esc_attr( $field_count ); ?>" />
+			</div>
+			<?php
 
-			} elseif ( 'requirements' === $meta['type'] ) {
-				$field_data = maybe_unserialize( $data[ $key ][0] );
+		} elseif ( 'requirements' === $meta['type'] ) {
+			$field_data = maybe_unserialize( $data[ $key ][0] );
 
-				if ( empty( $field_data ) ) {
-					$field_data = array();
-				}
+			if ( empty( $field_data ) ) {
+				$field_data = array();
+			}
 
-				$default_field_data = array(
-					'score' => '',
-					'test' => '',
-					'description' => '',
-				);
-				$field_count = 0;
+			$default_field_data = array(
+				'score' => '',
+				'test' => '',
+				'description' => '',
+			);
+			$field_count = 0;
 
-				?>
-				<div class="factsheet-<?php echo esc_attr( $meta['type'] ); ?>-wrapper">
-					<span class="factsheet-label">Requirements:</span>
+			?>
+			<div class="factsheet-<?php echo esc_attr( $meta['type'] ); ?>-wrapper">
+				<span class="factsheet-label">Requirements:</span>
 				<?php
 
 				foreach ( $field_data as $field_datum ) {
@@ -416,29 +477,26 @@ class WSUWP_Graduate_Degree_Programs {
 				}
 
 				?>
-					<script type="text/template" id="factsheet-requirement-template">
-						<span class="factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field">
+				<script type="text/template" id="factsheet-requirement-template">
+					<span class="factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field">
 							<input type="text" name="<?php echo esc_attr( $key ); ?>[<%= form_count %>][score]" value="" />
 							<input type="text" name="<?php echo esc_attr( $key ); ?>[<%= form_count %>][test]" value="" />
 							<input type="text" name="<?php echo esc_attr( $key ); ?>[<%= form_count %>][description]" value="" />
 							<span class="remove-factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field">Remove</span>
 						</span>
-					</script>
-					<input type="button" class="add-factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field button" value="Add" />
-					<input type="hidden" name="factsheet_requirement_form_count" id="factsheet_requirement_form_count" value="<?php echo esc_attr( $field_count ); ?>" />
-				</div>
-				<?php
-
-			}
-
-			echo '</div>'; // End factsheet-primary-input
-
-			if ( isset( $meta['post_html'] ) ) {
-				echo $meta['post_html']; // @codingStandardsIgnoreLine (HTML is static in code)
-			}
+				</script>
+				<input type="button" class="add-factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field button" value="Add" />
+				<input type="hidden" name="factsheet_requirement_form_count" id="factsheet_requirement_form_count" value="<?php echo esc_attr( $field_count ); ?>" />
+			</div>
+			<?php
 
 		}
-		echo '</div>'; // End factsheet-primary-inputs.
+
+		echo '</div>'; // End factsheet-primary-input
+
+		if ( isset( $meta['post_html'] ) ) {
+			echo $meta['post_html']; // @codingStandardsIgnoreLine (HTML is static in code)
+		}
 	}
 
 	/**

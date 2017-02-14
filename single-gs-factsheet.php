@@ -58,7 +58,7 @@
 								<ul>
 									<?php
 									foreach ( $factsheet_data['locations'] as $fs_location => $fs_location_status ) {
-										if ( 'No' === $fs_location_status ) {
+										if ( 'No' === $fs_location_status || 'By Exception' === $fs_location_status ) {
 											continue;
 										}
 										echo '<li>' . esc_html( $fs_location ) . ': ' . esc_html( $fs_location_status ) . '</li>';

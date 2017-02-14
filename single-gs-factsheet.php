@@ -129,6 +129,36 @@
 						</div>
 					<?php endif; ?>
 
+						<div class="factsheet-faculty-wrapper">
+							<h2>Faculty Members:</h2>
+					<?php
+					foreach ( $factsheet_data['faculty'] as $faculty ) {
+						?>
+						<div class="factsheet-faculty">
+							<h3><?php echo esc_html( $faculty['name'] ); ?><?php if ( ! empty( $faculty['degree_abbreviation'] ) ) : ?>, <?php echo esc_html( $faculty['degree_abbreviation'] ); ?><?php endif; ?></h3>
+							<?php if ( ! empty( $faculty['email'] ) ) : ?>
+							<div><strong>Email:</strong> <a href="mailto:<?php echo esc_attr( $faculty['email'] ); ?>"><?php echo esc_html( $faculty['email'] ); ?></a></div>
+							<?php endif; ?>
+							<?php if ( ! empty( $faculty['url'] ) ) : ?>
+							<div><strong>URL:</strong> <a href="<?php echo esc_url( $faculty['url'] ); ?>"><?php echo esc_html( $faculty['url'] ); ?></a></div>
+							<?php endif; ?>
+							<?php if ( ! empty( $faculty['teaching_interests'] ) ) : ?>
+							<div>
+								<h4>Teaching Interests</h4>
+								<?php echo wp_kses_post( apply_filters( 'the_content', $faculty['teaching_interests'] ) ); ?>
+							</div>
+							<?php endif; ?>
+							<?php if ( ! empty( $faculty['research_interests'] ) ) : ?>
+							<div>
+								<h4>Research Interests</h4>
+								<?php echo wp_kses_post( apply_filters( 'the_content', $faculty['research_interests'] ) ); ?>
+							</div>
+							<?php endif; ?>
+						</div>
+						<?php
+					}
+					?>
+						</div>
 				</div><!--/column-->
 				<div class="column two">
 					<h2>Contact Information:</h2>

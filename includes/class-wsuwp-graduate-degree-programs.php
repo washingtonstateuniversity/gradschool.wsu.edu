@@ -707,6 +707,17 @@ class WSUWP_Graduate_Degree_Programs {
 			}
 		}
 
+		$faculty = wp_get_object_terms( $post_id, 'gs-faculty' );
+		$data['faculty'] = array();
+		if ( ! is_wp_error( $faculty ) ) {
+			foreach( $faculty as $person ) {
+				$faculty_meta = WSUWP_Graduate_Degree_Faculty_Taxonomy::get_all_term_meta( $person->term_id );
+				$faculty_meta['name'] = $person->name;
+
+				$data['faculty'][] = $faculty_meta;
+			}
+		}
+
 		return $data;
 	}
 }

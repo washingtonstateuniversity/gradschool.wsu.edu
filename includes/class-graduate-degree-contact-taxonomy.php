@@ -139,6 +139,33 @@ class WSUWP_Graduate_Degree_Contact_Taxonomy {
 	}
 
 	/**
+	 * Retrieves all of the expected contact meta assigned to a term.
+	 *
+	 * @since 0.7.0
+	 *
+	 * @param int $term_id
+	 *
+	 * @return array
+	 */
+	public static function get_all_term_meta( $term_id ) {
+		$term_meta = array();
+
+		$term_meta['name'] = get_term_meta( $term_id, 'gs_contact_name', true );
+		$term_meta['title'] = get_term_meta( $term_id, 'gs_contact_title', true );
+		$term_meta['department'] = get_term_meta( $term_id, 'gs_contact_department', true );
+		$term_meta['email'] = get_term_meta( $term_id, 'gs_contact_email', true );
+		$term_meta['address_one'] = get_term_meta( $term_id, 'gs_contact_address_one', true );
+		$term_meta['address_two'] = get_term_meta( $term_id, 'gs_contact_address_two', true );
+		$term_meta['city'] = get_term_meta( $term_id, 'gs_contact_city', true );
+		$term_meta['state'] = get_term_meta( $term_id, 'gs_contact_state', true );
+		$term_meta['postal'] = get_term_meta( $term_id, 'gs_contact_postal', true );
+		$term_meta['phone'] = get_term_meta( $term_id, 'gs_contact_phone', true );
+		$term_meta['fax'] = get_term_meta( $term_id, 'gs_contact_fax', true );
+
+		return $term_meta;
+	}
+
+	/**
 	 * Captures information about a contact as term meta.
 	 *
 	 * @since 0.4.0
@@ -146,25 +173,14 @@ class WSUWP_Graduate_Degree_Contact_Taxonomy {
 	 * @param WP_Term $term
 	 */
 	public function term_edit_form_fields( $term ) {
-		$name = get_term_meta( $term->term_id, 'gs_contact_name', true );
-		$title = get_term_meta( $term->term_id, 'gs_contact_title', true );
-		$department = get_term_meta( $term->term_id, 'gs_contact_department', true );
-		$email = get_term_meta( $term->term_id, 'gs_contact_email', true );
-		$address_one = get_term_meta( $term->term_id, 'gs_contact_address_one', true );
-		$address_two = get_term_meta( $term->term_id, 'gs_contact_address_two', true );
-		$city = get_term_meta( $term->term_id, 'gs_contact_city', true );
-		$state = get_term_meta( $term->term_id, 'gs_contact_state', true );
-		$postal = get_term_meta( $term->term_id, 'gs_contact_postal', true );
-		$phone = get_term_meta( $term->term_id, 'gs_contact_phone', true );
-		$fax = get_term_meta( $term->term_id, 'gs_contact_fax', true );
-
+		$term_meta = self::get_all_term_meta( $term->term_id );
 		?>
 		<tr class="form-field">
 			<th scope="row">
 				<label for="contact_name">Name</label>
 			</th>
 			<td>
-				<input type="text" name="contact_name" id="contact_name" value="<?php echo esc_attr( $name ); ?>" />
+				<input type="text" name="contact_name" id="contact_name" value="<?php echo esc_attr( $term_meta['name'] ); ?>" />
 			</td>
 		</tr>
 		<tr class="form-field">
@@ -172,7 +188,7 @@ class WSUWP_Graduate_Degree_Contact_Taxonomy {
 				<label for="contact_title">Title</label>
 			</th>
 			<td>
-				<input type="text" name="contact_title" id="contact_title" value="<?php echo esc_attr( $title ); ?>" />
+				<input type="text" name="contact_title" id="contact_title" value="<?php echo esc_attr( $term_meta['title'] ); ?>" />
 			</td>
 		</tr>
 		<tr class="form-field">
@@ -180,7 +196,7 @@ class WSUWP_Graduate_Degree_Contact_Taxonomy {
 				<label for="contact_department">Department</label>
 			</th>
 			<td>
-				<input type="text" name="contact_department" id="contact_department" value="<?php echo esc_attr( $department ); ?>" />
+				<input type="text" name="contact_department" id="contact_department" value="<?php echo esc_attr( $term_meta['department'] ); ?>" />
 			</td>
 		</tr>
 		<tr class="form-field">
@@ -188,7 +204,7 @@ class WSUWP_Graduate_Degree_Contact_Taxonomy {
 				<label for="contact_email">Email</label>
 			</th>
 			<td>
-				<input type="text" name="contact_email" id="contact_email" value="<?php echo esc_attr( $email ); ?>" />
+				<input type="text" name="contact_email" id="contact_email" value="<?php echo esc_attr( $term_meta['email'] ); ?>" />
 			</td>
 		</tr>
 		<tr class="form-field">
@@ -196,7 +212,7 @@ class WSUWP_Graduate_Degree_Contact_Taxonomy {
 				<label for="contact_address_one">Address 1</label>
 			</th>
 			<td>
-				<input type="text" name="contact_address_one" id="contact_address_one" value="<?php echo esc_attr( $address_one ); ?>" />
+				<input type="text" name="contact_address_one" id="contact_address_one" value="<?php echo esc_attr( $term_meta['address_one'] ); ?>" />
 			</td>
 		</tr>
 		<tr class="form-field">
@@ -204,7 +220,7 @@ class WSUWP_Graduate_Degree_Contact_Taxonomy {
 				<label for="contact_address_two">Address 2</label>
 			</th>
 			<td>
-				<input type="text" name="contact_address_two" id="contact_address_two" value="<?php echo esc_attr( $address_two ); ?>" />
+				<input type="text" name="contact_address_two" id="contact_address_two" value="<?php echo esc_attr( $term_meta['address_two'] ); ?>" />
 			</td>
 		</tr>
 		<tr class="form-field">
@@ -212,7 +228,7 @@ class WSUWP_Graduate_Degree_Contact_Taxonomy {
 				<label for="contact_city">City</label>
 			</th>
 			<td>
-				<input type="text" name="contact_city" id="contact_city" value="<?php echo esc_attr( $city ); ?>" />
+				<input type="text" name="contact_city" id="contact_city" value="<?php echo esc_attr( $term_meta['city'] ); ?>" />
 			</td>
 		</tr>
 		<tr class="form-field">
@@ -220,7 +236,7 @@ class WSUWP_Graduate_Degree_Contact_Taxonomy {
 				<label for="contact_state">State</label>
 			</th>
 			<td>
-				<input type="text" name="contact_state" id="contact_state" value="<?php echo esc_attr( $state ); ?>" />
+				<input type="text" name="contact_state" id="contact_state" value="<?php echo esc_attr( $term_meta['state'] ); ?>" />
 			</td>
 		</tr>
 		<tr class="form-field">
@@ -228,7 +244,7 @@ class WSUWP_Graduate_Degree_Contact_Taxonomy {
 				<label for="contact_postal">Zip Code</label>
 			</th>
 			<td>
-				<input type="text" name="contact_postal" id="contact_postal" value="<?php echo esc_attr( $postal ); ?>" />
+				<input type="text" name="contact_postal" id="contact_postal" value="<?php echo esc_attr( $term_meta['postal'] ); ?>" />
 			</td>
 		</tr>
 		<tr class="form-field">
@@ -236,7 +252,7 @@ class WSUWP_Graduate_Degree_Contact_Taxonomy {
 				<label for="contact_phone">Phone</label>
 			</th>
 			<td>
-				<input type="text" name="contact_phone" id="contact_phone" value="<?php echo esc_attr( $phone ); ?>" />
+				<input type="text" name="contact_phone" id="contact_phone" value="<?php echo esc_attr( $term_meta['phone'] ); ?>" />
 			</td>
 		</tr>
 		<tr class="form-field">
@@ -244,7 +260,7 @@ class WSUWP_Graduate_Degree_Contact_Taxonomy {
 				<label for="contact_fax">Fax</label>
 			</th>
 			<td>
-				<input type="text" name="contact_fax" id="contact_fax" value="<?php echo esc_attr( $fax ); ?>" />
+				<input type="text" name="contact_fax" id="contact_fax" value="<?php echo esc_attr( $term_meta['fax'] ); ?>" />
 			</td>
 		</tr>
 		<?php

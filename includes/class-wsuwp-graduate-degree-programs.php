@@ -35,11 +35,6 @@ class WSUWP_Graduate_Degree_Programs {
 	 * @var array
 	 */
 	var $post_meta_keys = array(
-		'gsdp_degree_description' => array(
-			'description' => 'Description of the graduate degree',
-			'type' => 'textarea',
-			'sanitize_callback' => 'wp_kses_post',
-		),
 		'gsdp_degree_id' => array(
 			'description' => 'Factsheet degree ID',
 			'type' => 'int',
@@ -90,6 +85,11 @@ class WSUWP_Graduate_Degree_Programs {
 			'sanitize_callback' => 'WSUWP_Graduate_Degree_Programs::sanitize_requirements',
 			'pre_html' => '<div class="factsheet-group">',
 			'post_html' => '</div>',
+		),
+		'gsdp_degree_description' => array(
+			'description' => 'Description of the graduate degree',
+			'type' => 'textarea',
+			'sanitize_callback' => 'wp_kses_post',
 		),
 		'gsdp_admission_requirements' => array(
 			'description' => 'Admission requirements',
@@ -169,6 +169,10 @@ class WSUWP_Graduate_Degree_Programs {
 		if ( in_array( $hook_suffix, array( 'post.php', 'post-new.php' ), true ) && 'gs-factsheet' === get_current_screen()->id ) {
 			wp_enqueue_style( 'gsdp-admin', get_stylesheet_directory_uri() . '/css/factsheet-admin.css', array(), $this->script_version );
 			wp_enqueue_script( 'gsdp-factsheet-admin', get_stylesheet_directory_uri() . '/js/factsheet-admin.min.js', array( 'jquery', 'underscore' ), $this->script_version, true );
+		}
+
+		if ( in_array( $hook_suffix, array( 'term.php', 'term-new.php' ), true ) && in_array( get_current_screen()->taxonomy, array( 'gs-contact', 'gs-faculty' ), true ) ) {
+			wp_enqueue_style( 'gsdp-faculty-admin', get_stylesheet_directory_uri() . '/css/faculty-admin.css', array(), WSUWP_Graduate_School_Theme()->theme_version() );
 		}
 	}
 
@@ -585,7 +589,7 @@ class WSUWP_Graduate_Degree_Programs {
 	}
 
 	/**
-	 * Returns a useable subset of data for displaying a factsheet.
+	 * Returns a usable subset of data for displaying a factsheet.
 	 *
 	 * @since 0.4.0
 	 *
@@ -692,6 +696,42 @@ class WSUWP_Graduate_Degree_Programs {
 
 		if ( isset( $factsheet_data['gsdp_student_learning_outcome'][0] ) ) {
 			$data['student_learning_outcome'] = $factsheet_data['gsdp_student_learning_outcome'][0];
+		}
+
+		$contacts = wp_get_object_terms( $post_id, 'gs-contact' );
+		$data['contacts'] = array();
+		if ( ! is_wp_error( $contacts ) ) {
+			foreach( $contacts as $contact ) {
+				$contact_meta = WSUWP_Graduate_Degree_Contact_Taxonomy::get_all_term_meta( $contact->term_id );
+				$data['contacts'][] = $contact_meta;
+			}
+		}
+
+		$faculty_relationships = get_post_meta( $post_id, 'gsdp_faculty_relationships', true );
+		$faculty = wp_get_object_terms( $post_id, 'gs-faculty' );
+		$data['faculty'] = array();
+		if ( ! is_wp_error( $faculty ) ) {
+			foreach( $faculty as $person ) {
+				$faculty_meta = WSUWP_Graduate_Degree_Faculty_Taxonomy::get_all_term_meta( $person->term_id );
+				$faculty_meta['name'] = $person->name;
+
+				$unique_id = md5( $person->name );
+				if ( isset( $faculty_relationships[ $unique_id ] ) ) {
+					if ( 'true' === $faculty_relationships[ $unique_id ]['chair'] && 'true' === $faculty_relationships[ $unique_id ]['cochair'] ) {
+						$faculty_meta['relationship'] = 'Can chair or co-chair graduate committee.';
+					} elseif ( 'true' === $faculty_relationships[ $unique_id ]['chair'] ) {
+						$faculty_meta['relationship'] = 'Can chair graduate committee.';
+					} elseif ( 'true' === $faculty_relationships[ $unique_id ]['cochair'] ) {
+						$faculty_meta['relationship'] = 'Can co-chair graduate committee.';
+					} else {
+						$faculty_meta['relationship'] = 'Can sit as a graduate committee member.';
+					}
+				} else {
+					$faculty_meta['relationship'] = 'Can sit as a graduate committee member.';
+				}
+
+				$data['faculty'][] = $faculty_meta;
+			}
 		}
 
 		return $data;

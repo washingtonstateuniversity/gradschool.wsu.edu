@@ -40,7 +40,6 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 	 */
 	public function setup_hooks() {
 		add_action( 'init', array( $this, 'register_taxonomy' ), 20 );
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
 		add_action( "{$this->taxonomy_slug}_edit_form_fields", array( $this, 'term_edit_form_fields' ), 10 );
 		add_action( "edit_{$this->taxonomy_slug}", array( $this, 'save_term_form_fields' ) );
 	}
@@ -73,19 +72,6 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 			'rewrite'           => false,
 		);
 		register_taxonomy( $this->taxonomy_slug, array( WSUWP_Graduate_Degree_Programs()->post_type_slug ), $args );
-	}
-
-	/**
-	 * Enqueue scripts and styles used in the admin.
-	 *
-	 * @since 0.6.0
-	 *
-	 * @param string $hook_suffix
-	 */
-	public function admin_enqueue_scripts( $hook_suffix ) {
-		if ( in_array( $hook_suffix, array( 'term.php', 'term-new.php' ), true ) && 'gs-faculty' === get_current_screen()->taxonomy ) {
-			wp_enqueue_style( 'gsdp-faculty-admin', get_stylesheet_directory_uri() . '/css/faculty-admin.css', array(), WSUWP_Graduate_School_Theme()->theme_version() );
-		}
 	}
 
 	/**
@@ -128,6 +114,28 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 		return;
 	}
 
+
+	/**
+	 * Retrieves all of the expected faculty meta assigned to a term.
+	 *
+	 * @since 0.7.0
+	 *
+	 * @param int $term_id
+	 *
+	 * @return array
+	 */
+	public static function get_all_term_meta( $term_id ) {
+		$term_meta = array();
+
+		$term_meta['degree_abbreviation'] = get_term_meta( $term_id, 'gs_degree_abbreviation', true );
+		$term_meta['email'] = get_term_meta( $term_id, 'gs_faculty_email', true );
+		$term_meta['url'] = get_term_meta( $term_id, 'gs_faculty_url', true );
+		$term_meta['teaching_interests'] = get_term_meta( $term_id, 'gs_teaching_interests', true );
+		$term_meta['research_interests'] = get_term_meta( $term_id, 'gs_research_interests', true );
+
+		return $term_meta;
+	}
+
 	/**
 	 * Captures information about a faculty member as term meta.
 	 *
@@ -136,18 +144,14 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 	 * @param WP_Term $term
 	 */
 	public function term_edit_form_fields( $term ) {
-		$degree_abbreviation = get_term_meta( $term->term_id, 'gs_degree_abbreviation', true );
-		$email = get_term_meta( $term->term_id, 'gs_faculty_email', true );
-		$url = get_term_meta( $term->term_id, 'gs_faculty_url', true );
-		$teaching_interests = get_term_meta( $term->term_id, 'gs_teaching_interests', true );
-		$research_interests = get_term_meta( $term->term_id, 'gs_research_interests', true );
+		$term_meta = self::get_all_term_meta( $term->term_id );
 		?>
 		<tr class="form-field">
 			<th scope="row">
 				<label for="degree-abbreviation">Degree abbreviation</label>
 			</th>
 			<td>
-				<input type="text" name="degree_abbreviation" id="degree-abbreviation" value="<?php echo esc_attr( $degree_abbreviation ); ?>" />
+				<input type="text" name="degree_abbreviation" id="degree-abbreviation" value="<?php echo esc_attr( $term_meta['degree_abbreviation'] ); ?>" />
 			</td>
 		</tr>
 		<tr class="form-field">
@@ -155,7 +159,7 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 				<label for="email">Email</label>
 			</th>
 			<td>
-				<input type="text" name="email" id="email" value="<?php echo esc_attr( $email ); ?>" />
+				<input type="text" name="email" id="email" value="<?php echo esc_attr( $term_meta['email'] ); ?>" />
 			</td>
 		</tr>
 		<tr class="form-field">
@@ -163,7 +167,7 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 				<label for="url">URL</label>
 			</th>
 			<td>
-				<input type="text" name="faculty_url" id="faculty_url" value="<?php echo esc_attr( $url ); ?>" />
+				<input type="text" name="faculty_url" id="faculty_url" value="<?php echo esc_attr( $term_meta['url'] ); ?>" />
 			</td>
 		</tr>
 		<tr class="form-field">
@@ -171,7 +175,7 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 				<label for="teaching-interests">Teaching interests</label>
 			</th>
 			<td>
-				<textarea name="teaching_interests" id="teaching-interests" rows="5" cols="50" class="large-text"><?php echo esc_textarea( $teaching_interests ); ?></textarea>
+				<textarea name="teaching_interests" id="teaching-interests" rows="5" cols="50" class="large-text"><?php echo esc_textarea( $term_meta['teaching_interests'] ); ?></textarea>
 			</td>
 		</tr>
 		<tr class="form-field">
@@ -179,7 +183,7 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 				<label for="research-interests">Research interests</label>
 			</th>
 			<td>
-				<textarea name="research_interests" id="research-interests" rows="5" cols="50" class="large-text"><?php echo esc_textarea( $research_interests ); ?></textarea>
+				<textarea name="research_interests" id="research-interests" rows="5" cols="50" class="large-text"><?php echo esc_textarea( $term_meta['research_interests'] ); ?></textarea>
 			</td>
 		</tr>
 		<?php

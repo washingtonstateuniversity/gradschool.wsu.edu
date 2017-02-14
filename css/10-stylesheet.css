@@ -2255,3 +2255,7 @@ body.events-archive .column.one {
 .column .factsheet-set ul li {
 	margin-left: 0;
 }
+
+.factsheet-contact {
+	margin-bottom: 1.5em;
+}

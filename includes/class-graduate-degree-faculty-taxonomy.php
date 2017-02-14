@@ -40,6 +40,7 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 	 */
 	public function setup_hooks() {
 		add_action( 'init', array( $this, 'register_taxonomy' ), 20 );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
 		add_action( "{$this->taxonomy_slug}_edit_form_fields", array( $this, 'term_edit_form_fields' ), 10 );
 		add_action( "edit_{$this->taxonomy_slug}", array( $this, 'save_term_form_fields' ) );
 	}
@@ -75,6 +76,19 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 	}
 
 	/**
+	 * Enqueue scripts and styles used in the admin.
+	 *
+	 * @since 0.6.0
+	 *
+	 * @param string $hook_suffix
+	 */
+	public function admin_enqueue_scripts( $hook_suffix ) {
+		if ( in_array( $hook_suffix, array( 'term.php', 'term-new.php' ), true ) && 'gs-faculty' === get_current_screen()->taxonomy ) {
+			wp_enqueue_style( 'gsdp-faculty-admin', get_stylesheet_directory_uri() . '/css/faculty-admin.css', array(), WSUWP_Graduate_School_Theme()->theme_version() );
+		}
+	}
+
+	/**
 	 * Saves the additional form fields whenever a term is updated.
 	 *
 	 * @since 0.4.0
@@ -99,16 +113,8 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 			update_term_meta( $term_id, 'gs_faculty_email', sanitize_email( $_POST['email'] ) );
 		}
 
-		if ( isset( $_POST['may_chair'] ) && 'yes' === $_POST['may_chair'] ) {
-			update_term_meta( $term_id, 'gs_may_chair', 'yes' );
-		} else {
-			delete_term_meta( $term_id, 'gs_may_chair' );
-		}
-
-		if ( isset( $_POST['may_cochair'] ) && 'yes' === $_POST['may_cochair'] ) {
-			update_term_meta( $term_id, 'gs_may_cochair', 'yes' );
-		} else {
-			delete_term_meta( $term_id, 'gs_may_cochair' );
+		if ( isset( $_POST['faculty_url'] ) ) {
+			update_term_meta( $term_id, 'gs_faculty_url', sanitize_text_field( $_POST['faculty_url'] ) );
 		}
 
 		if ( isset( $_POST['teaching_interests'] ) ) {
@@ -132,8 +138,7 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 	public function term_edit_form_fields( $term ) {
 		$degree_abbreviation = get_term_meta( $term->term_id, 'gs_degree_abbreviation', true );
 		$email = get_term_meta( $term->term_id, 'gs_faculty_email', true );
-		$chair = get_term_meta( $term->term_id, 'gs_may_chair', true ) ? 'yes' : 'no';
-		$cochair = get_term_meta( $term->term_id, 'gs_may_cochair', true ) ? 'yes' : 'no';
+		$url = get_term_meta( $term->term_id, 'gs_faculty_url', true );
 		$teaching_interests = get_term_meta( $term->term_id, 'gs_teaching_interests', true );
 		$research_interests = get_term_meta( $term->term_id, 'gs_research_interests', true );
 		?>
@@ -155,24 +160,10 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 		</tr>
 		<tr class="form-field">
 			<th scope="row">
-				<label for="may-chair">May chair committee</label>
+				<label for="url">URL</label>
 			</th>
 			<td>
-				<select name="may_chair" id="may-chair">
-					<option value="yes" <?php selected( 'yes', $chair ); ?>>Yes</option>
-					<option value="no" <?php selected( 'no', $chair ); ?>>No</option>
-				</select>
-			</td>
-		</tr>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="may-cochair">May cochair committee</label>
-			</th>
-			<td>
-				<select name="may_cochair" id="may-cochair">
-					<option value="yes" <?php selected( 'yes', $cochair ); ?>>Yes</option>
-					<option value="no" <?php selected( 'no', $cochair ); ?>>No</option>
-				</select>
+				<input type="text" name="faculty_url" id="faculty_url" value="<?php echo esc_attr( $url ); ?>" />
 			</td>
 		</tr>
 		<tr class="form-field">

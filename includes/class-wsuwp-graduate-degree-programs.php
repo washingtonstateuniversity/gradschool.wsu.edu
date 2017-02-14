@@ -296,7 +296,7 @@ class WSUWP_Graduate_Degree_Programs {
 				</select>
 				<?php
 			} elseif ( 'deadlines' === $meta['type'] ) {
-				$field_data = json_decode( $data[ $key ][0] );
+				$field_data = maybe_unserialize( $data[ $key ][0] );
 
 				if ( empty( $field_data ) ) {
 					$field_data = array();
@@ -369,7 +369,7 @@ class WSUWP_Graduate_Degree_Programs {
 				<?php
 
 			} elseif ( 'requirements' === $meta['type'] ) {
-				$field_data = json_decode( $data[ $key ][0] );
+				$field_data = maybe_unserialize( $data[ $key ][0] );
 
 				if ( empty( $field_data ) ) {
 					$field_data = array();
@@ -502,8 +502,6 @@ class WSUWP_Graduate_Degree_Programs {
 			$clean_deadlines[] = $clean_deadline;
 		}
 
-		$deadlines = wp_json_encode( $clean_deadlines );
-
 		return $deadlines;
 	}
 
@@ -547,9 +545,7 @@ class WSUWP_Graduate_Degree_Programs {
 			$clean_requirements[] = $clean_requirement;
 		}
 
-		$requirements = wp_json_encode( $requirements );
-
-		return $requirements;
+		return $clean_requirements;
 	}
 
 	/**
@@ -658,11 +654,19 @@ class WSUWP_Graduate_Degree_Programs {
 		}
 
 		if ( isset( $factsheet_data['gsdp_deadlines'][0] ) ) {
-			$data['deadlines'] = json_decode( $factsheet_data['gsdp_deadlines'][0] );
+			$data['deadlines'] = maybe_unserialize( $factsheet_data['gsdp_deadlines'][0] );
+
+			if ( ! is_array( $data['deadlines'] ) ) {
+				$data['deadlines'] = array();
+			}
 		}
 
 		if ( isset( $factsheet_data['gsdp_requirements'][0] ) ) {
-			$data['requirements'] = json_decode( $factsheet_data['gsdp_requirements'][0] );
+			$data['requirements'] = maybe_unserialize( $factsheet_data['gsdp_requirements'][0] );
+
+			if ( ! is_array( $data['requirements'] ) ) {
+				$data['requirements'] = array();
+			}
 		}
 
 		$locations = get_post_meta( $post_id, 'gsdp_locations', true );

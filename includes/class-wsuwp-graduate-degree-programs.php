@@ -585,7 +585,7 @@ class WSUWP_Graduate_Degree_Programs {
 	}
 
 	/**
-	 * Returns a useable subset of data for displaying a factsheet.
+	 * Returns a usable subset of data for displaying a factsheet.
 	 *
 	 * @since 0.4.0
 	 *

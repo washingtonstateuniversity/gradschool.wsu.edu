@@ -40,7 +40,6 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 	 */
 	public function setup_hooks() {
 		add_action( 'init', array( $this, 'register_taxonomy' ), 20 );
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
 		add_action( "{$this->taxonomy_slug}_edit_form_fields", array( $this, 'term_edit_form_fields' ), 10 );
 		add_action( "edit_{$this->taxonomy_slug}", array( $this, 'save_term_form_fields' ) );
 	}
@@ -73,19 +72,6 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 			'rewrite'           => false,
 		);
 		register_taxonomy( $this->taxonomy_slug, array( WSUWP_Graduate_Degree_Programs()->post_type_slug ), $args );
-	}
-
-	/**
-	 * Enqueue scripts and styles used in the admin.
-	 *
-	 * @since 0.6.0
-	 *
-	 * @param string $hook_suffix
-	 */
-	public function admin_enqueue_scripts( $hook_suffix ) {
-		if ( in_array( $hook_suffix, array( 'term.php', 'term-new.php' ), true ) && 'gs-faculty' === get_current_screen()->taxonomy ) {
-			wp_enqueue_style( 'gsdp-faculty-admin', get_stylesheet_directory_uri() . '/css/faculty-admin.css', array(), WSUWP_Graduate_School_Theme()->theme_version() );
-		}
 	}
 
 	/**

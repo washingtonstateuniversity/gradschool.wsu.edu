@@ -42,7 +42,7 @@
 								<ul>
 									<?php
 									foreach ( $factsheet_data['deadlines'] as $fs_deadline ) {
-										echo '<li>' . esc_html( $fs_deadline->semester ) . ' ' . esc_html( $fs_deadline->deadline ) . ' ' . esc_html( $fs_deadline->international ) . '</li>';
+										echo '<li>' . esc_html( $fs_deadline['semester'] ) . ' ' . esc_html( $fs_deadline['deadline'] ) . ' ' . esc_html( $fs_deadline['international'] ) . '</li>';
 									}
 									?>
 								</ul>
@@ -71,7 +71,7 @@
 								<ul>
 									<?php
 									foreach ( $factsheet_data['requirements'] as $fs_requirement ) {
-										echo '<li>' . esc_html( $fs_requirement->score ) . ' ' . esc_html( $fs_requirement->test ) . ' ' . esc_html( $fs_requirement->description ) . '</li>';
+										echo '<li>' . esc_html( $fs_requirement['score'] ) . ' ' . esc_html( $fs_requirement['test'] ) . ' ' . esc_html( $fs_requirement['description'] ) . '</li>';
 									}
 									?>
 								</ul>

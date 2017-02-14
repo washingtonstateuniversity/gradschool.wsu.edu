@@ -654,18 +654,18 @@ class WSUWP_Graduate_Degree_Programs {
 		}
 
 		if ( isset( $factsheet_data['gsdp_deadlines'][0] ) ) {
-			if ( ! is_array( $factsheet_data['gsdp_deadlines'][0] ) ) {
+			$data['deadlines'] = maybe_unserialize( $factsheet_data['gsdp_deadlines'][0] );
+
+			if ( ! is_array( $data['deadlines'] ) ) {
 				$data['deadlines'] = array();
-			} else {
-				$data['deadlines'] = $factsheet_data['gsdp_deadlines'][0];
 			}
 		}
 
 		if ( isset( $factsheet_data['gsdp_requirements'][0] ) ) {
-			if ( ! is_array( $factsheet_data['gsdp_requirements'][0] ) ) {
+			$data['requirements'] = maybe_unserialize( $factsheet_data['gsdp_requirements'][0] );
+
+			if ( ! is_array( $data['requirements'] ) ) {
 				$data['requirements'] = array();
-			} else {
-				$data['requirements'] = $factsheet_data['gsdp_requirements'][0];
 			}
 		}
 

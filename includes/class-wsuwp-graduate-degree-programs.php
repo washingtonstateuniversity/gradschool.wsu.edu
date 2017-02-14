@@ -170,6 +170,7 @@ class WSUWP_Graduate_Degree_Programs {
 
 		add_action( 'init', array( $this, 'register_meta' ) );
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
+		add_action( 'add_meta_boxes', array( $this, 'remove_meta_boxes' ), 99 );
 		add_action( "save_post_{$this->post_type_slug}", array( $this, 'save_factsheet' ), 10, 2 );
 	}
 
@@ -258,6 +259,24 @@ class WSUWP_Graduate_Degree_Programs {
 
 		add_meta_box( 'factsheet-primary', 'Factsheet Data', array( $this, 'display_factsheet_primary_meta_box' ), null, 'normal', 'high' );
 		add_meta_box( 'factsheet-secondary', 'Factsheet Text Blocks', array( $this, 'display_factsheet_secondary_meta_box' ), null, 'normal', 'default' );
+	}
+
+	/**
+	 * Removes the faculty member and contact info taxonomy boxes from the
+	 * factsheet screen. This data is managed via custom input in the primary
+	 * meta box.
+	 *
+	 * @since 0.7.0
+	 *
+	 * @param string $post_type
+	 */
+	public function remove_meta_boxes( $post_type ) {
+		if ( $this->post_type_slug !== $post_type ) {
+			return;
+		}
+
+		remove_meta_box( 'tagsdiv-gs-faculty', $this->post_type_slug, 'side' );
+		remove_meta_box( 'tagsdiv-gs-contact', $this->post_type_slug, 'side' );
 	}
 
 	/**

@@ -1,4 +1,4 @@
-/* global _, console */
+/* global _ */
 ( function( $ ) {
 	var $form_container = $( ".factsheet-primary-inputs" );
 	var deadlines_template = $( "#factsheet-deadline-template" ).html();
@@ -39,7 +39,6 @@
 		source: function( term, suggest ) {
 			try { searchRequest.abort(); } catch ( e ) {}
 			searchRequest = jQuery.get( "http://wp.wsu.dev/gradschool/wp-json/wp/v2/gs-contact/", { search: term.term }, function( res ) {
-				console.log( res );
 				if ( res !== null ) {
 					var results = [];
 					search_objects = [];

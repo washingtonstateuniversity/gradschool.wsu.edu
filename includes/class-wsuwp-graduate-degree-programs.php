@@ -184,7 +184,7 @@ class WSUWP_Graduate_Degree_Programs {
 	public function admin_enqueue_scripts( $hook_suffix ) {
 		if ( in_array( $hook_suffix, array( 'post.php', 'post-new.php' ), true ) && 'gs-factsheet' === get_current_screen()->id ) {
 			wp_enqueue_style( 'gsdp-admin', get_stylesheet_directory_uri() . '/css/factsheet-admin.css', array(), $this->script_version );
-			wp_enqueue_script( 'gsdp-factsheet-admin', get_stylesheet_directory_uri() . '/js/factsheet-admin.min.js', array( 'jquery', 'underscore' ), $this->script_version, true );
+			wp_enqueue_script( 'gsdp-factsheet-admin', get_stylesheet_directory_uri() . '/js/factsheet-admin.min.js', array( 'jquery', 'underscore', 'jquery-ui-autocomplete' ), $this->script_version, true );
 		}
 
 		if ( in_array( $hook_suffix, array( 'term.php', 'term-new.php' ), true ) && in_array( get_current_screen()->taxonomy, array( 'gs-contact', 'gs-faculty' ), true ) ) {
@@ -387,36 +387,63 @@ class WSUWP_Graduate_Degree_Programs {
 
 		foreach( $data['contacts'] as $contact ) {
 			?>
-			<address class="factsheet-contact">
-				<?php if ( ! empty( $contact['name'] ) ) : ?>
-					<div><?php echo esc_html( $contact['name'] ); ?></div>
-				<?php endif; ?>
-				<div>
-					<?php if ( ! empty( $contact['address_one'] ) ) : ?>
-						<div><?php echo esc_html( $contact['address_one'] ); ?></div>
-					<?php endif; ?>
-					<?php if ( ! empty( $contact['address_two'] ) ) : ?>
-						<div><?php echo esc_html( $contact['address_two'] ); ?></div>
+			<div class="factsheet-contact">
+				<input type="hidden" name="contacts[]" value="<?php echo esc_attr( $contact->term_id ); ?>" />
+				<address>
+					<?php if ( ! empty( $contact['name'] ) ) : ?>
+						<div><?php echo esc_html( $contact['name'] ); ?></div>
 					<?php endif; ?>
 					<div>
-						<?php if ( ! empty( $contact['city'] ) && ! empty( $contact['state'] ) ) : ?>
-							<span><?php echo esc_html( $contact['city'] ); ?>, <?php echo esc_html( $contact['state'] ); ?></span>
+						<?php if ( ! empty( $contact['address_one'] ) ) : ?>
+							<div><?php echo esc_html( $contact['address_one'] ); ?></div>
 						<?php endif; ?>
-						<?php if ( ! empty( $contact['postal'] ) ) : ?>
-							<span><?php echo esc_html( $contact['postal'] ); ?></span>
+						<?php if ( ! empty( $contact['address_two'] ) ) : ?>
+							<div><?php echo esc_html( $contact['address_two'] ); ?></div>
 						<?php endif; ?>
+						<div>
+							<?php if ( ! empty( $contact['city'] ) && ! empty( $contact['state'] ) ) : ?>
+								<span><?php echo esc_html( $contact['city'] ); ?>, <?php echo esc_html( $contact['state'] ); ?></span>
+							<?php endif; ?>
+							<?php if ( ! empty( $contact['postal'] ) ) : ?>
+								<span><?php echo esc_html( $contact['postal'] ); ?></span>
+							<?php endif; ?>
+						</div>
 					</div>
+					<?php if ( ! empty( $contact['phone'] ) ) : ?>
+						<div><?php echo esc_html( $contact['phone'] ); ?></div>
+					<?php endif; ?>
+					<?php if ( ! empty( $contact['fax'] ) ) : ?>
+						<div><?php echo esc_html( $contact['fax'] ); ?></div>
+					<?php endif; ?>
+					<?php if ( ! empty( $contact['email'] ) ) : ?>
+						<div><a href="mailto:<?php echo esc_attr( $contact['email'] ); ?>"><?php echo esc_html( $contact['email'] ); ?></a></div>
+					<?php endif; ?>
+				</address>
+				<span class="remove-factsheet-contact">Remove</span>
+			</div>
+			<script type="text/template" id="factsheet-contact-template">
+				<div class="factsheet-contact">
+					<input type="hidden" name="contacts[]" value="<%= contact_term_id %>" />
+					<address>
+						<div><%= contact_name %></div>
+						<div>
+							<div><%= contact_address_one %></div>
+							<div><%= contact_address_two %></div>
+							<div>
+								<span><%= contact_city %>, <%= contact_state %></span>
+								<span><%= contact_postal %></span>
+							</div>
+						</div>
+						<div><%= contact_phone %></div>
+						<div><%= contact_fax %></div>
+						<div><%= contact_email %></div>
+					</address>
+					<span class="remove-factsheet-contact">Remove</span>
 				</div>
-				<?php if ( ! empty( $contact['phone'] ) ) : ?>
-					<div><?php echo esc_html( $contact['phone'] ); ?></div>
-				<?php endif; ?>
-				<?php if ( ! empty( $contact['fax'] ) ) : ?>
-					<div><?php echo esc_html( $contact['fax'] ); ?></div>
-				<?php endif; ?>
-				<?php if ( ! empty( $contact['email'] ) ) : ?>
-					<div><a href="mailto:<?php echo esc_attr( $contact['email'] ); ?>"><?php echo esc_html( $contact['email'] ); ?></a></div>
-				<?php endif; ?>
-			</address>
+			</script>
+
+			<label for="contact-entry">Add Contact:</label>
+			<input type="text" id="contact-entry" value="" />
 			<?php
 		}
 	}

@@ -31,6 +31,10 @@
 		$( el.target ).parent( ".factsheet-requirements-field" ).remove();
 	} );
 
+	$( "#factsheet-contact" ).on( "click", ".remove-factsheet-contact", function( el ) {
+		$( el.target ).parent( ".factsheet-contact" ).remove();
+	} );
+
 	var searchRequest;
 	var search_objects;
 

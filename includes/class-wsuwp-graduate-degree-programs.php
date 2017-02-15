@@ -355,16 +355,16 @@ class WSUWP_Graduate_Degree_Programs {
 
 			?>
 			<div class="factsheet-faculty">
-				<h3><?php echo esc_html( $faculty_member->name ); ?></h3>
+				<div class="faculty-name"><?php echo esc_html( $faculty_member->name ); ?></div>
 				<div class="select-chair">
-					<label for="program_chair">Can chair committee:</label>
+					<label for="program_chair">Chair:</label>
 					<select name="faculty[<?php echo esc_attr( $faculty_member->term_id ); ?>][program_chair]" id="program_chair">
 						<option value="false" <?php selected( 'false', $faculty_relationships[ $faculty_member->term_id ]['chair'] ); ?>>No</option>
 						<option value="true" <?php selected( 'true', $faculty_relationships[ $faculty_member->term_id ]['chair'] ); ?>>Yes</option>
 					</select>
 				</div>
 				<div class="select-cochair">
-					<label for="program_cochair">Can co-chair committee:</label>
+					<label for="program_cochair">Co-chair:</label>
 					<select name="faculty[<?php echo esc_attr( $faculty_member->term_id ); ?>][program_cochair]" id="program_cochair">
 						<option value="false" <?php selected( 'false', $faculty_relationships[ $faculty_member->term_id ]['cochair'] ); ?>>No</option>
 						<option value="true" <?php selected( 'true', $faculty_relationships[ $faculty_member->term_id ]['cochair'] ); ?>>Yes</option>
@@ -380,16 +380,16 @@ class WSUWP_Graduate_Degree_Programs {
 		?>
 		<script type="text/template" id="factsheet-faculty-template">
 			<div class="factsheet-faculty">
-				<h3><%= faculty_name %></h3>
+				<div class="faculty-name"><%= faculty_name %></div>
 				<div class="select-chair">
-					<label for="program_chair">Can chair committee:</label>
+					<label for="program_chair">Chair:</label>
 					<select name="faculty[<%= term_id %>][program_chair]" id="program_chair">
 						<option value="false">No</option>
 						<option value="true">Yes</option>
 					</select>
 				</div>
 				<div class="select-cochair">
-					<label for="program_cochair">Can co-chair committee:</label>
+					<label for="program_cochair">Co-chair:</label>
 					<select name="faculty[<%= term_id %>][program_cochair]" id="program_cochair">
 						<option value="false">No</option>
 						<option value="true">Yes</option>

@@ -54,20 +54,20 @@
 			} );
 		},
 		select: function( event, ui ) {
-			console.log( search_objects[ ui.item.value ] );
 			var tpl = _.template( contact_template );
+			var contact = search_objects[ ui.item.value ];
 
 			$( "#contact-entry" ).before( tpl( {
 				contact_name: ui.item.label,
 				contact_term_id: ui.item.value,
-				contact_address_one: "",
-				contact_address_two: "",
-				contact_city: "",
-				contact_state: "",
-				contact_postal: "",
-				contact_phone: "",
-				contact_fax: "",
-				contact_email: ""
+				contact_address_one: contact.meta.gs_contact_address_one,
+				contact_address_two: contact.meta.gs_contact_address_two,
+				contact_city: contact.meta.gs_contact_city,
+				contact_state: contact.meta.gs_contact_state,
+				contact_postal: contact.meta.gs_contact_postal,
+				contact_phone: contact.meta.gs_contact_phone,
+				contact_fax: contact.meta.gs_contact_fax,
+				contact_email: contact.meta.gs_contact_email
 			} ) );
 		},
 		close: function() {

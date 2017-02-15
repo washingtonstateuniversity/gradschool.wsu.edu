@@ -188,6 +188,7 @@ class WSUWP_Graduate_Degree_Programs {
 
 			$rest_api_data = array(
 				'contact_rest_url' => rest_url( 'wp/v2/gs-contact/' ),
+				'faculty_rest_url' => rest_url( 'wp/v2/gs-faculty/' ),
 			);
 			wp_localize_script( 'gsdp-factsheet-admin', 'gs_factsheet', $rest_api_data );
 
@@ -329,10 +330,9 @@ class WSUWP_Graduate_Degree_Programs {
 		$faculty_members = wp_get_object_terms( $post->ID, 'gs-faculty' );
 		$faculty_relationships = get_post_meta( $post->ID, 'gsdp_faculty_relationships', true );
 
-		foreach ( $faculty_members as $faculty_member ) {
-			$faculty = WSUWP_Graduate_Degree_Faculty_Taxonomy::get_all_term_meta( $faculty_member->term_id );
-			$faculty['name'] = $faculty_member->name;
+		echo '<div class="factsheet-faculty-wrapper">';
 
+		foreach ( $faculty_members as $faculty_member ) {
 			$unique_id = md5( $faculty_member->name );
 			// Convert old relationship data structure to new structure.
 			if ( isset( $faculty_relationships[ $unique_id ] ) ) {
@@ -355,7 +355,7 @@ class WSUWP_Graduate_Degree_Programs {
 
 			?>
 			<div class="factsheet-faculty">
-				<h3><?php echo esc_html( $faculty['name'] ); ?><?php if ( ! empty( $faculty['degree_abbreviation'] ) ) : ?>, <?php echo esc_html( $faculty['degree_abbreviation'] ); ?><?php endif; ?></h3>
+				<h3><?php echo esc_html( $faculty_member->name ); ?></h3>
 				<div class="select-chair">
 					<label for="program_chair">Can chair committee:</label>
 					<select name="faculty[<?php echo esc_attr( $faculty_member->term_id ); ?>][program_chair]" id="program_chair">
@@ -370,9 +370,39 @@ class WSUWP_Graduate_Degree_Programs {
 						<option value="true" <?php selected( 'true', $faculty_relationships[ $faculty_member->term_id ]['cochair'] ); ?>>Yes</option>
 					</select>
 				</div>
+				<span class="remove-factsheet-faculty">Remove</span>
 			</div>
 			<?php
 		}
+
+		echo '</div>'; // End of factsheet-faculty-wrapper.
+
+		?>
+		<script type="text/template" id="factsheet-faculty-template">
+			<div class="factsheet-faculty">
+				<h3><%= faculty_name %></h3>
+				<div class="select-chair">
+					<label for="program_chair">Can chair committee:</label>
+					<select name="faculty[<%= term_id %>][program_chair]" id="program_chair">
+						<option value="false">No</option>
+						<option value="true">Yes</option>
+					</select>
+				</div>
+				<div class="select-cochair">
+					<label for="program_cochair">Can co-chair committee:</label>
+					<select name="faculty[<%= term_id %>][program_cochair]" id="program_cochair">
+						<option value="false">No</option>
+						<option value="true">Yes</option>
+					</select>
+				</div>
+				<span class="remove-factsheet-faculty">Remove</span>
+			</div>
+		</script>
+		<div class="add-faculty-wrapper">
+			<label for="faculty-entry">Add Faculty Member:</label>
+			<input type="text" id="faculty-entry" value="" />
+		</div>
+		<?php
 	}
 
 	/**

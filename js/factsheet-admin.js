@@ -6,6 +6,7 @@
 	var deadline_count = $( "#factsheet_deadline_form_count" ).val();
 	var requirement_count = $( "#factsheet_requirement_form_count" ).val();
 	var contact_template = $( "#factsheet-contact-template" ).html();
+	var faculty_template = $( "#factsheet-faculty-template" ).html();
 
 	$form_container.on( "click", ".add-factsheet-deadlines-field", function( el ) {
 		var $button = $( el.target );
@@ -33,6 +34,10 @@
 
 	$( "#factsheet-contact" ).on( "click", ".remove-factsheet-contact", function( el ) {
 		$( el.target ).parent( ".factsheet-contact" ).remove();
+	} );
+
+	$( "#factsheet-faculty" ).on( "click", ".remove-factsheet-faculty", function( el ) {
+		$( el.target ).parent( ".factsheet-faculty" ).remove();
 	} );
 
 	var searchRequest;
@@ -75,6 +80,35 @@
 		},
 		close: function() {
 			$( "#contact-entry" ).val( "" );
+		}
+	} );
+
+	jQuery( "#faculty-entry" ).autocomplete( {
+		minLength: 2,
+		source: function( term, suggest ) {
+			try { searchRequest.abort(); } catch ( e ) {}
+			searchRequest = jQuery.get( window.gs_factsheet.faculty_rest_url, { search: term.term }, function( res ) {
+				if ( res !== null ) {
+					var results = [];
+					for ( var i = 0; i < res.length; i++ ) {
+						if ( res[ i ] !== 0 ) {
+							results.push( { label: res[ i ].name, value: res[ i ].id } );
+						}
+					}
+					suggest( results );
+				}
+			} );
+		},
+		select: function( event, ui ) {
+			var tpl = _.template( faculty_template );
+
+			$( ".factsheet-faculty-wrapper" ).append( tpl( {
+				faculty_name: ui.item.label,
+				term_id: ui.item.value
+			} ) );
+		},
+		close: function() {
+			$( "#faculty-entry" ).val( "" );
 		}
 	} );
 }( jQuery, window ) );

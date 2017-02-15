@@ -8,16 +8,6 @@ class WSUWP_Graduate_Degree_Programs {
 	 */
 	private static $instance;
 
-	/*
-	 * Track a version number for the scripts registered in
-	 * this object to enable cache busting.
-	 *
-	 * @since 0.4.0
-	 *
-	 * @var string
-	 */
-	var $script_version = '0001';
-
 	/**
 	 * The slug used to register the factsheet post type.
 	 *
@@ -183,8 +173,8 @@ class WSUWP_Graduate_Degree_Programs {
 	 */
 	public function admin_enqueue_scripts( $hook_suffix ) {
 		if ( in_array( $hook_suffix, array( 'post.php', 'post-new.php' ), true ) && 'gs-factsheet' === get_current_screen()->id ) {
-			wp_enqueue_style( 'gsdp-admin', get_stylesheet_directory_uri() . '/css/factsheet-admin.css', array(), $this->script_version );
-			wp_register_script( 'gsdp-factsheet-admin', get_stylesheet_directory_uri() . '/js/factsheet-admin.min.js', array( 'jquery', 'underscore', 'jquery-ui-autocomplete' ), $this->script_version, true );
+			wp_enqueue_style( 'gsdp-admin', get_stylesheet_directory_uri() . '/css/factsheet-admin.css', array(), WSUWP_Graduate_School_Theme()->theme_version() );
+			wp_register_script( 'gsdp-factsheet-admin', get_stylesheet_directory_uri() . '/js/factsheet-admin.min.js', array( 'jquery', 'underscore', 'jquery-ui-autocomplete' ), WSUWP_Graduate_School_Theme()->theme_version(), true );
 
 			$rest_api_data = array(
 				'contact_rest_url' => rest_url( 'wp/v2/gs-contact/' ),

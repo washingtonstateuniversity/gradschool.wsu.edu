@@ -70,6 +70,7 @@ class WSUWP_Graduate_Degree_Contact_Taxonomy {
 			'show_ui'           => true,
 			'show_in_menu'      => true,
 			'rewrite'           => false,
+			'show_in_rest'      => true,
 		);
 		register_taxonomy( $this->taxonomy_slug, array( WSUWP_Graduate_Degree_Programs()->post_type_slug ), $args );
 	}

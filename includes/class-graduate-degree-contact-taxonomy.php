@@ -27,58 +27,36 @@ class WSUWP_Graduate_Degree_Contact_Taxonomy {
 	var $term_meta_keys = array(
 		'gs_contact_name' => array(
 			'description' => 'Name',
-			'type' => 'string',
-			'sanitize_callback' => 'sanitize_text_field',
 		),
 		'gs_contact_title' => array(
 			'description' => 'Title',
-			'type' => 'string',
-			'sanitize_callback' => 'sanitize_text_field',
 		),
 		'gs_contact_department' => array(
 			'description' => 'Department',
-			'type' => 'string',
-			'sanitize_callback' => 'sanitize_text_field',
 		),
 		'gs_contact_email' => array(
 			'description' => 'Email',
-			'type' => 'string',
-			'sanitize_callback' => 'sanitize_text_field',
 		),
 		'gs_contact_address_one' => array(
 			'description' => 'Address Line 1',
-			'type' => 'string',
-			'sanitize_callback' => 'sanitize_text_field',
 		),
 		'gs_contact_address_two' => array(
 			'description' => 'Address Line 2',
-			'type' => 'string',
-			'sanitize_callback' => 'sanitize_text_field',
 		),
 		'gs_contact_city' => array(
 			'description' => 'City',
-			'type' => 'string',
-			'sanitize_callback' => 'sanitize_text_field',
 		),
 		'gs_contact_state' => array(
 			'description' => 'State',
-			'type' => 'string',
-			'sanitize_callback' => 'sanitize_text_field',
 		),
 		'gs_contact_postal' => array(
 			'description' => 'Postal Code',
-			'type' => 'string',
-			'sanitize_callback' => 'sanitize_text_field',
 		),
 		'gs_contact_phone' => array(
 			'description' => 'Phone',
-			'type' => 'string',
-			'sanitize_callback' => 'sanitize_text_field',
 		),
 		'gs_contact_fax' => array(
 			'description' => 'Fax',
-			'type' => 'string',
-			'sanitize_callback' => 'sanitize_text_field',
 		),
 	);
 
@@ -148,8 +126,11 @@ class WSUWP_Graduate_Degree_Contact_Taxonomy {
 	 */
 	public function register_meta() {
 		foreach ( $this->term_meta_keys as $key => $args ) {
+			$args['type'] = 'string';
+			$args['sanitize_callback'] = 'sanitize_text_field';
 			$args['show_in_rest'] = true;
 			$args['single'] = true;
+
 			register_meta( 'term', $key, $args );
 		}
 	}

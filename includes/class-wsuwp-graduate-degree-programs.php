@@ -850,6 +850,16 @@ class WSUWP_Graduate_Degree_Programs {
 			update_post_meta( $post_id, 'gsdp_faculty_relationships', $faculty_relationships );
 		}
 
+		if ( isset( $_POST['contacts'] ) ) {
+			$full_contacts = array();
+			foreach ( $_POST['contacts'] as $contact ) {
+				if ( 0 !== absint( $contact ) ) {
+					$full_contacts[] = absint( $contact );
+				}
+			}
+			$result = wp_set_object_terms( $post_id, $full_contacts, 'gs-contact' );
+		}
+
 	}
 
 	/**

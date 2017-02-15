@@ -169,33 +169,33 @@
 					foreach( $factsheet_data['contacts'] as $contact ) {
 						?>
 						<address class="factsheet-contact" itemscope itemtype="http://schema.org/Organization">
-							<?php if ( ! empty( $contact['name'] ) ) : ?>
-							<div itemprop="contactPoint" itemscope itemtype="http://schema.org/Person"><?php echo esc_html( $contact['name'] ); ?></div>
+							<?php if ( ! empty( $contact['gs_contact_name'][0] ) ) : ?>
+							<div itemprop="contactPoint" itemscope itemtype="http://schema.org/Person"><?php echo esc_html( $contact['gs_contact_name'][0] ); ?></div>
 							<?php endif; ?>
 							<div class="address">
-								<?php if ( ! empty( $contact['address_one'] ) ) : ?>
-								<div itemprop="streetAddress"><?php echo esc_html( $contact['address_one'] ); ?></div>
+								<?php if ( ! empty( $contact['gs_contact_address_one'][0] ) ) : ?>
+								<div itemprop="streetAddress"><?php echo esc_html( $contact['gs_contact_address_one'][0] ); ?></div>
 								<?php endif; ?>
-								<?php if ( ! empty( $contact['address_two'] ) ) : ?>
-								<div itemprop="streetAddress"><?php echo esc_html( $contact['address_two'] ); ?></div>
+								<?php if ( ! empty( $contact['gs_contact_address_two'][0] ) ) : ?>
+								<div itemprop="streetAddress"><?php echo esc_html( $contact['gs_contact_address_two'][0] ); ?></div>
 								<?php endif; ?>
 								<div>
-									<?php if ( ! empty( $contact['city'] ) && ! empty( $contact['state'] ) ) : ?>
-									<span itemprop="addressLocality"><?php echo esc_html( $contact['city'] ); ?>, <?php echo esc_html( $contact['state'] ); ?></span>
+									<?php if ( ! empty( $contact['gs_contact_city'][0] ) && ! empty( $contact['gs_contact_state'][0] ) ) : ?>
+									<span itemprop="addressLocality"><?php echo esc_html( $contact['gs_contact_city'][0] ); ?>, <?php echo esc_html( $contact['gs_contact_state'][0] ); ?></span>
 									<?php endif; ?>
-									<?php if ( ! empty( $contact['postal'] ) ) : ?>
-									<span itemprop="postalcode"><?php echo esc_html( $contact['postal'] ); ?></span>
+									<?php if ( ! empty( $contact['gs_contact_postal'][0] ) ) : ?>
+									<span itemprop="postalcode"><?php echo esc_html( $contact['gs_contact_postal'][0] ); ?></span>
 									<?php endif; ?>
 								</div>
 							</div>
-							<?php if ( ! empty( $contact['phone'] ) ) : ?>
-							<div itemprop="telephone"><?php echo esc_html( $contact['phone'] ); ?></div>
+							<?php if ( ! empty( $contact['gs_contact_phone'][0] ) ) : ?>
+							<div itemprop="telephone"><?php echo esc_html( $contact['gs_contact_phone'][0] ); ?></div>
 							<?php endif; ?>
-							<?php if ( ! empty( $contact['fax'] ) ) : ?>
-							<div itemprop="faxNumber"><?php echo esc_html( $contact['fax'] ); ?></div>
+							<?php if ( ! empty( $contact['gs_contact_fax'][0] ) ) : ?>
+							<div itemprop="faxNumber"><?php echo esc_html( $contact['gs_contact_fax'][0] ); ?></div>
 							<?php endif; ?>
-							<?php if ( ! empty( $contact['email'] ) ) : ?>
-							<div itemprop="email"><a href="mailto:<?php echo esc_attr( $contact['email'] ); ?>"><?php echo esc_html( $contact['email'] ); ?></a></div>
+							<?php if ( ! empty( $contact['gs_contact_email'][0] ) ) : ?>
+							<div itemprop="email"><a href="mailto:<?php echo esc_attr( $contact['gs_contact_email'][0] ); ?>"><?php echo esc_html( $contact['gs_contact_email'][0] ); ?></a></div>
 							<?php endif; ?>
 						</address>
 						<?php

@@ -258,6 +258,8 @@ class WSUWP_Graduate_Degree_Programs {
 		}
 
 		add_meta_box( 'factsheet-primary', 'Factsheet Data', array( $this, 'display_factsheet_primary_meta_box' ), null, 'normal', 'high' );
+		add_meta_box( 'factsheet-faculty', 'Faculty Members', array( $this, 'display_faculty_meta_box' ), null, 'normal', 'default' );
+		add_meta_box( 'factsheet-contact', 'Contact Information', array( $this, 'display_contact_meta_box' ), null, 'normal', 'default' );
 		add_meta_box( 'factsheet-secondary', 'Factsheet Text Blocks', array( $this, 'display_factsheet_secondary_meta_box' ), null, 'normal', 'default' );
 	}
 
@@ -306,6 +308,76 @@ class WSUWP_Graduate_Degree_Programs {
 		}
 
 		echo '</div>'; // End factsheet-primary-inputs.
+	}
+
+	/**
+	 * Displays a meta box to capture faculty member information for
+	 * a factsheet.
+	 *
+	 * @since 0.7.0
+	 *
+	 * @param WP_Post $post
+	 */
+	public function display_faculty_meta_box( $post ) {
+		$faculty_members = wp_get_object_terms( $post->ID, 'gs-faculty' );
+		$faculty_relationships = get_post_meta( $post->ID, 'gsdp_faculty_relationships', true );
+
+		foreach ( $faculty_members as $faculty_member ) {
+			$faculty = WSUWP_Graduate_Degree_Faculty_Taxonomy::get_all_term_meta( $faculty_member->term_id );
+			$faculty['name'] = $faculty_member->name;
+
+			$unique_id = md5( $faculty_member->name );
+			// Convert old relationship data structure to new structure.
+			if ( isset( $faculty_relationships[ $unique_id ] ) ) {
+				$faculty_relationships[ $faculty_member->term_id ]['chair'] = $faculty_relationships[ $unique_id ]['chair'];
+				$faculty_relationships[ $faculty_member->term_id ]['cochair'] = $faculty_relationships[ $unique_id ]['cochair'];
+			}
+
+			if ( ! isset( $faculty_relationships[ $faculty_member->term_id ] ) ) {
+				$faculty_relationships[ $faculty_member->term_id ]['chair'] = 'false';
+				$faculty_relationships[ $faculty_member->term_id ]['cochair'] = 'false';
+			}
+
+			if ( ! isset( $faculty_relationships[ $faculty_member->term_id ]['chair'] ) ) {
+				$faculty_relationships[ $faculty_member->term_id ]['chair'] = 'false';
+			}
+
+			if ( ! isset( $faculty_relationships[ $faculty_member->term_id ]['cochair'] ) ) {
+				$faculty_relationships[ $faculty_member->term_id ]['cochair'] = 'false';
+			}
+
+			?>
+			<div class="factsheet-faculty">
+				<h3><?php echo esc_html( $faculty['name'] ); ?><?php if ( ! empty( $faculty['degree_abbreviation'] ) ) : ?>, <?php echo esc_html( $faculty['degree_abbreviation'] ); ?><?php endif; ?></h3>
+				<div class="select-chair">
+					<label for="program_chair">Can chair committee:</label>
+					<select name="faculty[<?php echo esc_attr( $faculty_member->term_id ); ?>][program_chair]" id="program_chair">
+						<option value="false" <?php selected( 'false', $faculty_relationships[ $faculty_member->term_id ]['chair'] ); ?>>No</option>
+						<option value="true" <?php selected( 'true', $faculty_relationships[ $faculty_member->term_id ]['chair'] ); ?>>Yes</option>
+					</select>
+				</div>
+				<div class="select-cochair">
+					<label for="program_cochair">Can co-chair committee:</label>
+					<select name="faculty[<?php echo esc_attr( $faculty_member->term_id ); ?>][program_cochair]" id="program_cochair">
+						<option value="false" <?php selected( 'false', $faculty_relationships[ $faculty_member->term_id ]['cochair'] ); ?>>No</option>
+						<option value="true" <?php selected( 'true', $faculty_relationships[ $faculty_member->term_id ]['cochair'] ); ?>>Yes</option>
+					</select>
+				</div>
+			</div>
+			<?php
+		}
+	}
+
+	/**
+	 * Displays a meta box to capture contact information for a factsheet.
+	 *
+	 * @since 0.7.0
+	 *
+	 * @param WP_Post $post
+	 */
+	public function display_contact_meta_box( $post ) {
+		$contacts = wp_get_object_terms( $post->ID, 'gs-contact' );
+
 	}
 
 	/**
@@ -664,6 +736,39 @@ class WSUWP_Graduate_Degree_Programs {
 				update_post_meta( $post_id, $key, $_POST[ $key ] );
 			}
 		}
+
+		if ( isset( $_POST['faculty'] ) ) {
+			$faculty_relationships = array();
+			$assigned_faculty = wp_get_object_terms( $post_id, 'gs-faculty' );
+			$assigned_faculty = wp_list_pluck( $assigned_faculty, 'term_id' );
+
+			foreach( $assigned_faculty as $assigned ) {
+				if ( ! isset( $_POST['faculty'][ $assigned ] ) ) {
+					wp_remove_object_terms( $post_id, $assigned, 'gs-faculty' );
+				}
+			}
+
+			foreach( $_POST['faculty'] as $term_id => $chair_selection ) {
+				if ( ! in_array( $term_id, $assigned_faculty, true ) ) {
+					wp_add_object_terms( $post_id, $term_id, 'gs-faculty' );
+				}
+
+				if ( in_array( $chair_selection['program_chair'], array( 'true', 'false' ), true ) ) {
+					$faculty_relationships[ $term_id ]['chair'] = $chair_selection['program_chair'];
+				} else {
+					$faculty_relationships[ $term_id ]['chair'] = 'false';
+				}
+
+				if ( in_array( $chair_selection['program_cochair'], array( 'true', 'false' ), true ) ) {
+					$faculty_relationships[ $term_id ]['cochair'] = $chair_selection['program_cochair'];
+				} else {
+					$faculty_relationships[ $term_id ]['chair'] = 'false';
+				}
+			}
+
+			update_post_meta( $post_id, 'gsdp_faculty_relationships', $faculty_relationships );
+		}
+
 	}
 
 	/**
@@ -800,6 +905,16 @@ class WSUWP_Graduate_Degree_Programs {
 					} elseif ( 'true' === $faculty_relationships[ $unique_id ]['chair'] ) {
 						$faculty_meta['relationship'] = 'Can chair graduate committee.';
 					} elseif ( 'true' === $faculty_relationships[ $unique_id ]['cochair'] ) {
+						$faculty_meta['relationship'] = 'Can co-chair graduate committee.';
+					} else {
+						$faculty_meta['relationship'] = 'Can sit as a graduate committee member.';
+					}
+				} elseif ( isset( $faculty_relationships[ $person->term_id ] ) ) {
+					if ( 'true' === $faculty_relationships[ $person->term_id ]['chair'] && 'true' === $faculty_relationships[ $person->term_id ]['cochair'] ) {
+						$faculty_meta['relationship'] = 'Can chair or co-chair graduate committee.';
+					} elseif ( 'true' === $faculty_relationships[ $person->term_id ]['chair'] ) {
+						$faculty_meta['relationship'] = 'Can chair graduate committee.';
+					} elseif ( 'true' === $faculty_relationships[ $person->term_id ]['cochair'] ) {
 						$faculty_meta['relationship'] = 'Can co-chair graduate committee.';
 					} else {
 						$faculty_meta['relationship'] = 'Can sit as a graduate committee member.';

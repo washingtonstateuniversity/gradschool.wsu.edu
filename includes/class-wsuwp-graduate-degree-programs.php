@@ -381,6 +381,7 @@ class WSUWP_Graduate_Degree_Programs {
 		if ( ! is_wp_error( $contacts ) ) {
 			foreach( $contacts as $contact ) {
 				$contact_meta = WSUWP_Graduate_Degree_Contact_Taxonomy::get_all_term_meta( $contact->term_id );
+				$contact_meta['term_id'] = $contact->term_id;
 				$data['contacts'][] = $contact_meta;
 			}
 		}
@@ -388,9 +389,13 @@ class WSUWP_Graduate_Degree_Programs {
 		echo '<div class="factsheet-contact-wrapper">';
 
 		foreach( $data['contacts'] as $contact ) {
+			if ( empty( $contact ) ) {
+				continue;
+			}
+
 			?>
 			<div class="factsheet-contact">
-				<input type="hidden" name="contacts[]" value="<?php echo esc_attr( $contact->term_id ); ?>" />
+				<input type="hidden" name="contacts[]" value="<?php echo esc_attr( $contact['term_id'] ); ?>" />
 				<address>
 					<?php if ( ! empty( $contact['gs_contact_name'][0] ) ) : ?>
 						<div><?php echo esc_html( $contact['gs_contact_name'][0] ); ?></div>

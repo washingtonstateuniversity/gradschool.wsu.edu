@@ -159,6 +159,7 @@ input[name="gsdp_degree_url"] {
 	font-style: normal;
 }
 
+.add-faculty-wrapper,
 .add-contact-wrapper {
 	padding-top: 1em;
 	padding-left: .5em;
@@ -166,12 +167,15 @@ input[name="gsdp_degree_url"] {
 	border-top: 1px solid #efefef;
 }
 
+.add-faculty-wrapper label,
 .add-contact-wrapper label {
 	display: inline-block;
 	padding-right: .5em;
 	font-weight: 300;
 }
 
+.add-faculty-wrapper input,
+.add-faculty-wrapper label,
 .add-contact-wrapper input,
 .add-contact-wrapper label {
 	font-size: 1.3em;
@@ -179,6 +183,7 @@ input[name="gsdp_degree_url"] {
 	height: 1.7em;
 }
 
+.remove-factsheet-faculty,
 .remove-factsheet-contact {
 	display: inline-block;
 	margin-top: .5em;
@@ -187,6 +192,43 @@ input[name="gsdp_degree_url"] {
 	text-decoration: underline;
 }
 
+.remove-factsheet-faculty {
+	margin-top: 0;
+}
+
+.remove-factsheet-faculty:hover,
 .remove-factsheet-contact:hover {
 	color: #00a0d2;
+}
+
+.factsheet-faculty {
+	display: flex;
+	margin-bottom: 2em;
+}
+
+.faculty-name {
+	flex-basis: 40%;
+}
+
+.select-chair,
+.select-cochair {
+	flex-basis: 25%;
+}
+
+.remove-factsheet-faculty {
+	flex-basis: 10%;
+}
+
+.select-chair,
+.select-cochair,
+.remove-factsheet-faculty,
+.faculty-name {
+	line-height: 1.5;
+	font-size: 1em;
+}
+
+.remove-factsheet-faculty,
+.faculty-name {
+	height: 28px;
+	line-height: 28px;
 }

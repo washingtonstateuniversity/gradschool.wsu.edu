@@ -8,16 +8,6 @@ class WSUWP_Graduate_Degree_Programs {
 	 */
 	private static $instance;
 
-	/*
-	 * Track a version number for the scripts registered in
-	 * this object to enable cache busting.
-	 *
-	 * @since 0.4.0
-	 *
-	 * @var string
-	 */
-	var $script_version = '0001';
-
 	/**
 	 * The slug used to register the factsheet post type.
 	 *
@@ -183,11 +173,12 @@ class WSUWP_Graduate_Degree_Programs {
 	 */
 	public function admin_enqueue_scripts( $hook_suffix ) {
 		if ( in_array( $hook_suffix, array( 'post.php', 'post-new.php' ), true ) && 'gs-factsheet' === get_current_screen()->id ) {
-			wp_enqueue_style( 'gsdp-admin', get_stylesheet_directory_uri() . '/css/factsheet-admin.css', array(), $this->script_version );
-			wp_register_script( 'gsdp-factsheet-admin', get_stylesheet_directory_uri() . '/js/factsheet-admin.min.js', array( 'jquery', 'underscore', 'jquery-ui-autocomplete' ), $this->script_version, true );
+			wp_enqueue_style( 'gsdp-admin', get_stylesheet_directory_uri() . '/css/factsheet-admin.css', array(), WSUWP_Graduate_School_Theme()->theme_version() );
+			wp_register_script( 'gsdp-factsheet-admin', get_stylesheet_directory_uri() . '/js/factsheet-admin.min.js', array( 'jquery', 'underscore', 'jquery-ui-autocomplete' ), WSUWP_Graduate_School_Theme()->theme_version(), true );
 
 			$rest_api_data = array(
 				'contact_rest_url' => rest_url( 'wp/v2/gs-contact/' ),
+				'faculty_rest_url' => rest_url( 'wp/v2/gs-faculty/' ),
 			);
 			wp_localize_script( 'gsdp-factsheet-admin', 'gs_factsheet', $rest_api_data );
 
@@ -329,10 +320,9 @@ class WSUWP_Graduate_Degree_Programs {
 		$faculty_members = wp_get_object_terms( $post->ID, 'gs-faculty' );
 		$faculty_relationships = get_post_meta( $post->ID, 'gsdp_faculty_relationships', true );
 
-		foreach ( $faculty_members as $faculty_member ) {
-			$faculty = WSUWP_Graduate_Degree_Faculty_Taxonomy::get_all_term_meta( $faculty_member->term_id );
-			$faculty['name'] = $faculty_member->name;
+		echo '<div class="factsheet-faculty-wrapper">';
 
+		foreach ( $faculty_members as $faculty_member ) {
 			$unique_id = md5( $faculty_member->name );
 			// Convert old relationship data structure to new structure.
 			if ( isset( $faculty_relationships[ $unique_id ] ) ) {
@@ -355,24 +345,54 @@ class WSUWP_Graduate_Degree_Programs {
 
 			?>
 			<div class="factsheet-faculty">
-				<h3><?php echo esc_html( $faculty['name'] ); ?><?php if ( ! empty( $faculty['degree_abbreviation'] ) ) : ?>, <?php echo esc_html( $faculty['degree_abbreviation'] ); ?><?php endif; ?></h3>
+				<div class="faculty-name"><?php echo esc_html( $faculty_member->name ); ?></div>
 				<div class="select-chair">
-					<label for="program_chair">Can chair committee:</label>
+					<label for="program_chair">Chair:</label>
 					<select name="faculty[<?php echo esc_attr( $faculty_member->term_id ); ?>][program_chair]" id="program_chair">
 						<option value="false" <?php selected( 'false', $faculty_relationships[ $faculty_member->term_id ]['chair'] ); ?>>No</option>
 						<option value="true" <?php selected( 'true', $faculty_relationships[ $faculty_member->term_id ]['chair'] ); ?>>Yes</option>
 					</select>
 				</div>
 				<div class="select-cochair">
-					<label for="program_cochair">Can co-chair committee:</label>
+					<label for="program_cochair">Co-chair:</label>
 					<select name="faculty[<?php echo esc_attr( $faculty_member->term_id ); ?>][program_cochair]" id="program_cochair">
 						<option value="false" <?php selected( 'false', $faculty_relationships[ $faculty_member->term_id ]['cochair'] ); ?>>No</option>
 						<option value="true" <?php selected( 'true', $faculty_relationships[ $faculty_member->term_id ]['cochair'] ); ?>>Yes</option>
 					</select>
 				</div>
+				<span class="remove-factsheet-faculty">Remove</span>
 			</div>
 			<?php
 		}
+
+		echo '</div>'; // End of factsheet-faculty-wrapper.
+
+		?>
+		<script type="text/template" id="factsheet-faculty-template">
+			<div class="factsheet-faculty">
+				<div class="faculty-name"><%= faculty_name %></div>
+				<div class="select-chair">
+					<label for="program_chair">Chair:</label>
+					<select name="faculty[<%= term_id %>][program_chair]" id="program_chair">
+						<option value="false">No</option>
+						<option value="true">Yes</option>
+					</select>
+				</div>
+				<div class="select-cochair">
+					<label for="program_cochair">Co-chair:</label>
+					<select name="faculty[<%= term_id %>][program_cochair]" id="program_cochair">
+						<option value="false">No</option>
+						<option value="true">Yes</option>
+					</select>
+				</div>
+				<span class="remove-factsheet-faculty">Remove</span>
+			</div>
+		</script>
+		<div class="add-faculty-wrapper">
+			<label for="faculty-entry">Add Faculty Member:</label>
+			<input type="text" id="faculty-entry" value="" />
+		</div>
+		<?php
 	}
 
 	/**
@@ -864,9 +884,10 @@ class WSUWP_Graduate_Degree_Programs {
 					$full_contacts[] = absint( $contact );
 				}
 			}
-			$result = wp_set_object_terms( $post_id, $full_contacts, 'gs-contact' );
+			wp_set_object_terms( $post_id, $full_contacts, 'gs-contact' );
+		} else {
+			wp_set_object_terms( $post_id, array(), 'gs-contact' );
 		}
-
 	}
 
 	/**

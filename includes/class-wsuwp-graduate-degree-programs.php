@@ -385,6 +385,8 @@ class WSUWP_Graduate_Degree_Programs {
 			}
 		}
 
+		echo '<div class="factsheet-contact-wrapper">';
+
 		foreach( $data['contacts'] as $contact ) {
 			?>
 			<div class="factsheet-contact">
@@ -421,31 +423,37 @@ class WSUWP_Graduate_Degree_Programs {
 				</address>
 				<span class="remove-factsheet-contact">Remove</span>
 			</div>
-			<script type="text/template" id="factsheet-contact-template">
-				<div class="factsheet-contact">
-					<input type="hidden" name="contacts[]" value="<%= contact_term_id %>" />
-					<address>
-						<div><%= contact_name %></div>
-						<div>
-							<div><%= contact_address_one %></div>
-							<div><%= contact_address_two %></div>
-							<div>
-								<span><%= contact_city %>, <%= contact_state %></span>
-								<span><%= contact_postal %></span>
-							</div>
-						</div>
-						<div><%= contact_phone %></div>
-						<div><%= contact_fax %></div>
-						<div><%= contact_email %></div>
-					</address>
-					<span class="remove-factsheet-contact">Remove</span>
-				</div>
-			</script>
-
-			<label for="contact-entry">Add Contact:</label>
-			<input type="text" id="contact-entry" value="" />
 			<?php
 		}
+
+		echo '</div>' // End factsheet-contact-wrapper.
+		?>
+		<script type="text/template" id="factsheet-contact-template">
+			<div class="factsheet-contact">
+				<input type="hidden" name="contacts[]" value="<%= contact_term_id %>" />
+				<address>
+					<div><%= contact_name %></div>
+					<div>
+						<div><%= contact_address_one %></div>
+						<div><%= contact_address_two %></div>
+						<div>
+							<span><%= contact_city %>, <%= contact_state %></span>
+							<span><%= contact_postal %></span>
+						</div>
+					</div>
+					<div><%= contact_phone %></div>
+					<div><%= contact_fax %></div>
+					<div><%= contact_email %></div>
+				</address>
+				<span class="remove-factsheet-contact">Remove</span>
+			</div>
+		</script>
+		<div class="add-contact-wrapper">
+			<label for="contact-entry">Add Contact:</label>
+			<input type="text" id="contact-entry" value="" />
+		</div>
+
+		<?php
 	}
 
 	/**

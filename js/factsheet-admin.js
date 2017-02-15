@@ -57,7 +57,7 @@
 			var tpl = _.template( contact_template );
 			var contact = search_objects[ ui.item.value ];
 
-			$( "#contact-entry" ).before( tpl( {
+			$( ".factsheet-contact-wrapper" ).append( tpl( {
 				contact_name: ui.item.label,
 				contact_term_id: ui.item.value,
 				contact_address_one: contact.meta.gs_contact_address_one,

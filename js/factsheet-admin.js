@@ -1,5 +1,5 @@
 /* global _ */
-( function( $ ) {
+( function( $, window ) {
 	var $form_container = $( ".factsheet-primary-inputs" );
 	var deadlines_template = $( "#factsheet-deadline-template" ).html();
 	var requirements_template = $( "#factsheet-requirement-template" ).html();
@@ -38,7 +38,7 @@
 		minLength: 2,
 		source: function( term, suggest ) {
 			try { searchRequest.abort(); } catch ( e ) {}
-			searchRequest = jQuery.get( "http://wp.wsu.dev/gradschool/wp-json/wp/v2/gs-contact/", { search: term.term }, function( res ) {
+			searchRequest = jQuery.get( window.gs_factsheet.contact_rest_url, { search: term.term }, function( res ) {
 				if ( res !== null ) {
 					var results = [];
 					search_objects = [];
@@ -73,4 +73,4 @@
 			$( "#contact-entry" ).val( "" );
 		}
 	} );
-}( jQuery ) );
+}( jQuery, window ) );

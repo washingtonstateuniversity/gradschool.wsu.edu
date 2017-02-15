@@ -184,7 +184,14 @@ class WSUWP_Graduate_Degree_Programs {
 	public function admin_enqueue_scripts( $hook_suffix ) {
 		if ( in_array( $hook_suffix, array( 'post.php', 'post-new.php' ), true ) && 'gs-factsheet' === get_current_screen()->id ) {
 			wp_enqueue_style( 'gsdp-admin', get_stylesheet_directory_uri() . '/css/factsheet-admin.css', array(), $this->script_version );
-			wp_enqueue_script( 'gsdp-factsheet-admin', get_stylesheet_directory_uri() . '/js/factsheet-admin.min.js', array( 'jquery', 'underscore', 'jquery-ui-autocomplete' ), $this->script_version, true );
+			wp_register_script( 'gsdp-factsheet-admin', get_stylesheet_directory_uri() . '/js/factsheet-admin.min.js', array( 'jquery', 'underscore', 'jquery-ui-autocomplete' ), $this->script_version, true );
+
+			$rest_api_data = array(
+				'contact_rest_url' => rest_url( 'wp/v2/gs-contact/' ),
+			);
+			wp_localize_script( 'gsdp-factsheet-admin', 'gs_factsheet', $rest_api_data );
+
+			wp_enqueue_script( 'gsdp-factsheet-admin' );
 		}
 
 		if ( in_array( $hook_suffix, array( 'term.php', 'term-new.php' ), true ) && in_array( get_current_screen()->taxonomy, array( 'gs-contact', 'gs-faculty' ), true ) ) {

@@ -377,7 +377,48 @@ class WSUWP_Graduate_Degree_Programs {
 	 */
 	public function display_contact_meta_box( $post ) {
 		$contacts = wp_get_object_terms( $post->ID, 'gs-contact' );
+		$data['contacts'] = array();
+		if ( ! is_wp_error( $contacts ) ) {
+			foreach( $contacts as $contact ) {
+				$contact_meta = WSUWP_Graduate_Degree_Contact_Taxonomy::get_all_term_meta( $contact->term_id );
+				$data['contacts'][] = $contact_meta;
+			}
+		}
 
+		foreach( $data['contacts'] as $contact ) {
+			?>
+			<address class="factsheet-contact">
+				<?php if ( ! empty( $contact['name'] ) ) : ?>
+					<div><?php echo esc_html( $contact['name'] ); ?></div>
+				<?php endif; ?>
+				<div>
+					<?php if ( ! empty( $contact['address_one'] ) ) : ?>
+						<div><?php echo esc_html( $contact['address_one'] ); ?></div>
+					<?php endif; ?>
+					<?php if ( ! empty( $contact['address_two'] ) ) : ?>
+						<div><?php echo esc_html( $contact['address_two'] ); ?></div>
+					<?php endif; ?>
+					<div>
+						<?php if ( ! empty( $contact['city'] ) && ! empty( $contact['state'] ) ) : ?>
+							<span><?php echo esc_html( $contact['city'] ); ?>, <?php echo esc_html( $contact['state'] ); ?></span>
+						<?php endif; ?>
+						<?php if ( ! empty( $contact['postal'] ) ) : ?>
+							<span><?php echo esc_html( $contact['postal'] ); ?></span>
+						<?php endif; ?>
+					</div>
+				</div>
+				<?php if ( ! empty( $contact['phone'] ) ) : ?>
+					<div><?php echo esc_html( $contact['phone'] ); ?></div>
+				<?php endif; ?>
+				<?php if ( ! empty( $contact['fax'] ) ) : ?>
+					<div><?php echo esc_html( $contact['fax'] ); ?></div>
+				<?php endif; ?>
+				<?php if ( ! empty( $contact['email'] ) ) : ?>
+					<div><a href="mailto:<?php echo esc_attr( $contact['email'] ); ?>"><?php echo esc_html( $contact['email'] ); ?></a></div>
+				<?php endif; ?>
+			</address>
+			<?php
+		}
 	}
 
 	/**

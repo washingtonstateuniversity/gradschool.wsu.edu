@@ -196,7 +196,10 @@ class WSUWP_Graduate_Degree_Contact_Taxonomy {
 					<label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $meta['description'] ); ?></label>
 				</th>
 				<td>
-					<input type="text" name="<?php echo esc_attr( $key ); ?>" id="<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( $term_meta[ $key ][0] ); ?>" />
+					<input type="text"
+					       name="<?php echo esc_attr( $key ); ?>"
+					       id="<?php echo esc_attr( $key ); ?>"
+					       value="<?php if ( isset( $term_meta[ $key ][0] ) ) { echo esc_attr( $term_meta[ $key ][0] ); } ?>" />
 				</td>
 			</tr>
 			<?php

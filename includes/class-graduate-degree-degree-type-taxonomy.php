@@ -177,10 +177,10 @@ class WSUWP_Graduate_Degree_Degree_Type_Taxonomy {
 				</th>
 				<td>
 					<select name="<?php echo esc_attr( $key ); ?>" id="<?php echo esc_attr( $key ); ?>">
-						<option value="Other" <?php selected( 'None', $selected_value ); ?>>Other</option>
-						<option value="Doctorate" <?php selected( 'Doctorate', $selected_value ); ?>>Doctorate</option>
-						<option value="Masters" <?php selected( 'Masters', $selected_value ); ?>>Masters</option>
-						<option value="Graduate Certificate" <?php selected( 'Graduate Certificate', $selected_value ); ?>>Graduate Certificate</option>
+						<option value="other" <?php selected( 'other', $selected_value ); ?>>Other</option>
+						<option value="doctorate" <?php selected( 'doctorate', $selected_value ); ?>>Doctorate</option>
+						<option value="masters" <?php selected( 'masters', $selected_value ); ?>>Masters</option>
+						<option value="graduate-certificate" <?php selected( 'graduate-certificate', $selected_value ); ?>>Graduate Certificate</option>
 					</select>
 				</td>
 			</tr>
@@ -199,11 +199,11 @@ class WSUWP_Graduate_Degree_Degree_Type_Taxonomy {
 	 */
 	public static function sanitize_degree_classification( $classification ) {
 		if ( empty( $classification ) ) {
-			$classification = 'Other';
+			$classification = 'other';
 		}
 
-		if ( ! in_array( $classification, array( 'None', 'Masters', 'Doctorate', 'Graduate Certificate', 'Other' ), true ) ) {
-			$classification = 'Other';
+		if ( ! in_array( $classification, array( 'other', 'masters', 'doctorate', 'graduate-certificate' ), true ) ) {
+			$classification = 'other';
 		}
 
 		return $classification;

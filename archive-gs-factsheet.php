@@ -6,7 +6,11 @@ if ( have_posts() ) {
 		the_post();
 		$factsheet_data = WSUWP_Graduate_Degree_Programs::get_factsheet_data( get_the_ID() );
 		$factsheet_data['permalink'] = get_the_permalink();
-		$factsheets[ get_the_title() ] = $factsheet_data;
+		if ( ! empty( $factsheet_data['shortname'] ) ) {
+			$factsheets[ $factsheet_data['shortname'] ] = $factsheet_data;
+		} else {
+			$factsheets[ get_the_title() ] = $factsheet_data;
+		}
 	}
 }
 ksort( $factsheets );

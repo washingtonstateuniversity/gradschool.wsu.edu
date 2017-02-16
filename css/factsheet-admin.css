@@ -77,6 +77,7 @@
 	width: 100%;
 }
 
+input[name="gsdp_degree_shortname"],
 input[name="gsdp_degree_url"] {
 	width: 60%;
 	max-width: 500px;

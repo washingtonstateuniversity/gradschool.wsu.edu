@@ -25,11 +25,17 @@ class WSUWP_Graduate_Degree_Programs {
 	 * @var array
 	 */
 	var $post_meta_keys = array(
+		'gsdp_degree_shortname' => array(
+			'description' => 'Factsheet display name',
+			'type' => 'string',
+			'sanitize_callback' => 'sanitize_text_field',
+			'pre_html' => '<div class="factsheet-group">',
+			'location' => 'primary',
+		),
 		'gsdp_degree_id' => array(
 			'description' => 'Factsheet degree ID',
 			'type' => 'int',
 			'sanitize_callback' => 'absint',
-			'pre_html' => '<div class="factsheet-group">',
 			'location' => 'primary',
 		),
 		'gsdp_accepting_applications' => array(
@@ -906,6 +912,7 @@ class WSUWP_Graduate_Degree_Programs {
 
 		$data = array(
 			'degree_id' => 0,
+			'shortname' => '',
 			'description' => '',
 			'accepting_applications' => 'No',
 			'faculty' => array(),
@@ -934,6 +941,10 @@ class WSUWP_Graduate_Degree_Programs {
 
 		if ( isset( $factsheet_data['gsdp_degree_id'][0] ) ) {
 			$data['degree_id'] = $factsheet_data['gsdp_degree_id'][0];
+		}
+
+		if ( isset( $factsheet_data['gsdp_degree_shortname'][0] ) ) {
+			$data['shortname'] = $factsheet_data['gsdp_degree_shortname'][0];
 		}
 
 		if ( isset( $factsheet_data['gsdp_accepting_applications'][0] ) && 1 === absint( $factsheet_data['gsdp_accepting_applications'][0] ) ) {

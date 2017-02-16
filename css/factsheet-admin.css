@@ -140,3 +140,99 @@ input[name="gsdp_degree_url"] {
 .remove-factsheet-deadlines-field:hover {
 	color: #00a0d2;
 }
+
+.factsheet-contact-wrapper {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
+.factsheet-contact {
+	margin: 0 .5em 3em;
+	flex-basis: calc((100% / 3) - 1em);
+}
+
+.factsheet-contact address {
+	font-size: 1em;
+	font-style: normal;
+}
+
+.add-faculty-wrapper,
+.add-contact-wrapper {
+	padding-top: 1em;
+	padding-left: .5em;
+	width: 100%;
+	border-top: 1px solid #efefef;
+}
+
+.add-faculty-wrapper label,
+.add-contact-wrapper label {
+	display: inline-block;
+	padding-right: .5em;
+	font-weight: 300;
+}
+
+.add-faculty-wrapper input,
+.add-faculty-wrapper label,
+.add-contact-wrapper input,
+.add-contact-wrapper label {
+	font-size: 1.3em;
+	line-height: 1.5;
+	height: 1.7em;
+}
+
+.remove-factsheet-faculty,
+.remove-factsheet-contact {
+	display: inline-block;
+	margin-top: .5em;
+	color: #0073aa;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.remove-factsheet-faculty {
+	margin-top: 0;
+}
+
+.remove-factsheet-faculty:hover,
+.remove-factsheet-contact:hover {
+	color: #00a0d2;
+}
+
+.factsheet-faculty-wrapper {
+	max-width: 640px;
+}
+
+.factsheet-faculty {
+	display: flex;
+	margin-bottom: 2em;
+}
+
+.faculty-name {
+	flex-basis: 40%;
+}
+
+.select-chair,
+.select-cochair {
+	flex-basis: 25%;
+}
+
+.remove-factsheet-faculty {
+	flex-basis: 10%;
+}
+
+.select-chair,
+.select-cochair,
+.remove-factsheet-faculty,
+.faculty-name {
+	line-height: 1.5;
+	font-size: 1em;
+}
+
+.remove-factsheet-faculty,
+.faculty-name {
+	height: 28px;
+	line-height: 28px;
+}

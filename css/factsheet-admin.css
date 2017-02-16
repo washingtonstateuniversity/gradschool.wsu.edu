@@ -201,6 +201,10 @@ input[name="gsdp_degree_url"] {
 	color: #00a0d2;
 }
 
+.factsheet-faculty-wrapper {
+	max-width: 640px;
+}
+
 .factsheet-faculty {
 	display: flex;
 	margin-bottom: 2em;

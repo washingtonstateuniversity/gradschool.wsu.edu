@@ -535,7 +535,7 @@ class WSUWP_Graduate_Degree_Programs {
 			echo $meta['pre_html']; // @codingStandardsIgnoreLine (HTML is static in code)
 		}
 		?>
-		<div class="factsheet-primary-input factsheet-<?php echo esc_attr( $meta['type'] ); ?>"">
+		<div class="factsheet-primary-input factsheet-<?php echo esc_attr( $meta['type'] ); ?>">
 		<?php
 		if ( 'int' === $meta['type'] ) {
 			?>
@@ -617,16 +617,16 @@ class WSUWP_Graduate_Degree_Programs {
 				?>
 				<script type="text/template" id="factsheet-deadline-template">
 					<span class="factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field">
-							<select name="<?php echo esc_attr( $key ); ?>[<%= form_count %>][semester]">
-								<option value="None">Not selected</option>
-								<option value="Fall">Fall</option>
-								<option value="Spring">Spring</option>
-								<option value="Summer">Summer</option>
-							</select>
-							<input type="text" name="<?php echo esc_attr( $key ); ?>[<%= form_count %>][deadline]" value="" />
-							<input type="text" name="<?php echo esc_attr( $key ); ?>[<%= form_count %>][international]" value="" />
-							<span class="remove-factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field">Remove</span>
-						</span>
+						<select name="<?php echo esc_attr( $key ); ?>[<%= form_count %>][semester]">
+							<option value="None">Not selected</option>
+							<option value="Fall">Fall</option>
+							<option value="Spring">Spring</option>
+							<option value="Summer">Summer</option>
+						</select>
+						<input type="text" name="<?php echo esc_attr( $key ); ?>[<%= form_count %>][deadline]" value="" />
+						<input type="text" name="<?php echo esc_attr( $key ); ?>[<%= form_count %>][international]" value="" />
+						<span class="remove-factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field">Remove</span>
+					</span>
 				</script>
 				<input type="button" class="add-factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field button" value="Add" />
 				<input type="hidden" name="factsheet_deadline_form_count" id="factsheet_deadline_form_count" value="<?php echo esc_attr( $field_count ); ?>" />
@@ -680,11 +680,11 @@ class WSUWP_Graduate_Degree_Programs {
 				?>
 				<script type="text/template" id="factsheet-requirement-template">
 					<span class="factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field">
-							<input type="text" name="<?php echo esc_attr( $key ); ?>[<%= form_count %>][score]" value="" />
-							<input type="text" name="<?php echo esc_attr( $key ); ?>[<%= form_count %>][test]" value="" />
-							<input type="text" name="<?php echo esc_attr( $key ); ?>[<%= form_count %>][description]" value="" />
-							<span class="remove-factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field">Remove</span>
-						</span>
+						<input type="text" name="<?php echo esc_attr( $key ); ?>[<%= form_count %>][score]" value="" />
+						<input type="text" name="<?php echo esc_attr( $key ); ?>[<%= form_count %>][test]" value="" />
+						<input type="text" name="<?php echo esc_attr( $key ); ?>[<%= form_count %>][description]" value="" />
+						<span class="remove-factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field">Remove</span>
+					</span>
 				</script>
 				<input type="button" class="add-factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field button" value="Add" />
 				<input type="hidden" name="factsheet_requirement_form_count" id="factsheet_requirement_form_count" value="<?php echo esc_attr( $field_count ); ?>" />
@@ -870,7 +870,7 @@ class WSUWP_Graduate_Degree_Programs {
 				if ( in_array( $chair_selection['program_cochair'], array( 'true', 'false' ), true ) ) {
 					$faculty_relationships[ $term_id ]['cochair'] = $chair_selection['program_cochair'];
 				} else {
-					$faculty_relationships[ $term_id ]['chair'] = 'false';
+					$faculty_relationships[ $term_id ]['cochair'] = 'false';
 				}
 			}
 

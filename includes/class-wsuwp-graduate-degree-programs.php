@@ -193,7 +193,7 @@ class WSUWP_Graduate_Degree_Programs {
 			wp_enqueue_script( 'gsdp-factsheet-admin' );
 		}
 
-		if ( in_array( $hook_suffix, array( 'term.php', 'term-new.php' ), true ) && in_array( get_current_screen()->taxonomy, array( 'gs-contact', 'gs-faculty' ), true ) ) {
+		if ( in_array( $hook_suffix, array( 'term.php', 'term-new.php' ), true ) && in_array( get_current_screen()->taxonomy, array( 'gs-contact', 'gs-faculty', 'gs-degree-type' ), true ) ) {
 			wp_enqueue_style( 'gsdp-faculty-admin', get_stylesheet_directory_uri() . '/css/faculty-admin.css', array(), WSUWP_Graduate_School_Theme()->theme_version() );
 		}
 	}

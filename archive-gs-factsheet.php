@@ -57,6 +57,8 @@ get_header();
 				foreach( $factsheets as $factsheet_name => $factsheet ) {
 					while ( 0 !== strpos( strtolower( $factsheet_name ), $letter ) ) {
 						echo '</ul></div>';
+
+						// It's funny and sad, but this works. a becomes b, z becomes aa.
 						$letter++;
 						?>
 						<div class="lettergroup">

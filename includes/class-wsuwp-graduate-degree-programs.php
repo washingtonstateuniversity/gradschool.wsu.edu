@@ -870,7 +870,7 @@ class WSUWP_Graduate_Degree_Programs {
 				if ( in_array( $chair_selection['program_cochair'], array( 'true', 'false' ), true ) ) {
 					$faculty_relationships[ $term_id ]['cochair'] = $chair_selection['program_cochair'];
 				} else {
-					$faculty_relationships[ $term_id ]['chair'] = 'false';
+					$faculty_relationships[ $term_id ]['cochair'] = 'false';
 				}
 			}
 

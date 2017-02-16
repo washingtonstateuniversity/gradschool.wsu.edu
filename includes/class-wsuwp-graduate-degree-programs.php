@@ -162,6 +162,8 @@ class WSUWP_Graduate_Degree_Programs {
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
 		add_action( 'add_meta_boxes', array( $this, 'remove_meta_boxes' ), 99 );
 		add_action( "save_post_{$this->post_type_slug}", array( $this, 'save_factsheet' ), 10, 2 );
+
+		add_action( 'pre_get_posts', array( $this, 'adjust_factsheet_archive_query' ) );
 	}
 
 	/**
@@ -1047,5 +1049,20 @@ class WSUWP_Graduate_Degree_Programs {
 		}
 
 		return $data;
+	}
+
+	/**
+	 * Adjusts the archive query for factsheets to show all factsheets.
+	 *
+	 * @since 0.8.0
+	 *
+	 * @param WP_Query $query
+	 */
+	public function adjust_factsheet_archive_query( $query ) {
+		if ( is_post_type_archive( $this->post_type_slug ) ) {
+			$query->set( 'posts_per_page', - 1 );
+		}
+
+		return;
 	}
 }

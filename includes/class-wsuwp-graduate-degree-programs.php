@@ -535,7 +535,7 @@ class WSUWP_Graduate_Degree_Programs {
 			echo $meta['pre_html']; // @codingStandardsIgnoreLine (HTML is static in code)
 		}
 		?>
-		<div class="factsheet-primary-input factsheet-<?php echo esc_attr( $meta['type'] ); ?>"">
+		<div class="factsheet-primary-input factsheet-<?php echo esc_attr( $meta['type'] ); ?>">
 		<?php
 		if ( 'int' === $meta['type'] ) {
 			?>

@@ -25,11 +25,17 @@ class WSUWP_Graduate_Degree_Programs {
 	 * @var array
 	 */
 	var $post_meta_keys = array(
+		'gsdp_degree_shortname' => array(
+			'description' => 'Factsheet display name',
+			'type' => 'string',
+			'sanitize_callback' => 'sanitize_text_field',
+			'pre_html' => '<div class="factsheet-group">',
+			'location' => 'primary',
+		),
 		'gsdp_degree_id' => array(
 			'description' => 'Factsheet degree ID',
 			'type' => 'int',
 			'sanitize_callback' => 'absint',
-			'pre_html' => '<div class="factsheet-group">',
 			'location' => 'primary',
 		),
 		'gsdp_accepting_applications' => array(
@@ -162,6 +168,8 @@ class WSUWP_Graduate_Degree_Programs {
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
 		add_action( 'add_meta_boxes', array( $this, 'remove_meta_boxes' ), 99 );
 		add_action( "save_post_{$this->post_type_slug}", array( $this, 'save_factsheet' ), 10, 2 );
+
+		add_action( 'pre_get_posts', array( $this, 'adjust_factsheet_archive_query' ) );
 	}
 
 	/**
@@ -185,7 +193,7 @@ class WSUWP_Graduate_Degree_Programs {
 			wp_enqueue_script( 'gsdp-factsheet-admin' );
 		}
 
-		if ( in_array( $hook_suffix, array( 'term.php', 'term-new.php' ), true ) && in_array( get_current_screen()->taxonomy, array( 'gs-contact', 'gs-faculty' ), true ) ) {
+		if ( in_array( $hook_suffix, array( 'term.php', 'term-new.php' ), true ) && in_array( get_current_screen()->taxonomy, array( 'gs-contact', 'gs-faculty', 'gs-degree-type' ), true ) ) {
 			wp_enqueue_style( 'gsdp-faculty-admin', get_stylesheet_directory_uri() . '/css/faculty-admin.css', array(), WSUWP_Graduate_School_Theme()->theme_version() );
 		}
 	}
@@ -904,6 +912,7 @@ class WSUWP_Graduate_Degree_Programs {
 
 		$data = array(
 			'degree_id' => 0,
+			'shortname' => '',
 			'description' => '',
 			'accepting_applications' => 'No',
 			'faculty' => array(),
@@ -932,6 +941,10 @@ class WSUWP_Graduate_Degree_Programs {
 
 		if ( isset( $factsheet_data['gsdp_degree_id'][0] ) ) {
 			$data['degree_id'] = $factsheet_data['gsdp_degree_id'][0];
+		}
+
+		if ( isset( $factsheet_data['gsdp_degree_shortname'][0] ) ) {
+			$data['shortname'] = $factsheet_data['gsdp_degree_shortname'][0];
 		}
 
 		if ( isset( $factsheet_data['gsdp_accepting_applications'][0] ) && 1 === absint( $factsheet_data['gsdp_accepting_applications'][0] ) ) {
@@ -1047,5 +1060,20 @@ class WSUWP_Graduate_Degree_Programs {
 		}
 
 		return $data;
+	}
+
+	/**
+	 * Adjusts the archive query for factsheets to show all factsheets.
+	 *
+	 * @since 0.8.0
+	 *
+	 * @param WP_Query $query
+	 */
+	public function adjust_factsheet_archive_query( $query ) {
+		if ( is_post_type_archive( $this->post_type_slug ) ) {
+			$query->set( 'posts_per_page', -1 );
+		}
+
+		return;
 	}
 }

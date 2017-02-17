@@ -6,11 +6,30 @@ if ( have_posts() ) {
 		the_post();
 		$factsheet_data = WSUWP_Graduate_Degree_Programs::get_factsheet_data( get_the_ID() );
 		$factsheet_data['permalink'] = get_the_permalink();
-		if ( ! empty( $factsheet_data['shortname'] ) ) {
-			$factsheets[ $factsheet_data['shortname'] ] = $factsheet_data;
-		} else {
-			$factsheets[ get_the_title() ] = $factsheet_data;
+
+		$degree_types = wp_get_object_terms( get_the_ID(), 'gs-degree-type' );
+		$degree_classification = '';
+		if ( ! is_wp_error( $degree_types ) && 0 < count( $degree_types ) ) {
+			$degree_classification = get_term_meta( $degree_types[0]->term_id, 'gs_degree_type_classification', true );
 		}
+
+		if ( empty( $degree_classification ) ) {
+			$factsheet_data['degree_classification'] = 'other';
+		} else {
+			$factsheet_data['degree_classification'] = $degree_classification;
+		}
+
+		if ( ! empty( $factsheet_data['shortname'] ) ) {
+			$factsheet_key = $factsheet_data['shortname'];
+		} else {
+			$factsheet_key = get_the_title();
+		}
+
+		if ( ! isset( $factsheets[ $factsheet_key ] ) ) {
+			$factsheets[ $factsheet_key ] = array();
+		}
+
+		$factsheets[ $factsheet_key ][] = $factsheet_data;
 	}
 }
 ksort( $factsheets );
@@ -59,7 +78,14 @@ get_header();
 				<?php
 				$letter = 'a';
 				foreach( $factsheets as $factsheet_name => $factsheet ) {
-					while ( 0 !== strpos( strtolower( $factsheet_name ), $letter ) ) {
+					$factsheet_character = trim( substr( $factsheet_name, 0, 1 ) );
+
+					// Avoid indefinite loops by skipping factsheets that don't start with a-z.
+					if ( ! preg_match( '/^[a-zA-Z]$/', $factsheet_character ) ) {
+						continue;
+					}
+
+					while ( 0 !== strcasecmp( $factsheet_character, $letter ) ) {
 						echo '</ul></div>';
 
 						// It's funny and sad, but this works. a becomes b, z becomes aa.
@@ -74,12 +100,15 @@ get_header();
 					}
 					?>
 					<li>
-						<div class="degreename flexleft"><a href="<?php echo esc_url( $factsheet['permalink'] ); ?>"><?php echo esc_html( $factsheet_name ); ?></a></div>
-						<div class="doctorate flexright exists">D</div>
-						<div class="masters flexright exists">M</div>
+						<div class="degreename flexleft"><?php echo esc_html( $factsheet_name ); ?></div>
+						<?php
+						foreach( $factsheet as $item ) {
+							?><div class="<?php echo esc_attr( $item['degree_classification'] ); ?> flexright exists">
+							<a href="<?php echo esc_url( $item['permalink'] ); ?>"><?php echo esc_html( $item['degree_classification'][0] ) ?></a></div><?php
+						}
+						?>
 					</li>
 					<?php
-
 				}
 				?>
 				</ul>
@@ -87,17 +116,15 @@ get_header();
 			<?php
 				$letter++;
 
-				if ( 'aa' !== $letter ) {
-					while ( 'aa' !== $letter ) {
-						?>
-						<div class="lettergroup">
-							<a id="<?php echo esc_attr( $letter ); ?>" name="<?php echo esc_attr( $letter ); ?>"></a>
-							<div class="bigletter active"><?php echo strtoupper( $letter ); ?></div>
-							<div class="bigletterline"></div>
-						</div>
-						<?php
-						$letter++;
-					}
+				while ( 'aa' !== $letter ) {
+					?>
+					<div class="lettergroup">
+						<a id="<?php echo esc_attr( $letter ); ?>" name="<?php echo esc_attr( $letter ); ?>"></a>
+						<div class="bigletter active"><?php echo strtoupper( $letter ); ?></div>
+						<div class="bigletterline"></div>
+					</div>
+					<?php
+					$letter++;
 				}
 			?>
 		</div>

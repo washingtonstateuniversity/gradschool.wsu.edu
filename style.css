@@ -1984,6 +1984,8 @@ p.mobile {
 	        order: 0;
 }
 
+.other,
+.graduate-certificate,
 .masters,
 .doctorate {
 	width: 30px;
@@ -2010,6 +2012,7 @@ p.mobile {
 	        justify-content: center;
 	margin: auto;
 	margin-right: 5px;
+	text-transform: uppercase;
 }
 
 .doctorate {
@@ -2017,6 +2020,8 @@ p.mobile {
 	padding: 0;
 }
 
+.other.exists,
+.graduate-certificate.exists,
 .masters.exists,
 .doctorate.exists {
 	visibility: visible;
@@ -2223,6 +2228,8 @@ body.searching .degreesearchsection {
 		        justify-content: center;
 	}
 
+	.degreelist li .other,
+	.degreelist li .graduate-certificate,
 	.degreelist li .masters,
 	.degreelist li .doctorate {
 		margin: auto 3px;
@@ -2305,6 +2312,8 @@ section.padtop {
 	float: right;
 }
 
+.key .other,
+.key .graduate-certificate,
 .key .masters,
 .key .doctorate,
 .key p {

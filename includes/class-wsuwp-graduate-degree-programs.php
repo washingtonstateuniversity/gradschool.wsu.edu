@@ -1071,7 +1071,7 @@ class WSUWP_Graduate_Degree_Programs {
 	 */
 	public function adjust_factsheet_archive_query( $query ) {
 		if ( is_post_type_archive( $this->post_type_slug ) ) {
-			$query->set( 'posts_per_page', - 1 );
+			$query->set( 'posts_per_page', -1 );
 		}
 
 		return;

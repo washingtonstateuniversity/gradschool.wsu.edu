@@ -78,7 +78,14 @@ get_header();
 				<?php
 				$letter = 'a';
 				foreach( $factsheets as $factsheet_name => $factsheet ) {
-					while ( 0 !== strpos( strtolower( $factsheet_name ), $letter ) ) {
+					$factsheet_character = trim( substr( $factsheet_name, 0, 1 ) );
+
+					// Avoid indefinite loops by skipping factsheets that don't start with a-z.
+					if ( ! preg_match( '/^[a-zA-Z]$/', $factsheet_character ) ) {
+						continue;
+					}
+
+					while ( 0 !== strcasecmp( $factsheet_character, $letter ) ) {
 						echo '</ul></div>';
 
 						// It's funny and sad, but this works. a becomes b, z becomes aa.

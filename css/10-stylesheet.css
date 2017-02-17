@@ -2198,11 +2198,11 @@ section.row .column {
 }
 
 /* degrees page overrides */
-.post-12316 ul li a:before,
-.post-12316 ul li a:after,
-.post-12316 ul li:before,
-.post-12316 .pagination a:before,
-.post-12316 .pagination a:after {
+.post-type-archive-gs-factsheet main ul li a:before,
+.post-type-archive-gs-factsheet main ul li a:after,
+.post-type-archive-gs-factsheet main ul li:before,
+.post-type-archive-gs-factsheet main .pagination a:before,
+.post-type-archive-gs-factsheet main .pagination a:after {
 	display: none;
 }
 

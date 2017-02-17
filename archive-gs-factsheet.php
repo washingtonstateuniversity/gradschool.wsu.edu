@@ -100,7 +100,7 @@ get_header();
 					}
 					?>
 					<li>
-						<div class="degreename flexleft"><?php echo esc_html( $factsheet_name ); ?></div>
+						<div class="degreename flexleft"><a><?php echo esc_html( $factsheet_name ); ?></a></div>
 						<?php
 						foreach( $factsheet as $item ) {
 							?><div class="<?php echo esc_attr( $item['degree_classification'] ); ?> flexright exists">

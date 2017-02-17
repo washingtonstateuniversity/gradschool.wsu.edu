@@ -109,17 +109,15 @@ get_header();
 			<?php
 				$letter++;
 
-				if ( 'aa' !== $letter ) {
-					while ( 'aa' !== $letter ) {
-						?>
-						<div class="lettergroup">
-							<a id="<?php echo esc_attr( $letter ); ?>" name="<?php echo esc_attr( $letter ); ?>"></a>
-							<div class="bigletter active"><?php echo strtoupper( $letter ); ?></div>
-							<div class="bigletterline"></div>
-						</div>
-						<?php
-						$letter++;
-					}
+				while ( 'aa' !== $letter ) {
+					?>
+					<div class="lettergroup">
+						<a id="<?php echo esc_attr( $letter ); ?>" name="<?php echo esc_attr( $letter ); ?>"></a>
+						<div class="bigletter active"><?php echo strtoupper( $letter ); ?></div>
+						<div class="bigletterline"></div>
+					</div>
+					<?php
+					$letter++;
 				}
 			?>
 		</div>

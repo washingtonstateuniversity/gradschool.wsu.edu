@@ -2172,11 +2172,11 @@ body.events-archive .column.one {
 }
 
 
-.degreelist {
+.degree-list {
 	text-align: left;
 }
 
-.degreelist li {
+.degree-list li {
 	border-bottom: 1px solid #cecece;
 	width: 100%;
 	display: -webkit-box;
@@ -2184,7 +2184,7 @@ body.events-archive .column.one {
 	display: flex;
 }
 
-.degreelist li:after,
+.degree-list li:after,
 .flexalign:after {
 	content: "";
 	-webkit-box-flex: 1;
@@ -2238,18 +2238,18 @@ body.events-archive .column.one {
 	visibility: visible;
 }
 
-.degreelist .degreename {
+.degree-list .degree-name {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
 }
 
-.degreelist .degreename a {
+.degree-list .degree-name a {
 	margin-bottom: 10px;
 	margin-top: 10px;
 }
 
-.degreelist .pagination a {
+.degree-list .pagination a {
 	width: 25px;
 	height: 25px;
 	border: 1px solid #cecece;
@@ -2265,7 +2265,7 @@ body.events-archive .column.one {
 	margin-bottom: 5px;
 }
 
-.degreelist .pagination a.active {
+.degree-list .pagination a.active {
 	background-color: #94192b;
 	color: #fff;
 }
@@ -2328,20 +2328,20 @@ body.events-archive .column.one {
 	display: none;
 }
 
-.degreeprograms {
+.degree-programs {
 	height: 190px;
 	background-color: #f7f7f9;
 	color: linear-gradient(to left, #ed6615, #880202, #880202);
 }
 
-.degreeprograms h1 {
+.degree-programs h1 {
 	font: 300 50px/45px "Open Sans", "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif;
 	background: -webkit-linear-gradient(135deg, #ed6615, #880202);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
 
-.degreesearchsection {
+.degree-search-section {
 	height: 80px;
 	background-color: #eff0f2;
 	display: -webkit-box;
@@ -2363,7 +2363,7 @@ body.events-archive .column.one {
 	outline: none;
 }
 
-.degreelist ul li {
+.degree-list ul li {
 	margin-left: 0;
 }
 
@@ -2408,7 +2408,7 @@ li.degree-row-wrapper {
 		margin-top: 0;
 	}
 
-	.degreelist .degreename {
+	.degree-list .degree-name {
 		max-width: 79%;
 		margin-right: 5px;
 		display: -webkit-box;
@@ -2419,14 +2419,14 @@ li.degree-row-wrapper {
 		        justify-content: center;
 	}
 
-	.degreelist li .other,
-	.degreelist li .graduate-certificate,
-	.degreelist li .masters,
-	.degreelist li .doctorate {
+	.degree-list li .other,
+	.degree-list li .graduate-certificate,
+	.degree-list li .masters,
+	.degree-list li .doctorate {
 		margin: auto 3px;
 	}
 
-	.degreelist li {
+	.degree-list li {
 		min-height: 45px;
 	}
 }

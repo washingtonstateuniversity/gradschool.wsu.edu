@@ -42,7 +42,7 @@ get_header();
 
 	<?php get_template_part( 'parts/headers' ); ?>
 
-	<section class="single gutter pad-top degreeprograms hero-med">
+	<section class="single gutter pad-top degree-programs hero-med">
 		<div class="column one centervertically">
 			<div class="flexwrap left">
 				<h1>Degree Programs</h1>
@@ -50,13 +50,13 @@ get_header();
 		</div>
 	</section>
 
-	<section class="single gutter pad-top degreesearchsection">
+	<section class="single gutter pad-top degree-search-section">
 		<div class="column one centervertically">
 			<div class="searchdegreeswrapper"></div>
 		</div>
 	</section>
 
-	<section class="single gutter pad-top whitesection degreelist">
+	<section class="single gutter pad-top whitesection degree-list">
 		<div class="column one">
 
 			<div class="toparea">

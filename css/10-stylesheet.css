@@ -1842,47 +1842,6 @@ p.mobile {
 	font-weight: 300;
 }
 
-.overlay {
-	width: 100%;
-	height: 100vh;
-	background-color: rgba(0, 0, 0, .8);
-	z-index: 99999;
-	top: 0;
-	position: fixed;
-	visibility: hidden;
-	opacity: 0;
-	transition: visibility 0s, opacity .2s linear;
-}
-
-body.searching .overlay {
-	visibility: visible;
-	opacity: 1;
-}
-
-body.searching .degreesearchsection {
-	z-index: 100000;
-}
-
-.ui-autocomplete {
-	z-index: 100000;
-}
-
-.ui-menu-item {
-	color: #fff;
-	list-style-type: none;
-	margin-top: 5px;
-}
-
-.ui-menu-item a {
-	color: #fff;
-	list-style-type: none;
-	margin-top: 5px;
-}
-
-.ui-menu-item .ui-state-highlight {
-	color: #6e171d;
-}
-
 /* directory */
 .directory {
 	min-width: 150px;

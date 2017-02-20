@@ -56,7 +56,9 @@ get_header();
 
 	<section class="single gutter pad-top degree-search-section">
 		<div class="column one centervertically">
-			<div class="searchdegreeswrapper"></div>
+			<div class="degree-search-wrapper">
+				<input type="text" name="searchdegrees" id="degree-search-input" placeholder="Search Degrees A-Z" />
+			</div>
 		</div>
 	</section>
 
@@ -202,5 +204,5 @@ get_header();
 
 	<?php get_template_part( 'parts/footers' ); ?>
 </main>
-
+<div class="overlay"></div>
 <?php get_footer();

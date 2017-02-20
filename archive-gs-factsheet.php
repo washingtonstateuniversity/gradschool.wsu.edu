@@ -135,7 +135,10 @@ get_header();
 							foreach ( $factsheet as $item ) {
 								?>
 								<div class="degree-classification <?php echo esc_attr( $item['degree_classification'] ); ?>">
-									<?php echo esc_html( $item['degree_classification'][0] ) ?>
+									<?php
+									// Output the first character of the degree classification string.
+									echo esc_html( $item['degree_classification'][0] );
+									?>
 								</div>
 								<?php
 							}
@@ -148,7 +151,10 @@ get_header();
 							<div class="degree-row-bottom">
 								<div class="degree-detail"><a href="<?php echo esc_url( $item['permalink'] ); ?>"><?php echo esc_html( $factsheet_name ); ?></a> | <?php echo esc_html( $item['degree_type'] ); ?></div>
 								<div class="degree-classification <?php echo esc_attr( $item['degree_classification'] ); ?>">
-									<?php echo esc_html( $item['degree_classification'][0] ) ?>
+									<?php
+									// Output the first character of the degree classification string.
+									echo esc_html( $item['degree_classification'][0] );
+									?>
 								</div>
 							</div>
 							<?php

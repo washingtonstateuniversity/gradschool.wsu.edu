@@ -114,7 +114,7 @@ get_header();
 						<div class="degree-row-top">
 							<?php
 							if ( 1 < count( $factsheet ) ) {
-								?><div class="degree-name"><?php echo esc_html( $factsheet_name ); ?><?php
+								?><div class="degree-name"><span class="degree-anchor"><?php echo esc_html( $factsheet_name ); ?></span><?php
 							} else {
 								?><div class="degree-name"><a href="<?php echo esc_url( $factsheet[0]['permalink'] ); ?>"><?php echo esc_html( $factsheet_name ); ?></a><?php
 							}

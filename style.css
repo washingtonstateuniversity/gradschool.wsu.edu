@@ -2311,6 +2311,7 @@ body.events-archive .column.one {
 
 .degree-list ul li {
 	margin-left: 0;
+	padding: 0;
 }
 
 .degree-list li.degree-row-wrapper {
@@ -2341,6 +2342,15 @@ body.events-archive .column.one {
 	cursor: pointer;
 }
 
+.degree-row-bottom {
+	margin-top: 1.5em;
+	margin-left: 2em;
+}
+
+.degree-row-bottom ~ .degree-row-bottom {
+	margin-top: 0;
+}
+
 .degree-name {
 	-webkit-box-ordinal-group: 2;
 	    -ms-flex-order: 1;
@@ -2348,11 +2358,21 @@ body.events-archive .column.one {
 	-webkit-box-flex: 1;
 	    -ms-flex-positive: 1;
 	        flex-grow: 1;
+	padding: .5em 0 0;
 }
 
-.degree-list .degree-name a {
-	margin-bottom: 10px;
-	margin-top: 10px;
+.degree-name .degree-anchor {
+	color: #ab0d24;
+	-webkit-transition-property: color, background;
+	transition-property: color, background;
+	-webkit-transition-duration: .4s, .4s;
+	        transition-duration: .4s, .4s;
+	border-bottom: 2px solid rgba(0, 0, 0, .05);
+}
+
+.degree-name .degree-anchor:hover {
+	color: #b7203d;
+	border-bottom: 2px solid #b7203d;
 }
 
 .degree-classification {
@@ -2368,8 +2388,7 @@ body.events-archive .column.one {
 	background: #ef6615;
 	border-radius: 50%;
 	color: #fff;
-	margin: auto;
-	margin-right: 5px;
+	margin: .3em 5px .3em auto;
 	text-transform: uppercase;
 	text-align: center;
 }

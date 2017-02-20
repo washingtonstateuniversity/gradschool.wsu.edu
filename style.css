@@ -1901,44 +1901,9 @@ p.mobile {
 	background-size: 16px;
 }
 
-.degreeprograms {
-	height: 190px;
-	background-color: #f7f7f9;
-	color: linear-gradient(to left, #ed6615, #880202, #880202);
-}
-
-.degreeprograms h1 {
-	font: 300 50px/45px "Open Sans", "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif;
-	background: -webkit-linear-gradient(135deg, #ed6615, #880202);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-}
-
 .column.one.centervertically {
 	margin: 0;
 	padding: 0;
-}
-
-.degreesearchsection {
-	height: 80px;
-	background-color: #eff0f2;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-align: center;
-	    -ms-flex-align: center;
-	        align-items: center;
-}
-
-#searchdegreeinput {
-	border: none;
-	font-size: 25px;
-	width: 100%;
-	background: #eff0f2 url(https://wsuwp-uploads.s3.amazonaws.com/uploads/sites/1485/2016/10/search-gry.png) no-repeat left 14px;
-	background-size: 16px;
-	padding-left: 36px;
-	outline-width: 0;
-	outline: none;
 }
 
 /* Chrome/Opera/Safari */
@@ -1960,6 +1925,252 @@ p.mobile {
 :-moz-placeholder {
 	font-weight: 300;
 }
+
+.overlay {
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, .8);
+	z-index: 99999;
+	top: 0;
+	position: fixed;
+	visibility: hidden;
+	opacity: 0;
+	-webkit-transition: visibility 0s, opacity .2s linear;
+	transition: visibility 0s, opacity .2s linear;
+}
+
+body.searching .overlay {
+	visibility: visible;
+	opacity: 1;
+}
+
+body.searching .degreesearchsection {
+	z-index: 100000;
+}
+
+.ui-autocomplete {
+	z-index: 100000;
+}
+
+.ui-menu-item {
+	color: #fff;
+	list-style-type: none;
+	margin-top: 5px;
+}
+
+.ui-menu-item a {
+	color: #fff;
+	list-style-type: none;
+	margin-top: 5px;
+}
+
+.ui-menu-item .ui-state-highlight {
+	color: #6e171d;
+}
+
+/* directory */
+.directory {
+	min-width: 150px;
+	width: 25%;
+	margin-top: 15px;
+}
+
+.directory p {
+	margin-left: 0;
+	padding-left: 0;
+}
+
+.directory .details {
+	margin-left: 15px;
+}
+
+.directory p.email {
+	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/email-gry.png) no-repeat left 6px;
+	background-size: 16px;
+	padding-left: 25px;
+}
+
+.directory p.title {
+	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/ribbon-gry.png) no-repeat left 6px;
+	background-size: 16px;
+	padding-left: 25px;
+}
+
+.directory p.mobile {
+	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/mobile-gry.png) no-repeat left 6px;
+	background-size: 16px;
+	padding-left: 25px;
+}
+
+.directory p.phone {
+	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/phone-gry.png) no-repeat left 6px;
+	background-size: 16px;
+	padding-left: 25px;
+}
+
+.directory p.mobile {
+	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/mobile-gry.png) no-repeat left 6px;
+	background-size: 16px;
+	padding-left: 25px;
+}
+
+.column.one.heromask-gradient {
+	background: -webkit-linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
+	background: linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
+}
+
+.backarrow,
+.forwardarrow {
+	display: none;
+}
+
+@media screen and (max-width: 768px) {
+
+	.footer ul li a {
+		font-size: 1.45em;
+	}
+
+	a.hero-button {
+		float: left;
+		margin-top: 10px;
+	}
+
+	.hero-buttons {
+		position: relative;
+		bottom: auto;
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		    -ms-flex-direction: column;
+		        flex-direction: column;
+		-webkit-box-pack: center;
+		    -ms-flex-pack: center;
+		        justify-content: center;
+		-webkit-box-align: center;
+		    -ms-flex-align: center;
+		        align-items: center;
+		width: 100%;
+	}
+
+	.centervertically {
+		position: relative;
+		top: auto;
+		-webkit-transform: none;
+		    -ms-transform: none;
+		        transform: none;
+	}
+
+	.aboutwsugradprogram p {
+		margin: auto;
+	}
+
+	.footersection .directorinfo {
+		margin-right: auto;
+	}
+}
+
+.flexright {
+	-webkit-box-ordinal-group: 2;
+	    -ms-flex-order: 1;
+	        order: 1;
+}
+
+.directorywrapper {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	    flex-wrap: wrap;
+}
+
+section.row.siteid {
+	background-color: #f7f7f8;
+}
+
+section.padtop {
+	margin-top: 15px;
+}
+
+.ui-menu-item {
+	cursor: pointer;
+}
+
+.clr:before,
+.clr:after {
+	display: table;
+	content: " ";
+	clear: both;
+	font-size: 0;
+}
+
+section.row .column {
+	padding-top: 2rem;
+}
+
+/* Fix events calendar */
+body.events-archive .column.one {
+	width: 100%;
+}
+
+/* fix footer padding */
+.lastsectionwithfooter {
+	padding-top: 5em;
+}
+
+.column.one .footer a:before,
+.column.one .footer a:after {
+	display: none;
+}
+
+.newsandevents ul li:before {
+	display: none;
+}
+
+.factsheet-url {
+	font-size: 1.2em;
+}
+
+.factsheet-statistics-wrapper {
+	margin-top: 2em;
+}
+
+.factsheet-stat {
+	font-size: 1.1em;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	width: 100%;
+	margin-bottom: .5em;
+	border-top: 1px solid #efefef;
+	padding: .3em 0 0;
+}
+
+.factsheet-set,
+.factsheet-value,
+.factsheet-label {
+	-ms-flex-preferred-size: 50%;
+	    flex-basis: 50%;
+}
+
+.factsheet-value {
+	text-align: left;
+}
+
+.column .factsheet-stat ul li:before {
+	display: none;
+	content: "";
+}
+
+.column .factsheet-set ul li {
+	margin-left: 0;
+}
+
+.factsheet-contact {
+	margin-bottom: 1.5em;
+}
+
 
 .degreelist {
 	text-align: left;
@@ -2108,202 +2319,64 @@ p.mobile {
 	margin-left: 75px;
 }
 
-.overlay {
-	width: 100%;
-	height: 100vh;
-	background-color: rgba(0, 0, 0, .8);
-	z-index: 99999;
-	top: 0;
-	position: fixed;
-	visibility: hidden;
-	opacity: 0;
-	-webkit-transition: visibility 0s, opacity .2s linear;
-	transition: visibility 0s, opacity .2s linear;
-}
-
-body.searching .overlay {
-	visibility: visible;
-	opacity: 1;
-}
-
-body.searching .degreesearchsection {
-	z-index: 100000;
-}
-
-.ui-autocomplete {
-	z-index: 100000;
-}
-
-.ui-menu-item {
-	color: #fff;
-	list-style-type: none;
-	margin-top: 5px;
-}
-
-.ui-menu-item a {
-	color: #fff;
-	list-style-type: none;
-	margin-top: 5px;
-}
-
-.ui-menu-item .ui-state-highlight {
-	color: #6e171d;
-}
-
-/* directory */
-.directory {
-	min-width: 150px;
-	width: 25%;
-	margin-top: 15px;
-}
-
-.directory p {
-	margin-left: 0;
-	padding-left: 0;
-}
-
-.directory .details {
-	margin-left: 15px;
-}
-
-.directory p.email {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/email-gry.png) no-repeat left 6px;
-	background-size: 16px;
-	padding-left: 25px;
-}
-
-.directory p.title {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/ribbon-gry.png) no-repeat left 6px;
-	background-size: 16px;
-	padding-left: 25px;
-}
-
-.directory p.mobile {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/mobile-gry.png) no-repeat left 6px;
-	background-size: 16px;
-	padding-left: 25px;
-}
-
-.directory p.phone {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/phone-gry.png) no-repeat left 6px;
-	background-size: 16px;
-	padding-left: 25px;
-}
-
-.directory p.mobile {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/mobile-gry.png) no-repeat left 6px;
-	background-size: 16px;
-	padding-left: 25px;
-}
-
-.column.one.heromask-gradient {
-	background: -webkit-linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
-	background: linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
-}
-
-.backarrow,
-.forwardarrow {
+/* degrees page overrides */
+.post-type-archive-gs-factsheet main ul li a:before,
+.post-type-archive-gs-factsheet main ul li a:after,
+.post-type-archive-gs-factsheet main ul li:before,
+.post-type-archive-gs-factsheet main .pagination a:before,
+.post-type-archive-gs-factsheet main .pagination a:after {
 	display: none;
 }
 
-@media screen and (max-width: 768px) {
-
-	.lettergroup ul {
-		margin-left: 11px;
-		margin-top: 0;
-	}
-
-	.footer ul li a {
-		font-size: 1.45em;
-	}
-
-	.degreelist .degreename {
-		max-width: 79%;
-		margin-right: 5px;
-		display: -webkit-box;
-		display: -ms-flexbox;
-		display: flex;
-		-webkit-box-pack: center;
-		    -ms-flex-pack: center;
-		        justify-content: center;
-	}
-
-	.degreelist li .other,
-	.degreelist li .graduate-certificate,
-	.degreelist li .masters,
-	.degreelist li .doctorate {
-		margin: auto 3px;
-	}
-
-	.degreelist li {
-		min-height: 45px;
-	}
-
-	a.hero-button {
-		float: left;
-		margin-top: 10px;
-	}
-
-	.hero-buttons {
-		position: relative;
-		bottom: auto;
-		display: -webkit-box;
-		display: -ms-flexbox;
-		display: flex;
-		-webkit-box-orient: vertical;
-		-webkit-box-direction: normal;
-		    -ms-flex-direction: column;
-		        flex-direction: column;
-		-webkit-box-pack: center;
-		    -ms-flex-pack: center;
-		        justify-content: center;
-		-webkit-box-align: center;
-		    -ms-flex-align: center;
-		        align-items: center;
-		width: 100%;
-	}
-
-	.centervertically {
-		position: relative;
-		top: auto;
-		-webkit-transform: none;
-		    -ms-transform: none;
-		        transform: none;
-	}
-
-	.aboutwsugradprogram p {
-		margin: auto;
-	}
-
-	.footersection .directorinfo {
-		margin-right: auto;
-	}
+.degreeprograms {
+	height: 190px;
+	background-color: #f7f7f9;
+	color: linear-gradient(to left, #ed6615, #880202, #880202);
 }
 
-.flexright {
-	-webkit-box-ordinal-group: 2;
-	    -ms-flex-order: 1;
-	        order: 1;
+.degreeprograms h1 {
+	font: 300 50px/45px "Open Sans", "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+	background: -webkit-linear-gradient(135deg, #ed6615, #880202);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
-.directorywrapper {
+.degreesearchsection {
+	height: 80px;
+	background-color: #eff0f2;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
-	-ms-flex-wrap: wrap;
-	    flex-wrap: wrap;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 }
 
-section.row.siteid {
-	background-color: #f7f7f8;
+#searchdegreeinput {
+	border: none;
+	font-size: 25px;
+	width: 100%;
+	background: #eff0f2 url(https://wsuwp-uploads.s3.amazonaws.com/uploads/sites/1485/2016/10/search-gry.png) no-repeat left 14px;
+	background-size: 16px;
+	padding-left: 36px;
+	outline-width: 0;
+	outline: none;
 }
 
-section.padtop {
-	margin-top: 15px;
+.degreelist ul li {
+	margin-left: 0;
 }
 
-.ui-menu-item {
-	cursor: pointer;
+.degree-row-bottom,
+.degree-row-top {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	width: 100%;
+}
+
+li.degree-row-wrapper {
+	display: inline-block;
 }
 
 .key {
@@ -2328,90 +2401,33 @@ section.padtop {
 	margin-right: 20px;
 }
 
-.clr:before,
-.clr:after {
-	display: table;
-	content: " ";
-	clear: both;
-	font-size: 0;
-}
+@media screen and (max-width: 768px) {
 
-section.row .column {
-	padding-top: 2rem;
-}
+	.lettergroup ul {
+		margin-left: 11px;
+		margin-top: 0;
+	}
 
-/* degrees page overrides */
-.post-type-archive-gs-factsheet main ul li a:before,
-.post-type-archive-gs-factsheet main ul li a:after,
-.post-type-archive-gs-factsheet main ul li:before,
-.post-type-archive-gs-factsheet main .pagination a:before,
-.post-type-archive-gs-factsheet main .pagination a:after {
-	display: none;
-}
+	.degreelist .degreename {
+		max-width: 79%;
+		margin-right: 5px;
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-pack: center;
+		    -ms-flex-pack: center;
+		        justify-content: center;
+	}
 
-.degreelist ul li {
-	margin-left: 0;
-}
+	.degreelist li .other,
+	.degreelist li .graduate-certificate,
+	.degreelist li .masters,
+	.degreelist li .doctorate {
+		margin: auto 3px;
+	}
 
-/* Fix events calendar */
-body.events-archive .column.one {
-	width: 100%;
-}
-
-/* fix footer padding */
-.lastsectionwithfooter {
-	padding-top: 5em;
-}
-
-.column.one .footer a:before,
-.column.one .footer a:after {
-	display: none;
-}
-
-.newsandevents ul li:before {
-	display: none;
-}
-
-.factsheet-url {
-	font-size: 1.2em;
-}
-
-.factsheet-statistics-wrapper {
-	margin-top: 2em;
-}
-
-.factsheet-stat {
-	font-size: 1.1em;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	width: 100%;
-	margin-bottom: .5em;
-	border-top: 1px solid #efefef;
-	padding: .3em 0 0;
-}
-
-.factsheet-set,
-.factsheet-value,
-.factsheet-label {
-	-ms-flex-preferred-size: 50%;
-	    flex-basis: 50%;
-}
-
-.factsheet-value {
-	text-align: left;
-}
-
-.column .factsheet-stat ul li:before {
-	display: none;
-	content: "";
-}
-
-.column .factsheet-set ul li {
-	margin-left: 0;
-}
-
-.factsheet-contact {
-	margin-bottom: 1.5em;
+	.degreelist li {
+		min-height: 45px;
+	}
 }
 /*# sourceMappingURL=style.css.map */

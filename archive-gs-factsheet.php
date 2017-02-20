@@ -68,9 +68,9 @@ get_header();
 				<div class="key">
 
 					KEY: Doctorate
-					<div class="doctorate exists">D</div>
+					<div class="degree-classification doctorate">D</div>
 					Master's
-					<div class="masters exists">M</div>
+					<div class="degree-classification masters">M</div>
 				</div>
 			</div>
 

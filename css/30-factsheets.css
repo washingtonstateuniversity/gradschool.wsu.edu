@@ -1,0 +1,244 @@
+
+.degree-list {
+	text-align: left;
+}
+
+.degree-list li {
+	border-bottom: 1px solid #cecece;
+	width: 100%;
+	display: flex;
+}
+
+.degree-list li:after,
+.flexalign:after {
+	content: "";
+	flex-grow: 1;
+	order: 0;
+}
+
+.degree-list .pagination a {
+	width: 25px;
+	height: 25px;
+	border: 1px solid #cecece;
+	padding: 5px;
+	font-weight: 700;
+	color: #333;
+	display: inline-flex;
+	justify-content: center;
+	margin-bottom: 5px;
+}
+
+.degree-list .pagination a.active {
+	background-color: #94192b;
+	color: #fff;
+}
+
+.bigletter {
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+	border: 1px solid #cecece;
+	color: #cecece;
+	text-align: center;
+	flex-direction: column;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 25px;
+	font-weight: 700;
+}
+
+.bigletter.active {
+	color: #94192b;
+}
+
+.bigletterline {
+	width: calc(100% - 60px);
+	border-bottom: 1px solid #cecece;
+	margin-left: 61px;
+	transform: translateY(-30px);
+}
+
+.lettergroup {
+	margin-top: 20px;
+}
+
+.lettergroup:first-of-type {
+	margin-top: 40px;
+}
+
+.lettergroup ul {
+	margin-left: 75px;
+}
+
+
+.degree-programs {
+	height: 190px;
+	background-color: #f7f7f9;
+	color: linear-gradient(to left, #ed6615, #880202, #880202);
+}
+
+.degree-programs h1 {
+	font: 300 50px/45px "Open Sans", "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+	background: -webkit-linear-gradient(135deg, #ed6615, #880202);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.degree-search-section {
+	height: 80px;
+	background-color: #eff0f2;
+	display: flex;
+	align-items: center;
+}
+
+#searchdegreeinput {
+	border: none;
+	font-size: 25px;
+	width: 100%;
+	background: #eff0f2 url(https://wsuwp-uploads.s3.amazonaws.com/uploads/sites/1485/2016/10/search-gry.png) no-repeat left 14px;
+	background-size: 16px;
+	padding-left: 36px;
+	outline-width: 0;
+	outline: none;
+}
+
+.post-type-archive-gs-factsheet main ul li a:before,
+.post-type-archive-gs-factsheet main ul li a:after,
+.post-type-archive-gs-factsheet main ul li:before,
+.post-type-archive-gs-factsheet main .pagination a:before,
+.post-type-archive-gs-factsheet main .pagination a:after {
+	display: none;
+}
+
+.degree-list ul li {
+	margin-left: 0;
+	padding: 0;
+}
+
+.degree-list li.degree-row-wrapper {
+	display: inline-block;
+}
+
+.degree-row-open .degree-classification,
+.degree-row-bottom {
+	display: none;
+}
+
+.degree-row-open .degree-row-bottom .degree-classification {
+	display: block;
+}
+
+.degree-row-top,
+.degree-row-open .degree-row-bottom {
+	display: flex;
+	flex-flow: row;
+}
+
+.degree-row-multiple .degree-row-top {
+	cursor: pointer;
+}
+
+.degree-row-bottom {
+	margin-top: 1em;
+	margin-left: 2em;
+}
+
+.degree-row-bottom ~ .degree-row-bottom {
+	margin-top: 0;
+}
+
+.degree-name,
+.degree-detail {
+	order: 1;
+	flex-grow: 1;
+	padding: .5em 0 0;
+}
+
+.degree-name .degree-anchor {
+	color: #ab0d24;
+	transition-property: color, background;
+	transition-duration: .4s, .4s;
+	border-bottom: 2px solid rgba(0, 0, 0, .05);
+}
+
+.degree-name .degree-anchor:hover {
+	color: #b7203d;
+	border-bottom: 2px solid #b7203d;
+}
+
+.degree-classification {
+	order: 2;
+	flex-basis: 30px;
+	height: 30px;
+	line-height: 30px;
+	width: 30px;
+	font-weight: 700;
+	background: #ef6615;
+	border-radius: 50%;
+	color: #fff;
+	margin: .3em 5px .3em auto;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.doctorate {
+	background: #931a2b;
+	padding: 0;
+}
+
+.other {
+	background: #5e6a71;
+}
+
+.graduate-certificate {
+	background: #00a5bd;
+}
+
+.key-group {
+	display: flex;
+	flex-direction: row-reverse;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+.key-classification {
+	flex-basis: auto;
+	margin-left: 1.5em;
+}
+
+.key-classification span {
+	float: left;
+	line-height: 38px;
+	padding-right: .5em;
+}
+
+.key-classification .degree-classification {
+	float: right;
+}
+
+@media screen and (max-width: 768px) {
+
+	.lettergroup ul {
+		margin-left: 11px;
+		margin-top: 0;
+	}
+
+	.degree-list .degree-name {
+		max-width: 79%;
+		margin-right: 5px;
+		display: flex;
+		justify-content: center;
+	}
+
+	.degree-list li .other,
+	.degree-list li .graduate-certificate,
+	.degree-list li .masters,
+	.degree-list li .doctorate {
+		margin: auto 3px;
+	}
+
+	.degree-list li {
+		min-height: 45px;
+	}
+}

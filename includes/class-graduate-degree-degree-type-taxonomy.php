@@ -179,7 +179,7 @@ class WSUWP_Graduate_Degree_Degree_Type_Taxonomy {
 					<select name="<?php echo esc_attr( $key ); ?>" id="<?php echo esc_attr( $key ); ?>">
 						<option value="other" <?php selected( 'other', $selected_value ); ?>>Other</option>
 						<option value="doctorate" <?php selected( 'doctorate', $selected_value ); ?>>Doctorate</option>
-						<option value="masters" <?php selected( 'masters', $selected_value ); ?>>Masters</option>
+						<option value="masters" <?php selected( 'masters', $selected_value ); ?>>Master</option>
 						<option value="graduate-certificate" <?php selected( 'graduate-certificate', $selected_value ); ?>>Graduate Certificate</option>
 					</select>
 				</td>

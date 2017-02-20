@@ -157,6 +157,7 @@ class WSUWP_Graduate_Degree_Programs {
 		require_once( dirname( __FILE__ ) . '/class-graduate-degree-contact-taxonomy.php' );
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
 
 		add_action( 'init', array( $this, 'register_post_type' ), 15 );
 		add_action( 'init', 'WSUWP_Graduate_Degree_Faculty_Taxonomy', 15 );
@@ -195,6 +196,17 @@ class WSUWP_Graduate_Degree_Programs {
 
 		if ( in_array( $hook_suffix, array( 'term.php', 'term-new.php' ), true ) && in_array( get_current_screen()->taxonomy, array( 'gs-contact', 'gs-faculty', 'gs-degree-type' ), true ) ) {
 			wp_enqueue_style( 'gsdp-faculty-admin', get_stylesheet_directory_uri() . '/css/faculty-admin.css', array(), WSUWP_Graduate_School_Theme()->theme_version() );
+		}
+	}
+
+	/**
+	 * Enqueue JavaScript used for factsheets on the front end.
+	 *
+	 * @since 0.9.0
+	 */
+	public function wp_enqueue_scripts() {
+		if ( is_post_type_archive( $this->post_type_slug ) ) {
+			wp_enqueue_script( 'factsheet-archive', get_stylesheet_directory_uri() . '/js/factsheet-archive.js', array( 'jquery' ), WSUWP_Graduate_School_Theme()->theme_version() );
 		}
 	}
 

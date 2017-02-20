@@ -9,9 +9,13 @@ if ( have_posts() ) {
 
 		$degree_types = wp_get_object_terms( get_the_ID(), 'gs-degree-type' );
 		$degree_classification = '';
+		$degree_type = 'Other';
 		if ( ! is_wp_error( $degree_types ) && 0 < count( $degree_types ) ) {
 			$degree_classification = get_term_meta( $degree_types[0]->term_id, 'gs_degree_type_classification', true );
+			$degree_type = $degree_types[0]->name;
 		}
+
+		$factsheet_data['degree_type'] = $degree_type;
 
 		if ( empty( $degree_classification ) ) {
 			$factsheet_data['degree_classification'] = 'other';
@@ -42,7 +46,7 @@ get_header();
 
 	<?php get_template_part( 'parts/headers' ); ?>
 
-	<section class="single gutter pad-top degreeprograms hero-med">
+	<section class="single gutter pad-top degree-programs hero-med">
 		<div class="column one centervertically">
 			<div class="flexwrap left">
 				<h1>Degree Programs</h1>
@@ -50,23 +54,34 @@ get_header();
 		</div>
 	</section>
 
-	<section class="single gutter pad-top degreesearchsection">
+	<section class="single gutter pad-top degree-search-section">
 		<div class="column one centervertically">
 			<div class="searchdegreeswrapper"></div>
 		</div>
 	</section>
 
-	<section class="single gutter pad-top whitesection degreelist">
+	<section class="single gutter pad-top whitesection degree-list">
 		<div class="column one">
 
 			<div class="toparea">
 				<div class="pagination"><a class="active" href="#a">A</a> <a href="#b">B</a> <a href="#c">C</a> <a href="#d">D</a> <a href="#e">E</a> <a href="#f">F</a> <a href="#g">G</a> <a href="#h">H</a> <a href="#i">I</a> <a href="#j">J</a> <a href="#k">K</a> <a href="#l">L</a> <a href="#m">M</a> <a href="#n">N</a> <a href="#o">O</a> <a href="#p">P</a> <a href="#q">Q</a> <a href="#r">R</a> <a href="#s">S</a> <a href="#t">T</a> <a href="#u">U</a> <a href="#v">V</a> <a href="#w">W</a> <a href="#x">X</a> <a href="#y">Y</a> <a href="#z">Z</a></div>
-				<div class="key">
-
-					KEY: Doctorate
-					<div class="doctorate exists">D</div>
-					Master's
-					<div class="masters exists">M</div>
+				<div class="key-group">
+					<div class="key-classification">
+						<span>Other</span>
+						<div class="degree-classification other">O</div>
+					</div>
+					<div class="key-classification">
+						<span>Graduate Certificate</span>
+						<div class="degree-classification graduate-certificate">G</div>
+					</div>
+					<div class="key-classification">
+						<span>Doctorate</span>
+						<div class="degree-classification doctorate">D</div>
+					</div>
+					<div class="key-classification">
+						<span>Master</span>
+						<div class="degree-classification masters">M</div>
+					</div>
 				</div>
 			</div>
 
@@ -85,6 +100,7 @@ get_header();
 						continue;
 					}
 
+					// Output the letter separators between sets of factsheets.
 					while ( 0 !== strcasecmp( $factsheet_character, $letter ) ) {
 						echo '</ul></div>';
 
@@ -98,13 +114,50 @@ get_header();
 							<ul>
 						<?php
 					}
+
+					if ( 1 < count( $factsheet ) ) {
+						$wrapper_class = 'degree-row-multiple';
+					} else {
+						$wrapper_class = 'degree-row-single';
+					}
 					?>
-					<li>
-						<div class="degreename flexleft"><a><?php echo esc_html( $factsheet_name ); ?></a></div>
+					<li class="degree-row-wrapper <?php echo esc_attr( $wrapper_class ); ?>">
+						<div class="degree-row-top">
+							<?php
+							if ( 1 < count( $factsheet ) ) {
+								?><div class="degree-name"><span class="degree-anchor"><?php echo esc_html( $factsheet_name ); ?></span><?php
+							} else {
+								?><div class="degree-name"><a href="<?php echo esc_url( $factsheet[0]['permalink'] ); ?>"><?php echo esc_html( $factsheet_name ); ?></a><?php
+							}
+							?>
+							</div>
+							<?php
+							foreach ( $factsheet as $item ) {
+								?>
+								<div class="degree-classification <?php echo esc_attr( $item['degree_classification'] ); ?>">
+									<?php
+									// Output the first character of the degree classification string.
+									echo esc_html( $item['degree_classification'][0] );
+									?>
+								</div>
+								<?php
+							}
+							?>
+						</div>
+
 						<?php
-						foreach( $factsheet as $item ) {
-							?><div class="<?php echo esc_attr( $item['degree_classification'] ); ?> flexright exists">
-							<a href="<?php echo esc_url( $item['permalink'] ); ?>"><?php echo esc_html( $item['degree_classification'][0] ) ?></a></div><?php
+						foreach ( $factsheet as $item ) {
+							?>
+							<div class="degree-row-bottom">
+								<div class="degree-detail"><a href="<?php echo esc_url( $item['permalink'] ); ?>"><?php echo esc_html( $factsheet_name ); ?></a> | <?php echo esc_html( $item['degree_type'] ); ?></div>
+								<div class="degree-classification <?php echo esc_attr( $item['degree_classification'] ); ?>">
+									<?php
+									// Output the first character of the degree classification string.
+									echo esc_html( $item['degree_classification'][0] );
+									?>
+								</div>
+							</div>
+							<?php
 						}
 						?>
 					</li>

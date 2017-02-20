@@ -87,6 +87,10 @@ module.exports = function( grunt ) {
 			admin_js: {
 				src: "js/factsheet-admin.js",
 				dest: "js/factsheet-admin.min.js"
+			},
+			archive_js: {
+				src: "js/factsheet-archive.js",
+				dest: "js/factsheet-archive.min.js"
 			}
 		},
 

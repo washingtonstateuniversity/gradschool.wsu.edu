@@ -1901,44 +1901,9 @@ p.mobile {
 	background-size: 16px;
 }
 
-.degreeprograms {
-	height: 190px;
-	background-color: #f7f7f9;
-	color: linear-gradient(to left, #ed6615, #880202, #880202);
-}
-
-.degreeprograms h1 {
-	font: 300 50px/45px "Open Sans", "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif;
-	background: -webkit-linear-gradient(135deg, #ed6615, #880202);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-}
-
 .column.one.centervertically {
 	margin: 0;
 	padding: 0;
-}
-
-.degreesearchsection {
-	height: 80px;
-	background-color: #eff0f2;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-align: center;
-	    -ms-flex-align: center;
-	        align-items: center;
-}
-
-#searchdegreeinput {
-	border: none;
-	font-size: 25px;
-	width: 100%;
-	background: #eff0f2 url(https://wsuwp-uploads.s3.amazonaws.com/uploads/sites/1485/2016/10/search-gry.png) no-repeat left 14px;
-	background-size: 16px;
-	padding-left: 36px;
-	outline-width: 0;
-	outline: none;
 }
 
 /* Chrome/Opera/Safari */
@@ -1959,153 +1924,6 @@ p.mobile {
 /* Firefox 18- */
 :-moz-placeholder {
 	font-weight: 300;
-}
-
-.degreelist {
-	text-align: left;
-}
-
-.degreelist li {
-	border-bottom: 1px solid #cecece;
-	width: 100%;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-}
-
-.degreelist li:after,
-.flexalign:after {
-	content: "";
-	-webkit-box-flex: 1;
-	    -ms-flex-positive: 1;
-	        flex-grow: 1;
-	-webkit-box-ordinal-group: 1;
-	    -ms-flex-order: 0;
-	        order: 0;
-}
-
-.other,
-.graduate-certificate,
-.masters,
-.doctorate {
-	width: 30px;
-	font-weight: 700;
-	background: #ef6615;
-	height: 30px;
-	border-radius: 50%;
-	color: #fff;
-	visibility: hidden;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	    -ms-flex-direction: column;
-	        flex-direction: column;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-ms-flex-negative: 0;
-	    flex-shrink: 0;
-	-webkit-box-align: center;
-	    -ms-flex-align: center;
-	        align-items: center;
-	-webkit-box-pack: center;
-	    -ms-flex-pack: center;
-	        justify-content: center;
-	margin: auto;
-	margin-right: 5px;
-	text-transform: uppercase;
-}
-
-.doctorate {
-	background: #931a2b;
-	padding: 0;
-}
-
-.other.exists,
-.graduate-certificate.exists,
-.masters.exists,
-.doctorate.exists {
-	visibility: visible;
-}
-
-.degreelist .degreename {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-}
-
-.degreelist .degreename a {
-	margin-bottom: 10px;
-	margin-top: 10px;
-}
-
-.degreelist .pagination a {
-	width: 25px;
-	height: 25px;
-	border: 1px solid #cecece;
-	padding: 5px;
-	font-weight: 700;
-	color: #333;
-	display: -webkit-inline-box;
-	display: -ms-inline-flexbox;
-	display: inline-flex;
-	-webkit-box-pack: center;
-	    -ms-flex-pack: center;
-	        justify-content: center;
-	margin-bottom: 5px;
-}
-
-.degreelist .pagination a.active {
-	background-color: #94192b;
-	color: #fff;
-}
-
-.bigletter {
-	border-radius: 50%;
-	width: 60px;
-	height: 60px;
-	border: 1px solid #cecece;
-	color: #cecece;
-	text-align: center;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	    -ms-flex-direction: column;
-	        flex-direction: column;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-align: center;
-	    -ms-flex-align: center;
-	        align-items: center;
-	-webkit-box-pack: center;
-	    -ms-flex-pack: center;
-	        justify-content: center;
-	font-size: 25px;
-	font-weight: 700;
-}
-
-.bigletter.active {
-	color: #94192b;
-}
-
-.bigletterline {
-	width: calc(100% - 60px);
-	border-bottom: 1px solid #cecece;
-	margin-left: 61px;
-	-webkit-transform: translateY(-30px);
-	    -ms-transform: translateY(-30px);
-	        transform: translateY(-30px);
-}
-
-.lettergroup {
-	margin-top: 20px;
-}
-
-.lettergroup:first-of-type {
-	margin-top: 40px;
-}
-
-.lettergroup ul {
-	margin-left: 75px;
 }
 
 .overlay {
@@ -2208,35 +2026,8 @@ body.searching .degreesearchsection {
 
 @media screen and (max-width: 768px) {
 
-	.lettergroup ul {
-		margin-left: 11px;
-		margin-top: 0;
-	}
-
 	.footer ul li a {
 		font-size: 1.45em;
-	}
-
-	.degreelist .degreename {
-		max-width: 79%;
-		margin-right: 5px;
-		display: -webkit-box;
-		display: -ms-flexbox;
-		display: flex;
-		-webkit-box-pack: center;
-		    -ms-flex-pack: center;
-		        justify-content: center;
-	}
-
-	.degreelist li .other,
-	.degreelist li .graduate-certificate,
-	.degreelist li .masters,
-	.degreelist li .doctorate {
-		margin: auto 3px;
-	}
-
-	.degreelist li {
-		min-height: 45px;
 	}
 
 	a.hero-button {
@@ -2306,28 +2097,6 @@ section.padtop {
 	cursor: pointer;
 }
 
-.key {
-	display: inline-block;
-	margin-top: 10px;
-	float: right;
-}
-
-.key .other,
-.key .graduate-certificate,
-.key .masters,
-.key .doctorate,
-.key p {
-	float: left;
-}
-
-.key p {
-	margin-right: 8px;
-}
-
-.key .doctorate {
-	margin-right: 20px;
-}
-
 .clr:before,
 .clr:after {
 	display: table;
@@ -2338,19 +2107,6 @@ section.padtop {
 
 section.row .column {
 	padding-top: 2rem;
-}
-
-/* degrees page overrides */
-.post-type-archive-gs-factsheet main ul li a:before,
-.post-type-archive-gs-factsheet main ul li a:after,
-.post-type-archive-gs-factsheet main ul li:before,
-.post-type-archive-gs-factsheet main .pagination a:before,
-.post-type-archive-gs-factsheet main .pagination a:after {
-	display: none;
-}
-
-.degreelist ul li {
-	margin-left: 0;
 }
 
 /* Fix events calendar */
@@ -2413,5 +2169,299 @@ body.events-archive .column.one {
 
 .factsheet-contact {
 	margin-bottom: 1.5em;
+}
+
+
+.degree-list {
+	text-align: left;
+}
+
+.degree-list li {
+	border-bottom: 1px solid #cecece;
+	width: 100%;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+.degree-list li:after,
+.flexalign:after {
+	content: "";
+	-webkit-box-flex: 1;
+	    -ms-flex-positive: 1;
+	        flex-grow: 1;
+	-webkit-box-ordinal-group: 1;
+	    -ms-flex-order: 0;
+	        order: 0;
+}
+
+.degree-list .pagination a {
+	width: 25px;
+	height: 25px;
+	border: 1px solid #cecece;
+	padding: 5px;
+	font-weight: 700;
+	color: #333;
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	margin-bottom: 5px;
+}
+
+.degree-list .pagination a.active {
+	background-color: #94192b;
+	color: #fff;
+}
+
+.bigletter {
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+	border: 1px solid #cecece;
+	color: #cecece;
+	text-align: center;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	font-size: 25px;
+	font-weight: 700;
+}
+
+.bigletter.active {
+	color: #94192b;
+}
+
+.bigletterline {
+	width: calc(100% - 60px);
+	border-bottom: 1px solid #cecece;
+	margin-left: 61px;
+	-webkit-transform: translateY(-30px);
+	    -ms-transform: translateY(-30px);
+	        transform: translateY(-30px);
+}
+
+.lettergroup {
+	margin-top: 20px;
+}
+
+.lettergroup:first-of-type {
+	margin-top: 40px;
+}
+
+.lettergroup ul {
+	margin-left: 75px;
+}
+
+
+.degree-programs {
+	height: 190px;
+	background-color: #f7f7f9;
+	color: linear-gradient(to left, #ed6615, #880202, #880202);
+}
+
+.degree-programs h1 {
+	font: 300 50px/45px "Open Sans", "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+	background: -webkit-linear-gradient(135deg, #ed6615, #880202);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.degree-search-section {
+	height: 80px;
+	background-color: #eff0f2;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+}
+
+#searchdegreeinput {
+	border: none;
+	font-size: 25px;
+	width: 100%;
+	background: #eff0f2 url(https://wsuwp-uploads.s3.amazonaws.com/uploads/sites/1485/2016/10/search-gry.png) no-repeat left 14px;
+	background-size: 16px;
+	padding-left: 36px;
+	outline-width: 0;
+	outline: none;
+}
+
+.post-type-archive-gs-factsheet main ul li a:before,
+.post-type-archive-gs-factsheet main ul li a:after,
+.post-type-archive-gs-factsheet main ul li:before,
+.post-type-archive-gs-factsheet main .pagination a:before,
+.post-type-archive-gs-factsheet main .pagination a:after {
+	display: none;
+}
+
+.degree-list ul li {
+	margin-left: 0;
+	padding: 0;
+}
+
+.degree-list li.degree-row-wrapper {
+	display: inline-block;
+}
+
+.degree-row-open .degree-classification,
+.degree-row-bottom {
+	display: none;
+}
+
+.degree-row-open .degree-row-bottom .degree-classification {
+	display: block;
+}
+
+.degree-row-top,
+.degree-row-open .degree-row-bottom {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	    -ms-flex-flow: row;
+	        flex-flow: row;
+}
+
+.degree-row-multiple .degree-row-top {
+	cursor: pointer;
+}
+
+.degree-row-bottom {
+	margin-top: 1em;
+	margin-left: 2em;
+}
+
+.degree-row-bottom ~ .degree-row-bottom {
+	margin-top: 0;
+}
+
+.degree-name,
+.degree-detail {
+	-webkit-box-ordinal-group: 2;
+	    -ms-flex-order: 1;
+	        order: 1;
+	-webkit-box-flex: 1;
+	    -ms-flex-positive: 1;
+	        flex-grow: 1;
+	padding: .5em 0 0;
+}
+
+.degree-name .degree-anchor {
+	color: #ab0d24;
+	-webkit-transition-property: color, background;
+	transition-property: color, background;
+	-webkit-transition-duration: .4s, .4s;
+	        transition-duration: .4s, .4s;
+	border-bottom: 2px solid rgba(0, 0, 0, .05);
+}
+
+.degree-name .degree-anchor:hover {
+	color: #b7203d;
+	border-bottom: 2px solid #b7203d;
+}
+
+.degree-classification {
+	-webkit-box-ordinal-group: 3;
+	    -ms-flex-order: 2;
+	        order: 2;
+	-ms-flex-preferred-size: 30px;
+	    flex-basis: 30px;
+	height: 30px;
+	line-height: 30px;
+	width: 30px;
+	font-weight: 700;
+	background: #ef6615;
+	border-radius: 50%;
+	color: #fff;
+	margin: .3em 5px .3em auto;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.doctorate {
+	background: #931a2b;
+	padding: 0;
+}
+
+.other {
+	background: #5e6a71;
+}
+
+.graduate-certificate {
+	background: #00a5bd;
+}
+
+.key-group {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: reverse;
+	    -ms-flex-direction: row-reverse;
+	        flex-direction: row-reverse;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+.key-classification {
+	-ms-flex-preferred-size: auto;
+	    flex-basis: auto;
+	margin-left: 1.5em;
+}
+
+.key-classification span {
+	float: left;
+	line-height: 38px;
+	padding-right: .5em;
+}
+
+.key-classification .degree-classification {
+	float: right;
+}
+
+@media screen and (max-width: 768px) {
+
+	.lettergroup ul {
+		margin-left: 11px;
+		margin-top: 0;
+	}
+
+	.degree-list .degree-name {
+		max-width: 79%;
+		margin-right: 5px;
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-pack: center;
+		    -ms-flex-pack: center;
+		        justify-content: center;
+	}
+
+	.degree-list li .other,
+	.degree-list li .graduate-certificate,
+	.degree-list li .masters,
+	.degree-list li .doctorate {
+		margin: auto 3px;
+	}
+
+	.degree-list li {
+		min-height: 45px;
+	}
 }
 /*# sourceMappingURL=style.css.map */

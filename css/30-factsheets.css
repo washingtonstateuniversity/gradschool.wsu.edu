@@ -16,48 +16,6 @@
 	order: 0;
 }
 
-.other,
-.graduate-certificate,
-.masters,
-.doctorate {
-	width: 30px;
-	font-weight: 700;
-	background: #ef6615;
-	height: 30px;
-	border-radius: 50%;
-	color: #fff;
-	visibility: hidden;
-	flex-direction: column;
-	display: flex;
-	flex-shrink: 0;
-	align-items: center;
-	justify-content: center;
-	margin: auto;
-	margin-right: 5px;
-	text-transform: uppercase;
-}
-
-.doctorate {
-	background: #931a2b;
-	padding: 0;
-}
-
-.other.exists,
-.graduate-certificate.exists,
-.masters.exists,
-.doctorate.exists {
-	visibility: visible;
-}
-
-.degree-list .degree-name {
-	display: flex;
-}
-
-.degree-list .degree-name a {
-	margin-bottom: 10px;
-	margin-top: 10px;
-}
-
 .degree-list .pagination a {
 	width: 25px;
 	height: 25px;
@@ -113,14 +71,6 @@
 	margin-left: 75px;
 }
 
-/* degrees page overrides */
-.post-type-archive-gs-factsheet main ul li a:before,
-.post-type-archive-gs-factsheet main ul li a:after,
-.post-type-archive-gs-factsheet main ul li:before,
-.post-type-archive-gs-factsheet main .pagination a:before,
-.post-type-archive-gs-factsheet main .pagination a:after {
-	display: none;
-}
 
 .degree-programs {
 	height: 190px;
@@ -153,6 +103,14 @@
 	outline: none;
 }
 
+.post-type-archive-gs-factsheet main ul li a:before,
+.post-type-archive-gs-factsheet main ul li a:after,
+.post-type-archive-gs-factsheet main ul li:before,
+.post-type-archive-gs-factsheet main .pagination a:before,
+.post-type-archive-gs-factsheet main .pagination a:after {
+	display: none;
+}
+
 .degree-list ul li {
 	margin-left: 0;
 }
@@ -173,7 +131,41 @@
 .degree-row-top,
 .degree-row-open .degree-row-bottom {
 	display: flex;
-	width: 100%;
+	flex-flow: row;
+}
+
+.degree-row-multiple .degree-row-top {
+	cursor: pointer;
+}
+
+.degree-name {
+	order: 1;
+	flex-grow: 1;
+}
+
+.degree-list .degree-name a {
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+.degree-classification {
+	order: 2;
+	flex-basis: 30px;
+	height: 30px;
+	line-height: 30px;
+	width: 30px;
+	font-weight: 700;
+	background: #ef6615;
+	border-radius: 50%;
+	color: #fff;
+	margin: auto;
+	margin-right: 5px;
+	text-transform: uppercase;
+}
+
+.doctorate {
+	background: #931a2b;
+	padding: 0;
 }
 
 .key {

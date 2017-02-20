@@ -140,7 +140,7 @@
 }
 
 .degree-row-bottom {
-	margin-top: 1.5em;
+	margin-top: 1em;
 	margin-left: 2em;
 }
 
@@ -148,7 +148,8 @@
 	margin-top: 0;
 }
 
-.degree-name {
+.degree-name,
+.degree-detail {
 	order: 1;
 	flex-grow: 1;
 	padding: .5em 0 0;
@@ -184,6 +185,14 @@
 .doctorate {
 	background: #931a2b;
 	padding: 0;
+}
+
+.other {
+	background: #5e6a71;
+}
+
+.graduate-certificate {
+	background: #00a5bd;
 }
 
 .key {

@@ -2343,7 +2343,7 @@ body.events-archive .column.one {
 }
 
 .degree-row-bottom {
-	margin-top: 1.5em;
+	margin-top: 1em;
 	margin-left: 2em;
 }
 
@@ -2351,7 +2351,8 @@ body.events-archive .column.one {
 	margin-top: 0;
 }
 
-.degree-name {
+.degree-name,
+.degree-detail {
 	-webkit-box-ordinal-group: 2;
 	    -ms-flex-order: 1;
 	        order: 1;
@@ -2396,6 +2397,14 @@ body.events-archive .column.one {
 .doctorate {
 	background: #931a2b;
 	padding: 0;
+}
+
+.other {
+	background: #5e6a71;
+}
+
+.graduate-certificate {
+	background: #00a5bd;
 }
 
 .key {

@@ -9,9 +9,13 @@ if ( have_posts() ) {
 
 		$degree_types = wp_get_object_terms( get_the_ID(), 'gs-degree-type' );
 		$degree_classification = '';
+		$degree_type = '';
 		if ( ! is_wp_error( $degree_types ) && 0 < count( $degree_types ) ) {
 			$degree_classification = get_term_meta( $degree_types[0]->term_id, 'gs_degree_type_classification', true );
+			$degree_type = $degree_types[0]->name;
 		}
+
+		$factsheet_data['degree_type'] = $degree_type;
 
 		if ( empty( $degree_classification ) ) {
 			$factsheet_data['degree_classification'] = 'other';
@@ -99,13 +103,34 @@ get_header();
 							<ul>
 						<?php
 					}
+
+					if ( 1 < count( $factsheet ) ) {
+						$wrapper_class = 'degree-row-multiple';
+					} else {
+						$wrapper_class = 'degree-row-single';
+					}
 					?>
-					<li>
-						<div class="degreename flexleft"><a><?php echo esc_html( $factsheet_name ); ?></a></div>
+					<li class="degree-row-wrapper <?php echo esc_attr( $wrapper_class ); ?>">
+						<div class="degree-row-top">
+							<div class="degree-name flexleft"><a><?php echo esc_html( $factsheet_name ); ?></a></div>
+							<?php
+							foreach ( $factsheet as $item ) {
+								?><div class="degree-classification <?php echo esc_attr( $item['degree_classification'] ); ?> flexright exists">
+								<a href="<?php echo esc_url( $item['permalink'] ); ?>"><?php echo esc_html( $item['degree_classification'][0] ) ?></a></div><?php
+							}
+							?>
+						</div>
+
 						<?php
-						foreach( $factsheet as $item ) {
-							?><div class="<?php echo esc_attr( $item['degree_classification'] ); ?> flexright exists">
-							<a href="<?php echo esc_url( $item['permalink'] ); ?>"><?php echo esc_html( $item['degree_classification'][0] ) ?></a></div><?php
+						foreach ( $factsheet as $item ) {
+							?>
+							<div class="degree-row-bottom">
+								<div class="degree-detail flexleft"><?php echo esc_html( $factsheet_name ); ?> | <?php echo esc_html( $item['degree_type'] ); ?></div>
+								<div class="degree-classification <?php echo esc_attr( $item['degree_classification'] ); ?> flexright exists">
+									<a href="<?php echo esc_url( $item['permalink'] ); ?>"><?php echo esc_html( $item['degree_classification'][0] ) ?></a>
+								</div>
+							</div>
+							<?php
 						}
 						?>
 					</li>

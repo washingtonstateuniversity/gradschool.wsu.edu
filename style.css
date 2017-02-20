@@ -2367,16 +2367,25 @@ body.events-archive .column.one {
 	margin-left: 0;
 }
 
-.degree-row-bottom,
-.degree-row-top {
+.degree-list li.degree-row-wrapper {
+	display: inline-block;
+}
+
+.degree-row-open .degree-classification,
+.degree-row-bottom {
+	display: none;
+}
+
+.degree-row-open .degree-row-bottom .degree-classification {
+	display: block;
+}
+
+.degree-row-top,
+.degree-row-open .degree-row-bottom {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
 	width: 100%;
-}
-
-li.degree-row-wrapper {
-	display: inline-block;
 }
 
 .key {

@@ -9,7 +9,7 @@ if ( have_posts() ) {
 
 		$degree_types = wp_get_object_terms( get_the_ID(), 'gs-degree-type' );
 		$degree_classification = '';
-		$degree_type = '';
+		$degree_type = 'Other';
 		if ( ! is_wp_error( $degree_types ) && 0 < count( $degree_types ) ) {
 			$degree_classification = get_term_meta( $degree_types[0]->term_id, 'gs_degree_type_classification', true );
 			$degree_type = $degree_types[0]->name;
@@ -112,11 +112,21 @@ get_header();
 					?>
 					<li class="degree-row-wrapper <?php echo esc_attr( $wrapper_class ); ?>">
 						<div class="degree-row-top">
-							<div class="degree-name flexleft"><a><?php echo esc_html( $factsheet_name ); ?></a></div>
+							<?php
+							if ( 1 < count( $factsheet ) ) {
+								?><div class="degree-name"><?php echo esc_html( $factsheet_name ); ?><?php
+							} else {
+								?><div class="degree-name"><a href="<?php echo esc_url( $factsheet[0]['permalink'] ); ?>"><?php echo esc_html( $factsheet_name ); ?></a><?php
+							}
+							?>
+							</div>
 							<?php
 							foreach ( $factsheet as $item ) {
-								?><div class="degree-classification <?php echo esc_attr( $item['degree_classification'] ); ?> flexright exists">
-								<a href="<?php echo esc_url( $item['permalink'] ); ?>"><?php echo esc_html( $item['degree_classification'][0] ) ?></a></div><?php
+								?>
+								<div class="degree-classification <?php echo esc_attr( $item['degree_classification'] ); ?>">
+									<?php echo esc_html( $item['degree_classification'][0] ) ?>
+								</div>
+								<?php
 							}
 							?>
 						</div>
@@ -125,9 +135,9 @@ get_header();
 						foreach ( $factsheet as $item ) {
 							?>
 							<div class="degree-row-bottom">
-								<div class="degree-detail flexleft"><?php echo esc_html( $factsheet_name ); ?> | <?php echo esc_html( $item['degree_type'] ); ?></div>
-								<div class="degree-classification <?php echo esc_attr( $item['degree_classification'] ); ?> flexright exists">
-									<a href="<?php echo esc_url( $item['permalink'] ); ?>"><?php echo esc_html( $item['degree_classification'][0] ) ?></a>
+								<div class="degree-detail"><a href="<?php echo esc_url( $item['permalink'] ); ?>"><?php echo esc_html( $factsheet_name ); ?></a> | <?php echo esc_html( $item['degree_type'] ); ?></div>
+								<div class="degree-classification <?php echo esc_attr( $item['degree_classification'] ); ?>">
+									<?php echo esc_html( $item['degree_classification'][0] ) ?>
 								</div>
 							</div>
 							<?php

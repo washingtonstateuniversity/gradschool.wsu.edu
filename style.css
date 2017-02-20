@@ -2407,26 +2407,32 @@ body.events-archive .column.one {
 	background: #00a5bd;
 }
 
-.key {
-	display: inline-block;
-	margin-top: 10px;
-	float: right;
+.key-group {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: reverse;
+	    -ms-flex-direction: row-reverse;
+	        flex-direction: row-reverse;
+	margin-top: 1em;
+	margin-bottom: 1em;
 }
 
-.key .other,
-.key .graduate-certificate,
-.key .masters,
-.key .doctorate,
-.key p {
+.key-classification {
+	-ms-flex-preferred-size: auto;
+	    flex-basis: auto;
+	margin-left: 1.5em;
+}
+
+.key-classification span {
 	float: left;
+	line-height: 38px;
+	padding-right: .5em;
 }
 
-.key p {
-	margin-right: 8px;
-}
-
-.key .doctorate {
-	margin-right: 20px;
+.key-classification .degree-classification {
+	float: right;
 }
 
 @media screen and (max-width: 768px) {

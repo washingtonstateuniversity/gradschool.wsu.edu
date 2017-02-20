@@ -65,12 +65,23 @@ get_header();
 
 			<div class="toparea">
 				<div class="pagination"><a class="active" href="#a">A</a> <a href="#b">B</a> <a href="#c">C</a> <a href="#d">D</a> <a href="#e">E</a> <a href="#f">F</a> <a href="#g">G</a> <a href="#h">H</a> <a href="#i">I</a> <a href="#j">J</a> <a href="#k">K</a> <a href="#l">L</a> <a href="#m">M</a> <a href="#n">N</a> <a href="#o">O</a> <a href="#p">P</a> <a href="#q">Q</a> <a href="#r">R</a> <a href="#s">S</a> <a href="#t">T</a> <a href="#u">U</a> <a href="#v">V</a> <a href="#w">W</a> <a href="#x">X</a> <a href="#y">Y</a> <a href="#z">Z</a></div>
-				<div class="key">
-
-					KEY: Doctorate
-					<div class="degree-classification doctorate">D</div>
-					Master's
-					<div class="degree-classification masters">M</div>
+				<div class="key-group">
+					<div class="key-classification">
+						<span>Other</span>
+						<div class="degree-classification other">O</div>
+					</div>
+					<div class="key-classification">
+						<span>Graduate Certificate</span>
+						<div class="degree-classification graduate-certificate">G</div>
+					</div>
+					<div class="key-classification">
+						<span>Doctorate</span>
+						<div class="degree-classification doctorate">D</div>
+					</div>
+					<div class="key-classification">
+						<span>Master</span>
+						<div class="degree-classification masters">M</div>
+					</div>
 				</div>
 			</div>
 

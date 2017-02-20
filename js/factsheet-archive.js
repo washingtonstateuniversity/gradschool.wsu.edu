@@ -36,15 +36,10 @@
 				if ( degrees ) {
 					scrollToElement( degrees );
 				}
+			},
+			focus: function( event ) {
+				event.preventDefault();
 			}
-		} ).data( "ui-autocomplete" )._renderItem = customItemRenderer;
-	}
-
-	function customItemRenderer( ul, item ) {
-		var newText = String( item.value ).replace(
-			new RegExp( this.term, "gi" ),
-			"<span class='ui-state-highlight'>$&</span>" );
-
-		return $( "<li></li>" ).data( "item.autocomplete", item ).append( "<a>" + newText + "</a>" ).appendTo( ul );
+		} ).data( "ui-autocomplete" );
 	}
 }( jQuery ) );

@@ -145,10 +145,24 @@ body.searching .degree-search-section {
 	color: #717171;
 	list-style-type: none;
 	margin-top: 5px;
+	padding: 1em;
+}
+
+.ui-corner-all {
+	width: 100%;
+	display: inline-block;
+	padding-top: .5em;
 }
 
 .ui-menu-item .ui-state-highlight {
 	color: #222;
+}
+
+.ui-state-focus {
+	background: #ccc;
+	border: none;
+	color: #000;
+	border-radius: 0;
 }
 
 .post-type-archive-gs-factsheet main ul li a:before,

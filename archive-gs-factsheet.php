@@ -85,6 +85,7 @@ get_header();
 						continue;
 					}
 
+					// Output the letter separators between sets of factsheets.
 					while ( 0 !== strcasecmp( $factsheet_character, $letter ) ) {
 						echo '</ul></div>';
 

@@ -32,7 +32,7 @@
 			select: function( event, ui ) {
 				$( "body" ).removeClass( "searching" );
 				var text = ui.item.value.replace( /(\r\n|\n|\r)/gm, "" );
-				var degrees = $( ".degree-name a:contains('" + text + "')" );
+				var degrees = $( ".degree-name :contains('" + text + "')" );
 				if ( degrees ) {
 					scrollToElement( degrees );
 				}

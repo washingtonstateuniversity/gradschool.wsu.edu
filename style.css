@@ -1492,11 +1492,6 @@ section.newsandevents {
 	background: linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
 }
 
-.backarrow,
-.forwardarrow {
-	display: none;
-}
-
 @media screen and (max-width: 768px) {
 
 	.footer ul li a {

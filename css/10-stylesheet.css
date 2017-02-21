@@ -886,86 +886,6 @@ h3.topsm {
 	background: linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
 }
 
-/*Photo Gallery Page ISP*/
-.pgbox1 {
-	min-width: 50%;
-	margin-bottom: 1.2em;
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/img-education-3.jpg) no-repeat center center;
-	background-size: cover;
-	border-right: .6em solid #fff;
-}
-
-.pgbox3 {
-	min-width: 50%;
-	margin-bottom: 1.2em;
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/08/Ben-Flanders-Instrumentation-1.jpg) no-repeat center center;
-	background-size: cover;
-	border-right: .6em solid #fff;
-}
-
-.pgbox5 {
-	min-width: 50%;
-	margin-bottom: 1.2em;
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/08/DSC5171.jpg) no-repeat center center;
-	background-size: cover;
-	border-right: .6em solid #fff;
-}
-
-.pgbox2 {
-	min-width: 50%;
-	margin-bottom: 1.2em;
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/08/ISP_PortraitsLab062712_2IMG_0001_0008.jpg) no-repeat center center;
-	background-size: cover;
-	border-left: .6em solid #fff;
-}
-
-.pgbox4 {
-	min-width: 50%;
-	margin-bottom: 1.2em;
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/08/3018-1.jpg) no-repeat center center;
-	background-size: cover;
-	border-left: .6em solid #fff;
-}
-
-.pgbox6 {
-	min-width: 50%;
-	margin-bottom: 1.2em;
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/08/Static-High-Pressure.jpg) no-repeat center center;
-	background-size: cover;
-	border-left: .6em solid #fff;
-}
-
-.pgbox1:after,
-.pgbox2:after,
-.pgbox3:after,
-.pgbox4:after,
-.pgbox5:after,
-.pgbox6:after {
-	position: absolute;
-	content: "";
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: -1;
-}
-
-.pgbox1:after,
-.pgbox3:after,
-.pgbox5:after {
-	background: rgba(59, 121, 172, 1);
-	background: linear-gradient(10deg, rgba(59, 121, 172, 1) 0%, rgba(0, 150, 204, .51) 0%, rgba(0, 175, 239, .51) 0%);
-}
-
-.pgbox2:after,
-.pgbox4:after,
-.pgbox6:after {
-	background: rgba(59, 121, 172, 1);
-	background: linear-gradient(to bottom, rgba(59, 121, 172, 1) 0%, rgba(0, 150, 204, .51) 50%, rgba(0, 175, 239, .51) 100%);
-}
-
-/*End here w/ Photo Gallery*/
-
 /* ----- CSS3 Fadein Animation ----- */
 @keyframes fadein {
 
@@ -1036,11 +956,6 @@ h3.topsm {
 		font-size: .75em;
 	}
 
-	.box-wrapper {
-		flex-direction: row;
-	}
-
-	.box,
 	.team {
 		-ms-flex: 1 1 auto;
 		flex: 1 1 auto;
@@ -1048,21 +963,6 @@ h3.topsm {
 
 	.team {
 		min-width: 33.333333333333%;
-	}
-
-	.box1,
-	.box2,
-	.box3 {
-		min-width: 100%;
-	}
-
-	.box p {
-		font-size: .75em;
-	}
-
-	.box2,
-	.box3 {
-		border: none;
 	}
 }
 
@@ -1095,22 +995,8 @@ h3.topsm {
 		padding-top: 1.5em;
 	}
 
-	.box {
-		padding: 32px;
-		-ms-flex: 1 1 auto;
-		flex: 1 1 auto;
-	}
-
 	.team {
 		width: 50%;
-	}
-
-	.box1 {
-		background-position: right bottom, center top;
-	}
-
-	.column.one.heromask {
-		background-position: right bottom;
 	}
 
 	.footer {
@@ -1139,12 +1025,6 @@ h3.topsm {
 	p.mobile,
 	p.phone {
 		font-size: smaller;
-	}
-
-	.box4,
-	.box5,
-	.box6 {
-		min-width: 100%;
 	}
 }
 

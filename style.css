@@ -634,7 +634,6 @@ a.btnorange.sm,
 a.btnwht.sm,
 a.btnblk.sm {
 	text-transform: capitalize;
-	min-width: auto;
 	padding: 8px 25px;
 }
 

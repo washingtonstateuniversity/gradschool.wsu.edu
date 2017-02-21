@@ -5,7 +5,7 @@
  Author:         WSU University Communications
  Author URI:     https://web.wsu.edu/
  Template:       spine
- Version:        0.9.1
+ Version:        0.9.2
 */
 
 /* Rework starts here */
@@ -1875,6 +1875,7 @@ body.searching .degree-search-section {
 	    -ms-flex-positive: 1;
 	        flex-grow: 1;
 	padding: .5em 0 0;
+	line-height: 38px;
 }
 
 .degree-name .degree-anchor {
@@ -1895,11 +1896,11 @@ body.searching .degree-search-section {
 	-webkit-box-ordinal-group: 3;
 	    -ms-flex-order: 2;
 	        order: 2;
-	-ms-flex-preferred-size: 33px;
-	    flex-basis: 33px;
-	height: 33px;
-	line-height: 33px;
-	width: 33px;
+	-ms-flex-preferred-size: 40px;
+	    flex-basis: 40px;
+	height: 40px;
+	line-height: 40px;
+	width: 40px;
 	font-weight: 700;
 	background: #ef6615;
 	border-radius: 50%;
@@ -1943,7 +1944,7 @@ body.searching .degree-search-section {
 
 .key-classification span {
 	float: left;
-	line-height: 42px;
+	line-height: 49px;
 	padding-right: .5em;
 }
 

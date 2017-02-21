@@ -216,6 +216,7 @@ body.searching .degree-search-section {
 	order: 1;
 	flex-grow: 1;
 	padding: .5em 0 0;
+	line-height: 38px;
 }
 
 .degree-name .degree-anchor {
@@ -232,10 +233,10 @@ body.searching .degree-search-section {
 
 .degree-classification {
 	order: 2;
-	flex-basis: 33px;
-	height: 33px;
-	line-height: 33px;
-	width: 33px;
+	flex-basis: 40px;
+	height: 40px;
+	line-height: 40px;
+	width: 40px;
 	font-weight: 700;
 	background: #ef6615;
 	border-radius: 50%;
@@ -273,7 +274,7 @@ body.searching .degree-search-section {
 
 .key-classification span {
 	float: left;
-	line-height: 42px;
+	line-height: 49px;
 	padding-right: .5em;
 }
 

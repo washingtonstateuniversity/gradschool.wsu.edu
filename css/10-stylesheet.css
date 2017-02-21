@@ -1320,61 +1320,6 @@ h3.topsm {
 	}
 }
 
-.hero-button p {
-	padding: 0;
-}
-
-/* Home Hero */
-.backarrow {
-	position: absolute;
-	left: 30px;
-	font-weight: 700;
-	font-size: 45px;
-}
-
-.forwardarrow {
-	position: absolute;
-	right: 30px;
-	font-weight: 700;
-	font-size: 45px;
-}
-
-.backarrow a,
-.forwardarrow a {
-	color: #333;
-}
-
-.hero-buttons {
-	position: absolute;
-	bottom: 130px;
-}
-
-a.hero-button {
-	float: left;
-	position: relative;
-	width: 220px;
-	padding: 15px 40px;
-	color: #fff;
-	border: 1px solid #fff;
-	text-align: center;
-	vertical-align: middle;
-	font-weight: 700;
-}
-
-a.hero-button:nth-of-type(2n) {
-	margin-left: 20px;
-	margin-right: 20px;
-}
-
-a.hero-button .icon {
-	position: absolute;
-	background-image: url(pen-wht.png);
-	background-size: 20px;
-	width: 20px;
-	height: 20px;
-	left: 15px;
-}
-
 /* About WSU */
 .whitesection {
 	background-color: #fff;

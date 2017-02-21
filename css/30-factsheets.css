@@ -72,13 +72,13 @@
 }
 
 
-.degree-programs {
+.degree-programs-header {
 	height: 190px;
 	background-color: #f7f7f9;
 	color: linear-gradient(to left, #ed6615, #880202, #880202);
 }
 
-.degree-programs h1 {
+.degree-programs-header h1 {
 	font: 300 50px/45px "Open Sans", "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif;
 	background: -webkit-linear-gradient(135deg, #ed6615, #880202);
 	-webkit-background-clip: text;
@@ -303,4 +303,9 @@ body.searching .degree-search-section {
 	.degree-list li {
 		min-height: 45px;
 	}
+}
+
+/* Remove when old interface is gone. */
+.degree-programs main ul.list > ul {
+	margin-left: 1.5em;
 }

@@ -2394,11 +2394,11 @@ body.searching .degree-search-section {
 	-webkit-box-ordinal-group: 3;
 	    -ms-flex-order: 2;
 	        order: 2;
-	-ms-flex-preferred-size: 30px;
-	    flex-basis: 30px;
-	height: 30px;
-	line-height: 30px;
-	width: 30px;
+	-ms-flex-preferred-size: 33px;
+	    flex-basis: 33px;
+	height: 33px;
+	line-height: 33px;
+	width: 33px;
 	font-weight: 700;
 	background: #ef6615;
 	border-radius: 50%;
@@ -2406,6 +2406,7 @@ body.searching .degree-search-section {
 	margin: .3em 5px .3em auto;
 	text-transform: uppercase;
 	text-align: center;
+	font-size: 19px;
 }
 
 .doctorate {
@@ -2418,7 +2419,7 @@ body.searching .degree-search-section {
 }
 
 .graduate-certificate {
-	background: #00a5bd;
+	background: #00889d;
 }
 
 .key-group {
@@ -2441,7 +2442,7 @@ body.searching .degree-search-section {
 
 .key-classification span {
 	float: left;
-	line-height: 38px;
+	line-height: 42px;
 	padding-right: .5em;
 }
 

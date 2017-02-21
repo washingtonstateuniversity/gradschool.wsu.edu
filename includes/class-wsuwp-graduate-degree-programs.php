@@ -297,6 +297,7 @@ class WSUWP_Graduate_Degree_Programs {
 
 		remove_meta_box( 'tagsdiv-gs-faculty', $this->post_type_slug, 'side' );
 		remove_meta_box( 'tagsdiv-gs-contact', $this->post_type_slug, 'side' );
+		remove_meta_box( 'wpseo_meta', $this->post_type_slug, 'normal' );
 	}
 
 	/**

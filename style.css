@@ -2047,10 +2047,6 @@ section.padtop {
 	margin-top: 15px;
 }
 
-.ui-menu-item {
-	cursor: pointer;
-}
-
 .clr:before,
 .clr:after {
 	display: table;
@@ -2289,6 +2285,7 @@ body.searching .degree-search-section {
 }
 
 .ui-menu-item {
+	cursor: pointer;
 	color: #717171;
 	list-style-type: none;
 	margin-top: 5px;

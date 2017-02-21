@@ -136,6 +136,7 @@ body.searching .degree-search-section {
 }
 
 .ui-menu-item {
+	cursor: pointer;
 	color: #717171;
 	list-style-type: none;
 	margin-top: 5px;

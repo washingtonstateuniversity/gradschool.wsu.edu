@@ -1946,10 +1946,6 @@ section.padtop {
 	margin-top: 15px;
 }
 
-.ui-menu-item {
-	cursor: pointer;
-}
-
 .clr:before,
 .clr:after {
 	display: table;

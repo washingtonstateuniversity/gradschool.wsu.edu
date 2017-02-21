@@ -18,9 +18,13 @@
 				<div class="column one">
 					<?php $factsheet_data = WSUWP_Graduate_Degree_Programs::get_factsheet_data( get_the_id() ); ?>
 
-					<div class="factsheet-url"><a href="<?php echo esc_url( $factsheet_data['degree_url'] ); ?>"><?php echo esc_html( $factsheet_data['degree_url'] ); ?></a></div>
+					<div class="factsheet-apply"><a class="btncrimson" href="https://gradschool.wsu.edu/apply/">Apply Now</a></div>
 
 					<div class="factsheet-statistics-wrapper">
+						<div class="factsheet-stat">
+							<span class="factsheet-label">Program URL:</span>
+							<span class="factsheet-value"><a href="<?php echo esc_url( $factsheet_data['degree_url'] ); ?>"><?php echo esc_html( $factsheet_data['degree_url'] ); ?></a></span>
+						</div>
 						<div class="factsheet-stat">
 							<span class="factsheet-label">Faculty working with Students:</span>
 							<span class="factsheet-value"><?php echo count( $factsheet_data['faculty'] ); ?></span>

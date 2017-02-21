@@ -8,10 +8,6 @@
  Version:        0.8.0
 */
 
-.degree-programs main ul.list > ul {
-	margin-left: 1.5em;
-}
-
 /* Rework starts here */
 #jacket {
 	background-color: #23282b;
@@ -2051,10 +2047,6 @@ section.padtop {
 	margin-top: 15px;
 }
 
-.ui-menu-item {
-	cursor: pointer;
-}
-
 .clr:before,
 .clr:after {
 	display: table;
@@ -2127,6 +2119,17 @@ body.events-archive .column.one {
 
 .factsheet-contact {
 	margin-bottom: 1.5em;
+}
+
+.visuallyhidden {
+	position: absolute;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	width: 1px;
+	margin: -1px;
+	padding: 0;
+	border: 0;
 }
 
 
@@ -2224,13 +2227,13 @@ body.events-archive .column.one {
 }
 
 
-.degree-programs {
+.degree-programs-header {
 	height: 190px;
 	background-color: #f7f7f9;
 	color: linear-gradient(to left, #ed6615, #880202, #880202);
 }
 
-.degree-programs h1 {
+.degree-programs-header h1 {
 	font: 300 50px/45px "Open Sans", "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif;
 	background: -webkit-linear-gradient(135deg, #ed6615, #880202);
 	-webkit-background-clip: text;
@@ -2293,6 +2296,7 @@ body.searching .degree-search-section {
 }
 
 .ui-menu-item {
+	cursor: pointer;
 	color: #717171;
 	list-style-type: none;
 	margin-top: 5px;
@@ -2401,11 +2405,11 @@ body.searching .degree-search-section {
 	-webkit-box-ordinal-group: 3;
 	    -ms-flex-order: 2;
 	        order: 2;
-	-ms-flex-preferred-size: 30px;
-	    flex-basis: 30px;
-	height: 30px;
-	line-height: 30px;
-	width: 30px;
+	-ms-flex-preferred-size: 33px;
+	    flex-basis: 33px;
+	height: 33px;
+	line-height: 33px;
+	width: 33px;
 	font-weight: 700;
 	background: #ef6615;
 	border-radius: 50%;
@@ -2413,6 +2417,7 @@ body.searching .degree-search-section {
 	margin: .3em 5px .3em auto;
 	text-transform: uppercase;
 	text-align: center;
+	font-size: 19px;
 }
 
 .doctorate {
@@ -2425,7 +2430,7 @@ body.searching .degree-search-section {
 }
 
 .graduate-certificate {
-	background: #00a5bd;
+	background: #00889d;
 }
 
 .key-group {
@@ -2448,7 +2453,7 @@ body.searching .degree-search-section {
 
 .key-classification span {
 	float: left;
-	line-height: 38px;
+	line-height: 42px;
 	padding-right: .5em;
 }
 
@@ -2484,5 +2489,10 @@ body.searching .degree-search-section {
 	.degree-list li {
 		min-height: 45px;
 	}
+}
+
+/* Remove when old interface is gone. */
+.degree-programs main ul.list > ul {
+	margin-left: 1.5em;
 }
 /*# sourceMappingURL=style.css.map */

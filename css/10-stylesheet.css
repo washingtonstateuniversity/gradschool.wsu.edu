@@ -468,13 +468,6 @@ aside a:after {
 	content: none;
 }
 
-.column.one.heromask {
-	background-image: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/bg-img-mask-NEW-color.png);
-	background-repeat: no-repeat;
-	background-position: left bottom;
-	background-size: 650px;
-}
-
 .column.one.heromask-gradient {
 	background: linear-gradient(to left, #23282b, #23282b);
 }

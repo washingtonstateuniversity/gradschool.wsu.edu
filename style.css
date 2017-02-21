@@ -463,27 +463,10 @@ aside .wsuwp-content-syndicate-wrapper ul li:before {
 	margin: 10px auto;
 }
 
-p.email {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/email-gry.png) no-repeat left 6px;
-}
-
-p.title {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/ribbon-gry.png) no-repeat left 6px;
-}
-
-p.mobile {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/mobile-gry.png) no-repeat left 6px;
-}
-
-p.phone {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/phone-gry.png) no-repeat left 6px;
-}
-
 p.email,
 p.title,
 p.mobile,
 p.phone {
-	background-size: 16px;
 	padding: 0 28px;
 	margin-bottom: 0;
 }
@@ -1872,31 +1855,6 @@ section.newsandevents {
 	padding: 0;
 }
 
-p.email {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/email-gry.png) no-repeat right 6px;
-	background-size: 16px;
-}
-
-p.title {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/ribbon-gry.png) no-repeat right 6px;
-	background-size: 16px;
-}
-
-p.mobile {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/mobile-gry.png) no-repeat right 6px;
-	background-size: 16px;
-}
-
-p.phone {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/phone-gry.png) no-repeat right 6px;
-	background-size: 16px;
-}
-
-p.mobile {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/mobile-gry.png) no-repeat right 6px;
-	background-size: 16px;
-}
-
 .column.one.centervertically {
 	margin: 0;
 	padding: 0;
@@ -1939,31 +1897,25 @@ p.mobile {
 }
 
 .directory p.email {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/email-gry.png) no-repeat left 6px;
+	background: url(./images/email-gry.png) no-repeat left 6px;
 	background-size: 16px;
 	padding-left: 25px;
 }
 
 .directory p.title {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/ribbon-gry.png) no-repeat left 6px;
+	background: url(./images/ribbon-gry.png) no-repeat left 6px;
 	background-size: 16px;
 	padding-left: 25px;
 }
 
 .directory p.mobile {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/mobile-gry.png) no-repeat left 6px;
+	background: url(./images/mobile-gry.png) no-repeat left 6px;
 	background-size: 16px;
 	padding-left: 25px;
 }
 
 .directory p.phone {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/phone-gry.png) no-repeat left 6px;
-	background-size: 16px;
-	padding-left: 25px;
-}
-
-.directory p.mobile {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/mobile-gry.png) no-repeat left 6px;
+	background: url(./images/phone-gry.png) no-repeat left 6px;
 	background-size: 16px;
 	padding-left: 25px;
 }

@@ -92,15 +92,77 @@
 	align-items: center;
 }
 
-#searchdegreeinput {
+.degree-search-section .column {
+	width: 100%;
+}
+
+#degree-search-input {
 	border: none;
 	font-size: 25px;
 	width: 100%;
-	background: #eff0f2 url(https://wsuwp-uploads.s3.amazonaws.com/uploads/sites/1485/2016/10/search-gry.png) no-repeat left 14px;
+	background: #eff0f2 url(./images/search-gry.png) no-repeat left 14px;
 	background-size: 16px;
 	padding-left: 36px;
 	outline-width: 0;
 	outline: none;
+}
+
+.overlay {
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, .8);
+	z-index: 99999;
+	top: 0;
+	position: fixed;
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0s, opacity .2s linear;
+}
+
+body.searching .overlay {
+	visibility: visible;
+	opacity: 1;
+}
+
+body.searching .degree-search-section {
+	z-index: 100000;
+}
+
+.ui-autocomplete {
+	z-index: 100000;
+	background: #efefef;
+	margin-top: 1.5em;
+	padding: 1em;
+}
+
+.ui-menu-item {
+	color: #717171;
+	list-style-type: none;
+	margin-top: 5px;
+}
+
+.ui-menu-item a {
+	color: #717171;
+	list-style-type: none;
+	margin-top: 5px;
+	padding: 1em;
+}
+
+.ui-corner-all {
+	width: 100%;
+	display: inline-block;
+	padding-top: .5em;
+}
+
+.ui-menu-item .ui-state-highlight {
+	color: #222;
+}
+
+.ui-state-focus {
+	background: #ccc;
+	border: none;
+	color: #000;
+	border-radius: 0;
 }
 
 .post-type-archive-gs-factsheet main ul li a:before,

@@ -46,9 +46,22 @@
 								<ul>
 									<?php
 									foreach ( $factsheet_data['deadlines'] as $fs_deadline ) {
-										if ( 'NULL' === $fs_deadline['semester'] ) {
+										if ( 'NULL' === $fs_deadline['semester'] || 'None' === $fs_deadline['semester'] ) {
 											continue;
 										}
+
+										if ( in_array( strtolower( $fs_deadline['semester'] ), array( 'summer', 'fall' ), true ) && 'default' === strtolower( $fs_deadline['deadline'] ) ) {
+											$fs_deadline['deadline'] = 'January 10';
+										} elseif ( 'spring' === strtolower( $fs_deadline['semester'] ) && 'default' === strtolower( $fs_deadline['deadline'] ) ) {
+											$fs_deadline['deadline'] = 'July 1';
+										}
+
+										$is_date_deadline = explode( '/', $fs_deadline['deadline'] );
+										if ( 3 === count( $is_date_deadline ) ) {
+											$date_deadline = strtotime( $fs_deadline['deadline'] );
+											$fs_deadline['deadline'] = date( 'F j', $date_deadline );
+										}
+
 										echo '<li>' . esc_html( $fs_deadline['semester'] ) . ' ' . esc_html( $fs_deadline['deadline'] ) . ' ' . esc_html( $fs_deadline['international'] ) . '</li>';
 									}
 									?>

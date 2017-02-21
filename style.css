@@ -270,7 +270,6 @@ strong {
 	text-align: center;
 	color: #fff;
 	background: none;
-	-webkit-background-clip: none;
 	-webkit-text-fill-color: #fff;
 }
 
@@ -421,7 +420,7 @@ aside .wsuwp-content-syndicate-wrapper ul li:before {
 	display: block;
 	margin: 10px;
 	border-radius: 50%;
-	background: rgba(0, 0, 0, .1) url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/landscape-wht-xl.png) no-repeat center center;
+	background: rgba(0, 0, 0, .1) url(./images/landscape-wht-xl.png) no-repeat center center;
 	background-size: 24px;
 }
 
@@ -463,27 +462,10 @@ aside .wsuwp-content-syndicate-wrapper ul li:before {
 	margin: 10px auto;
 }
 
-p.email {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/email-gry.png) no-repeat left 6px;
-}
-
-p.title {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/ribbon-gry.png) no-repeat left 6px;
-}
-
-p.mobile {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/mobile-gry.png) no-repeat left 6px;
-}
-
-p.phone {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/phone-gry.png) no-repeat left 6px;
-}
-
 p.email,
 p.title,
 p.mobile,
 p.phone {
-	background-size: 16px;
 	padding: 0 28px;
 	margin-bottom: 0;
 }
@@ -519,13 +501,6 @@ aside a:before,
 aside a:after {
 	display: none !important;
 	content: none;
-}
-
-.column.one.heromask {
-	background-image: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/bg-img-mask-NEW-color.png);
-	background-repeat: no-repeat;
-	background-position: left bottom;
-	background-size: 650px;
 }
 
 .column.one.heromask-gradient {
@@ -652,7 +627,6 @@ a.btnorange.sm,
 a.btnwht.sm,
 a.btnblk.sm {
 	text-transform: capitalize;
-	min-width: auto;
 	padding: 8px 25px;
 }
 
@@ -838,7 +812,7 @@ hr {
 	margin: 0;
 	padding: 0;
 	font-size: .65em;
-	font-family: "Open Sans";
+	font-family: "Open Sans", "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif;
 	font-weight: 400;
 	text-align: left;
 	color: #464e54;
@@ -860,119 +834,6 @@ hr {
 	content: "";
 }
 
-/* Flex Default Styles (Home) */
-.box-wrapper {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-align: stretch;
-	    -ms-flex-align: stretch;
-	        align-items: stretch;
-	-webkit-box-orient: horizontal;
-	-webkit-box-direction: normal;
-	    -ms-flex-direction: row;
-	        flex-direction: row;
-	-ms-flex-wrap: wrap;
-	    flex-wrap: wrap;
-	margin: 0 auto;
-	box-sizing: border-box;
-	position: relative;
-	overflow: hidden;
-	-ms-flex-pack: distribute;
-	    justify-content: space-around;
-}
-
-.box1 h1,
-.box1 h2,
-.box1 h3,
-.box1 h4,
-.box1 h5,
-.box1 h6,
-.box1 p,
-.box2 h1,
-.box2 h2,
-.box2 h3,
-.box2 h4,
-.box2 h5,
-.box2 h6,
-.box2 p,
-.pgbox1 h1,
-.pgbox1 h2,
-.pgbox1 h3,
-.pgbox1 h4,
-.pgbox1 h5,
-.pgbox1 h6,
-.pgbox1 p,
-.pgbox2 h1,
-.pgbox2 h2,
-.pgbox2 h3,
-.pgbox2 h4,
-.pgbox2 h5,
-.pgbox2 h6,
-.pgbox2 p,
-.box3 h1,
-.box3 h2,
-.box3 h3,
-.box3 h4,
-.box3 h5,
-.box3 h6,
-.box3 p {
-	color: #fff;
-}
-
-.box4 h1,
-.box4 h2,
-.box4 h3,
-.box4 h4,
-.box4 h5,
-.box4 h6,
-.box4 p,
-.box5 h1,
-.box5 h2,
-.box5 h3,
-.box5 h4,
-.box5 h5,
-.box5 h6,
-.box5 p,
-.box6 h1,
-.box6 h2,
-.box6 h3,
-.box6 h4,
-.box6 h5,
-.box6 h6,
-.box6 p {
-	color: #464e54;
-}
-
-.box1 h3.topsm {
-	font-size: .825em;
-	font-weight: 600;
-	letter-spacing: 8px;
-	text-transform: uppercase;
-	padding-top: 0;
-	padding-bottom: .2em;
-	color: #fff;
-}
-
-.box {
-	min-width: 33.333333333333%;
-	min-height: 400px;
-	-webkit-box-align: stretch;
-	    -ms-flex-align: stretch;
-	        align-items: stretch;
-	text-align: start;
-	box-sizing: border-box;
-	padding: 52px;
-	-webkit-box-flex: 1;
-	    -ms-flex: 1;
-	        flex: 1;
-	position: relative;
-	z-index: 1;
-	-webkit-box-pack: center;
-	    -ms-flex-pack: center;
-	        justify-content: center;
-}
-
 .team {
 	min-width: 20%;
 	min-height: 200px;
@@ -992,75 +853,6 @@ hr {
 .team .portrait,
 .team .landscape {
 	margin: 0 auto;
-}
-
-/* Flex Styles (Home) */
-.box1 {
-	min-width: 100%;
-	margin-bottom: 1.2em;
-	background: url(https://wsuwp-uploads.s3.amazonaws.com/uploads/sites/1485/2016/10/img-Chrystal-Quisenberry.jpg) no-repeat center center;
-	background-size: cover;
-}
-
-.box2 {
-	min-width: 50%;
-	margin-bottom: 1.2em;
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/img-about-dcs-building.jpg) no-repeat center center;
-	background-size: cover;
-	border-right: .6em solid #fff;
-}
-
-.box3 {
-	min-width: 50%;
-	margin-bottom: 1.2em;
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/img-grad-studies.jpg) no-repeat center center;
-	background-size: cover;
-	border-left: .6em solid #fff;
-}
-
-.box1:after,
-.box2:after,
-.box3:after {
-	position: absolute;
-	content: "";
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: -1;
-}
-
-.box1:after {
-	background: -webkit-linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
-	background: linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
-}
-
-.box2:after,
-.box3:after {
-	background: -webkit-linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .2) 50%, rgba(240, 103, 21, .9) 100%);
-	background: linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .2) 50%, rgba(240, 103, 21, .9) 100%);
-}
-
-.box4 {
-	text-align: center;
-	color: #464e54;
-}
-
-.box5 {
-	text-align: center;
-	color: #464e54;
-}
-
-.box6 {
-	text-align: center;
-	color: #464e54;
-}
-
-.box .portrait,
-.box .landscape {
-	width: 180px;
-	height: 180px;
-	margin: 10px auto;
 }
 
 main {
@@ -1150,88 +942,6 @@ h3.topsm {
 	background: linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
 }
 
-/*Photo Gallery Page ISP*/
-.pgbox1 {
-	min-width: 50%;
-	margin-bottom: 1.2em;
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/img-education-3.jpg) no-repeat center center;
-	background-size: cover;
-	border-right: .6em solid #fff;
-}
-
-.pgbox3 {
-	min-width: 50%;
-	margin-bottom: 1.2em;
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/08/Ben-Flanders-Instrumentation-1.jpg) no-repeat center center;
-	background-size: cover;
-	border-right: .6em solid #fff;
-}
-
-.pgbox5 {
-	min-width: 50%;
-	margin-bottom: 1.2em;
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/08/DSC5171.jpg) no-repeat center center;
-	background-size: cover;
-	border-right: .6em solid #fff;
-}
-
-.pgbox2 {
-	min-width: 50%;
-	margin-bottom: 1.2em;
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/08/ISP_PortraitsLab062712_2IMG_0001_0008.jpg) no-repeat center center;
-	background-size: cover;
-	border-left: .6em solid #fff;
-}
-
-.pgbox4 {
-	min-width: 50%;
-	margin-bottom: 1.2em;
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/08/3018-1.jpg) no-repeat center center;
-	background-size: cover;
-	border-left: .6em solid #fff;
-}
-
-.pgbox6 {
-	min-width: 50%;
-	margin-bottom: 1.2em;
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/08/Static-High-Pressure.jpg) no-repeat center center;
-	background-size: cover;
-	border-left: .6em solid #fff;
-}
-
-.pgbox1:after,
-.pgbox2:after,
-.pgbox3:after,
-.pgbox4:after,
-.pgbox5:after,
-.pgbox6:after {
-	position: absolute;
-	content: "";
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: -1;
-}
-
-.pgbox1:after,
-.pgbox3:after,
-.pgbox5:after {
-	background: rgba(59, 121, 172, 1);
-	background: -webkit-linear-gradient(80deg, rgba(59, 121, 172, 1) 0%, rgba(0, 150, 204, .51) 0%, rgba(0, 175, 239, .51) 0%);
-	background: linear-gradient(10deg, rgba(59, 121, 172, 1) 0%, rgba(0, 150, 204, .51) 0%, rgba(0, 175, 239, .51) 0%);
-}
-
-.pgbox2:after,
-.pgbox4:after,
-.pgbox6:after {
-	background: rgba(59, 121, 172, 1);
-	background: -webkit-linear-gradient(top, rgba(59, 121, 172, 1) 0%, rgba(0, 150, 204, .51) 50%, rgba(0, 175, 239, .51) 100%);
-	background: linear-gradient(to bottom, rgba(59, 121, 172, 1) 0%, rgba(0, 150, 204, .51) 50%, rgba(0, 175, 239, .51) 100%);
-}
-
-/*End here w/ Photo Gallery*/
-
 /* ----- CSS3 Fadein Animation ----- */
 @keyframes fadein {
 
@@ -1280,14 +990,6 @@ h3.topsm {
 		font-size: .75em;
 	}
 
-	.box-wrapper {
-		-webkit-box-orient: horizontal;
-		-webkit-box-direction: normal;
-		    -ms-flex-direction: row;
-		        flex-direction: row;
-	}
-
-	.box,
 	.team {
 		-ms-flex: 1 1 auto;
 		-webkit-box-flex: 1;
@@ -1296,21 +998,6 @@ h3.topsm {
 
 	.team {
 		min-width: 33.333333333333%;
-	}
-
-	.box1,
-	.box2,
-	.box3 {
-		min-width: 100%;
-	}
-
-	.box p {
-		font-size: .75em;
-	}
-
-	.box2,
-	.box3 {
-		border: none;
 	}
 }
 
@@ -1343,23 +1030,8 @@ h3.topsm {
 		padding-top: 1.5em;
 	}
 
-	.box {
-		padding: 32px;
-		-ms-flex: 1 1 auto;
-		-webkit-box-flex: 1;
-		        flex: 1 1 auto;
-	}
-
 	.team {
 		width: 50%;
-	}
-
-	.box1 {
-		background-position: right bottom, center top;
-	}
-
-	.column.one.heromask {
-		background-position: right bottom;
 	}
 
 	.footer {
@@ -1389,67 +1061,6 @@ h3.topsm {
 	p.phone {
 		font-size: smaller;
 	}
-
-	.box4,
-	.box5,
-	.box6 {
-		min-width: 100%;
-	}
-}
-
-.hero-button p {
-	padding: 0;
-}
-
-/* Home Hero */
-.backarrow {
-	position: absolute;
-	left: 30px;
-	font-weight: 700;
-	font-size: 45px;
-}
-
-.forwardarrow {
-	position: absolute;
-	right: 30px;
-	font-weight: 700;
-	font-size: 45px;
-}
-
-.backarrow a,
-.forwardarrow a {
-	color: #333;
-}
-
-.hero-buttons {
-	position: absolute;
-	bottom: 130px;
-}
-
-a.hero-button {
-	float: left;
-	position: relative;
-	width: 220px;
-	padding: 15px 40px;
-	color: #fff;
-	border: 1px solid #fff;
-	text-align: center;
-	vertical-align: middle;
-	font-weight: 700;
-}
-
-a.hero-button:nth-of-type(2n) {
-	margin-left: 20px;
-	margin-right: 20px;
-}
-
-a.hero-button .icon {
-	position: absolute;
-	background-image: url(pen-wht.png);
-	background-size: 20px;
-	width: 20px;
-	height: 20px;
-	left: 15px;
 }
 
 /* About WSU */
@@ -1568,15 +1179,6 @@ h2.sm.second {
 	padding-left: 0;
 }
 
-.hero-button.headerbutton {
-	position: absolute;
-	right: 30px;
-	top: 9px;
-	color: #23282b;
-	border: 1px solid #23282b;
-	opacity: .35;
-}
-
 .aboutwsugradprogram h1.topsm {
 	font-size: 15px;
 	font-weight: 700;
@@ -1597,58 +1199,6 @@ h2.sm.second {
 	    -ms-transform: translateY(-50%);
 	        transform: translateY(-50%);
 	width: 100%;
-}
-
-/* female student quote */
-.row.single.imagebackground {
-	text-align: left;
-	height: 420px;
-	width: 100%;
-	color: #fff;
-	background-color: #880202;
-	background-size: cover;
-}
-
-.row.single.imagebackground:before {
-	content: "";
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background-image: -webkit-linear-gradient(left, #880202, transparent);
-	background-image: linear-gradient(to right, #880202, transparent);
-	opacity: .96;
-	width: 100%;
-	height: 420px;
-	visibility: visible;
-}
-
-.row.single.imagebackground .column.one {
-	padding-top: 0;
-}
-
-.row.single.imagebackground  h1 {
-	font: 800 70px/65px "Open Sans", "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif;
-	font-size: 21px;
-	text-transform: initial;
-	line-height: 2.25em;
-	width: 50%;
-	margin-bottom: 20px;
-}
-
-.row.single.imagebackground  h1 strong {
-	font: 900 70px/65px Montserrat, Helvetica, Arial, san-serif;
-	font-size: 30px;
-	font-weight: 700;
-}
-
-.row.single.femalestudent {
-	background: url(femalestudent2.jpg) right top no-repeat;
-}
-
-.row.single.doctoralstudent {
-	background: url(femalestudent.jpg) right top no-repeat;
 }
 
 /* News & Events */
@@ -1872,31 +1422,6 @@ section.newsandevents {
 	padding: 0;
 }
 
-p.email {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/email-gry.png) no-repeat right 6px;
-	background-size: 16px;
-}
-
-p.title {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/ribbon-gry.png) no-repeat right 6px;
-	background-size: 16px;
-}
-
-p.mobile {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/mobile-gry.png) no-repeat right 6px;
-	background-size: 16px;
-}
-
-p.phone {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/phone-gry.png) no-repeat right 6px;
-	background-size: 16px;
-}
-
-p.mobile {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/mobile-gry.png) no-repeat right 6px;
-	background-size: 16px;
-}
-
 .column.one.centervertically {
 	margin: 0;
 	padding: 0;
@@ -1939,31 +1464,25 @@ p.mobile {
 }
 
 .directory p.email {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/email-gry.png) no-repeat left 6px;
+	background: url(./images/email-gry.png) no-repeat left 6px;
 	background-size: 16px;
 	padding-left: 25px;
 }
 
 .directory p.title {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/ribbon-gry.png) no-repeat left 6px;
+	background: url(./images/ribbon-gry.png) no-repeat left 6px;
 	background-size: 16px;
 	padding-left: 25px;
 }
 
 .directory p.mobile {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/mobile-gry.png) no-repeat left 6px;
+	background: url(./images/mobile-gry.png) no-repeat left 6px;
 	background-size: 16px;
 	padding-left: 25px;
 }
 
 .directory p.phone {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/phone-gry.png) no-repeat left 6px;
-	background-size: 16px;
-	padding-left: 25px;
-}
-
-.directory p.mobile {
-	background: url(https://shock.wsu.edu/wp-content/uploads/sites/581/2016/06/mobile-gry.png) no-repeat left 6px;
+	background: url(./images/phone-gry.png) no-repeat left 6px;
 	background-size: 16px;
 	padding-left: 25px;
 }
@@ -1973,39 +1492,10 @@ p.mobile {
 	background: linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
 }
 
-.backarrow,
-.forwardarrow {
-	display: none;
-}
-
 @media screen and (max-width: 768px) {
 
 	.footer ul li a {
 		font-size: 1.45em;
-	}
-
-	a.hero-button {
-		float: left;
-		margin-top: 10px;
-	}
-
-	.hero-buttons {
-		position: relative;
-		bottom: auto;
-		display: -webkit-box;
-		display: -ms-flexbox;
-		display: flex;
-		-webkit-box-orient: vertical;
-		-webkit-box-direction: normal;
-		    -ms-flex-direction: column;
-		        flex-direction: column;
-		-webkit-box-pack: center;
-		    -ms-flex-pack: center;
-		        justify-content: center;
-		-webkit-box-align: center;
-		    -ms-flex-align: center;
-		        align-items: center;
-		width: 100%;
 	}
 
 	.centervertically {

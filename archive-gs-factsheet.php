@@ -8,11 +8,19 @@ if ( have_posts() ) {
 		$factsheet_data['permalink'] = get_the_permalink();
 
 		$degree_types = wp_get_object_terms( get_the_ID(), 'gs-degree-type' );
+		$program_name = wp_get_object_terms( get_the_ID(), 'gs-program-name' );
+
 		$degree_classification = '';
 		$degree_type = 'Other';
 		if ( ! is_wp_error( $degree_types ) && 0 < count( $degree_types ) ) {
 			$degree_classification = get_term_meta( $degree_types[0]->term_id, 'gs_degree_type_classification', true );
 			$degree_type = $degree_types[0]->name;
+		}
+
+		if ( ! is_wp_error( $program_name ) && 0 < count( $program_name ) ) {
+			$factsheet_data['program_name'] = $program_name[0]->name;
+		} else {
+			$factsheet_data['program_name'] = '';
 		}
 
 		$factsheet_data['degree_type'] = $degree_type;
@@ -151,7 +159,19 @@ get_header();
 						foreach ( $factsheet as $item ) {
 							?>
 							<div class="degree-row-bottom">
-								<div class="degree-detail"><a href="<?php echo esc_url( $item['permalink'] ); ?>"><?php echo esc_html( $factsheet_name ); ?></a> | <?php echo esc_html( $item['degree_type'] ); ?></div>
+								<div class="degree-detail">
+										<?php
+										echo '<a href="' . esc_url( $item['permalink'] ) . '">' . esc_html( $factsheet_name ) . '</a>';
+
+										if ( ! empty( $item['degree_type'] ) ) {
+											echo ' | ' . esc_html( $item['degree_type'] );
+										}
+
+										if ( ! empty( $item['program_name'] ) ) {
+											echo ' | ' . esc_html( $item['program_name'] );
+										}
+										?>
+								</div>
 								<div class="degree-classification <?php echo esc_attr( $item['degree_classification'] ); ?>">
 									<?php
 									// Output the first character of the degree classification string.

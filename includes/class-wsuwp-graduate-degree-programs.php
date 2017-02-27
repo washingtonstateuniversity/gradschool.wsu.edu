@@ -946,6 +946,7 @@ class WSUWP_Graduate_Degree_Programs {
 			'career_opportunities',
 			'career_placements',
 			'student_learning_outcome',
+			'public' => 'No',
 		);
 
 		if ( isset( $factsheet_data['gsdp_degree_description'][0] ) ) {
@@ -954,6 +955,10 @@ class WSUWP_Graduate_Degree_Programs {
 
 		if ( isset( $factsheet_data['gsdp_degree_id'][0] ) ) {
 			$data['degree_id'] = $factsheet_data['gsdp_degree_id'][0];
+		}
+
+		if ( isset( $factsheet_data['gsdp_include_in_programs'][0] ) && 1 === absint( $factsheet_data['gsdp_include_in_programs'][0] ) ) {
+			$data['public'] = 'Yes';
 		}
 
 		if ( isset( $factsheet_data['gsdp_degree_shortname'][0] ) ) {

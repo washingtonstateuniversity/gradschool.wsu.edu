@@ -5,6 +5,11 @@ if ( have_posts() ) {
 	while( have_posts() ) {
 		the_post();
 		$factsheet_data = WSUWP_Graduate_Degree_Programs::get_factsheet_data( get_the_ID() );
+
+		if ( 'No' === $factsheet_data['public'] ) {
+			continue;
+		}
+
 		$factsheet_data['permalink'] = get_the_permalink();
 
 		$degree_types = wp_get_object_terms( get_the_ID(), 'gs-degree-type' );

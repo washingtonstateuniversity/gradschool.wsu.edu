@@ -1550,3 +1550,22 @@ body.events-archive .column.one {
 	padding: 0;
 	border: 0;
 }
+
+.factsheet-faculty {
+	margin-left: .75em;
+	margin-bottom: 1em;
+	border-bottom: 1px solid #eee;
+}
+
+.factsheet-faculty h3 {
+	font-weight: 400;
+	margin-bottom: 0;
+}
+
+.factsheet-faculty h4 {
+	font-weight: 400;
+}
+
+.factsheet-faculty-relationship {
+	margin-top: 1em;
+}

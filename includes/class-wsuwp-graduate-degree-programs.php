@@ -60,13 +60,13 @@ class WSUWP_Graduate_Degree_Programs {
 			'location' => 'primary',
 		),
 		'gsdp_grad_students_total' => array(
-			'description' => 'Total number of grad students',
+			'description' => 'Total grad students',
 			'type' => 'int',
 			'sanitize_callback' => 'absint',
 			'location' => 'primary',
 		),
 		'gsdp_grad_students_aided' => array(
-			'description' => 'Number of aided grad students',
+			'description' => 'Aided grad students',
 			'type' => 'int',
 			'sanitize_callback' => 'absint',
 			'location' => 'primary',

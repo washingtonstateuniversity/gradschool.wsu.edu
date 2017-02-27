@@ -1,6 +1,6 @@
 {
   "name": "gradschool.wsu.edu",
-  "version": "0.9.2",
+  "version": "0.10.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/washingtonstateuniversity/gradschool.wsu.edu"

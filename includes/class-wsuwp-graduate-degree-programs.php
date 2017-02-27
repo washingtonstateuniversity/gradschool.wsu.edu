@@ -1089,8 +1089,8 @@ class WSUWP_Graduate_Degree_Programs {
 			}
 		}
 
-		$locations = get_post_meta( $post_id, 'gsdp_locations', true );
-		if ( ! empty( $locations ) ) {
+		if ( isset( $factsheet_data['gsdp_locations'][0] ) ) {
+			$locations = maybe_unserialize( $factsheet_data['gsdp_locations'][0] );
 			$data['locations'] = wp_parse_args( $locations, $data['locations'] );
 		}
 

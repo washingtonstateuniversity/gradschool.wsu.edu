@@ -154,13 +154,13 @@
 						<div class="factsheet-faculty">
 							<h3><?php echo esc_html( $faculty['name'] ); ?><?php if ( ! empty( $faculty['degree_abbreviation'] ) ) : ?>, <?php echo esc_html( $faculty['degree_abbreviation'] ); ?><?php endif; ?></h3>
 							<?php if ( ! empty( $faculty['email'] ) ) : ?>
-							<div><strong>Email:</strong> <a href="mailto:<?php echo esc_attr( $faculty['email'] ); ?>"><?php echo esc_html( $faculty['email'] ); ?></a></div>
+							<div><a href="mailto:<?php echo esc_attr( $faculty['email'] ); ?>"><?php echo esc_html( $faculty['email'] ); ?></a></div>
 							<?php endif; ?>
 							<?php if ( ! empty( $faculty['url'] ) ) : ?>
 							<div><strong>URL:</strong> <a href="<?php echo esc_url( $faculty['url'] ); ?>"><?php echo esc_html( $faculty['url'] ); ?></a></div>
 							<?php endif; ?>
 							<?php if ( ! empty( $faculty['relationship'] ) ) : ?>
-							<div><p><?php echo esc_html( $faculty['relationship'] ); ?></p></div>
+							<div class="factsheet-faculty-relationship"><p><?php echo esc_html( $faculty['relationship'] ); ?></p></div>
 							<?php endif; ?>
 							<?php if ( ! empty( $faculty['teaching_interests'] ) ) : ?>
 							<div>

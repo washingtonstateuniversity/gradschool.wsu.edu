@@ -84,11 +84,13 @@ input[name="gsdp_degree_url"] {
 	min-width: 200px;
 }
 
+.factsheet-locations-wrapper,
 .factsheet-deadlines-wrapper,
 .factsheet-requirements-wrapper {
 	padding-top: 1em;
 }
 
+.factsheet-locations-field,
 .factsheet-requirements-field,
 .factsheet-deadlines-field {
 	display: block;
@@ -102,10 +104,16 @@ input[name="gsdp_degree_url"] {
 	width: calc(100% - 100px);
 }
 
+.factsheet-locations-field select,
 .factsheet-deadlines-field select {
 	margin: 0 5px .3em 0;
 	width: 115px;
 	max-width: 115px;
+}
+
+.factsheet-locations-field label {
+	width: 35%;
+	display: inline-block;
 }
 
 .factsheet-deadlines-field input {

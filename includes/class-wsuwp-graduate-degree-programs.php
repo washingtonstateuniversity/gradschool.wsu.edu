@@ -84,6 +84,14 @@ class WSUWP_Graduate_Degree_Programs {
 			'post_html' => '</div>',
 			'location' => 'primary',
 		),
+		'gsdp_locations' => array(
+			'description' => 'Locations',
+			'type' => 'locations',
+			'sanitize_callback' => 'WSUWP_Graduate_Degree_Programs::sanitize_locations',
+			'pre_html' => '<div class="factsheet-group">',
+			'post_html' => '</div>',
+			'location' => 'primary',
+		),
 		'gsdp_deadlines' => array(
 			'description' => 'Deadlines',
 			'type' => 'deadlines',
@@ -722,6 +730,43 @@ class WSUWP_Graduate_Degree_Programs {
 			</div>
 			<?php
 
+		} elseif ( 'locations' === $meta['type'] ) {
+			$field_data = maybe_unserialize( $data[ $key ][0] );
+
+			if ( empty( $field_data ) ) {
+				$field_data = array();
+			}
+
+			$default_field_data = array(
+				'Pullman' => 'No',
+				'Spokane' => 'No',
+				'Tri-Cities' => 'No',
+				'Vancouver' => 'No',
+				'Global Campus' => 'No',
+			);
+			$field_data = wp_parse_args( $field_data, $default_field_data );
+
+			?>
+			<div class="factsheet-<?php echo esc_attr( $meta['type'] ); ?>-wrapper">
+				<span class="factsheet-label">Locations:</span>
+				<?php
+
+				foreach ( $field_data as $location => $location_status ) {
+					?>
+					<span class="factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field">
+						<label for="location-<?php echo esc_attr( sanitize_key( $location ) ); ?>"><?php echo esc_html( $location ); ?></label>
+						<select id="location-<?php echo esc_attr( sanitize_key( $location ) ); ?>"
+								name="<?php echo esc_attr( $key ); ?>[<?php echo esc_attr( $location ); ?>]">
+							<option value="No" <?php selected( 'No', $location_status ); ?>>No</option>
+							<option value="Yes" <?php selected( 'Yes', $location_status ); ?>>Yes</option>
+							<option value="By Exception" <?php selected( 'By Exception', $location_status ); ?>>By Exception</option>
+						</select>
+					</span>
+					<?php
+				}
+			?>
+			</div>
+			<?php
 		}
 
 		echo '</div>'; // End factsheet-primary-input
@@ -753,6 +798,34 @@ class WSUWP_Graduate_Degree_Programs {
 		}
 
 		return $gpa;
+	}
+
+	/**
+	 * Sanitizes a set of locations stored in a string.
+	 *
+	 * @since 0.10.0
+	 *
+	 * @param array $locations
+	 *
+	 * @return array
+	 */
+	public function sanitize_locations( $locations ) {
+		if ( ! is_array( $locations ) || 0 === count( $locations ) ) {
+			$locations = array();
+		}
+
+		$location_names = array( 'Pullman', 'Spokane', 'Tri-Cities', 'Vancouver', 'Global Campus' );
+		$clean_locations = array();
+
+		foreach( $location_names as $location_name ) {
+			if ( ! isset( $locations[ $location_name ] ) || ! in_array( $locations[ $location_name ], array( 'No', 'Yes', 'By Exception' ), true ) ) {
+				$clean_locations[ $location_name ] = 'No';
+			} else {
+				$clean_locations[ $location_name ] = $locations[ $location_name ];
+			}
+		}
+
+		return $clean_locations;
 	}
 
 	/**

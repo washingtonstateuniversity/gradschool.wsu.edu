@@ -18,6 +18,15 @@ class WSUWP_Graduate_Degree_Programs {
 	var $post_type_slug = 'gs-factsheet';
 
 	/**
+	 * The slug used in pretty URLs.
+	 *
+	 * @since 0.10.0
+	 *
+	 * @var string
+	 */
+	var $archive_slug = 'factsheets-beta';
+
+	/**
 	 * A list of post meta keys associated with factsheets.
 	 *
 	 * @since 0.4.0
@@ -171,6 +180,7 @@ class WSUWP_Graduate_Degree_Programs {
 		add_action( "save_post_{$this->post_type_slug}", array( $this, 'save_factsheet' ), 10, 2 );
 
 		add_action( 'pre_get_posts', array( $this, 'adjust_factsheet_archive_query' ) );
+		add_action( 'template_redirect', array( $this, 'redirect_private_factsheets' ) );
 	}
 
 	/**
@@ -239,8 +249,8 @@ class WSUWP_Graduate_Degree_Programs {
 				'title',
 				'revisions',
 			),
-			'has_archive' => 'factsheets-beta',
-			'rewrite' => array( 'slug' => 'factsheets-beta/factsheet', 'with_front' => false ),
+			'has_archive' => $this->archive_slug,
+			'rewrite' => array( 'slug' => $this->archive_slug . '/factsheet', 'with_front' => false ),
 		);
 		register_post_type( $this->post_type_slug, $args );
 	}
@@ -946,6 +956,7 @@ class WSUWP_Graduate_Degree_Programs {
 			'career_opportunities',
 			'career_placements',
 			'student_learning_outcome',
+			'public' => 'No',
 		);
 
 		if ( isset( $factsheet_data['gsdp_degree_description'][0] ) ) {
@@ -954,6 +965,10 @@ class WSUWP_Graduate_Degree_Programs {
 
 		if ( isset( $factsheet_data['gsdp_degree_id'][0] ) ) {
 			$data['degree_id'] = $factsheet_data['gsdp_degree_id'][0];
+		}
+
+		if ( isset( $factsheet_data['gsdp_include_in_programs'][0] ) && 1 === absint( $factsheet_data['gsdp_include_in_programs'][0] ) ) {
+			$data['public'] = 'Yes';
 		}
 
 		if ( isset( $factsheet_data['gsdp_degree_shortname'][0] ) ) {
@@ -1046,26 +1061,26 @@ class WSUWP_Graduate_Degree_Programs {
 				$unique_id = md5( $person->name );
 				if ( isset( $faculty_relationships[ $unique_id ] ) ) {
 					if ( 'true' === $faculty_relationships[ $unique_id ]['chair'] && 'true' === $faculty_relationships[ $unique_id ]['cochair'] ) {
-						$faculty_meta['relationship'] = 'Can chair or co-chair graduate committee.';
+						$faculty_meta['relationship'] = 'Serves as chair or co-chair on graduate committee.';
 					} elseif ( 'true' === $faculty_relationships[ $unique_id ]['chair'] ) {
-						$faculty_meta['relationship'] = 'Can chair graduate committee.';
+						$faculty_meta['relationship'] = 'Serves as chair on graduate committee.';
 					} elseif ( 'true' === $faculty_relationships[ $unique_id ]['cochair'] ) {
-						$faculty_meta['relationship'] = 'Can co-chair graduate committee.';
+						$faculty_meta['relationship'] = 'Serves as co-chair on graduate committee.';
 					} else {
-						$faculty_meta['relationship'] = 'Can sit as a graduate committee member.';
+						$faculty_meta['relationship'] = 'Serves as graduate committee member.';
 					}
 				} elseif ( isset( $faculty_relationships[ $person->term_id ] ) ) {
 					if ( 'true' === $faculty_relationships[ $person->term_id ]['chair'] && 'true' === $faculty_relationships[ $person->term_id ]['cochair'] ) {
-						$faculty_meta['relationship'] = 'Can chair or co-chair graduate committee.';
+						$faculty_meta['relationship'] = 'Serves as chair or co-chair on graduate committee.';
 					} elseif ( 'true' === $faculty_relationships[ $person->term_id ]['chair'] ) {
-						$faculty_meta['relationship'] = 'Can chair graduate committee.';
+						$faculty_meta['relationship'] = 'Serves as chair on graduate committee.';
 					} elseif ( 'true' === $faculty_relationships[ $person->term_id ]['cochair'] ) {
-						$faculty_meta['relationship'] = 'Can co-chair graduate committee.';
+						$faculty_meta['relationship'] = 'Serves as co-chair on graduate committee.';
 					} else {
-						$faculty_meta['relationship'] = 'Can sit as a graduate committee member.';
+						$faculty_meta['relationship'] = 'Serves as graduate committee member.';
 					}
 				} else {
-					$faculty_meta['relationship'] = 'Can sit as a graduate committee member.';
+					$faculty_meta['relationship'] = 'Serves as graduate committee member.';
 				}
 
 				$data['faculty'][] = $faculty_meta;
@@ -1088,5 +1103,27 @@ class WSUWP_Graduate_Degree_Programs {
 		}
 
 		return;
+	}
+
+	/**
+	 * Redirects published factsheets that are set to not be included in the
+	 * program list. If the factsheet is a draft, then it can be previewed by
+	 * those who have access.
+	 *
+	 * @since 0.10.0
+	 */
+	public function redirect_private_factsheets() {
+		if ( ! is_singular( $this->post_type_slug ) ) {
+			return;
+		}
+
+		if ( 'draft' === get_post_status( get_the_ID() ) ) {
+			return;
+		}
+
+		if ( 1 !== absint( get_post_meta( get_the_ID(), 'gsdp_include_in_programs', true ) ) ) {
+			wp_redirect( home_url( '/' . $this->archive_slug . '/' ) );
+			exit();
+		}
 	}
 }

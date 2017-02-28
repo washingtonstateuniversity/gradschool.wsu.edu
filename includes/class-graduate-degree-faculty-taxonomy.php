@@ -43,6 +43,9 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 		add_action( "created_{$this->taxonomy_slug}", array( $this, 'generate_term_uuid' ) );
 		add_action( "{$this->taxonomy_slug}_edit_form_fields", array( $this, 'term_edit_form_fields' ), 10 );
 		add_action( "edit_{$this->taxonomy_slug}", array( $this, 'save_term_form_fields' ) );
+
+		add_filter( "manage_edit-{$this->taxonomy_slug}_columns", array( $this, 'add_custom_columns' ) );
+		add_filter( "manage_{$this->taxonomy_slug}_custom_column", array( $this, 'manage_custom_columns' ), 10, 3 );
 	}
 
 	/**
@@ -211,5 +214,49 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 			</td>
 		</tr>
 		<?php
+	}
+
+	/**
+	 * Modifies the columns displayed in the faculty member terms list table.
+	 *
+	 * @since 0.11.0
+	 *
+	 * @return array
+	 */
+	public function add_custom_columns() {
+		$columns = array(
+			'cb' => '<input type="checkbox" />',
+			'name' => 'Name',
+			'email' => 'Email',
+			'url' => 'URL',
+			'slug' => 'Slug',
+			'posts' => 'Count',
+		);
+
+		return $columns;
+	}
+
+	/**
+	 * Displays additional data in the custom columns added to the faculty members
+	 * list table.
+	 *
+	 * @since 0.11.0
+	 *
+	 * @param string $content     The current content for the column.
+	 * @param string $column_slug The slug representing the column.
+	 * @param int    $term_id     ID of the term being displayed.
+	 *
+	 * @return string Replacement content for the column.
+	 */
+	public function manage_custom_columns( $content, $column_slug, $term_id ) {
+		if ( 'email' === $column_slug ) {
+			$content = sanitize_email( get_term_meta( $term_id, 'gs_faculty_email', true ) );
+		}
+
+		if ( 'url' === $column_slug ) {
+			$content = sanitize_text_field( get_term_meta( $term_id, 'gs_faculty_url', true ) );
+		}
+
+		return $content;
 	}
 }

@@ -142,6 +142,7 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 	public static function get_all_term_meta( $term_id ) {
 		$term_meta = array();
 
+		$term_meta['uuid'] = get_term_meta( $term_id, 'gs_relationship_id', true );
 		$term_meta['degree_abbreviation'] = get_term_meta( $term_id, 'gs_degree_abbreviation', true );
 		$term_meta['email'] = get_term_meta( $term_id, 'gs_faculty_email', true );
 		$term_meta['url'] = get_term_meta( $term_id, 'gs_faculty_url', true );
@@ -161,6 +162,14 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 	public function term_edit_form_fields( $term ) {
 		$term_meta = self::get_all_term_meta( $term->term_id );
 		?>
+		<tr class="form-field">
+			<th scope="row">
+				<label for="faculty-uuid">Unique ID</label>
+			</th>
+			<td>
+				<input type="text" disabled id="faculty-uuid" value="<?php echo esc_attr( $term_meta['uuid'] ); ?>" />
+			</td>
+		</tr>
 		<tr class="form-field">
 			<th scope="row">
 				<label for="degree-abbreviation">Degree abbreviation</label>

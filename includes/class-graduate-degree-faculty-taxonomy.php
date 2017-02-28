@@ -326,7 +326,7 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 		if ( 'Email' === $_REQUEST['orderby'] ) {
 			$term_query->query_vars['orderby'] = 'meta_value';
 			$term_query->query_vars['meta_key'] = 'gs_faculty_email';
-		} elseif( 'URL' === $_REQUEST['orderby'] ) {
+		} elseif ( 'URL' === $_REQUEST['orderby'] ) {
 			$term_query->query_vars['orderby'] = 'meta_value';
 			$term_query->query_vars['meta_key'] = 'gs_faculty_url';
 		}

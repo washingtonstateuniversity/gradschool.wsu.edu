@@ -45,7 +45,10 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 		add_action( "edit_{$this->taxonomy_slug}", array( $this, 'save_term_form_fields' ) );
 
 		add_filter( "manage_edit-{$this->taxonomy_slug}_columns", array( $this, 'add_custom_columns' ) );
+		add_filter( "manage_edit-{$this->taxonomy_slug}_sortable_columns", array( $this, 'add_custom_columns' ) );
 		add_filter( "manage_{$this->taxonomy_slug}_custom_column", array( $this, 'manage_custom_columns' ), 10, 3 );
+
+		add_action( 'parse_term_query', array( $this, 'sort_custom_columns' ) );
 	}
 
 	/**
@@ -258,5 +261,26 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 		}
 
 		return $content;
+	}
+
+	/**
+	 * Sorts the term list table by custom column.
+	 *
+	 * @since 0.11.0
+	 *
+	 * @param WP_Term_Query $term_query
+	 */
+	public function sort_custom_columns( $term_query ) {
+		if ( ! isset( $_REQUEST['orderby'] ) || ! isset( $_REQUEST['order'] ) ) {
+			return;
+		}
+
+		if ( 'Email' === $_REQUEST['orderby'] ) {
+			$term_query->query_vars['orderby'] = 'meta_value';
+			$term_query->query_vars['meta_key'] = 'gs_faculty_email';
+		} elseif( 'URL' === $_REQUEST['orderby'] ) {
+			$term_query->query_vars['orderby'] = 'meta_value';
+			$term_query->query_vars['meta_key'] = 'gs_faculty_url';
+		}
 	}
 }

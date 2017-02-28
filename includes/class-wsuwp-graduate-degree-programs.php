@@ -24,7 +24,7 @@ class WSUWP_Graduate_Degree_Programs {
 	 *
 	 * @var string
 	 */
-	var $archive_slug = 'factsheets-beta';
+	var $archive_slug = 'degrees';
 
 	/**
 	 * A list of post meta keys associated with factsheets.

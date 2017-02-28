@@ -20,7 +20,100 @@
 $time_start = microtime( true );
 $csv = new parseCSV();
 $csv->heading = false;
-$csv->parse( dirname( __FILE__ ) . '/data/20170206-import-02.csv' );
+$csv->parse( dirname( __FILE__ ) . '/data/faculty-new.utf8.csv' );
+
+$all_faculty = array();
+$missing_faculty = array();
+$all_faculty_degrees = array();
+
+echo '<table>';
+
+foreach( $csv->data as $datum ) {
+
+	if ( 'x' === strtolower( $datum[3] ) ) {
+		$chair = 'true';
+	} else {
+		$chair = 'false';
+	}
+
+	if ( 'x' === strtolower( $datum[4] ) ) {
+		$cochair = 'true';
+	} else {
+		$cochair = 'false';
+	}
+
+	if ( 'x' === strtolower( $datum[5] ) ) {
+		$sit = 'true';
+	} else {
+		$sit = 'false';
+	}
+
+	$term = get_term_by( 'name', $datum[2], 'gs-faculty' );
+
+	if ( ! $term ) {
+		$missing_faculty[] = $datum[2];
+		$term = wp_insert_term( $datum[2], 'gs-faculty' );
+
+		if ( is_wp_error( $term ) ) {
+			continue;
+		}
+
+		$unique_id = wp_generate_uuid4();
+		update_term_meta( $term['term_id'], 'gs_relationship_id', $unique_id );
+		$term_id = $term['term_id'];
+	} else {
+		$term_id = $term->term_id;
+		$unique_id = get_term_meta( $term_id, 'gs_relationship_id', true );
+	}
+
+	$all_faculty_degrees[ $datum[0] ][ $term_id ] = array(
+		'unique_id' => $unique_id,
+		'chair' => $chair,
+		'cochair' => $cochair,
+		'sit' => $sit,
+	);
+
+	echo '<tr><td>' . $unique_id . '</td><td>' . $term_id . '</td><td>' . $datum[2] . '</td><td>' . $datum[0] . '</td><td>' . $chair . '</td><td>' . $cochair . '</td></tr>';
+}
+echo '</table>';
+
+$missing_posts = array();
+foreach( $all_faculty_degrees as $degree_id => $degree_faculty ) {
+	$post = get_posts( array( 'post_type' => 'gs-factsheet', 'meta_key' => 'gsdp_degree_id', 'meta_value' => $degree_id ) );
+
+	if ( empty( $post ) ) {
+		$missing_posts[] = $degree_id;
+		continue;
+	}
+
+	$new_faculty = array();
+	$new_terms = array();
+
+	foreach( $degree_faculty as $term_id => $degree_fac ) {
+		$new_terms[] = $term_id;
+		$new_faculty[ $degree_fac['unique_id'] ] = array(
+			'chair' => $degree_fac['chair'],
+			'cochair' => $degree_fac['cochair'],
+			'sit' => $degree_fac['sit'],
+		);
+	}
+
+	wp_set_object_terms( $post[0]->ID, $new_terms, 'gs-faculty', false );
+	update_post_meta( $post[0]->ID, 'gsdp_faculty_relationships', $new_faculty );
+}
+
+echo '<h1>Missing Faculty</h1><br>';
+foreach( $missing_faculty as $missing ) {
+	echo $missing . '<br>';
+}
+
+var_dump( $missing_posts );
+echo '<br><br>';
+$time = microtime( true ) - $time_start;
+echo '<br><br>Time: ' . $time;
+echo '<br>Final Memory: ' . memory_get_usage();
+echo '<br><br>';
+die();
 
 $collected_faculty = array();
 $collected_contact = array();

@@ -41,6 +41,8 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 	public function setup_hooks() {
 		add_action( 'init', array( $this, 'register_taxonomy' ), 20 );
 		add_action( "created_{$this->taxonomy_slug}", array( $this, 'generate_term_uuid' ) );
+
+		add_action( "{$this->taxonomy_slug}_add_form_fields", array( $this, 'term_add_form_fields' ), 10 );
 		add_action( "{$this->taxonomy_slug}_edit_form_fields", array( $this, 'term_edit_form_fields' ), 10 );
 		add_action( "edit_{$this->taxonomy_slug}", array( $this, 'save_term_form_fields' ) );
 
@@ -156,6 +158,36 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 		$term_meta['research_interests'] = get_term_meta( $term_id, 'gs_research_interests', true );
 
 		return $term_meta;
+	}
+
+	/**
+	 * Captures information about a faculty member on the new term input screen.
+	 *
+	 * @since 0.11.0
+	 */
+	public function term_add_form_fields() {
+		?>
+		<div class="form-field">
+			<label for="degree-abbreviation">Degree abbreviation</label>
+			<input type="text" name="degree_abbreviation" id="degree-abbreviation" value="" />
+		</div>
+		<div class="form-field">
+			<label for="email">Email</label>
+			<input type="text" name="email" id="email" value="" />
+		</div>
+		<div class="form-field">
+			<label for="faculty_url">URL</label>
+			<input type="text" name="faculty_url" id="faculty_url" value="" />
+		</div>
+		<div class="form-field">
+			<label for="teaching-interests">Teaching interests</label>
+			<textarea name="teaching_interests" id="teaching-interests" rows="5" cols="50" class="large-text"></textarea>
+		</div>
+		<div class="form-field">
+			<label for="research-interests">Research interests</label>
+			<textarea name="research_interests" id="research-interests" rows="5" cols="50" class="large-text"></textarea>
+		</div>
+		<?php
 	}
 
 	/**

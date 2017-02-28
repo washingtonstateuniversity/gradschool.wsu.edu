@@ -1198,6 +1198,7 @@ class WSUWP_Graduate_Degree_Programs {
 			exit();
 		} else {
 			wp_safe_redirect( home_url( '/' . $this->archive_slug . '/' ), 302 );
+			exit();
 		}
 	}
 

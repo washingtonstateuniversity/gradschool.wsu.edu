@@ -40,6 +40,7 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 	 */
 	public function setup_hooks() {
 		add_action( 'init', array( $this, 'register_taxonomy' ), 20 );
+		add_action( "created_{$this->taxonomy_slug}", array( $this, 'generate_term_uuid' ) );
 		add_action( "{$this->taxonomy_slug}_edit_form_fields", array( $this, 'term_edit_form_fields' ), 10 );
 		add_action( "edit_{$this->taxonomy_slug}", array( $this, 'save_term_form_fields' ) );
 	}
@@ -73,6 +74,19 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 			'show_in_rest'      => true,
 		);
 		register_taxonomy( $this->taxonomy_slug, array( WSUWP_Graduate_Degree_Programs()->post_type_slug ), $args );
+	}
+
+	/**
+	 * Generates a unique ID to maintain future relationships when a new
+	 * faculty member is created.
+	 *
+	 * @since 0.11.0
+	 *
+	 * @param int $term_id
+	 */
+	public function generate_term_uuid( $term_id ) {
+		$uuid = wp_generate_uuid4();
+		update_term_meta( $term_id, 'gs_relationship_id', $uuid );
 	}
 
 	/**

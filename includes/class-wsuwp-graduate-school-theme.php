@@ -41,6 +41,7 @@ class WSUWP_Graduate_School_Theme {
 		add_action( 'init', array( $this, 'rewrite_rules' ) );
 		add_filter( 'query_vars', array( $this, 'query_vars' ) );
 		add_action( 'template_redirect', array( $this, 'redirect_certificate_urls' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
 	}
 
 	/**
@@ -106,5 +107,14 @@ class WSUWP_Graduate_School_Theme {
 			wp_safe_redirect( home_url( '/' . WSUWP_Graduate_Degree_Programs()->archive_slug . '/' ) );
 			exit();
 		}
+	}
+
+	/**
+	 * Enqueue JavaScript used throughout the theme front-end.
+	 *
+	 * @since 1.0.0
+	 */
+	public function wp_enqueue_scripts() {
+		wp_enqueue_script( 'gradschool-primary', get_stylesheet_directory_uri() . '/js/script.min.js', array( 'jquery' ), WSUWP_Graduate_School_Theme()->theme_version() );
 	}
 }

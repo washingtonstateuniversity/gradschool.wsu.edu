@@ -40,9 +40,10 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 	 */
 	public function setup_hooks() {
 		add_action( 'init', array( $this, 'register_taxonomy' ), 20 );
-		add_action( "created_{$this->taxonomy_slug}", array( $this, 'generate_term_uuid' ) );
 
 		add_action( "{$this->taxonomy_slug}_add_form_fields", array( $this, 'term_add_form_fields' ), 10 );
+		add_action( "created_{$this->taxonomy_slug}", array( $this, 'save_new_term_form_fields' ) );
+
 		add_action( "{$this->taxonomy_slug}_edit_form_fields", array( $this, 'term_edit_form_fields' ), 10 );
 		add_action( "edit_{$this->taxonomy_slug}", array( $this, 'save_term_form_fields' ) );
 
@@ -92,9 +93,13 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 	 *
 	 * @param int $term_id
 	 */
-	public function generate_term_uuid( $term_id ) {
+	public function save_new_term_form_fields( $term_id ) {
+		check_admin_referer( 'add-tag', '_wpnonce_add-tag' );
+
 		$uuid = wp_generate_uuid4();
 		update_term_meta( $term_id, 'gs_relationship_id', $uuid );
+
+		$this->save_common_term_fields( $term_id );
 	}
 
 	/**
@@ -114,6 +119,19 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 		// Reuse the default nonce that is checked in `edit-tags.php`.
 		check_admin_referer( 'update-tag_' . $term_id );
 
+		$this->save_common_term_fields( $term_id );
+
+		return;
+	}
+
+	/**
+	 * Handles the saving of common fields used in the add and edit term forms.
+	 *
+	 * @since 0.11.0
+	 *
+	 * @param int $term_id
+	 */
+	private function save_common_term_fields( $term_id ) {
 		if ( isset( $_POST['degree_abbreviation'] ) ) {
 			update_term_meta( $term_id, 'gs_degree_abbreviation', sanitize_text_field( $_POST['degree_abbreviation'] ) );
 		}
@@ -133,8 +151,6 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 		if ( isset( $_POST['research_interests'] ) ) {
 			update_term_meta( $term_id, 'gs_research_interests', wp_kses_post( $_POST['research_interests'] ) );
 		}
-
-		return;
 	}
 
 

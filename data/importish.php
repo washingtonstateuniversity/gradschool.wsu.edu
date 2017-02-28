@@ -1,5 +1,11 @@
 <?php
 
+if ( ! isset( $_GET['testing'] ) ) {
+	die();
+}
+
+require_once( dirname( __FILE__ ) . '/data/parsecsv.php' );
+
 /*
  *  4    'gsdp_degree_description' => array(
 	0	'gsdp_degree_id' => array(

@@ -24,7 +24,7 @@ class WSUWP_Graduate_Degree_Programs {
 	 *
 	 * @var string
 	 */
-	var $archive_slug = 'factsheets-beta';
+	var $archive_slug = 'degrees';
 
 	/**
 	 * A list of post meta keys associated with factsheets.
@@ -188,6 +188,7 @@ class WSUWP_Graduate_Degree_Programs {
 		add_action( "save_post_{$this->post_type_slug}", array( $this, 'save_factsheet' ), 10, 2 );
 
 		add_action( 'pre_get_posts', array( $this, 'adjust_factsheet_archive_query' ) );
+		add_action( 'template_redirect', array( $this, 'redirect_old_factsheet_urls' ) );
 		add_action( 'template_redirect', array( $this, 'redirect_private_factsheets' ) );
 	}
 
@@ -1176,6 +1177,48 @@ class WSUWP_Graduate_Degree_Programs {
 		}
 
 		return;
+	}
+
+	/**
+	 * Redirects a given degree ID to either the current degree URL or
+	 * to the degrees landing page.
+	 *
+	 * @param int $degree_id
+	 */
+	public function redirect_factsheet_id( $degree_id ) {
+		$matches = get_posts( array(
+			'post_type' => $this->post_type_slug,
+			'meta_key' => 'gsdp_degree_id',
+			'meta_value' => $degree_id,
+		) );
+
+		if ( 0 !== count( $matches ) ) {
+			$redirect_url = get_permalink( $matches[0]->ID );
+			wp_safe_redirect( $redirect_url, 301 );
+			exit();
+		} else {
+			wp_safe_redirect( home_url( '/' . $this->archive_slug . '/' ), 302 );
+			exit();
+		}
+	}
+
+	/**
+	 * Redirects old factsheet ID URLs to their new URL or to the
+	 * factsheets landing page.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @global WP_Query $wp_query
+	 */
+	public function redirect_old_factsheet_urls() {
+		global $wp_query;
+
+		if ( $wp_query->is_404() && isset( $wp_query->query['post_type'] ) && $this->post_type_slug === $wp_query->query['post_type'] ) {
+			if ( is_numeric( $wp_query->query[ $this->post_type_slug ] ) ) {
+				$degree_id = absint( $wp_query->query[ $this->post_type_slug ] );
+				$this->redirect_factsheet_id( $degree_id );
+			}
+		}
 	}
 
 	/**

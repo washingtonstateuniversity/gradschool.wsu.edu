@@ -1,8 +1,5 @@
 <?php
 
-// Include functionality for handling degrees
-include_once( __DIR__ . '/includes/class-grad-degrees.php' );
-
 require_once( dirname( __FILE__ ) . '/includes/class-wsuwp-graduate-school-theme.php' );
 require_once( dirname( __FILE__ ) . '/includes/class-wsuwp-graduate-degree-programs.php' );
 

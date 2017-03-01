@@ -2000,9 +2000,4 @@ body.searching .degree-search-section {
 		min-height: 45px;
 	}
 }
-
-/* Remove when old interface is gone. */
-.degree-programs main ul.list > ul {
-	margin-left: 1.5em;
-}
 /*# sourceMappingURL=style.css.map */

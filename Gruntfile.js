@@ -91,6 +91,10 @@ module.exports = function( grunt ) {
 			archive_js: {
 				src: "js/factsheet-archive.js",
 				dest: "js/factsheet-archive.min.js"
+			},
+			primary_js: {
+				src: "js/script.js",
+				dest: "js/script.min.js"
 			}
 		},
 

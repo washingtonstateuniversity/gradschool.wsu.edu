@@ -190,6 +190,8 @@ class WSUWP_Graduate_Degree_Programs {
 		// This should fire after the filter in Editorial Access Manager.
 		add_filter( 'map_meta_cap', array( $this, 'filter_map_meta_cap' ), 200, 4 );
 
+		add_filter( "auth_post_{$this->post_type_slug}_meta_gsdp_degree_id", array( $this, 'can_edit_degree_id' ), 100, 4 );
+
 		add_action( 'pre_get_posts', array( $this, 'adjust_factsheet_archive_query' ) );
 		add_action( 'template_redirect', array( $this, 'redirect_old_factsheet_urls' ) );
 		add_action( 'template_redirect', array( $this, 'redirect_private_factsheets' ) );
@@ -783,6 +785,33 @@ class WSUWP_Graduate_Degree_Programs {
 	}
 
 	/**
+	 * Ensures that users assigned via Editorial Access Manager are not allowed to change
+	 * a degree ID.
+	 *
+	 * @since 1.1.0
+	 *
+	 * @param bool   $allowed
+	 * @param string $meta_key
+	 * @param int    $object_id
+	 * @param int    $user_id
+	 *
+	 * @return bool
+	 */
+	public static function can_edit_degree_id( $allowed, $meta_key, $object_id, $user_id ) {
+		$enable_custom_access = get_post_meta( $object_id, 'eam_enable_custom_access', true );
+
+		if ( 'users' === $enable_custom_access ) {
+			$allowed_users = (array) get_post_meta( $object_id, 'eam_allowed_users', true );
+
+			if ( in_array( $user_id, $allowed_users ) ) {
+				return false;
+			}
+		}
+
+		return $allowed;
+	}
+
+	/**
 	 * Sanitizes a GPA value.
 	 *
 	 * @since 0.4.0
@@ -950,8 +979,10 @@ class WSUWP_Graduate_Degree_Programs {
 
 		foreach ( $this->post_meta_keys as $key => $meta ) {
 			if ( isset( $_POST[ $key ] ) && isset( $keys[ $key ] ) && isset( $keys[ $key ]['sanitize_callback'] ) ) {
-				// Each piece of meta is registered with sanitization.
-				update_post_meta( $post_id, $key, $_POST[ $key ] );
+				if ( current_user_can( 'edit_post_meta', $post_id, $key ) ) {
+					// Each piece of meta is registered with sanitization.
+					update_post_meta( $post_id, $key, $_POST[ $key ] );
+				}
 			}
 		}
 

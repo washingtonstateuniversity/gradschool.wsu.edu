@@ -788,6 +788,8 @@ class WSUWP_Graduate_Degree_Programs {
 	/**
 	 * Determines if a user has been assigned to a factsheet through Editorial Access Manager.
 	 *
+	 * @since 1.1.0
+	 *
 	 * @param int $user_id
 	 * @param int $post_id
 	 *
@@ -831,6 +833,8 @@ class WSUWP_Graduate_Degree_Programs {
 	/**
 	 * Prevents a user, assigned via Editorial Access Manager, from editing a factsheet's
 	 * title.
+	 *
+	 * @since 1.1.0
 	 *
 	 * @param array $data
 	 * @param array $postarr

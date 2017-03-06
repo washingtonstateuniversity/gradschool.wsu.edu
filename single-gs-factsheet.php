@@ -152,7 +152,7 @@
 					foreach ( $factsheet_data['faculty'] as $faculty ) {
 						?>
 						<div class="factsheet-faculty">
-							<h3><?php echo esc_html( $faculty['name'] ); ?><?php if ( ! empty( $faculty['degree_abbreviation'] ) ) : ?>, <?php echo esc_html( $faculty['degree_abbreviation'] ); ?><?php endif; ?></h3>
+							<h3><?php echo esc_html( $faculty['display_name'] ); ?><?php if ( ! empty( $faculty['degree_abbreviation'] ) ) : ?>, <?php echo esc_html( $faculty['degree_abbreviation'] ); ?><?php endif; ?></h3>
 							<?php if ( ! empty( $faculty['email'] ) ) : ?>
 							<div><a href="mailto:<?php echo esc_attr( $faculty['email'] ); ?>"><?php echo esc_html( $faculty['email'] ); ?></a></div>
 							<?php endif; ?>

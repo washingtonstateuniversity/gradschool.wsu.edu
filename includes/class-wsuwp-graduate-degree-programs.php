@@ -1134,6 +1134,15 @@ class WSUWP_Graduate_Degree_Programs {
 				$faculty_meta = WSUWP_Graduate_Degree_Faculty_Taxonomy::get_all_term_meta( $person->term_id );
 				$faculty_meta['name'] = $person->name;
 
+				// Provide a way to display last name first.
+				$display_name = explode( ' ', $person->name );
+				if ( 1 < count( $display_name ) ) {
+					$faculty_meta['display_name'] = array_pop( $display_name );
+					$faculty_meta['display_name'] .= ', ' . implode( ' ', $display_name );
+				} else {
+					$factsheet_meta['display_name'] = $person->name;
+				}
+
 				$unique_id = md5( $person->name );
 				if ( isset( $faculty_relationships[ $unique_id ] ) ) {
 					if ( 'true' === $faculty_relationships[ $unique_id ]['chair'] && 'true' === $faculty_relationships[ $unique_id ]['cochair'] ) {

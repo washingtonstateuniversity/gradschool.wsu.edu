@@ -247,6 +247,10 @@ body.searching .degree-search-section {
 	font-size: 19px;
 }
 
+.degree-classification:hover {
+	cursor: default;
+}
+
 .doctorate {
 	background: #931a2b;
 	padding: 0;

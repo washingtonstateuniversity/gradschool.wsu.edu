@@ -1679,6 +1679,7 @@ body.events-archive .column.one {
 	    -ms-flex-pack: center;
 	        justify-content: center;
 	margin-bottom: 5px;
+	text-align: center;
 }
 
 .degree-list .pagination a.active {

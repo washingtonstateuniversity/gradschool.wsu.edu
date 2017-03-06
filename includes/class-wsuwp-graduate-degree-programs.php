@@ -1168,9 +1168,10 @@ class WSUWP_Graduate_Degree_Programs {
 					$faculty_meta['relationship'] = 'Serves as graduate committee member.';
 				}
 
-				$data['faculty'][] = $faculty_meta;
+				$data['faculty'][ $faculty_meta['display_name'] . time() ] = $faculty_meta;
 			}
 		}
+		ksort( $data['faculty'] );
 
 		return $data;
 	}

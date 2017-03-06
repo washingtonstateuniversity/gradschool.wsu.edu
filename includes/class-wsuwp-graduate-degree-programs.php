@@ -187,6 +187,12 @@ class WSUWP_Graduate_Degree_Programs {
 		add_action( 'add_meta_boxes', array( $this, 'remove_meta_boxes' ), 99 );
 		add_action( "save_post_{$this->post_type_slug}", array( $this, 'save_factsheet' ), 10, 2 );
 
+		// This should fire after the filter in Editorial Access Manager.
+		add_filter( 'map_meta_cap', array( $this, 'filter_map_meta_cap' ), 200, 4 );
+
+		add_filter( "auth_post_{$this->post_type_slug}_meta_gsdp_degree_id", array( $this, 'can_edit_degree_id' ), 100, 4 );
+		add_filter( 'wp_insert_post_data', array( $this, 'manage_factsheet_title_update' ), 10, 2 );
+
 		add_action( 'pre_get_posts', array( $this, 'adjust_factsheet_archive_query' ) );
 		add_action( 'template_redirect', array( $this, 'redirect_old_factsheet_urls' ) );
 		add_action( 'template_redirect', array( $this, 'redirect_private_factsheets' ) );
@@ -780,6 +786,76 @@ class WSUWP_Graduate_Degree_Programs {
 	}
 
 	/**
+	 * Determines if a user has been assigned to a factsheet through Editorial Access Manager.
+	 *
+	 * @since 1.1.0
+	 *
+	 * @param int $user_id
+	 * @param int $post_id
+	 *
+	 * @return bool
+	 */
+	public function user_is_eam_user( $user_id, $post_id ) {
+		$enable_custom_access = get_post_meta( $post_id, 'eam_enable_custom_access', true );
+
+		if ( 'users' === $enable_custom_access ) {
+			$allowed_users = (array) get_post_meta( $post_id, 'eam_allowed_users', true );
+
+			if ( in_array( $user_id, $allowed_users ) ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Ensures that users assigned via Editorial Access Manager are not allowed to change
+	 * a degree ID.
+	 *
+	 * @since 1.1.0
+	 *
+	 * @param bool   $allowed
+	 * @param string $meta_key
+	 * @param int    $object_id
+	 * @param int    $user_id
+	 *
+	 * @return bool
+	 */
+	public function can_edit_degree_id( $allowed, $meta_key, $object_id, $user_id ) {
+		if ( $this->user_is_eam_user( $user_id, $object_id ) ) {
+			return false;
+		}
+
+		return $allowed;
+	}
+
+	/**
+	 * Prevents a user, assigned via Editorial Access Manager, from editing a factsheet's
+	 * title.
+	 *
+	 * @since 1.1.0
+	 *
+	 * @param array $data
+	 * @param array $postarr
+	 *
+	 * @return array
+	 */
+	public function manage_factsheet_title_update( $data, $postarr ) {
+		$user = wp_get_current_user();
+
+		if ( isset( $postarr['ID'] ) && $this->user_is_eam_user( $user->ID, $postarr['ID'] ) ) {
+			$existing_title = get_post_field( 'post_title', absint( $postarr['ID'] ) );
+
+			if ( ! empty( $existing_title ) && $data['post_title'] !== $existing_title ) {
+				$data['post_title'] = $existing_title;
+			}
+		}
+
+		return $data;
+	}
+
+	/**
 	 * Sanitizes a GPA value.
 	 *
 	 * @since 0.4.0
@@ -947,8 +1023,10 @@ class WSUWP_Graduate_Degree_Programs {
 
 		foreach ( $this->post_meta_keys as $key => $meta ) {
 			if ( isset( $_POST[ $key ] ) && isset( $keys[ $key ] ) && isset( $keys[ $key ]['sanitize_callback'] ) ) {
-				// Each piece of meta is registered with sanitization.
-				update_post_meta( $post_id, $key, $_POST[ $key ] );
+				if ( current_user_can( 'edit_post_meta', $post_id, $key ) ) {
+					// Each piece of meta is registered with sanitization.
+					update_post_meta( $post_id, $key, $_POST[ $key ] );
+				}
 			}
 		}
 
@@ -995,6 +1073,63 @@ class WSUWP_Graduate_Degree_Programs {
 		} else {
 			wp_set_object_terms( $post_id, array(), 'gs-contact' );
 		}
+	}
+
+	/**
+	 * Filters a user's ability to delete factsheets when they have been added as an
+	 * authorized user via Editorial Access Manager.
+	 *
+	 * @since 1.1.0
+	 *
+	 * @param array $caps
+	 * @param string $cap
+	 * @param int $user_id
+	 * @param array $args
+	 *
+	 * @return array
+	 */
+	public function filter_map_meta_cap( $caps, $cap, $user_id, $args ) {
+		$eam_caps = array(
+			'delete_page',
+			'delete_post',
+		);
+
+		if ( in_array( $cap, $eam_caps ) ) {
+
+			$post_id = ( isset( $args[0] ) ) ? (int) $args[0] : null;
+			if ( ! $post_id && ! empty( $_GET['post'] ) ) {
+				$post_id = (int) $_GET['post'];
+			}
+
+			if ( ! $post_id && ! empty( $_POST['post_ID'] ) ) {
+				$post_id = (int) $_POST['post_ID'];
+			}
+
+			if ( ! $post_id ) {
+				return $caps;
+			}
+
+			$enable_custom_access = get_post_meta( $post_id, 'eam_enable_custom_access', true );
+
+			if ( ! empty( $enable_custom_access ) ) {
+				$user = new WP_User( $user_id );
+
+				// If user is admin, we do nothing
+				if ( ! in_array( 'administrator', $user->roles ) ) {
+
+					if ( 'users' === $enable_custom_access ) {
+						// Reset caps for allowed users to do_not_allow.
+						$allowed_users = (array) get_post_meta( $post_id, 'eam_allowed_users', true );
+
+						if ( in_array( $user_id, $allowed_users ) ) {
+							$caps[] = 'do_not_allow';
+						}
+					}
+				}
+			}
+		}
+
+		return $caps;
 	}
 
 	/**

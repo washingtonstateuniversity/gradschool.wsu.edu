@@ -187,6 +187,9 @@ class WSUWP_Graduate_Degree_Programs {
 		add_action( 'add_meta_boxes', array( $this, 'remove_meta_boxes' ), 99 );
 		add_action( "save_post_{$this->post_type_slug}", array( $this, 'save_factsheet' ), 10, 2 );
 
+		// This should fire after the filter in Editorial Access Manager.
+		add_filter( 'map_meta_cap', array( $this, 'filter_map_meta_cap' ), 200, 4 );
+
 		add_action( 'pre_get_posts', array( $this, 'adjust_factsheet_archive_query' ) );
 		add_action( 'template_redirect', array( $this, 'redirect_old_factsheet_urls' ) );
 		add_action( 'template_redirect', array( $this, 'redirect_private_factsheets' ) );
@@ -995,6 +998,63 @@ class WSUWP_Graduate_Degree_Programs {
 		} else {
 			wp_set_object_terms( $post_id, array(), 'gs-contact' );
 		}
+	}
+
+	/**
+	 * Filters a user's ability to delete factsheets when they have been added as an
+	 * authorized user via Editorial Access Manager.
+	 *
+	 * @since 1.1.0
+	 *
+	 * @param array $caps
+	 * @param string $cap
+	 * @param int $user_id
+	 * @param array $args
+	 *
+	 * @return array
+	 */
+	public function filter_map_meta_cap( $caps, $cap, $user_id, $args ) {
+		$eam_caps = array(
+			'delete_page',
+			'delete_post',
+		);
+
+		if ( in_array( $cap, $eam_caps ) ) {
+
+			$post_id = ( isset( $args[0] ) ) ? (int) $args[0] : null;
+			if ( ! $post_id && ! empty( $_GET['post'] ) ) {
+				$post_id = (int) $_GET['post'];
+			}
+
+			if ( ! $post_id && ! empty( $_POST['post_ID'] ) ) {
+				$post_id = (int) $_POST['post_ID'];
+			}
+
+			if ( ! $post_id ) {
+				return $caps;
+			}
+
+			$enable_custom_access = get_post_meta( $post_id, 'eam_enable_custom_access', true );
+
+			if ( ! empty( $enable_custom_access ) ) {
+				$user = new WP_User( $user_id );
+
+				// If user is admin, we do nothing
+				if ( ! in_array( 'administrator', $user->roles ) ) {
+
+					if ( 'users' === $enable_custom_access ) {
+						// Reset caps for allowed users to do_not_allow.
+						$allowed_users = (array) get_post_meta( $post_id, 'eam_allowed_users', true );
+
+						if ( in_array( $user_id, $allowed_users ) ) {
+							$caps[] = 'do_not_allow';
+						}
+					}
+				}
+			}
+		}
+
+		return $caps;
 	}
 
 	/**

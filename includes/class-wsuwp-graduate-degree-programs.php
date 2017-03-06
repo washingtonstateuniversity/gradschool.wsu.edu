@@ -191,6 +191,7 @@ class WSUWP_Graduate_Degree_Programs {
 		add_filter( 'map_meta_cap', array( $this, 'filter_map_meta_cap' ), 200, 4 );
 
 		add_filter( "auth_post_{$this->post_type_slug}_meta_gsdp_degree_id", array( $this, 'can_edit_degree_id' ), 100, 4 );
+		add_filter( 'wp_insert_post_data', array( $this, 'manage_factsheet_title_update' ), 10, 2 );
 
 		add_action( 'pre_get_posts', array( $this, 'adjust_factsheet_archive_query' ) );
 		add_action( 'template_redirect', array( $this, 'redirect_old_factsheet_urls' ) );
@@ -785,6 +786,28 @@ class WSUWP_Graduate_Degree_Programs {
 	}
 
 	/**
+	 * Determines if a user has been assigned to a factsheet through Editorial Access Manager.
+	 *
+	 * @param int $user_id
+	 * @param int $post_id
+	 *
+	 * @return bool
+	 */
+	public function user_is_eam_user( $user_id, $post_id ) {
+		$enable_custom_access = get_post_meta( $post_id, 'eam_enable_custom_access', true );
+
+		if ( 'users' === $enable_custom_access ) {
+			$allowed_users = (array) get_post_meta( $post_id, 'eam_allowed_users', true );
+
+			if ( in_array( $user_id, $allowed_users ) ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
 	 * Ensures that users assigned via Editorial Access Manager are not allowed to change
 	 * a degree ID.
 	 *
@@ -797,18 +820,35 @@ class WSUWP_Graduate_Degree_Programs {
 	 *
 	 * @return bool
 	 */
-	public static function can_edit_degree_id( $allowed, $meta_key, $object_id, $user_id ) {
-		$enable_custom_access = get_post_meta( $object_id, 'eam_enable_custom_access', true );
-
-		if ( 'users' === $enable_custom_access ) {
-			$allowed_users = (array) get_post_meta( $object_id, 'eam_allowed_users', true );
-
-			if ( in_array( $user_id, $allowed_users ) ) {
-				return false;
-			}
+	public function can_edit_degree_id( $allowed, $meta_key, $object_id, $user_id ) {
+		if ( $this->user_is_eam_user( $user_id, $object_id ) ) {
+			return false;
 		}
 
 		return $allowed;
+	}
+
+	/**
+	 * Prevents a user, assigned via Editorial Access Manager, from editing a factsheet's
+	 * title.
+	 *
+	 * @param array $data
+	 * @param array $postarr
+	 *
+	 * @return array
+	 */
+	public function manage_factsheet_title_update( $data, $postarr ) {
+		$user = wp_get_current_user();
+
+		if ( isset( $postarr['ID'] ) && $this->user_is_eam_user( $user->ID, $postarr['ID'] ) ) {
+			$existing_title = get_post_field( 'post_title', absint( $postarr['ID'] ) );
+
+			if ( ! empty( $existing_title ) && $data['post_title'] !== $existing_title ) {
+				$data['post_title'] = $existing_title;
+			}
+		}
+
+		return $data;
 	}
 
 	/**

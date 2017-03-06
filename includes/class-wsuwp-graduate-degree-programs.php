@@ -190,6 +190,8 @@ class WSUWP_Graduate_Degree_Programs {
 		add_action( 'pre_get_posts', array( $this, 'adjust_factsheet_archive_query' ) );
 		add_action( 'template_redirect', array( $this, 'redirect_old_factsheet_urls' ) );
 		add_action( 'template_redirect', array( $this, 'redirect_private_factsheets' ) );
+
+		add_filter( 'spine_get_title', array( $this, 'filter_factsheet_archive_title' ), 10, 3 );
 	}
 
 	/**
@@ -1132,6 +1134,15 @@ class WSUWP_Graduate_Degree_Programs {
 				$faculty_meta = WSUWP_Graduate_Degree_Faculty_Taxonomy::get_all_term_meta( $person->term_id );
 				$faculty_meta['name'] = $person->name;
 
+				// Provide a way to display last name first.
+				$display_name = explode( ' ', $person->name );
+				if ( 1 < count( $display_name ) ) {
+					$faculty_meta['display_name'] = array_pop( $display_name );
+					$faculty_meta['display_name'] .= ', ' . implode( ' ', $display_name );
+				} else {
+					$factsheet_meta['display_name'] = $person->name;
+				}
+
 				$unique_id = md5( $person->name );
 				if ( isset( $faculty_relationships[ $unique_id ] ) ) {
 					if ( 'true' === $faculty_relationships[ $unique_id ]['chair'] && 'true' === $faculty_relationships[ $unique_id ]['cochair'] ) {
@@ -1157,9 +1168,10 @@ class WSUWP_Graduate_Degree_Programs {
 					$faculty_meta['relationship'] = 'Serves as graduate committee member.';
 				}
 
-				$data['faculty'][] = $faculty_meta;
+				$data['faculty'][ $faculty_meta['display_name'] . time() ] = $faculty_meta;
 			}
 		}
+		ksort( $data['faculty'] );
 
 		return $data;
 	}
@@ -1241,5 +1253,24 @@ class WSUWP_Graduate_Degree_Programs {
 			wp_redirect( home_url( '/' . $this->archive_slug . '/' ) );
 			exit();
 		}
+	}
+
+	/**
+	 * Alters the title displayed for the factsheets landing page.
+	 *
+	 * @since 1.1.0
+	 *
+	 * @param string $view_title
+	 * @param string $site_title
+	 * @param string $global_title
+	 *
+	 * @return string
+	 */
+	public function filter_factsheet_archive_title( $view_title, $site_title, $global_title ) {
+		if ( is_post_type_archive( $this->post_type_slug ) ) {
+			return 'Graduate Degree Programs | ' . $site_title . $global_title;
+		}
+
+		return $view_title;
 	}
 }

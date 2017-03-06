@@ -190,6 +190,8 @@ class WSUWP_Graduate_Degree_Programs {
 		add_action( 'pre_get_posts', array( $this, 'adjust_factsheet_archive_query' ) );
 		add_action( 'template_redirect', array( $this, 'redirect_old_factsheet_urls' ) );
 		add_action( 'template_redirect', array( $this, 'redirect_private_factsheets' ) );
+
+		add_filter( 'spine_get_title', array( $this, 'filter_factsheet_archive_title' ), 10, 3 );
 	}
 
 	/**
@@ -1241,5 +1243,24 @@ class WSUWP_Graduate_Degree_Programs {
 			wp_redirect( home_url( '/' . $this->archive_slug . '/' ) );
 			exit();
 		}
+	}
+
+	/**
+	 * Alters the title displayed for the factsheets landing page.
+	 *
+	 * @since 1.1.0
+	 *
+	 * @param string $view_title
+	 * @param string $site_title
+	 * @param string $global_title
+	 *
+	 * @return string
+	 */
+	public function filter_factsheet_archive_title( $view_title, $site_title, $global_title ) {
+		if ( is_post_type_archive( $this->post_type_slug ) ) {
+			return 'Graduate Degree Programs | ' . $site_title . $global_title;
+		}
+
+		return $view_title;
 	}
 }

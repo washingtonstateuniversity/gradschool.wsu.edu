@@ -926,7 +926,7 @@ class WSUWP_Graduate_Degree_Programs {
 	 *
 	 * @return array
 	 */
-	public function sanitize_locations( $locations ) {
+	public static function sanitize_locations( $locations ) {
 		if ( ! is_array( $locations ) || 0 === count( $locations ) ) {
 			$locations = array();
 		}

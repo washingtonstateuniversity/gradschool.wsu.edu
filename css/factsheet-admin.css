@@ -220,12 +220,13 @@ input[name="gsdp_degree_url"] {
 }
 
 .faculty-name {
-	flex-basis: 40%;
+	flex-basis: 30%;
 }
 
 .select-chair,
-.select-cochair {
-	flex-basis: 25%;
+.select-cochair,
+.select-member {
+	flex-basis: 20%;
 }
 
 .remove-factsheet-faculty {

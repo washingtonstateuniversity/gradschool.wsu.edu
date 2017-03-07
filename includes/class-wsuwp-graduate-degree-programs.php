@@ -376,11 +376,13 @@ class WSUWP_Graduate_Degree_Programs {
 			if ( isset( $faculty_relationships[ $unique_id ] ) ) {
 				$faculty_relationships[ $faculty_member->term_id ]['chair'] = $faculty_relationships[ $unique_id ]['chair'];
 				$faculty_relationships[ $faculty_member->term_id ]['cochair'] = $faculty_relationships[ $unique_id ]['cochair'];
+				$faculty_relationships[ $faculty_member->term_id ]['committee_member'] = isset( $faculty_relationships[ $unique_id ]['committee_member'] ) ? $faculty_relationships[ $unique_id ]['committee_member'] : 'false';
 			}
 
 			if ( ! isset( $faculty_relationships[ $faculty_member->term_id ] ) ) {
 				$faculty_relationships[ $faculty_member->term_id ]['chair'] = 'false';
 				$faculty_relationships[ $faculty_member->term_id ]['cochair'] = 'false';
+				$faculty_relationships[ $faculty_member->term_id ]['committee_member'] = 'false';
 			}
 
 			if ( ! isset( $faculty_relationships[ $faculty_member->term_id ]['chair'] ) ) {
@@ -389,6 +391,10 @@ class WSUWP_Graduate_Degree_Programs {
 
 			if ( ! isset( $faculty_relationships[ $faculty_member->term_id ]['cochair'] ) ) {
 				$faculty_relationships[ $faculty_member->term_id ]['cochair'] = 'false';
+			}
+
+			if ( ! isset( $faculty_relationships[ $faculty_member->term_id ]['committee_member'] ) ) {
+				$faculty_relationships[ $faculty_member->term_id ]['committee_member'] = 'false';
 			}
 
 			?>
@@ -406,6 +412,13 @@ class WSUWP_Graduate_Degree_Programs {
 					<select name="faculty[<?php echo esc_attr( $faculty_member->term_id ); ?>][program_cochair]" id="program_cochair">
 						<option value="false" <?php selected( 'false', $faculty_relationships[ $faculty_member->term_id ]['cochair'] ); ?>>No</option>
 						<option value="true" <?php selected( 'true', $faculty_relationships[ $faculty_member->term_id ]['cochair'] ); ?>>Yes</option>
+					</select>
+				</div>
+				<div class="select-member">
+					<label for="committee_member">Sit:</label>
+					<select name="faculty[<?php echo esc_attr( $faculty_member->term_id ); ?>][committee_member]" id="committee_member">
+						<option value="false" <?php selected( 'false', $faculty_relationships[ $faculty_member->term_id ]['committee_member'] ); ?>>No</option>
+						<option value="true" <?php selected( 'true', $faculty_relationships[ $faculty_member->term_id ]['committee_member'] ); ?>>Yes</option>
 					</select>
 				</div>
 				<span class="remove-factsheet-faculty">Remove</span>
@@ -429,6 +442,13 @@ class WSUWP_Graduate_Degree_Programs {
 				<div class="select-cochair">
 					<label for="program_cochair">Co-chair:</label>
 					<select name="faculty[<%= term_id %>][program_cochair]" id="program_cochair">
+						<option value="false">No</option>
+						<option value="true">Yes</option>
+					</select>
+				</div>
+				<div class="select-member">
+					<label for="committee_member">Sit:</label>
+					<select name="faculty[<%= term_id %>[committee_member]" id="committee_member">
 						<option value="false">No</option>
 						<option value="true">Yes</option>
 					</select>
@@ -1057,6 +1077,12 @@ class WSUWP_Graduate_Degree_Programs {
 				} else {
 					$faculty_relationships[ $term_id ]['cochair'] = 'false';
 				}
+
+				if ( in_array( $chair_selection['committee_member'], array( 'true', 'false' ), true ) ) {
+					$faculty_relationships[ $term_id ]['committee_member'] = $chair_selection['committee_member'];
+				} else {
+					$faculty_relationships[ $term_id ]['committee_member'] = 'false';
+				}
 			}
 
 			update_post_meta( $post_id, 'gsdp_faculty_relationships', $faculty_relationships );
@@ -1278,7 +1304,12 @@ class WSUWP_Graduate_Degree_Programs {
 					$factsheet_meta['display_name'] = $person->name;
 				}
 
-				$unique_id = md5( $person->name );
+				$unique_id = $person->term_id;
+				// We used to store a hash instead of a term ID.
+				if ( ! isset( $faculty_relationships[ $unique_id ] ) ) {
+					$unique_id = md5( $person->name );
+				}
+
 				if ( isset( $faculty_relationships[ $unique_id ] ) ) {
 					if ( 'true' === $faculty_relationships[ $unique_id ]['chair'] && 'true' === $faculty_relationships[ $unique_id ]['cochair'] ) {
 						$faculty_meta['relationship'] = 'Serves as chair or co-chair on graduate committee.';
@@ -1286,21 +1317,13 @@ class WSUWP_Graduate_Degree_Programs {
 						$faculty_meta['relationship'] = 'Serves as chair on graduate committee.';
 					} elseif ( 'true' === $faculty_relationships[ $unique_id ]['cochair'] ) {
 						$faculty_meta['relationship'] = 'Serves as co-chair on graduate committee.';
-					} else {
+					} elseif ( 'true' === $faculty_relationships[ $unique_id ]['committee_member'] ) {
 						$faculty_meta['relationship'] = 'Serves as graduate committee member.';
-					}
-				} elseif ( isset( $faculty_relationships[ $person->term_id ] ) ) {
-					if ( 'true' === $faculty_relationships[ $person->term_id ]['chair'] && 'true' === $faculty_relationships[ $person->term_id ]['cochair'] ) {
-						$faculty_meta['relationship'] = 'Serves as chair or co-chair on graduate committee.';
-					} elseif ( 'true' === $faculty_relationships[ $person->term_id ]['chair'] ) {
-						$faculty_meta['relationship'] = 'Serves as chair on graduate committee.';
-					} elseif ( 'true' === $faculty_relationships[ $person->term_id ]['cochair'] ) {
-						$faculty_meta['relationship'] = 'Serves as co-chair on graduate committee.';
 					} else {
-						$faculty_meta['relationship'] = 'Serves as graduate committee member.';
+						$faculty_meta['relationship'] = '';
 					}
 				} else {
-					$faculty_meta['relationship'] = 'Serves as graduate committee member.';
+					$faculty_meta['relationship'] = '';
 				}
 
 				$data['faculty'][ $faculty_meta['display_name'] . time() ] = $faculty_meta;

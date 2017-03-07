@@ -1278,23 +1278,18 @@ class WSUWP_Graduate_Degree_Programs {
 					$factsheet_meta['display_name'] = $person->name;
 				}
 
-				$unique_id = md5( $person->name );
+				$unique_id = $person->term_id;
+				// We used to store a hash instead of a term ID.
+				if ( ! isset( $faculty_relationships[ $unique_id ] ) ) {
+					$unique_id = md5( $person->name );
+				}
+
 				if ( isset( $faculty_relationships[ $unique_id ] ) ) {
 					if ( 'true' === $faculty_relationships[ $unique_id ]['chair'] && 'true' === $faculty_relationships[ $unique_id ]['cochair'] ) {
 						$faculty_meta['relationship'] = 'Serves as chair or co-chair on graduate committee.';
 					} elseif ( 'true' === $faculty_relationships[ $unique_id ]['chair'] ) {
 						$faculty_meta['relationship'] = 'Serves as chair on graduate committee.';
 					} elseif ( 'true' === $faculty_relationships[ $unique_id ]['cochair'] ) {
-						$faculty_meta['relationship'] = 'Serves as co-chair on graduate committee.';
-					} else {
-						$faculty_meta['relationship'] = 'Serves as graduate committee member.';
-					}
-				} elseif ( isset( $faculty_relationships[ $person->term_id ] ) ) {
-					if ( 'true' === $faculty_relationships[ $person->term_id ]['chair'] && 'true' === $faculty_relationships[ $person->term_id ]['cochair'] ) {
-						$faculty_meta['relationship'] = 'Serves as chair or co-chair on graduate committee.';
-					} elseif ( 'true' === $faculty_relationships[ $person->term_id ]['chair'] ) {
-						$faculty_meta['relationship'] = 'Serves as chair on graduate committee.';
-					} elseif ( 'true' === $faculty_relationships[ $person->term_id ]['cochair'] ) {
 						$faculty_meta['relationship'] = 'Serves as co-chair on graduate committee.';
 					} else {
 						$faculty_meta['relationship'] = 'Serves as graduate committee member.';

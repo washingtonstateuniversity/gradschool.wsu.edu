@@ -225,7 +225,7 @@ input[name="gsdp_degree_url"] {
 
 .select-chair,
 .select-cochair,
-.select-member {
+.select-sit {
 	flex-basis: 20%;
 }
 
@@ -235,6 +235,7 @@ input[name="gsdp_degree_url"] {
 
 .select-chair,
 .select-cochair,
+.select-sit,
 .remove-factsheet-faculty,
 .faculty-name {
 	line-height: 1.5;

@@ -375,9 +375,11 @@ class WSUWP_Graduate_Degree_Programs {
 			$faculty_relationships[ $unique_id ] = $faculty_relationships[ $old_hash ];
 		} elseif ( isset( $faculty_relationships[ $faculty_member->term_id ] ) ) {
 			$faculty_relationships[ $unique_id ] = $faculty_relationships[ $faculty_member->term_id ];
+		} else {
+			$faculty_relationships[ $unique_id ] = array();
 		}
 
-		return $faculty_relationships;
+		return $faculty_relationships[ $unique_id ];
 	}
 
 	/**

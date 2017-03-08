@@ -402,7 +402,7 @@ class WSUWP_Graduate_Degree_Programs {
 			// In a rare case where a faculty member does not have a unique relationship ID, create one.
 			if ( empty( $unique_id ) ) {
 				$unique_id = wp_generate_uuid4();
-				update_term_meta( $faculty_member->term_id, 'gs_relationship_id', true );
+				update_term_meta( $faculty_member->term_id, 'gs_relationship_id', $unique_id );
 			}
 
 			$faculty_relationship_defaults = array(

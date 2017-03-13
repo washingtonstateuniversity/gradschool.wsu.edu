@@ -1327,7 +1327,7 @@ class WSUWP_Graduate_Degree_Programs {
 					$faculty_meta['display_name'] = array_pop( $display_name );
 					$faculty_meta['display_name'] .= ', ' . implode( ' ', $display_name );
 				} else {
-					$factsheet_meta['display_name'] = $person->name;
+					$faculty_meta['display_name'] = $person->name;
 				}
 
 				$unique_id = get_term_meta( $person->term_id, 'gs_relationship_id', true );

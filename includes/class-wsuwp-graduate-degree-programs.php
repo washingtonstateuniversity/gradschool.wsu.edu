@@ -1337,6 +1337,13 @@ class WSUWP_Graduate_Degree_Programs {
 				}
 
 				if ( isset( $faculty_relationships[ $unique_id ] ) ) {
+					$faculty_relationship_defaults = array(
+						'chair' => 'false',
+						'cochair' => 'false',
+						'sit' => 'false',
+					);
+					$faculty_relationships[ $unique_id ] = wp_parse_args( $faculty_relationships[ $unique_id ], $faculty_relationship_defaults );
+
 					if ( 'true' === $faculty_relationships[ $unique_id ]['chair'] && 'true' === $faculty_relationships[ $unique_id ]['cochair'] && 'true' === $faculty_relationships[ $unique_id ]['sit'] ) {
 						$faculty_meta['relationship'] = 'Serves as: chair, co-chair, or member on graduate committee';
 					} elseif ( 'true' === $faculty_relationships[ $unique_id ]['chair'] && 'true' === $faculty_relationships[ $unique_id ]['cochair'] ) {

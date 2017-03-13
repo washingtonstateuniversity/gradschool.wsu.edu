@@ -162,12 +162,6 @@
 							<?php if ( ! empty( $faculty['relationship'] ) ) : ?>
 							<div class="factsheet-faculty-relationship"><p><?php echo esc_html( $faculty['relationship'] ); ?></p></div>
 							<?php endif; ?>
-							<?php if ( ! empty( $faculty['teaching_interests'] ) ) : ?>
-							<div>
-								<h4>Teaching Interests</h4>
-								<?php echo wp_kses_post( apply_filters( 'the_content', $faculty['teaching_interests'] ) ); ?>
-							</div>
-							<?php endif; ?>
 							<?php if ( ! empty( $faculty['research_interests'] ) ) : ?>
 							<div>
 								<h4>Research Interests</h4>

@@ -144,10 +144,6 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 			update_term_meta( $term_id, 'gs_faculty_url', sanitize_text_field( $_POST['faculty_url'] ) );
 		}
 
-		if ( isset( $_POST['teaching_interests'] ) ) {
-			update_term_meta( $term_id, 'gs_teaching_interests', wp_kses_post( $_POST['teaching_interests'] ) );
-		}
-
 		if ( isset( $_POST['research_interests'] ) ) {
 			update_term_meta( $term_id, 'gs_research_interests', wp_kses_post( $_POST['research_interests'] ) );
 		}
@@ -170,7 +166,6 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 		$term_meta['degree_abbreviation'] = get_term_meta( $term_id, 'gs_degree_abbreviation', true );
 		$term_meta['email'] = get_term_meta( $term_id, 'gs_faculty_email', true );
 		$term_meta['url'] = get_term_meta( $term_id, 'gs_faculty_url', true );
-		$term_meta['teaching_interests'] = get_term_meta( $term_id, 'gs_teaching_interests', true );
 		$term_meta['research_interests'] = get_term_meta( $term_id, 'gs_research_interests', true );
 
 		return $term_meta;
@@ -194,10 +189,6 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 		<div class="form-field">
 			<label for="faculty_url">URL</label>
 			<input type="text" name="faculty_url" id="faculty_url" value="" />
-		</div>
-		<div class="form-field">
-			<label for="teaching-interests">Teaching interests</label>
-			<textarea name="teaching_interests" id="teaching-interests" rows="5" cols="50" class="large-text"></textarea>
 		</div>
 		<div class="form-field">
 			<label for="research-interests">Research interests</label>
@@ -246,14 +237,6 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 			</th>
 			<td>
 				<input type="text" name="faculty_url" id="faculty_url" value="<?php echo esc_attr( $term_meta['url'] ); ?>" />
-			</td>
-		</tr>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="teaching-interests">Teaching interests</label>
-			</th>
-			<td>
-				<textarea name="teaching_interests" id="teaching-interests" rows="5" cols="50" class="large-text"><?php echo esc_textarea( $term_meta['teaching_interests'] ); ?></textarea>
 			</td>
 		</tr>
 		<tr class="form-field">

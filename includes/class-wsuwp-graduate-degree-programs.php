@@ -190,7 +190,11 @@ class WSUWP_Graduate_Degree_Programs {
 		// This should fire after the filter in Editorial Access Manager.
 		add_filter( 'map_meta_cap', array( $this, 'filter_map_meta_cap' ), 200, 4 );
 
-		add_filter( "auth_post_{$this->post_type_slug}_meta_gsdp_degree_id", array( $this, 'can_edit_degree_id' ), 100, 4 );
+		// Several fields are restricted to full editors or admins.
+		add_filter( "auth_post_{$this->post_type_slug}_meta_gsdp_degree_id", array( $this, 'can_edit_restricted_field' ), 100, 4 );
+		add_filter( "auth_post_{$this->post_type_slug}_meta_gsdp_degree_shortname", array( $this, 'can_edit_restricted_field' ), 100, 4 );
+		add_filter( "auth_post_{$this->post_type_slug}_meta_gsdp_student_learning_outcome", array( $this, 'can_edit_restricted_field' ), 100, 4 );
+
 		add_filter( 'wp_insert_post_data', array( $this, 'manage_factsheet_title_update' ), 10, 2 );
 
 		add_action( 'pre_get_posts', array( $this, 'adjust_factsheet_archive_query' ) );
@@ -851,9 +855,10 @@ class WSUWP_Graduate_Degree_Programs {
 
 	/**
 	 * Ensures that users assigned via Editorial Access Manager are not allowed to change
-	 * a degree ID.
+	 * restricted fields.
 	 *
 	 * @since 1.1.0
+	 * @since 1.2.0 Updated to handle multiple restricted fields.
 	 *
 	 * @param bool   $allowed
 	 * @param string $meta_key
@@ -862,7 +867,7 @@ class WSUWP_Graduate_Degree_Programs {
 	 *
 	 * @return bool
 	 */
-	public function can_edit_degree_id( $allowed, $meta_key, $object_id, $user_id ) {
+	public function can_edit_restricted_field( $allowed, $meta_key, $object_id, $user_id ) {
 		if ( $this->user_is_eam_user( $user_id, $object_id ) ) {
 			return false;
 		}

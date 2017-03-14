@@ -521,7 +521,7 @@ class WSUWP_Graduate_Degree_Programs {
 		$contacts = wp_get_object_terms( $post->ID, 'gs-contact' );
 		$data['contacts'] = array();
 		if ( ! is_wp_error( $contacts ) ) {
-			foreach( $contacts as $contact ) {
+			foreach ( $contacts as $contact ) {
 				$contact_meta = WSUWP_Graduate_Degree_Contact_Taxonomy::get_all_term_meta( $contact->term_id );
 				$contact_meta['term_id'] = $contact->term_id;
 				$data['contacts'][] = $contact_meta;
@@ -530,7 +530,7 @@ class WSUWP_Graduate_Degree_Programs {
 
 		echo '<div class="factsheet-contact-wrapper">';
 
-		foreach( $data['contacts'] as $contact ) {
+		foreach ( $data['contacts'] as $contact ) {
 			if ( empty( $contact ) ) {
 				continue;
 			}
@@ -659,16 +659,18 @@ class WSUWP_Graduate_Degree_Programs {
 	}
 
 	/**
-     * Outputs the meta field HTML used to capture meta data stored as strings.
-     *
+	 * Outputs the meta field HTML used to capture meta data stored as strings.
+	 *
 	 * @since 1.3.0
-     *
+	 *
 	 * @param array  $meta
 	 * @param string $key
 	 * @param array  $data
 	 */
 	public function display_string_meta_field( $meta, $key, $data ) {
-		?><label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $meta['description'] ); ?>:</label><?php
+		?>
+		<label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $meta['description'] ); ?>:</label>
+		<?php
 
 		if ( isset( $meta['restricted'] ) && $meta['restricted'] && $this->user_is_eam_user( wp_get_current_user()->ID, get_the_ID() ) ) {
 			$disabled = 'disabled';
@@ -676,20 +678,24 @@ class WSUWP_Graduate_Degree_Programs {
 			$disabled = '';
 		}
 
-		?><input type="text" name="<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( $data[ $key ][0] ); ?>" <?php echo $disabled; ?> /><?php
+		?>
+		<input type="text" name="<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( $data[ $key ][0] ); ?>" <?php echo $disabled; ?> />
+		<?php
 	}
 
 	/**
-     * Outputs the meta field HTML used to capture meta data stored as an integer.
-     *
+	 * Outputs the meta field HTML used to capture meta data stored as an integer.
+	 *
 	 * @since 1.3.0
-     *
+	 *
 	 * @param array  $meta
 	 * @param string $key
 	 * @param array  $data
 	 */
 	public function display_int_meta_field( $meta, $key, $data ) {
-		?><label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $meta['description'] ); ?>:</label><?php
+		?>
+		<label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $meta['description'] ); ?>:</label>
+		<?php
 
 		if ( isset( $meta['restricted'] ) && $meta['restricted'] && $this->user_is_eam_user( wp_get_current_user()->ID, get_the_ID() ) ) {
 			$disabled = 'disabled';
@@ -697,14 +703,16 @@ class WSUWP_Graduate_Degree_Programs {
 			$disabled = '';
 		}
 
-		?><input type="text" id="<?php echo esc_attr( $key ); ?>" name="<?php echo esc_attr( $key ); ?>" value="<?php echo absint( $data[ $key ][0] ); ?>" <?php echo $disabled; ?> /><?php
+		?>
+		<input type="text" id="<?php echo esc_attr( $key ); ?>" name="<?php echo esc_attr( $key ); ?>" value="<?php echo absint( $data[ $key ][0] ); ?>" <?php echo $disabled; ?> />
+		<?php
 	}
 
 	/**
-     * Outputs the meta field HTML used to capture meta data stored as boolean.
-     *
+	 * Outputs the meta field HTML used to capture meta data stored as boolean.
+	 *
 	 * @since 1.3.0
-     *
+	 *
 	 * @param array  $meta
 	 * @param string $key
 	 * @param array  $data
@@ -720,10 +728,10 @@ class WSUWP_Graduate_Degree_Programs {
 	}
 
 	/**
-     * Outputs the meta field HTML used to capture meta data stored as strings.
-     *
+	 * Outputs the meta field HTML used to capture meta data stored as strings.
+	 *
 	 * @since 1.3.0
-     *
+	 *
 	 * @param array  $meta
 	 * @param string $key
 	 * @param array  $data
@@ -748,10 +756,10 @@ class WSUWP_Graduate_Degree_Programs {
 	}
 
 	/**
-     * Outputs the meta field HTML used to capture meta data stored as strings.
-     *
+	 * Outputs the meta field HTML used to capture meta data stored as strings.
+	 *
 	 * @since 1.3.0
-     *
+	 *
 	 * @param array  $meta
 	 * @param string $key
 	 * @param array  $data
@@ -831,10 +839,10 @@ class WSUWP_Graduate_Degree_Programs {
 	}
 
 	/**
-     * Outputs the meta field HTML used to capture meta data stored as strings.
-     *
+	 * Outputs the meta field HTML used to capture meta data stored as strings.
+	 *
 	 * @since 1.3.0
-     *
+	 *
 	 * @param array  $meta
 	 * @param string $key
 	 * @param array  $data
@@ -899,10 +907,10 @@ class WSUWP_Graduate_Degree_Programs {
 	}
 
 	/**
-     * Outputs the meta field HTML used to capture meta data stored as strings.
-     *
+	 * Outputs the meta field HTML used to capture meta data stored as strings.
+	 *
 	 * @since 1.3.0
-     *
+	 *
 	 * @param array  $meta
 	 * @param string $key
 	 * @param array  $data
@@ -940,7 +948,7 @@ class WSUWP_Graduate_Degree_Programs {
 					<label for="location-<?php echo esc_attr( sanitize_key( $location ) ); ?>"><?php echo esc_html( $location ); ?></label>
 					<?php
 					if ( $restricted ) {
-						echo '<span id="location-' . esc_attr( sanitize_key( $location ) ) . '" class="field-value">' . esc_attr( $location_status ) .'</span>';
+						echo '<span id="location-' . esc_attr( sanitize_key( $location ) ) . '" class="field-value">' . esc_attr( $location_status ) . '</span>';
 					} else {
 						?>
 						<select id="location-<?php echo esc_attr( sanitize_key( $location ) ); ?>"
@@ -1072,7 +1080,7 @@ class WSUWP_Graduate_Degree_Programs {
 		$location_names = array( 'Pullman', 'Spokane', 'Tri-Cities', 'Vancouver', 'Global Campus' );
 		$clean_locations = array();
 
-		foreach( $location_names as $location_name ) {
+		foreach ( $location_names as $location_name ) {
 			if ( ! isset( $locations[ $location_name ] ) || ! in_array( $locations[ $location_name ], array( 'No', 'Yes', 'By Exception' ), true ) ) {
 				$clean_locations[ $location_name ] = 'No';
 			} else {
@@ -1211,13 +1219,13 @@ class WSUWP_Graduate_Degree_Programs {
 			$assigned_faculty = wp_get_object_terms( $post_id, 'gs-faculty' );
 			$assigned_faculty = wp_list_pluck( $assigned_faculty, 'term_id' );
 
-			foreach( $assigned_faculty as $assigned ) {
+			foreach ( $assigned_faculty as $assigned ) {
 				if ( ! isset( $_POST['faculty'][ $assigned ] ) ) {
 					wp_remove_object_terms( $post_id, $assigned, 'gs-faculty' );
 				}
 			}
 
-			foreach( $_POST['faculty'] as $term_id => $chair_selection ) {
+			foreach ( $_POST['faculty'] as $term_id => $chair_selection ) {
 				if ( ! in_array( $term_id, $assigned_faculty, true ) ) {
 					wp_add_object_terms( $post_id, $term_id, 'gs-faculty' );
 				}
@@ -1282,7 +1290,7 @@ class WSUWP_Graduate_Degree_Programs {
 			'delete_post',
 		);
 
-		if ( in_array( $cap, $eam_caps ) ) {
+		if ( in_array( $cap, $eam_caps, true ) ) {
 
 			$post_id = ( isset( $args[0] ) ) ? (int) $args[0] : null;
 			if ( ! $post_id && ! empty( $_GET['post'] ) ) {
@@ -1303,7 +1311,7 @@ class WSUWP_Graduate_Degree_Programs {
 				$user = new WP_User( $user_id );
 
 				// If user is admin, we do nothing
-				if ( ! in_array( 'administrator', $user->roles ) ) {
+				if ( ! in_array( 'administrator', $user->roles, true ) ) {
 
 					if ( 'users' === $enable_custom_access ) {
 						// Reset caps for allowed users to do_not_allow.
@@ -1338,7 +1346,7 @@ class WSUWP_Graduate_Degree_Programs {
 			} else {
 				return $allcaps;
 			}
-		} elseif( 'edit_term' === $args[0] ) {
+		} elseif ( 'edit_term' === $args[0] ) {
 			$term_id = $args[2];
 		} else {
 			return $allcaps;
@@ -1357,7 +1365,7 @@ class WSUWP_Graduate_Degree_Programs {
 		$taxonomy = get_taxonomy( 'gs-faculty' );
 		$allowed = false;
 
-		foreach( $factsheets as $post_id ) {
+		foreach ( $factsheets as $post_id ) {
 			$enable_custom_access = get_post_meta( $post_id, 'eam_enable_custom_access', true );
 
 			if ( ! empty( $enable_custom_access ) ) {
@@ -1505,7 +1513,7 @@ class WSUWP_Graduate_Degree_Programs {
 		$contacts = wp_get_object_terms( $post_id, 'gs-contact' );
 		$data['contacts'] = array();
 		if ( ! is_wp_error( $contacts ) ) {
-			foreach( $contacts as $contact ) {
+			foreach ( $contacts as $contact ) {
 				$contact_meta = WSUWP_Graduate_Degree_Contact_Taxonomy::get_all_term_meta( $contact->term_id );
 				$data['contacts'][] = $contact_meta;
 			}
@@ -1515,7 +1523,7 @@ class WSUWP_Graduate_Degree_Programs {
 		$faculty = wp_get_object_terms( $post_id, 'gs-faculty' );
 		$data['faculty'] = array();
 		if ( ! is_wp_error( $faculty ) ) {
-			foreach( $faculty as $person ) {
+			foreach ( $faculty as $person ) {
 				$faculty_meta = WSUWP_Graduate_Degree_Faculty_Taxonomy::get_all_term_meta( $person->term_id );
 				$faculty_meta['name'] = $person->name;
 

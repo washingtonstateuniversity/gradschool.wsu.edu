@@ -11,7 +11,7 @@ module.exports = function( grunt ) {
 				sourceMap: true
 			},
 			dist: {
-				src: [ "css/*.css", "!css/*admin.css" ],
+				src: [ "css/*.css", "!css/*admin.css", "!css/print.css" ],
 				dest: "tmp-style.css"
 			}
 		},

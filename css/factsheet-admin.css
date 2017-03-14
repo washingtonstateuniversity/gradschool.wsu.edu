@@ -214,42 +214,70 @@ input[name="gsdp_degree_url"] {
 }
 
 .factsheet-faculty-wrapper {
-	max-width: 640px;
+	display: table;
 }
 
 .factsheet-faculty {
-	display: flex;
-	margin-bottom: 2em;
+	display: table-row;
 }
 
-.faculty-name {
-	flex-basis: 30%;
-}
-
-.select-chair,
-.select-cochair,
-.select-sit {
-	flex-basis: 20%;
-}
-
-.edit-factsheet-faculty,
-.remove-factsheet-faculty {
-	flex-basis: 5%;
-}
-
+.facsheet-name,
 .select-chair,
 .select-cochair,
 .select-sit,
 .edit-factsheet-faculty,
-.remove-factsheet-faculty,
-.faculty-name {
-	line-height: 1.5;
-	font-size: 1em;
+.remove-factsheet-faculty {
+	display: table-cell;
+	padding-bottom: 1em;
 }
 
 .edit-factsheet-faculty,
 .remove-factsheet-faculty,
-.faculty-name {
-	height: 28px;
-	line-height: 28px;
+.select-sit,
+.select-cochair,
+.select-chair {
+	padding-left: 1.5em;
+}
+
+@media screen and (max-width: 1200px) {
+
+	.factsheet-float input,
+	.factsheet-int input,
+	.factsheet-bool select {
+		float: right;
+		line-height: 1.3;
+		margin-right: 1em;
+		width: auto;
+		max-width: 55px;
+	}
+
+	.factsheet-label,
+	.factsheet-primary-input label {
+		font-size: 1em;
+		font-weight: 400;
+		color: #333;
+		padding-right: .4em;
+	}
+}
+
+@media screen and (max-width: 1050px) {
+
+	.factsheet-float,
+	.factsheet-int,
+	.factsheet-bool,
+	.factsheet-string {
+		max-width: 400px;
+	}
+
+	.factsheet-primary-input {
+		flex-basis: 100%;
+		padding-bottom: 10px;
+	}
+
+	input[name="gsdp_degree_shortname"],
+	input[name="gsdp_degree_url"] {
+		width: 100%;
+		max-width: none;
+		min-width: 200px;
+	}
 }

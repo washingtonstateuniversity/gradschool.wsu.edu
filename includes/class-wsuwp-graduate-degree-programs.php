@@ -1297,7 +1297,7 @@ class WSUWP_Graduate_Degree_Programs {
 				$post_id = (int) $_GET['post'];
 			}
 
-			if ( ! $post_id && ! empty( $_POST['post_ID'] ) ) {
+			if ( ! $post_id && ! empty( $_POST['post_ID'] ) ) { // @codingStandardsIgnoreLine (No reason to check a nonce here)
 				$post_id = (int) $_POST['post_ID'];
 			}
 
@@ -1341,7 +1341,7 @@ class WSUWP_Graduate_Degree_Programs {
 	 */
 	public function allow_edit_faculty_member( $allcaps, $caps, $args, $user ) {
 		if ( 'manage_categories' === $args[0] ) {
-			if ( isset( $_POST['action'] ) && 'editedtag' === $_POST['action'] && isset( $_POST['tag_ID'] ) && 'gs-faculty' === $_POST['taxonomy'] ) {
+			if ( isset( $_POST['action'] ) && 'editedtag' === $_POST['action'] && isset( $_POST['tag_ID'] ) && 'gs-faculty' === $_POST['taxonomy'] ) { // @codingStandardsIgnoreLine (No reason to check a nonce here)
 				$term_id = absint( $_POST['tag_ID'] );
 			} else {
 				return $allcaps;

@@ -210,6 +210,7 @@ class WSUWP_Graduate_Degree_Programs {
 
 		// This should fire after the filter in Editorial Access Manager.
 		add_filter( 'map_meta_cap', array( $this, 'filter_map_meta_cap' ), 200, 4 );
+		add_filter( 'user_has_cap', array( $this, 'allow_edit_faculty_member' ), 20, 4 );
 
 		// Several fields are restricted to full editors or admins.
 		add_filter( "auth_post_{$this->post_type_slug}_meta_gsdp_degree_id", array( $this, 'can_edit_restricted_field' ), 100, 4 );
@@ -466,6 +467,7 @@ class WSUWP_Graduate_Degree_Programs {
 						<option value="true" <?php selected( 'true', $faculty_relationships[ $unique_id ]['sit'] ); ?>>Yes</option>
 					</select>
 				</div>
+				<span class="edit-factsheet-faculty"><a href="<?php echo esc_url( get_edit_term_link( $faculty_member->term_id, 'gs-faculty' ) ); ?>">Edit</a></span>
 				<span class="remove-factsheet-faculty">Remove</span>
 			</div>
 			<?php
@@ -1316,6 +1318,68 @@ class WSUWP_Graduate_Degree_Programs {
 		}
 
 		return $caps;
+	}
+
+	/**
+	 * Manage capabilities allowing EAM users to edit faculty members.
+	 *
+	 * @since 1.3.0
+	 *
+	 * @param array   $allcaps An array of all the user's capabilities.
+	 * @param array   $caps    Actual capabilities for meta capability.
+	 * @param array   $args    Optional parameters passed to has_cap(), typically object ID.
+	 * @param WP_User $user    The user object.
+	 * @return array Updated list of capabilities.
+	 */
+	public function allow_edit_faculty_member( $allcaps, $caps, $args, $user ) {
+		if ( 'manage_categories' === $args[0] ) {
+			if ( isset( $_POST['action'] ) && 'editedtag' === $_POST['action'] && isset( $_POST['tag_ID'] ) && 'gs-faculty' === $_POST['taxonomy'] ) {
+				$term_id = absint( $_POST['tag_ID'] );
+			} else {
+				return $allcaps;
+			}
+		} elseif( 'edit_term' === $args[0] ) {
+			$term_id = $args[2];
+		} else {
+			return $allcaps;
+		}
+
+		// Administrators always have access.
+		if ( in_array( 'administrator', $user->roles, true ) ) {
+			return $allcaps;
+		}
+
+		$factsheets = get_objects_in_term( $term_id, 'gs-faculty' );
+		if ( empty( $factsheets ) || is_wp_error( $factsheets ) ) {
+			return $allcaps;
+		}
+
+		$taxonomy = get_taxonomy( 'gs-faculty' );
+		$allowed = false;
+
+		foreach( $factsheets as $post_id ) {
+			$enable_custom_access = get_post_meta( $post_id, 'eam_enable_custom_access', true );
+
+			if ( ! empty( $enable_custom_access ) ) {
+				if ( 'users' === $enable_custom_access ) {
+
+					// Reset caps for allowed users to do_not_allow.
+					$allowed_users = (array) get_post_meta( $post_id, 'eam_allowed_users', true );
+
+					if ( in_array( $user->ID, $allowed_users ) ) {
+						$allowed = true;
+						break;
+					}
+				}
+			}
+		}
+
+		if ( $allowed ) {
+			$allcaps[ $taxonomy->cap->edit_terms ] = true;
+			$allcaps[ $taxonomy->cap->manage_terms ] = true;
+		}
+
+		return $allcaps;
 	}
 
 	/**

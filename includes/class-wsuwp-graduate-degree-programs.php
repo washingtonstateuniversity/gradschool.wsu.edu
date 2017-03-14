@@ -669,10 +669,12 @@ class WSUWP_Graduate_Degree_Programs {
 		?><label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $meta['description'] ); ?>:</label><?php
 
 		if ( isset( $meta['restricted'] ) && $meta['restricted'] && $this->user_is_eam_user( wp_get_current_user()->ID, get_the_ID() ) ) {
-			echo '<span class="field-value">' . esc_html( $data[ $key ][0] ) .'</span>';
+			$disabled = 'disabled';
 		} else {
-			?><input type="text" name="<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( $data[ $key ][0] ); ?>" /><?php
+			$disabled = '';
 		}
+
+		?><input type="text" name="<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( $data[ $key ][0] ); ?>" <?php echo $disabled; ?> /><?php
 	}
 
 	/**
@@ -688,10 +690,12 @@ class WSUWP_Graduate_Degree_Programs {
 		?><label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $meta['description'] ); ?>:</label><?php
 
 		if ( isset( $meta['restricted'] ) && $meta['restricted'] && $this->user_is_eam_user( wp_get_current_user()->ID, get_the_ID() ) ) {
-			echo '<span class="field-value">' . esc_html( $data[ $key ][0] ) .'</span>';
+			$disabled = 'disabled';
 		} else {
-			?><input type="text" id="<?php echo esc_attr( $key ); ?>" name="<?php echo esc_attr( $key ); ?>" value="<?php echo absint( $data[ $key ][0] ); ?>" /><?php
+			$disabled = '';
 		}
+
+		?><input type="text" id="<?php echo esc_attr( $key ); ?>" name="<?php echo esc_attr( $key ); ?>" value="<?php echo absint( $data[ $key ][0] ); ?>" <?php echo $disabled; ?> /><?php
 	}
 
 	/**

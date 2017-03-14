@@ -679,7 +679,7 @@ class WSUWP_Graduate_Degree_Programs {
 		}
 
 		?>
-		<input type="text" name="<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( $data[ $key ][0] ); ?>" <?php echo $disabled; ?> />
+		<input type="text" name="<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( $data[ $key ][0] ); ?>" <?php echo $disabled; // @codingStandardsIgnoreLine (HTML is static in code) ?> />
 		<?php
 	}
 
@@ -704,7 +704,7 @@ class WSUWP_Graduate_Degree_Programs {
 		}
 
 		?>
-		<input type="text" id="<?php echo esc_attr( $key ); ?>" name="<?php echo esc_attr( $key ); ?>" value="<?php echo absint( $data[ $key ][0] ); ?>" <?php echo $disabled; ?> />
+		<input type="text" id="<?php echo esc_attr( $key ); ?>" name="<?php echo esc_attr( $key ); ?>" value="<?php echo absint( $data[ $key ][0] ); ?>" <?php echo $disabled; // @codingStandardsIgnoreLine (HTML is static in code) ?> />
 		<?php
 	}
 
@@ -984,7 +984,7 @@ class WSUWP_Graduate_Degree_Programs {
 		if ( 'users' === $enable_custom_access ) {
 			$allowed_users = (array) get_post_meta( $post_id, 'eam_allowed_users', true );
 
-			if ( in_array( $user_id, $allowed_users ) ) {
+			if ( in_array( $user_id, $allowed_users ) ) { // @codingStandardsIgnoreLine (Converting user IDs to ints is not worth it)
 				return true;
 			}
 		}
@@ -1317,7 +1317,7 @@ class WSUWP_Graduate_Degree_Programs {
 						// Reset caps for allowed users to do_not_allow.
 						$allowed_users = (array) get_post_meta( $post_id, 'eam_allowed_users', true );
 
-						if ( in_array( $user_id, $allowed_users ) ) {
+						if ( in_array( $user_id, $allowed_users ) ) { // @codingStandardsIgnoreLine (Converting user IDs to ints is not worth it)
 							$caps[] = 'do_not_allow';
 						}
 					}
@@ -1374,7 +1374,7 @@ class WSUWP_Graduate_Degree_Programs {
 					// Reset caps for allowed users to do_not_allow.
 					$allowed_users = (array) get_post_meta( $post_id, 'eam_allowed_users', true );
 
-					if ( in_array( $user->ID, $allowed_users ) ) {
+					if ( in_array( $user->ID, $allowed_users ) ) { // @codingStandardsIgnoreLine (Converting user IDs to ints is not worth it)
 						$allowed = true;
 						break;
 					}

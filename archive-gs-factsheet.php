@@ -2,7 +2,7 @@
 
 $factsheets = array();
 if ( have_posts() ) {
-	while( have_posts() ) {
+	while ( have_posts() ) {
 		the_post();
 		$factsheet_data = WSUWP_Graduate_Degree_Programs::get_factsheet_data( get_the_ID() );
 
@@ -104,7 +104,7 @@ get_header();
 				<ul>
 				<?php
 				$letter = 'a';
-				foreach( $factsheets as $factsheet_name => $factsheet ) {
+				foreach ( $factsheets as $factsheet_name => $factsheet ) {
 					$factsheet_character = trim( substr( $factsheet_name, 0, 1 ) );
 
 					// Avoid indefinite loops by skipping factsheets that don't start with a-z.
@@ -121,7 +121,7 @@ get_header();
 						?>
 						<div class="lettergroup">
 							<a id="<?php echo esc_attr( $letter ); ?>" name="<?php echo esc_attr( $letter ); ?>"></a>
-							<div class="bigletter active"><?php echo strtoupper( $letter ); ?></div>
+							<div class="bigletter active"><?php echo strtoupper( $letter ); // @codingStandardsIgnoreLine (This is a controlled letter) ?></div>
 							<div class="bigletterline"></div>
 							<ul>
 						<?php
@@ -199,18 +199,18 @@ get_header();
 				</ul>
 			</div>
 			<?php
-				$letter++;
+			$letter++;
 
-				while ( 'aa' !== $letter ) {
-					?>
-					<div class="lettergroup">
-						<a id="<?php echo esc_attr( $letter ); ?>" name="<?php echo esc_attr( $letter ); ?>"></a>
-						<div class="bigletter active"><?php echo strtoupper( $letter ); ?></div>
-						<div class="bigletterline"></div>
-					</div>
-					<?php
-					$letter++;
-				}
+			while ( 'aa' !== $letter ) {
+				?>
+				<div class="lettergroup">
+					<a id="<?php echo esc_attr( $letter ); ?>" name="<?php echo esc_attr( $letter ); ?>"></a>
+					<div class="bigletter active"><?php echo strtoupper( $letter ); // @codingStandardsIgnoreLine (This is a controlled letter) ?></div>
+					<div class="bigletterline"></div>
+				</div>
+				<?php
+				$letter++;
+			}
 			?>
 		</div>
 	</section>

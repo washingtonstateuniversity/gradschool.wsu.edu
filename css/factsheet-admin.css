@@ -192,6 +192,7 @@ input[name="gsdp_degree_url"] {
 	height: 1.7em;
 }
 
+.edit-factsheet-faculty,
 .remove-factsheet-faculty,
 .remove-factsheet-contact {
 	display: inline-block;
@@ -201,10 +202,12 @@ input[name="gsdp_degree_url"] {
 	text-decoration: underline;
 }
 
+.edit-factsheet-faculty,
 .remove-factsheet-faculty {
 	margin-top: 0;
 }
 
+.edit-factsheet-faculty:hover,
 .remove-factsheet-faculty:hover,
 .remove-factsheet-contact:hover {
 	color: #00a0d2;
@@ -229,19 +232,22 @@ input[name="gsdp_degree_url"] {
 	flex-basis: 20%;
 }
 
+.edit-factsheet-faculty,
 .remove-factsheet-faculty {
-	flex-basis: 10%;
+	flex-basis: 5%;
 }
 
 .select-chair,
 .select-cochair,
 .select-sit,
+.edit-factsheet-faculty,
 .remove-factsheet-faculty,
 .faculty-name {
 	line-height: 1.5;
 	font-size: 1em;
 }
 
+.edit-factsheet-faculty,
 .remove-factsheet-faculty,
 .faculty-name {
 	height: 28px;

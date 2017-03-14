@@ -159,7 +159,7 @@ class WSUWP_Graduate_Degree_Degree_Type_Taxonomy {
 	public function term_edit_form_fields( $term ) {
 		$term_meta = self::get_all_term_meta( $term->term_id );
 
-		foreach( $this->term_meta_keys as $key => $meta ) {
+		foreach ( $this->term_meta_keys as $key => $meta ) {
 			if ( 'gs_degree_type_classification' !== $key ) {
 				continue;
 			}

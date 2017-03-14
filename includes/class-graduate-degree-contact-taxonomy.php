@@ -189,7 +189,7 @@ class WSUWP_Graduate_Degree_Contact_Taxonomy {
 	public function term_edit_form_fields( $term ) {
 		$term_meta = self::get_all_term_meta( $term->term_id );
 
-		foreach( $this->term_meta_keys as $key => $meta ) {
+		foreach ( $this->term_meta_keys as $key => $meta ) {
 			?>
 			<tr class="form-field">
 				<th scope="row">

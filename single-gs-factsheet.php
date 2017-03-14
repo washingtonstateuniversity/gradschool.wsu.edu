@@ -177,7 +177,7 @@
 				<div class="column two">
 					<h2>Contact Information:</h2>
 					<?php
-					foreach( $factsheet_data['contacts'] as $contact ) {
+					foreach ( $factsheet_data['contacts'] as $contact ) {
 						?>
 						<address class="factsheet-contact" itemscope itemtype="http://schema.org/Organization">
 							<?php if ( ! empty( $contact['gs_contact_name'][0] ) ) : ?>

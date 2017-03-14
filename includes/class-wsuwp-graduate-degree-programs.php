@@ -210,6 +210,7 @@ class WSUWP_Graduate_Degree_Programs {
 
 		// This should fire after the filter in Editorial Access Manager.
 		add_filter( 'map_meta_cap', array( $this, 'filter_map_meta_cap' ), 200, 4 );
+		add_filter( 'user_has_cap', array( $this, 'allow_edit_faculty_member' ), 20, 4 );
 
 		// Several fields are restricted to full editors or admins.
 		add_filter( "auth_post_{$this->post_type_slug}_meta_gsdp_degree_id", array( $this, 'can_edit_restricted_field' ), 100, 4 );
@@ -466,6 +467,7 @@ class WSUWP_Graduate_Degree_Programs {
 						<option value="true" <?php selected( 'true', $faculty_relationships[ $unique_id ]['sit'] ); ?>>Yes</option>
 					</select>
 				</div>
+				<span class="edit-factsheet-faculty"><a href="<?php echo esc_url( get_edit_term_link( $faculty_member->term_id, 'gs-faculty' ) ); ?>">Edit</a></span>
 				<span class="remove-factsheet-faculty">Remove</span>
 			</div>
 			<?php
@@ -519,7 +521,7 @@ class WSUWP_Graduate_Degree_Programs {
 		$contacts = wp_get_object_terms( $post->ID, 'gs-contact' );
 		$data['contacts'] = array();
 		if ( ! is_wp_error( $contacts ) ) {
-			foreach( $contacts as $contact ) {
+			foreach ( $contacts as $contact ) {
 				$contact_meta = WSUWP_Graduate_Degree_Contact_Taxonomy::get_all_term_meta( $contact->term_id );
 				$contact_meta['term_id'] = $contact->term_id;
 				$data['contacts'][] = $contact_meta;
@@ -528,7 +530,7 @@ class WSUWP_Graduate_Degree_Programs {
 
 		echo '<div class="factsheet-contact-wrapper">';
 
-		foreach( $data['contacts'] as $contact ) {
+		foreach ( $data['contacts'] as $contact ) {
 			if ( empty( $contact ) ) {
 				continue;
 			}
@@ -657,16 +659,18 @@ class WSUWP_Graduate_Degree_Programs {
 	}
 
 	/**
-     * Outputs the meta field HTML used to capture meta data stored as strings.
-     *
+	 * Outputs the meta field HTML used to capture meta data stored as strings.
+	 *
 	 * @since 1.3.0
-     *
+	 *
 	 * @param array  $meta
 	 * @param string $key
 	 * @param array  $data
 	 */
 	public function display_string_meta_field( $meta, $key, $data ) {
-		?><label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $meta['description'] ); ?>:</label><?php
+		?>
+		<label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $meta['description'] ); ?>:</label>
+		<?php
 
 		if ( isset( $meta['restricted'] ) && $meta['restricted'] && $this->user_is_eam_user( wp_get_current_user()->ID, get_the_ID() ) ) {
 			$disabled = 'disabled';
@@ -674,20 +678,24 @@ class WSUWP_Graduate_Degree_Programs {
 			$disabled = '';
 		}
 
-		?><input type="text" name="<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( $data[ $key ][0] ); ?>" <?php echo $disabled; ?> /><?php
+		?>
+		<input type="text" name="<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( $data[ $key ][0] ); ?>" <?php echo $disabled; // @codingStandardsIgnoreLine (HTML is static in code) ?> />
+		<?php
 	}
 
 	/**
-     * Outputs the meta field HTML used to capture meta data stored as an integer.
-     *
+	 * Outputs the meta field HTML used to capture meta data stored as an integer.
+	 *
 	 * @since 1.3.0
-     *
+	 *
 	 * @param array  $meta
 	 * @param string $key
 	 * @param array  $data
 	 */
 	public function display_int_meta_field( $meta, $key, $data ) {
-		?><label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $meta['description'] ); ?>:</label><?php
+		?>
+		<label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $meta['description'] ); ?>:</label>
+		<?php
 
 		if ( isset( $meta['restricted'] ) && $meta['restricted'] && $this->user_is_eam_user( wp_get_current_user()->ID, get_the_ID() ) ) {
 			$disabled = 'disabled';
@@ -695,14 +703,16 @@ class WSUWP_Graduate_Degree_Programs {
 			$disabled = '';
 		}
 
-		?><input type="text" id="<?php echo esc_attr( $key ); ?>" name="<?php echo esc_attr( $key ); ?>" value="<?php echo absint( $data[ $key ][0] ); ?>" <?php echo $disabled; ?> /><?php
+		?>
+		<input type="text" id="<?php echo esc_attr( $key ); ?>" name="<?php echo esc_attr( $key ); ?>" value="<?php echo absint( $data[ $key ][0] ); ?>" <?php echo $disabled; // @codingStandardsIgnoreLine (HTML is static in code) ?> />
+		<?php
 	}
 
 	/**
-     * Outputs the meta field HTML used to capture meta data stored as boolean.
-     *
+	 * Outputs the meta field HTML used to capture meta data stored as boolean.
+	 *
 	 * @since 1.3.0
-     *
+	 *
 	 * @param array  $meta
 	 * @param string $key
 	 * @param array  $data
@@ -718,10 +728,10 @@ class WSUWP_Graduate_Degree_Programs {
 	}
 
 	/**
-     * Outputs the meta field HTML used to capture meta data stored as strings.
-     *
+	 * Outputs the meta field HTML used to capture meta data stored as strings.
+	 *
 	 * @since 1.3.0
-     *
+	 *
 	 * @param array  $meta
 	 * @param string $key
 	 * @param array  $data
@@ -746,10 +756,10 @@ class WSUWP_Graduate_Degree_Programs {
 	}
 
 	/**
-     * Outputs the meta field HTML used to capture meta data stored as strings.
-     *
+	 * Outputs the meta field HTML used to capture meta data stored as strings.
+	 *
 	 * @since 1.3.0
-     *
+	 *
 	 * @param array  $meta
 	 * @param string $key
 	 * @param array  $data
@@ -829,10 +839,10 @@ class WSUWP_Graduate_Degree_Programs {
 	}
 
 	/**
-     * Outputs the meta field HTML used to capture meta data stored as strings.
-     *
+	 * Outputs the meta field HTML used to capture meta data stored as strings.
+	 *
 	 * @since 1.3.0
-     *
+	 *
 	 * @param array  $meta
 	 * @param string $key
 	 * @param array  $data
@@ -897,10 +907,10 @@ class WSUWP_Graduate_Degree_Programs {
 	}
 
 	/**
-     * Outputs the meta field HTML used to capture meta data stored as strings.
-     *
+	 * Outputs the meta field HTML used to capture meta data stored as strings.
+	 *
 	 * @since 1.3.0
-     *
+	 *
 	 * @param array  $meta
 	 * @param string $key
 	 * @param array  $data
@@ -938,7 +948,7 @@ class WSUWP_Graduate_Degree_Programs {
 					<label for="location-<?php echo esc_attr( sanitize_key( $location ) ); ?>"><?php echo esc_html( $location ); ?></label>
 					<?php
 					if ( $restricted ) {
-						echo '<span id="location-' . esc_attr( sanitize_key( $location ) ) . '" class="field-value">' . esc_attr( $location_status ) .'</span>';
+						echo '<span id="location-' . esc_attr( sanitize_key( $location ) ) . '" class="field-value">' . esc_attr( $location_status ) . '</span>';
 					} else {
 						?>
 						<select id="location-<?php echo esc_attr( sanitize_key( $location ) ); ?>"
@@ -974,7 +984,7 @@ class WSUWP_Graduate_Degree_Programs {
 		if ( 'users' === $enable_custom_access ) {
 			$allowed_users = (array) get_post_meta( $post_id, 'eam_allowed_users', true );
 
-			if ( in_array( $user_id, $allowed_users ) ) {
+			if ( in_array( $user_id, $allowed_users ) ) { // @codingStandardsIgnoreLine (Converting user IDs to ints is not worth it)
 				return true;
 			}
 		}
@@ -1070,7 +1080,7 @@ class WSUWP_Graduate_Degree_Programs {
 		$location_names = array( 'Pullman', 'Spokane', 'Tri-Cities', 'Vancouver', 'Global Campus' );
 		$clean_locations = array();
 
-		foreach( $location_names as $location_name ) {
+		foreach ( $location_names as $location_name ) {
 			if ( ! isset( $locations[ $location_name ] ) || ! in_array( $locations[ $location_name ], array( 'No', 'Yes', 'By Exception' ), true ) ) {
 				$clean_locations[ $location_name ] = 'No';
 			} else {
@@ -1209,13 +1219,13 @@ class WSUWP_Graduate_Degree_Programs {
 			$assigned_faculty = wp_get_object_terms( $post_id, 'gs-faculty' );
 			$assigned_faculty = wp_list_pluck( $assigned_faculty, 'term_id' );
 
-			foreach( $assigned_faculty as $assigned ) {
+			foreach ( $assigned_faculty as $assigned ) {
 				if ( ! isset( $_POST['faculty'][ $assigned ] ) ) {
 					wp_remove_object_terms( $post_id, $assigned, 'gs-faculty' );
 				}
 			}
 
-			foreach( $_POST['faculty'] as $term_id => $chair_selection ) {
+			foreach ( $_POST['faculty'] as $term_id => $chair_selection ) {
 				if ( ! in_array( $term_id, $assigned_faculty, true ) ) {
 					wp_add_object_terms( $post_id, $term_id, 'gs-faculty' );
 				}
@@ -1280,14 +1290,14 @@ class WSUWP_Graduate_Degree_Programs {
 			'delete_post',
 		);
 
-		if ( in_array( $cap, $eam_caps ) ) {
+		if ( in_array( $cap, $eam_caps, true ) ) {
 
 			$post_id = ( isset( $args[0] ) ) ? (int) $args[0] : null;
 			if ( ! $post_id && ! empty( $_GET['post'] ) ) {
 				$post_id = (int) $_GET['post'];
 			}
 
-			if ( ! $post_id && ! empty( $_POST['post_ID'] ) ) {
+			if ( ! $post_id && ! empty( $_POST['post_ID'] ) ) { // @codingStandardsIgnoreLine (No reason to check a nonce here)
 				$post_id = (int) $_POST['post_ID'];
 			}
 
@@ -1301,13 +1311,13 @@ class WSUWP_Graduate_Degree_Programs {
 				$user = new WP_User( $user_id );
 
 				// If user is admin, we do nothing
-				if ( ! in_array( 'administrator', $user->roles ) ) {
+				if ( ! in_array( 'administrator', $user->roles, true ) ) {
 
 					if ( 'users' === $enable_custom_access ) {
 						// Reset caps for allowed users to do_not_allow.
 						$allowed_users = (array) get_post_meta( $post_id, 'eam_allowed_users', true );
 
-						if ( in_array( $user_id, $allowed_users ) ) {
+						if ( in_array( $user_id, $allowed_users ) ) { // @codingStandardsIgnoreLine (Converting user IDs to ints is not worth it)
 							$caps[] = 'do_not_allow';
 						}
 					}
@@ -1316,6 +1326,68 @@ class WSUWP_Graduate_Degree_Programs {
 		}
 
 		return $caps;
+	}
+
+	/**
+	 * Manage capabilities allowing EAM users to edit faculty members.
+	 *
+	 * @since 1.3.0
+	 *
+	 * @param array   $allcaps An array of all the user's capabilities.
+	 * @param array   $caps    Actual capabilities for meta capability.
+	 * @param array   $args    Optional parameters passed to has_cap(), typically object ID.
+	 * @param WP_User $user    The user object.
+	 * @return array Updated list of capabilities.
+	 */
+	public function allow_edit_faculty_member( $allcaps, $caps, $args, $user ) {
+		if ( 'manage_categories' === $args[0] ) {
+			if ( isset( $_POST['action'] ) && 'editedtag' === $_POST['action'] && isset( $_POST['tag_ID'] ) && 'gs-faculty' === $_POST['taxonomy'] ) { // @codingStandardsIgnoreLine (No reason to check a nonce here)
+				$term_id = absint( $_POST['tag_ID'] );
+			} else {
+				return $allcaps;
+			}
+		} elseif ( 'edit_term' === $args[0] ) {
+			$term_id = $args[2];
+		} else {
+			return $allcaps;
+		}
+
+		// Administrators always have access.
+		if ( in_array( 'administrator', $user->roles, true ) ) {
+			return $allcaps;
+		}
+
+		$factsheets = get_objects_in_term( $term_id, 'gs-faculty' );
+		if ( empty( $factsheets ) || is_wp_error( $factsheets ) ) {
+			return $allcaps;
+		}
+
+		$taxonomy = get_taxonomy( 'gs-faculty' );
+		$allowed = false;
+
+		foreach ( $factsheets as $post_id ) {
+			$enable_custom_access = get_post_meta( $post_id, 'eam_enable_custom_access', true );
+
+			if ( ! empty( $enable_custom_access ) ) {
+				if ( 'users' === $enable_custom_access ) {
+
+					// Reset caps for allowed users to do_not_allow.
+					$allowed_users = (array) get_post_meta( $post_id, 'eam_allowed_users', true );
+
+					if ( in_array( $user->ID, $allowed_users ) ) { // @codingStandardsIgnoreLine (Converting user IDs to ints is not worth it)
+						$allowed = true;
+						break;
+					}
+				}
+			}
+		}
+
+		if ( $allowed ) {
+			$allcaps[ $taxonomy->cap->edit_terms ] = true;
+			$allcaps[ $taxonomy->cap->manage_terms ] = true;
+		}
+
+		return $allcaps;
 	}
 
 	/**
@@ -1441,7 +1513,7 @@ class WSUWP_Graduate_Degree_Programs {
 		$contacts = wp_get_object_terms( $post_id, 'gs-contact' );
 		$data['contacts'] = array();
 		if ( ! is_wp_error( $contacts ) ) {
-			foreach( $contacts as $contact ) {
+			foreach ( $contacts as $contact ) {
 				$contact_meta = WSUWP_Graduate_Degree_Contact_Taxonomy::get_all_term_meta( $contact->term_id );
 				$data['contacts'][] = $contact_meta;
 			}
@@ -1451,7 +1523,7 @@ class WSUWP_Graduate_Degree_Programs {
 		$faculty = wp_get_object_terms( $post_id, 'gs-faculty' );
 		$data['faculty'] = array();
 		if ( ! is_wp_error( $faculty ) ) {
-			foreach( $faculty as $person ) {
+			foreach ( $faculty as $person ) {
 				$faculty_meta = WSUWP_Graduate_Degree_Faculty_Taxonomy::get_all_term_meta( $person->term_id );
 				$faculty_meta['name'] = $person->name;
 

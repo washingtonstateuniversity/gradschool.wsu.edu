@@ -158,7 +158,7 @@ class WSUWP_Graduate_Degree_Programs {
 			'location' => 'secondary',
 		),
 		'gsdp_student_learning_outcome' => array(
-			'description' => 'Student learning outcome',
+			'description' => 'Student learning outcomes',
 			'type' => 'textarea',
 			'sanitize_callback' => 'wp_kses_post',
 			'meta_field_callback' => array( __CLASS__, 'display_textarea_meta_field' ),

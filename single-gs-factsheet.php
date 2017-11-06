@@ -120,7 +120,7 @@
 
 					<?php if ( ! empty( $factsheet_data['student_learning_outcome'] ) ) : ?>
 						<div class="factsheet-student-learning-outcome">
-							<h2>Student Learning Outcome:</h2>
+							<h2>Student Learning Outcomes:</h2>
 							<?php echo wp_kses_post( apply_filters( 'the_content', $factsheet_data['student_learning_outcome'] ) ); ?>
 						</div>
 					<?php endif; ?>

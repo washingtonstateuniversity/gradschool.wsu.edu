@@ -33,7 +33,6 @@ body.home:not(.has-background-image) #jacket,
 
 .colors-gray .main-header {
 	background: rgb(148, 25, 43);
-	background: -webkit-linear-gradient(left, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, 1) 50%, rgba(240, 103, 21, 1) 100%);
 	background: linear-gradient(to right, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, 1) 50%, rgba(240, 103, 21, 1) 100%);
 	-webkit-filter: progid:dximagetransform.microsoft.gradient(startColorstr="#94192b", endColorstr="#f06715", GradientType=1);
 	        filter: progid:dximagetransform.microsoft.gradient(startColorstr="#94192b", endColorstr="#f06715", GradientType=1);
@@ -47,7 +46,6 @@ body.home:not(.has-background-image) #jacket,
 
 .progressbar {
 	background: rgb(148, 25, 43);
-	background: -webkit-linear-gradient(left, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, 1) 50%, rgba(240, 103, 21, 1) 100%);
 	background: linear-gradient(to right, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, 1) 50%, rgba(240, 103, 21, 1) 100%);
 	-webkit-filter: progid:dximagetransform.microsoft.gradient(startColorstr="#94192b", endColorstr="#f06715", GradientType=1);
 	        filter: progid:dximagetransform.microsoft.gradient(startColorstr="#94192b", endColorstr="#f06715", GradientType=1);
@@ -163,10 +161,8 @@ h6 {
 /* ----- A ----- */
 .column a {
 	color: #ab0d24;
-	-webkit-transition-property: color, background;
 	transition-property: color, background;
-	-webkit-transition-duration: .4s, .4s;
-	        transition-duration: .4s, .4s;
+	transition-duration: .4s, .4s;
 	cursor: pointer;
 	border-bottom: 2px solid rgba(0, 0, 0, .05);
 }
@@ -485,10 +481,8 @@ aside a {
 	color: #b7203d;
 	font-size: .9em;
 	font-weight: 600;
-	-webkit-transition-property: color, background;
 	transition-property: color, background;
-	-webkit-transition-duration: .4s, .4s;
-	        transition-duration: .4s, .4s;
+	transition-duration: .4s, .4s;
 	cursor: pointer;
 	border: none;
 }
@@ -504,7 +498,6 @@ aside a:after {
 }
 
 .column.one.heromask-gradient {
-	background: -webkit-linear-gradient(right, #23282b, #23282b);
 	background: linear-gradient(to left, #23282b, #23282b);
 }
 
@@ -552,10 +545,8 @@ a.btnblk {
 	text-transform: uppercase;
 	text-align: center;
 	text-shadow: none;
-	-webkit-transition-property: color, background;
 	transition-property: color, background;
-	-webkit-transition-duration: .4s, .4s;
-	        transition-duration: .4s, .4s;
+	transition-duration: .4s, .4s;
 	cursor: pointer;
 }
 
@@ -938,7 +929,6 @@ h3.topsm {
 	width: 100%;
 	height: 100%;
 	z-index: -1;
-	background: -webkit-linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
 	background: linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
 }
 
@@ -1169,7 +1159,6 @@ h2.sm.second {
 }
 
 .circle.gradient {
-	background: -webkit-linear-gradient(bottom, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, 1) 50%, rgba(240, 103, 21, 1) 100%);
 	background: linear-gradient(to top, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, 1) 50%, rgba(240, 103, 21, 1) 100%);
 	color: #fff;
 }
@@ -1488,7 +1477,6 @@ section.newsandevents {
 }
 
 .column.one.heromask-gradient {
-	background: -webkit-linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
 	background: linear-gradient(45deg, rgba(148, 25, 43, 1) 0%, rgba(171, 13, 36, .1) 50%, rgba(240, 103, 21, .4) 100%);
 }
 
@@ -1773,7 +1761,6 @@ body.events-archive .column.one {
 	background-size: 16px;
 	padding-left: 36px;
 	outline-width: 0;
-	outline: none;
 }
 
 .overlay {
@@ -1785,7 +1772,6 @@ body.events-archive .column.one {
 	position: fixed;
 	visibility: hidden;
 	opacity: 0;
-	-webkit-transition: visibility 0s, opacity .2s linear;
 	transition: visibility 0s, opacity .2s linear;
 }
 
@@ -1900,10 +1886,8 @@ body.searching .degree-search-section {
 
 .degree-name .degree-anchor {
 	color: #ab0d24;
-	-webkit-transition-property: color, background;
 	transition-property: color, background;
-	-webkit-transition-duration: .4s, .4s;
-	        transition-duration: .4s, .4s;
+	transition-duration: .4s, .4s;
 	border-bottom: 2px solid rgba(0, 0, 0, .05);
 }
 

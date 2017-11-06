@@ -15,7 +15,7 @@ class WSUWP_Graduate_Degree_Programs {
 	 *
 	 * @var string
 	 */
-	var $post_type_slug = 'gs-factsheet';
+	public $post_type_slug = 'gs-factsheet';
 
 	/**
 	 * The slug used in pretty URLs.
@@ -24,7 +24,7 @@ class WSUWP_Graduate_Degree_Programs {
 	 *
 	 * @var string
 	 */
-	var $archive_slug = 'degrees';
+	public $archive_slug = 'degrees';
 
 	/**
 	 * A list of post meta keys associated with factsheets.
@@ -33,7 +33,7 @@ class WSUWP_Graduate_Degree_Programs {
 	 *
 	 * @var array
 	 */
-	var $post_meta_keys = array(
+	public $post_meta_keys = array(
 		'gsdp_degree_shortname' => array(
 			'description' => 'Factsheet display name',
 			'type' => 'string',
@@ -189,10 +189,10 @@ class WSUWP_Graduate_Degree_Programs {
 	 * @since 0.4.0
 	 */
 	public function setup_hooks() {
-		require_once( dirname( __FILE__ ) . '/class-graduate-degree-faculty-taxonomy.php' );
-		require_once( dirname( __FILE__ ) . '/class-graduate-degree-program-name-taxonomy.php' );
-		require_once( dirname( __FILE__ ) . '/class-graduate-degree-degree-type-taxonomy.php' );
-		require_once( dirname( __FILE__ ) . '/class-graduate-degree-contact-taxonomy.php' );
+		require_once dirname( __FILE__ ) . '/class-graduate-degree-faculty-taxonomy.php';
+		require_once dirname( __FILE__ ) . '/class-graduate-degree-program-name-taxonomy.php';
+		require_once dirname( __FILE__ ) . '/class-graduate-degree-degree-type-taxonomy.php';
+		require_once dirname( __FILE__ ) . '/class-graduate-degree-contact-taxonomy.php';
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
@@ -297,7 +297,10 @@ class WSUWP_Graduate_Degree_Programs {
 				'revisions',
 			),
 			'has_archive' => $this->archive_slug,
-			'rewrite' => array( 'slug' => $this->archive_slug . '/factsheet', 'with_front' => false ),
+			'rewrite' => array(
+				'slug' => $this->archive_slug . '/factsheet',
+				'with_front' => false,
+			),
 		);
 		register_post_type( $this->post_type_slug, $args );
 	}
@@ -479,6 +482,7 @@ class WSUWP_Graduate_Degree_Programs {
 
 		echo '</div>'; // End of factsheet-faculty-wrapper.
 
+		// @codingStandardsIgnoreStart
 		?>
 		<script type="text/template" id="factsheet-faculty-template">
 			<div class="factsheet-faculty">
@@ -512,6 +516,7 @@ class WSUWP_Graduate_Degree_Programs {
 			<input type="text" id="faculty-entry" value="" />
 		</div>
 		<?php
+		// @codingStandardsIgnoreEnd
 	}
 
 	/**
@@ -578,6 +583,8 @@ class WSUWP_Graduate_Degree_Programs {
 		}
 
 		echo '</div>' // End factsheet-contact-wrapper.
+
+		// @codingStandardsIgnoreStart
 		?>
 		<script type="text/template" id="factsheet-contact-template">
 			<div class="factsheet-contact">
@@ -603,8 +610,8 @@ class WSUWP_Graduate_Degree_Programs {
 			<label for="contact-entry">Add Contact:</label>
 			<input type="text" id="contact-entry" value="" />
 		</div>
-
 		<?php
+		// @codingStandardsIgnoreEnd
 	}
 
 	/**
@@ -822,6 +829,7 @@ class WSUWP_Graduate_Degree_Programs {
 				<?php
 			}
 
+			// @codingStandardsIgnoreStart
 			?>
 			<script type="text/template" id="factsheet-deadline-template">
 				<span class="factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field">
@@ -840,6 +848,7 @@ class WSUWP_Graduate_Degree_Programs {
 			<input type="hidden" name="factsheet_deadline_form_count" id="factsheet_deadline_form_count" value="<?php echo esc_attr( $field_count ); ?>" />
 		</div>
 		<?php
+		// @codingStandardsIgnoreEnd
 	}
 
 	/**
@@ -895,6 +904,7 @@ class WSUWP_Graduate_Degree_Programs {
 				<?php
 			}
 
+			// @codingStandardsIgnoreStart
 			?>
 			<script type="text/template" id="factsheet-requirement-template">
 				<span class="factsheet-<?php echo esc_attr( $meta['type'] ); ?>-field">
@@ -908,6 +918,7 @@ class WSUWP_Graduate_Degree_Programs {
 			<input type="hidden" name="factsheet_requirement_form_count" id="factsheet_requirement_form_count" value="<?php echo esc_attr( $field_count ); ?>" />
 		</div>
 		<?php
+		// @codingStandardsIgnoreEnd
 	}
 
 	/**
@@ -1297,7 +1308,7 @@ class WSUWP_Graduate_Degree_Programs {
 		if ( in_array( $cap, $eam_caps, true ) ) {
 
 			$post_id = ( isset( $args[0] ) ) ? (int) $args[0] : null;
-			if ( ! $post_id && ! empty( $_GET['post'] ) ) {
+			if ( ! $post_id && ! empty( $_GET['post'] ) ) { // WPCS: CSRF Ok.
 				$post_id = (int) $_GET['post'];
 			}
 
@@ -1594,8 +1605,6 @@ class WSUWP_Graduate_Degree_Programs {
 		if ( is_post_type_archive( $this->post_type_slug ) ) {
 			$query->set( 'posts_per_page', -1 );
 		}
-
-		return;
 	}
 
 	/**

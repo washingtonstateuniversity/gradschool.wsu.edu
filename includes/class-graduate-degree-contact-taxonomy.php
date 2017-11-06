@@ -15,7 +15,7 @@ class WSUWP_Graduate_Degree_Contact_Taxonomy {
 	 *
 	 * @var string
 	 */
-	var $taxonomy_slug = 'gs-contact';
+	public $taxonomy_slug = 'gs-contact';
 
 	/**
 	 * A list of term meta keys associated with contacts.
@@ -24,7 +24,7 @@ class WSUWP_Graduate_Degree_Contact_Taxonomy {
 	 *
 	 * @var array
 	 */
-	var $term_meta_keys = array(
+	public $term_meta_keys = array(
 		'gs_contact_name' => array(
 			'description' => 'Name',
 		),
@@ -160,8 +160,6 @@ class WSUWP_Graduate_Degree_Contact_Taxonomy {
 				update_term_meta( $term_id, $key, $_POST[ $key ] );
 			}
 		}
-
-		return;
 	}
 
 	/**
@@ -197,9 +195,9 @@ class WSUWP_Graduate_Degree_Contact_Taxonomy {
 				</th>
 				<td>
 					<input type="text"
-					       name="<?php echo esc_attr( $key ); ?>"
-					       id="<?php echo esc_attr( $key ); ?>"
-					       value="<?php if ( isset( $term_meta[ $key ][0] ) ) { echo esc_attr( $term_meta[ $key ][0] ); } ?>" />
+							name="<?php echo esc_attr( $key ); ?>"
+							id="<?php echo esc_attr( $key ); ?>"
+							value="<?php if ( isset( $term_meta[ $key ][0] ) ) { echo esc_attr( $term_meta[ $key ][0] ); } ?>" />
 				</td>
 			</tr>
 			<?php

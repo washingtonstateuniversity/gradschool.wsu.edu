@@ -1,7 +1,7 @@
 <?php
 
-require_once( dirname( __FILE__ ) . '/includes/class-wsuwp-graduate-school-theme.php' );
-require_once( dirname( __FILE__ ) . '/includes/class-wsuwp-graduate-degree-programs.php' );
+require_once dirname( __FILE__ ) . '/includes/class-wsuwp-graduate-school-theme.php';
+require_once dirname( __FILE__ ) . '/includes/class-wsuwp-graduate-degree-programs.php';
 
 add_action( 'after_setup_theme', 'WSUWP_Graduate_School_Theme' );
 /**

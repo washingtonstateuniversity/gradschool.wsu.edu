@@ -15,7 +15,7 @@ class WSUWP_Graduate_Degree_Degree_Type_Taxonomy {
 	 *
 	 * @var string
 	 */
-	var $taxonomy_slug = 'gs-degree-type';
+	public $taxonomy_slug = 'gs-degree-type';
 
 	/**
 	 * A list of term meta keys associated with degree types.
@@ -24,7 +24,7 @@ class WSUWP_Graduate_Degree_Degree_Type_Taxonomy {
 	 *
 	 * @var array
 	 */
-	var $term_meta_keys = array(
+	public $term_meta_keys = array(
 		'gs_degree_type_classification' => array(
 			'description' => 'Degree Classification',
 			'type' => 'string',
@@ -130,8 +130,6 @@ class WSUWP_Graduate_Degree_Degree_Type_Taxonomy {
 				update_term_meta( $term_id, $key, $_POST[ $key ] );
 			}
 		}
-
-		return;
 	}
 
 	/**

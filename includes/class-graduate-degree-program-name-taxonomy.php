@@ -15,7 +15,7 @@ class WSUWP_Graduate_Degree_Program_Name_Taxonomy {
 	 *
 	 * @var string
 	 */
-	var $taxonomy_slug = 'gs-program-name';
+	public $taxonomy_slug = 'gs-program-name';
 
 	/**
 	 * Maintain and return the one instance. Initiate hooks when

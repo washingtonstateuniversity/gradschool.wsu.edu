@@ -15,7 +15,7 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 	 *
 	 * @var string
 	 */
-	var $taxonomy_slug = 'gs-faculty';
+	public $taxonomy_slug = 'gs-faculty';
 
 	/**
 	 * Maintain and return the one instance. Initiate hooks when
@@ -120,8 +120,6 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 		check_admin_referer( 'update-tag_' . $term_id );
 
 		$this->save_common_term_fields( $term_id );
-
-		return;
 	}
 
 	/**
@@ -302,14 +300,14 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 	 * @param WP_Term_Query $term_query
 	 */
 	public function sort_custom_columns( $term_query ) {
-		if ( ! isset( $_REQUEST['orderby'] ) || ! isset( $_REQUEST['order'] ) ) {
+		if ( ! isset( $_REQUEST['orderby'] ) || ! isset( $_REQUEST['order'] ) ) { // WPCS: CSRF Ok.
 			return;
 		}
 
-		if ( 'Email' === $_REQUEST['orderby'] ) {
+		if ( 'Email' === $_REQUEST['orderby'] ) { // WPCS: CSRF Ok.
 			$term_query->query_vars['orderby'] = 'meta_value';
 			$term_query->query_vars['meta_key'] = 'gs_faculty_email';
-		} elseif ( 'URL' === $_REQUEST['orderby'] ) {
+		} elseif ( 'URL' === $_REQUEST['orderby'] ) { // WPCS: CSRF Ok.
 			$term_query->query_vars['orderby'] = 'meta_value';
 			$term_query->query_vars['meta_key'] = 'gs_faculty_url';
 		}

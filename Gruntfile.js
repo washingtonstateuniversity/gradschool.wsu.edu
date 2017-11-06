@@ -120,5 +120,5 @@ module.exports = function( grunt ) {
 	grunt.loadNpmTasks( "grunt-contrib-uglify" );
 
 	// Default task(s).
-	grunt.registerTask( "default", [ "jscs", "jshint", "uglify", "stylelint", "concat", "postcss", "clean" ] );
+	grunt.registerTask( "default", [ "jscs", "jshint", "uglify", "stylelint", "concat", "postcss", "clean", "phpcs" ] );
 };

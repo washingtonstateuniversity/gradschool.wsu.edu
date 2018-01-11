@@ -130,20 +130,21 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 	 * @param int $term_id
 	 */
 	private function save_common_term_fields( $term_id ) {
-		if ( isset( $_POST['degree_abbreviation'] ) ) { // @codingStandardsIgnoreLine (Nonce already checked)
-			update_term_meta( $term_id, 'gs_degree_abbreviation', sanitize_text_field( $_POST['degree_abbreviation'] ) );
+
+		if ( isset( $_POST['degree_abbreviation'] ) ) { // WPCS: CSRF ok. (Nonce already checked)
+			update_term_meta( $term_id, 'gs_degree_abbreviation', sanitize_text_field( $_POST['degree_abbreviation'] ) ); // WPCS: CSRF ok. (Nonce already checked)
 		}
 
-		if ( isset( $_POST['email'] ) ) { // @codingStandardsIgnoreLine (Nonce already checked)
-			update_term_meta( $term_id, 'gs_faculty_email', sanitize_email( $_POST['email'] ) );
+		if ( isset( $_POST['email'] ) ) { // WPCS: CSRF ok. (Nonce already checked)
+			update_term_meta( $term_id, 'gs_faculty_email', sanitize_email( $_POST['email'] ) ); // WPCS: CSRF ok. (Nonce already checked)
 		}
 
-		if ( isset( $_POST['faculty_url'] ) ) { // @codingStandardsIgnoreLine (Nonce already checked)
-			update_term_meta( $term_id, 'gs_faculty_url', sanitize_text_field( $_POST['faculty_url'] ) );
+		if ( isset( $_POST['faculty_url'] ) ) { // WPCS: CSRF ok. (Nonce already checked)
+			update_term_meta( $term_id, 'gs_faculty_url', sanitize_text_field( $_POST['faculty_url'] ) ); // WPCS: CSRF ok. (Nonce already checked)
 		}
 
-		if ( isset( $_POST['research_interests'] ) ) { // @codingStandardsIgnoreLine (Nonce already checked)
-			update_term_meta( $term_id, 'gs_research_interests', wp_kses_post( $_POST['research_interests'] ) );
+		if ( isset( $_POST['research_interests'] ) ) { // WPCS: CSRF ok. (Nonce already checked)
+			update_term_meta( $term_id, 'gs_research_interests', wp_kses_post( $_POST['research_interests'] ) ); // WPCS: CSRF ok. (Nonce already checked)
 		}
 	}
 

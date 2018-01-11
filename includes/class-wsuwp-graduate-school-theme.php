@@ -6,7 +6,7 @@ class WSUWP_Graduate_School_Theme {
 	 *
 	 * @var string String used for busting cache on scripts.
 	 */
-	public $script_version = '1.3.1';
+	public $script_version = '1.3.2';
 
 	/**
 	 * @since 0.5.0

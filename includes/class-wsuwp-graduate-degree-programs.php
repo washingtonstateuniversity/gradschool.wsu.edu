@@ -1566,19 +1566,19 @@ class WSUWP_Graduate_Degree_Programs {
 					$faculty_relationships[ $unique_id ] = wp_parse_args( $faculty_relationships[ $unique_id ], $faculty_relationship_defaults );
 
 					if ( 'true' === $faculty_relationships[ $unique_id ]['chair'] && 'true' === $faculty_relationships[ $unique_id ]['cochair'] && 'true' === $faculty_relationships[ $unique_id ]['sit'] ) {
-						$faculty_meta['relationship'] = 'Serves as: chair, co-chair, or member on graduate committee';
+						$faculty_meta['relationship'] = 'Serves as: chair, co-chair, or member of graduate committee';
 					} elseif ( 'true' === $faculty_relationships[ $unique_id ]['chair'] && 'true' === $faculty_relationships[ $unique_id ]['cochair'] ) {
-						$faculty_meta['relationship'] = 'Serves as: chair or co-chair on graduate committee';
+						$faculty_meta['relationship'] = 'Serves as: chair or co-chair of graduate committee';
 					} elseif ( 'true' === $faculty_relationships[ $unique_id ]['chair'] && 'true' === $faculty_relationships[ $unique_id ]['sit'] ) {
-						$faculty_meta['relationship'] = 'Serves as: chair or member on graduate committee';
+						$faculty_meta['relationship'] = 'Serves as: chair or member of graduate committee';
 					} elseif ( 'true' === $faculty_relationships[ $unique_id ]['chair'] ) {
-						$faculty_meta['relationship'] = 'Serves as: chair on graduate committee';
+						$faculty_meta['relationship'] = 'Serves as: chair of graduate committee';
 					} elseif ( 'true' === $faculty_relationships[ $unique_id ]['cochair'] && 'true' === $faculty_relationships[ $unique_id ]['sit'] ) {
-						$faculty_meta['relationship'] = 'Serves as: co-chair or member on graduate committee';
+						$faculty_meta['relationship'] = 'Serves as: co-chair or member of graduate committee';
 					} elseif ( 'true' === $faculty_relationships[ $unique_id ]['cochair'] ) {
-						$faculty_meta['relationship'] = 'Serves as: co-chair on graduate committee';
+						$faculty_meta['relationship'] = 'Serves as: co-chair of graduate committee';
 					} elseif ( 'true' === $faculty_relationships[ $unique_id ]['sit'] ) {
-						$faculty_meta['relationship'] = 'Serves as: member only on graduate committee';
+						$faculty_meta['relationship'] = 'Serves as: member only of graduate committee';
 					} else {
 						$faculty_meta['relationship'] = '';
 					}

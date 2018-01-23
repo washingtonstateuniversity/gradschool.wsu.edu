@@ -203,6 +203,9 @@ class WSUWP_Graduate_Degree_Programs {
 		add_action( 'init', 'WSUWP_Graduate_Degree_Degree_Type_Taxonomy', 15 );
 		add_action( 'init', 'WSUWP_Graduate_Degree_Contact_Taxonomy', 15 );
 
+		add_action( 'init', array( $this, 'add_mirror_grad_fair_rewrites' ) );
+		add_filter( 'query_vars', array( $this, 'add_gradfair_query_var' ) );
+
 		add_action( 'init', array( $this, 'register_meta' ) );
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
 		add_action( 'add_meta_boxes', array( $this, 'remove_meta_boxes' ), 99 );
@@ -303,6 +306,32 @@ class WSUWP_Graduate_Degree_Programs {
 			),
 		);
 		register_post_type( $this->post_type_slug, $args );
+	}
+
+	/**
+	 * Add custom rewrite rules to duplicate degree programs without navigation
+	 * for the graduate fair.
+	 *
+	 * @since 1.4.0
+	 */
+	public function add_mirror_grad_fair_rewrites() {
+		add_rewrite_rule( '^wsugradfair/degrees/?$', 'index.php?post_type=gs-factsheet&gradfair=1', 'top' );
+		add_rewrite_rule( '^wsugradfair/degrees/factsheet/([^/]+)(?:/([0-9]+))?/?$', 'index.php?gs-factsheet=$matches[1]&page=$matches[2]&gradfair=1', 'top' );
+	}
+
+	/**
+     * Add our custom query variable to the set of default query variables.
+	 *
+	 * @since 1.4.0
+     *
+	 * @param array $vars
+	 *
+	 * @return array
+	 */
+	function add_gradfair_query_var( $vars ){
+		$vars[] = 'gradfair';
+
+		return $vars;
 	}
 
 	/**

@@ -1,6 +1,6 @@
 <nav id="spine-sitenav" class="spine-sitenav">
 	<?php
-	if ( get_query_var( 'gradfair' ) && 1 === absint( get_query_var( 'gradfair' ) ) ) {
+	if ( is_page( 'wsugradfair' ) || ( get_query_var( 'gradfair' ) && 1 === absint( get_query_var( 'gradfair' ) ) ) ) {
 		$spine_site_args = array(
 			'theme_location'  => 'gradfair',
 			'menu'            => 'gradfair',

@@ -321,15 +321,15 @@ class WSUWP_Graduate_Degree_Programs {
 	}
 
 	/**
-     * Add our custom query variable to the set of default query variables.
+	 * Add our custom query variable to the set of default query variables.
 	 *
 	 * @since 1.4.0
-     *
+	 *
 	 * @param array $vars
 	 *
 	 * @return array
 	 */
-	function add_gradfair_query_var( $vars ){
+	public function add_gradfair_query_var( $vars ) {
 		$vars[] = 'gradfair';
 
 		return $vars;

@@ -205,6 +205,7 @@ class WSUWP_Graduate_Degree_Programs {
 
 		add_action( 'init', array( $this, 'add_mirror_grad_fair_rewrites' ) );
 		add_filter( 'query_vars', array( $this, 'add_gradfair_query_var' ) );
+		add_action( 'init', array( $this, 'register_mirror_menu' ) );
 
 		add_action( 'init', array( $this, 'register_meta' ) );
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
@@ -332,6 +333,19 @@ class WSUWP_Graduate_Degree_Programs {
 		$vars[] = 'gradfair';
 
 		return $vars;
+	}
+
+	/**
+	 * Register a mirror navigation area for grad fair usage.
+	 *
+	 * @since 1.4.0
+	 */
+	public function register_mirror_menu() {
+		register_nav_menus(
+			array(
+				'gradfair'    => 'WSU Grad Fair',
+			)
+		);
 	}
 
 	/**

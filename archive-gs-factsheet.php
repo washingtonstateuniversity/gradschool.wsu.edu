@@ -1,5 +1,10 @@
 <?php
 
+$gradfair = false;
+if ( get_query_var( 'gradfair' ) && 1 === absint( get_query_var( 'gradfair' ) ) ) {
+	$gradfair = true;
+}
+
 $factsheets = array();
 if ( have_posts() ) {
 	while ( have_posts() ) {
@@ -11,6 +16,10 @@ if ( have_posts() ) {
 		}
 
 		$factsheet_data['permalink'] = get_the_permalink();
+
+		if ( $gradfair ) {
+			$factsheet_data['permalink'] = str_replace( '/degrees/factsheet/', '/wsugradfair/degrees/factsheet/', $factsheet_data['permalink'] );
+		}
 
 		$degree_types = wp_get_object_terms( get_the_ID(), 'gs-degree-type' );
 		$program_name = wp_get_object_terms( get_the_ID(), 'gs-program-name' );

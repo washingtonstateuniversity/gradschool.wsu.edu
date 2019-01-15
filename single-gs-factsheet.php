@@ -234,12 +234,12 @@
 					</div>
 				</div>
 			</section>
-			<?php
-		endwhile;
-		endif;
+				<?php
+				endwhile;
+				endif;
 
-		get_template_part( 'parts/footers' );
+				get_template_part( 'parts/footers' );
 
-		?>
+?>
 	</main>
 <?php get_footer();

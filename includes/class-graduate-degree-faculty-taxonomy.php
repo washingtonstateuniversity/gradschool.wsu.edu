@@ -139,6 +139,10 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 			update_term_meta( $term_id, 'gs_faculty_email', sanitize_email( $_POST['email'] ) ); // WPCS: CSRF ok. (Nonce already checked)
 		}
 
+		if ( isset( $_POST['faculty_location'] ) ) { // WPCS: CSRF ok. (Nonce already checked)
+			update_term_meta( $term_id, 'gs_faculty_location', sanitize_text_field( $_POST['faculty_location'] ) ); // WPCS: CSRF ok. (Nonce already checked)
+		}
+
 		if ( isset( $_POST['faculty_url'] ) ) { // WPCS: CSRF ok. (Nonce already checked)
 			update_term_meta( $term_id, 'gs_faculty_url', sanitize_text_field( $_POST['faculty_url'] ) ); // WPCS: CSRF ok. (Nonce already checked)
 		}
@@ -164,6 +168,7 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 		$term_meta['uuid'] = get_term_meta( $term_id, 'gs_relationship_id', true );
 		$term_meta['degree_abbreviation'] = get_term_meta( $term_id, 'gs_degree_abbreviation', true );
 		$term_meta['email'] = get_term_meta( $term_id, 'gs_faculty_email', true );
+		$term_meta['faculty_location'] = get_term_meta( $term_id, 'gs_faculty_location', true );
 		$term_meta['url'] = get_term_meta( $term_id, 'gs_faculty_url', true );
 		$term_meta['research_interests'] = get_term_meta( $term_id, 'gs_research_interests', true );
 
@@ -184,6 +189,10 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 		<div class="form-field">
 			<label for="email">Email</label>
 			<input type="text" name="email" id="email" value="" />
+		</div>
+		<div class="form-field">
+			<label for="faculty_location">Campus/Location</label>
+			<input type="text" name="faculty_location" id="faculty_location" value="" />
 		</div>
 		<div class="form-field">
 			<label for="faculty_url">URL</label>
@@ -228,6 +237,14 @@ class WSUWP_Graduate_Degree_Faculty_Taxonomy {
 			</th>
 			<td>
 				<input type="text" name="email" id="email" value="<?php echo esc_attr( $term_meta['email'] ); ?>" />
+			</td>
+		</tr>
+		<tr class="form-field">
+			<th scope="row">
+				<label for="faculty_location">Campus/Location:</label>
+			</th>
+			<td>
+				<input type="text" name="faculty_location" id="faculty_location" value="<?php echo esc_attr( $term_meta['faculty_location'] ); ?>" />
 			</td>
 		</tr>
 		<tr class="form-field">

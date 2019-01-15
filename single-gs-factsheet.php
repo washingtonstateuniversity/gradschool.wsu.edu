@@ -156,6 +156,9 @@
 							<?php if ( ! empty( $faculty['email'] ) ) : ?>
 							<div><a href="mailto:<?php echo esc_attr( $faculty['email'] ); ?>"><?php echo esc_html( $faculty['email'] ); ?></a></div>
 							<?php endif; ?>
+							<?php if ( ! empty( $faculty['faculty_location'] ) ) : ?>
+							<div class="faculty-location">Location: <?php echo esc_html( $faculty['faculty_location'] ); ?></div>
+							<?php endif; ?>
 							<?php if ( ! empty( $faculty['url'] ) ) : ?>
 							<div><strong>URL:</strong> <a href="<?php echo esc_url( $faculty['url'] ); ?>"><?php echo esc_html( $faculty['url'] ); ?></a></div>
 							<?php endif; ?>
@@ -231,11 +234,11 @@
 					</div>
 				</div>
 			</section>
-			<?php
-		endwhile;
-		endif;
+				<?php
+				endwhile;
+				endif;
 
-		get_template_part( 'parts/footers' );
+				get_template_part( 'parts/footers' );
 
 		?>
 	</main>

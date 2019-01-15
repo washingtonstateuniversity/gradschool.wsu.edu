@@ -1021,7 +1021,7 @@ class WSUWP_Graduate_Degree_Programs {
 				</span>
 				<?php
 			}
-		?>
+			?>
 		</div>
 		<?php
 	}

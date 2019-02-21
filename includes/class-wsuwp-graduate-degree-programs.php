@@ -1278,12 +1278,20 @@ class WSUWP_Graduate_Degree_Programs {
 		 */
 		remove_action( "save_post_{$this->post_type_slug}", array( $this, 'save_factsheet' ), 10, 2 );
 
-		$post = array(
-			'ID'                => $post_id,
-			'post_modified_gmt' => date( 'Y:m:d H:i:s' ),
-		);
+		global $wpdb;
 
-		wp_update_post( $post );
+		//eg. time one year ago..
+		$time = time();
+
+		$mysql_time_format = 'Y-m-d H:i:s';
+
+		$post_modified = gmdate( $mysql_time_format, $time );
+
+		$post_modified_gmt = gmdate( $mysql_time_format, ( $time + get_option( 'gmt_offset' ) ) );
+
+		$wpdb->query( $wpdb->prepare( "UPDATE %s SET post_modified = %s, post_modified_gmt = %s  WHERE ID = %d", array( $wpdb->posts, $post_modified, $post_modified_gmt, $post_id ) ) );
+
+		// end last modified update.
 
 		if ( isset( $_POST['faculty'] ) ) {
 			$faculty_relationships = array();
